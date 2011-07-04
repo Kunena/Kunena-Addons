@@ -31,6 +31,9 @@ Legend:
 
 Kunena Discuss Plugin 1.6.5-DEV
 
+04-July-2011 LordDarkAngel
+^ update el-GR (thanks etkritikonspoudon)
+
 22-June-2011 Matias
 # [#25947] Obey configuration option to show nothing in front/blog/other pages
 # [#25947] If set to show only a link, do not try to show more
