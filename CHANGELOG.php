@@ -25,7 +25,7 @@ Legend:
 ! -> Note
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-94-July-2011 LordDarkAngel
+04-July-2011 LordDarkAngel
 + add el-GR (thanks etkritikonspoudon)
 
 20-May-2011 LDA
