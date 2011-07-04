@@ -31,7 +31,7 @@ Legend:
 KunenaLatest 1.6.5-DEV
 
 04-July-2011 lorddarkangel
-+ add el-GB (thanks etkritikonspoudon)
++ add el-GR (thanks etkritikonspoudon)
 
 22-June-2011 Matias
 # [#25944] Fix missing CSS styling for visitors if caching is turned on
