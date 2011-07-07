@@ -31,6 +31,9 @@ Legend:
 
 Kunena Discuss Plugin 1.6.5-DEV
 
+07-July-2011 fxstein
++ [#2] Added missing css styling for quotes
+
 04-July-2011 LordDarkAngel
 ^ update el-GR (thanks etkritikonspoudon)
 
