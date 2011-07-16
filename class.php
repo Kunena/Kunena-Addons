@@ -72,7 +72,7 @@ class ModKunenaLogin {
 		$live_path = JURI::base ( true ) . '/';
 
 		// add CSS stylesheet
-		$document->addStyleSheet ( $live_path . "modules/mod_kunenalatest/tmpl/css/kunenalogin.css", "text/css" );
+		$document->addStyleSheet ( $live_path . "modules/mod_kunenalogin/tmpl/css/kunenalogin.css", "text/css" );
 	}
 
 	function kunenaAvatar($userid) {
