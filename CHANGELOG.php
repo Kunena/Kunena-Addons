@@ -31,6 +31,9 @@ Legend:
 
 Kunena Discuss Plugin 1.6.5-DEV
 
+23-July-2011 Xillibit
+# [#5] Wrong using of CKunenaLink::GetThreadLink attributes are at the wrong place
+
 07-July-2011 fxstein
 + [#2] Added missing css styling for quotes
 
