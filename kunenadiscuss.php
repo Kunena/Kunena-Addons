@@ -408,7 +408,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 	 * Output
 	 *****************************************************************************/
 
-	protected function showTopic($catid, $thread, $link) {
+	protected function showTopic($catid, $thread) {
 		if (!$thread) {
 			$this->debug ( "showTopic: No messages to render" );
 			return '';
