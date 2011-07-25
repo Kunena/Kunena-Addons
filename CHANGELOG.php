@@ -31,6 +31,9 @@ Legend:
 
 Kunena Discuss Plugin 1.6.5-DEV
 
+24-July-2011 Xillibit
+# [#7] Undefined variable with method showTopic()
+
 24-July-2011 810
 # [#9] Css width problem
 # [#9] Css width problem part 2
