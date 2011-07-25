@@ -111,7 +111,7 @@
 	font-size:11px;
 	padding:5px 0;
 	float:left;
-	width:85%;
+	width:70%;
 }
 .kdiscuss-text img {
 	max-width:450px;
@@ -157,4 +157,7 @@ div.kdiscuss-content-cover .code {
 	border-color: #BFC3C6;
 	font-family: Arial,Helvetica,sans-serif;
 	background-color: #F2F1EE;
+}
+.ktext {
+	width:100%;
 }
