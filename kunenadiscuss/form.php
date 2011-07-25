@@ -35,7 +35,7 @@ defined( '_JEXEC' ) or die ( '' );
 						<?php echo JText::_('PLG_KUNENADISCUSS_MESSAGE') ?></span>
 					</tr>
 					<tr>
-						<td colspan="2"><textarea name="message" rows="5" cols="60"></textarea></td>
+						<td colspan="2"><textarea name="message" rows="5" cols="60" class="ktext"></textarea></td>
 					</tr>
 					<?php if ($this->config->captcha && !$this->_my->id) : ?>
 					<tr>
