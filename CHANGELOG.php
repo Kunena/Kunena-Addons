@@ -26,6 +26,11 @@ Legend:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+KunenaSearch 1.6.5-DEV
+
+31-July-2011 Xillibit
+^ [#1] Let choose the user if the link will open in a new page
+
 KunenaSearch 1.6.4
 
 03-April-2011 LDA
