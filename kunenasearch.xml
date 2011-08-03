@@ -3,7 +3,7 @@
 <install version="1.5" type="plugin" group="search" method="upgrade">
 	<name>Search - Kunena</name>
 	<author>Kunena Team</author>
-	<version>1.6.4</version>
+	<version>1.6.5-DEV</version>
 	<creationDate>@kunenaversiondate@</creationDate>
 	<build>@kunenaversionbuild@</build>
 	<copyright>(c)2010-2011 Kunena Team. All rights reserved.</copyright>
@@ -31,6 +31,10 @@
 			<option value="0">PLG_KUNENASEARCH_OPTION_NO</option>
 			<option value="1">PLG_KUNENASEARCH_OPTION_YES</option>
 		</param>
+		<param name="open_new_page" type="radio" default="1" label="PLG_KUNENASEARCH_PARAM_OPEN_NEWPAGE" description="PLG_KUNENASEARCH_PARAM_OPEN_NEWPAGE">
+			<option value="0">PLG_KUNENASEARCH_OPTION_NO</option>
+			<option value="1">PLG_KUNENASEARCH_OPTION_YES</option>
+		</param>
 	</params>
 	
 	<config>
@@ -39,6 +43,10 @@
 				<field name="search_limit" type="text" size="5" default="50" label="PLG_KUNENASEARCH_PARAM_SEARCH_LIMIT" description="PLG_KUNENASEARCH_PARAM_SEARCH_LIMIT_DESC"/>
 				<field name="content_limit" type="text" size="5" default="40" label="PLG_KUNENASEARCH_PARAM_CONTENT_LIMIT" description="PLG_KUNENASEARCH_PARAM_CONTENT_LIMIT_DESC"/>
 				<field name="show_bbcode" type="radio" default="1" label="PLG_KUNENASEARCH_PARAM_SHOW_BBCODE" description="PLG_KUNENASEARCH_PARAM_SHOW_BBCODE_DESC">
+					<option value="0">PLG_KUNENASEARCH_OPTION_NO</option>
+					<option value="1">PLG_KUNENASEARCH_OPTION_YES</option>
+				</field>
+				<field name="open_new_page" type="radio" default="1" label="PLG_KUNENASEARCH_PARAM_OPEN_NEWPAGE" description="PLG_KUNENASEARCH_PARAM_OPEN_NEWPAGE_DESC">
 					<option value="0">PLG_KUNENASEARCH_OPTION_NO</option>
 					<option value="1">PLG_KUNENASEARCH_OPTION_YES</option>
 				</field>

@@ -68,6 +68,7 @@ function plgSearchKunena($text, $phrase = '', $ordering = '', $areas = null) {
 	$limit = $pluginParams->def ( 'search_limit', 50 );
 	$contentLimit = $pluginParams->def ( 'content_limit', 40 );
 	$shBbcode = $pluginParams->def ( 'show_bbcode', 1 );
+	$openInNewPage = $pluginParams->def ( 'open_new_page', 1 );
 
 	//Use the function trim to delete spaces in front of or at the back of the searching terms
 	$text = trim ( $text );
@@ -156,7 +157,7 @@ function plgSearchKunena($text, $phrase = '', $ordering = '', $areas = null) {
 		} else {
 			$row->text = KunenaParser::stripBBCode ( $row->text );
 		}
-
+		$row->browsernav = $openInNewPage ? 1 : 0;
 		$row->title = JString::substr ( $row->title, '0', $contentLimit );
 		$row->section = $row->section;
 		$rows [$key]->href = CKunenaLink::GetMessageURL ( $row->id, $row->catid );
