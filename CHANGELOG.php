@@ -30,6 +30,9 @@ Legend:
 
 KunenaLatest 1.6.5-DEV
 
+04-August-2011 Matias
+^ Update Kunena version requirements
+
 09-July-2011 lorddarkangel
 - MOD_KUNENALATEST_PARAM_DATEFORMAT_DEFAULT in en-GB. it's not used
 
