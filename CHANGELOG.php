@@ -31,6 +31,9 @@ Legend:
 
 Kunena Discuss Plugin 1.6.5-DEV
 
+04-August-2011 Matias
+# [#12] Improve Joomla 1.7 support
+
 24-July-2011 Xillibit
 # [#7] Undefined variable with method showTopic()
 
