@@ -11,7 +11,6 @@
 defined ( '_JEXEC' ) or die ( '' );
 
 jimport ( 'joomla.plugin.plugin' );
-jimport ( 'joomla.version');
 
 class plgContentKunenaDiscuss extends JPlugin {
 	// Associative array to hold results of the plugin
@@ -28,8 +27,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 		if (! $this->enabled ())
 			return null;
 
-		$jversion = new JVersion();
-		if ($jversion->RELEASE != '1.5') {
+		if (version_compare(JVERSION, '1.6', '>')) {
 			$this->basepath = 'plugins/content/kunenadiscuss';
 		} else {
 			$this->basepath = 'plugins/content';
@@ -39,8 +37,8 @@ class plgContentKunenaDiscuss extends JPlugin {
 		$this->loadLanguage ( 'plg_content_kunenadiscuss', JPATH_ADMINISTRATOR );
 
 		// Kunena detection and version check
-		$minKunenaVersion = '1.6.3';
-		if (!class_exists('Kunena') || Kunena::versionBuild() < 4344) {
+		$minKunenaVersion = '1.6.5';
+		if (!class_exists('Kunena') || version_compare(Kunena::version(), $minKunenaVersion, '<')) {
 			$this->_app->enqueueMessage( JText::sprintf ( 'PLG_KUNENADISCUSS_DEPENDENCY_FAIL', $minKunenaVersion ) );
 			return null;
 		}
@@ -108,7 +106,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 		return $this->display($context, $article, $params);
 	}
 
-	// Joomla 1.6 support
+	// Joomla 1.6+ support
 	public function onContentBeforeDisplay($context, &$article, &$params, $limitstart=0) {
 		return $this->prepare($context, $article, $params);
 	}
