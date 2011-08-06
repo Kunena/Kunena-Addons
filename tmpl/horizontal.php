@@ -72,11 +72,11 @@ defined('_JEXEC') or die();
 				<li class="klogout-uname">
 				<span class="klogin-form-login-username">
 					<label for="klogin-username"><?php //echo JText::_('MOD_KUNENALOGIN_USERNAME') ?></label>
-					<input class="klogin-username" type="text" name="<?php echo $this->login['field_username']; ?>" class="inputbox" alt="username" size="18" value="<?php echo JText::_('MOD_KUNENALOGIN_USERNAME'); ?>" onblur = "if(this.value=='') this.value='<?php echo JText::_('MOD_KUNENALOGIN_USERNAME'); ?>';" onfocus = "if(this.value=='<?php echo JText::_('MOD_KUNENALOGIN_USERNAME'); ?>') this.value='';" />
+					<input id="klogin-username" class="klogin-username inputbox" type="text" name="<?php echo $this->login['field_username']; ?>" alt="username" size="18" value="<?php echo JText::_('MOD_KUNENALOGIN_USERNAME'); ?>" onblur = "if(this.value=='') this.value='<?php echo JText::_('MOD_KUNENALOGIN_USERNAME'); ?>';" onfocus = "if(this.value=='<?php echo JText::_('MOD_KUNENALOGIN_USERNAME'); ?>') this.value='';" />
 				</span>
 				<?php if(JPluginHelper::isEnabled('system', 'remember')) : ?>
 				<span class="klogin-form-login-remember"><label for="klogin-remember">
-				<input class="klogin-remember" type="checkbox" name="remember" value="yes" alt="<?php echo JText::_('MOD_KUNENALOGIN_REMEMBER_ME') ?>" />
+				<input id="klogin-remember" class="klogin-remember" type="checkbox" name="remember" value="yes" alt="<?php echo JText::_('MOD_KUNENALOGIN_REMEMBER_ME') ?>" />
 					<?php echo JText::_('MOD_KUNENALOGIN_REMEMBER_ME') ?></label>
 				</span>
 				<?php endif; ?>
@@ -84,12 +84,12 @@ defined('_JEXEC') or die();
 				<li class="klogout-pwd">
 				<span class="klogin-form-login-password">
 					<label for="klogin-passwd"><?php //echo JText::_('MOD_KUNENALOGIN_PASSWORD') ?></label>
-					<input class="klogin-passwd" type="password" name="<?php echo $this->login['field_password']; ?>" class="kinputbox" size="18" alt="password"  value="<?php echo JText::_('MOD_KUNENALOGIN_PASSWORD'); ?>" onblur = "if(this.value=='') this.value='<?php echo JText::_('MOD_KUNENALOGIN_PASSWORD'); ?>';" onfocus = "if(this.value=='<?php echo JText::_('MOD_KUNENALOGIN_PASSWORD'); ?>') this.value='';"/>
+					<input id="klogin-passwd" class="klogin-passwd kinputbox" type="password" name="<?php echo $this->login['field_password']; ?>" size="18" alt="password"  value="<?php echo JText::_('MOD_KUNENALOGIN_PASSWORD'); ?>" onblur = "if(this.value=='') this.value='<?php echo JText::_('MOD_KUNENALOGIN_PASSWORD'); ?>';" onfocus = "if(this.value=='<?php echo JText::_('MOD_KUNENALOGIN_PASSWORD'); ?>') this.value='';"/>
 				</span>
 				<input type="submit" name="Submit" class="kbutton" value="<?php echo JText::_('MOD_KUNENALOGIN_BUTTON_LOGIN') ?>" />
 				</li>
 			</ul>
-		
+
 			<ul class="klogin-logoutlink">
 				<li class="klogin-forgotpass"><?php echo CKunenaLogin::getLostPasswordLink (); ?></li>
 				<li class="klogin-forgotname"><?php echo CKunenaLogin::getLostUserLink ();?></li>

@@ -73,15 +73,15 @@ defined('_JEXEC') or die();
 	<fieldset class="input">
 	<p class="klogin-form-login-username">
 		<label for="klogin-username"><?php echo JText::_('MOD_KUNENALOGIN_USERNAME') ?></label>
-		<input class="klogin-username" type="text" name="<?php echo $this->login['field_username']; ?>" class="kinputbox" alt="username" size="18" />
+		<input id="klogin-username" class="klogin-username kinputbox" type="text" name="<?php echo $this->login['field_username']; ?>" alt="username" size="18" />
 	</p>
 	<p class="klogin-form-login-password">
 		<label for="klogin-passwd"><?php echo JText::_('MOD_KUNENALOGIN_PASSWORD') ?></label>
-		<input class="klogin-passwd" type="password" name="<?php echo $this->login['field_password']; ?>" class="kinputbox" size="18" alt="password" />
+		<input id="klogin-passwd" class="klogin-passwd kinputbox" type="password" name="<?php echo $this->login['field_password']; ?>" size="18" alt="password" />
 	</p>
 	<?php if(JPluginHelper::isEnabled('system', 'remember')) : ?>
 	<p class="klogin-form-login-remember"><label for="klogin-remember">
-	<input class="klogin-remember" type="checkbox" name="remember" value="yes" alt="<?php echo JText::_('MOD_KUNENALOGIN_REMEMBER_ME') ?>" />
+	<input id="klogin-remember" class="klogin-remember" type="checkbox" name="remember" value="yes" alt="<?php echo JText::_('MOD_KUNENALOGIN_REMEMBER_ME') ?>" />
 		<?php echo JText::_('MOD_KUNENALOGIN_REMEMBER_ME') ?></label>
 	</p>
 	<?php endif; ?>

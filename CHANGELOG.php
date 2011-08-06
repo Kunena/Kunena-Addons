@@ -25,6 +25,12 @@ Legend:
 ! -> Note
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+KunenaLogin 1.6.5-DEV
+
+06-August-2011 Xillibit
+# [#4] HTML validation errors
+
 04-July-2011 LordDarkAngel
 + add el-GR (thanks etkritikonspoudon)
 
