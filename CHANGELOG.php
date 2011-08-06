@@ -27,6 +27,11 @@ Legend:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+JomsocialKunenaMenu 1.6.5-DEV
+
+06-August-2011 Xillibit
+# [#1] Support J17 and Jomsocial 2.2.x
+
 JomsocialKunenaMenu 1.6.4
 
 30-April-2011 Xillibit
