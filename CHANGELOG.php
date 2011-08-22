@@ -26,6 +26,11 @@ Legend:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+MyKunena 1.7.0-DEV
+
+22-August-2011 Matias
+^ Updated version to 1.7.0-DEV, Kunena 1.7 required
+
 MyKunena 1.6.4
 
 11-May-2011 Xillibit
