@@ -28,8 +28,8 @@ class plgCommunityKunenaMenu extends CApplications {
 
 	protected static function kunenaInstalled() {
 		// Kunena detection and version check
-		$minKunenaVersion = '1.6.3';
-		if (! class_exists ( 'Kunena' ) || Kunena::versionBuild () < 4344) {
+		$minKunenaVersion = '1.7';
+		if (! class_exists ( 'Kunena' ) || version_compare(Kunena::version(), $minKunenaVersion, '<')) {
 			return false;
 		}
 		return true;
