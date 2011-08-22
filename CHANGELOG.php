@@ -32,6 +32,7 @@ KunenaLatest 1.7.0-DEV
 
 22-August-2011 Matias
 ^ Updated version to 1.7.0-DEV, Kunena 1.7 required
+# [#8] Kunena Latest doesn't obey Load CSS configuration option (if not saved)
 
 09-July-2011 lorddarkangel
 - MOD_KUNENALATEST_PARAM_DATEFORMAT_DEFAULT in en-GB. it's not used

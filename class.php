@@ -20,7 +20,7 @@ class modKunenaLatest {
 		$this->params = $params;
 		$this->document = JFactory::getDocument ();
 
-		if ($cssadded == false && $this->params->get( 'kunena_load_css' )) {
+		if ($cssadded == false && $this->params->get( 'kunena_load_css', 1 )) {
 			$this->document->addStyleSheet ( JURI::root () . 'modules/mod_kunenalatest/tmpl/css/kunenalatest.css' );
 			$cssadded = true;
 		}
