@@ -143,13 +143,13 @@ class plgFinderKunena_Posts extends FinderIndexerAdapter
 	protected function _setup()
 	{
 		// Kunena detection and version check
-		$minKunenaVersion = '1.6.3';
-		if (! class_exists ( 'Kunena' ) || Kunena::versionBuild () < 4344) {
-			return JError::raiseError (JText::_('Kunena 1.6.3+ is not installed on your system'));
+		$minKunenaVersion = '1.7';
+		if (! class_exists ( 'Kunena' ) || version_compare(Kunena::version(), $minKunenaVersion, '<')) {
+			return JError::raiseError (JText::_('Kunena 1.7 is not installed on your system'));
 		}
 		// Kunena online check
 		if (! Kunena::enabled ()) {
-			return JError::raiseError (JText::_('Kunena 1.6 is not online'));
+			return JError::raiseError (JText::_('Kunena 1.7 is not online'));
 		}
 		// Initialize session
 		$session = KunenaFactory::getSession ();
