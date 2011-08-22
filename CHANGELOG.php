@@ -28,10 +28,10 @@ Legend:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-KunenaLatest 1.6.5-DEV
+KunenaLatest 1.7.0-DEV
 
-04-August-2011 Matias
-^ Update Kunena version requirements
+22-August-2011 Matias
+^ Updated version to 1.7.0-DEV, Kunena 1.7 required
 
 09-July-2011 lorddarkangel
 - MOD_KUNENALATEST_PARAM_DATEFORMAT_DEFAULT in en-GB. it's not used
@@ -41,7 +41,6 @@ KunenaLatest 1.6.5-DEV
 
 22-June-2011 Matias
 # [#25944] Fix missing CSS styling for visitors if caching is turned on
-^ [#25944] Updated version to 1.6.5-DEV
 
 14-June-2011 Xillibit
 # [#25944] Typo in en-GB language file
