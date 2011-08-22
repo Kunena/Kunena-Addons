@@ -28,8 +28,8 @@ class plgCommunityKunenaGroups extends CApplications {
 
 	protected static function kunenaOnline() {
 		// Kunena detection and version check
-		$minKunenaVersion = '1.6.3';
-		if (! class_exists ( 'Kunena' ) || Kunena::versionBuild () < 4344 ) {
+		$minKunenaVersion = '1.7';
+		if (! class_exists ( 'Kunena' ) || version_compare(Kunena::version(), $minKunenaVersion, '<')) {
 			JFactory::getApplication()->enqueueMessage(JText::sprintf('PLG_COMMUNITY_KUNENAGROUPS_KUNENA_NOT_INSTALLED', $minKunenaVersion),'notice');
 			return false;
 		}
