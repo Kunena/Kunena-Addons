@@ -20,13 +20,20 @@
 	</files>
 
 	<languages folder="languages">
-		<language tag="de-DE">de-DE.mod_kunenastats.ini</language>
-		<language tag="en-GB">en-GB.mod_kunenastats.ini</language>
-		<language tag="es-ES">es-ES.mod_kunenastats.ini</language>
-		<language tag="fi-FI">fi-FI.mod_kunenastats.ini</language>
-		<language tag="fr-FR">fr-FR.mod_kunenastats.ini</language>
-		<language tag="nb-NO">nb-NO.mod_kunenastats.ini</language>
-		<language tag="ru-RU">ru-RU.mod_kunenastats.ini</language>
+		<language tag="bg-BG">bg-BG.mod_kunenasearch.ini</language>
+        <language tag="ca-ES">ca-ES.mod_kunenasearch.ini</language>
+		<language tag="de-DE">de-DE.mod_kunenasearch.ini</language>
+        <language tag="el-GR">el-GR.mod_kunenasearch.ini</language>
+		<language tag="en-GB">en-GB.mod_kunenasearch.ini</language>
+		<language tag="es-ES">es-ES.mod_kunenasearch.ini</language>
+        <language tag="fa-IR">fa-IR.mod_kunenasearch.ini</language>
+		<language tag="fi-FI">fi-FI.mod_kunenasearch.ini</language>
+		<language tag="fr-FR">fr-FR.mod_kunenasearch.ini</language>
+        <language tag="lt-LT">lt-LT.mod_kunenasearch.ini</language>
+		<language tag="nb-NO">nb-NO.mod_kunenasearch.ini</language>
+        <language tag="nl-NL">nl-NL.mod_kunenasearch.ini</language>
+		<language tag="ru-RU">ru-RU.mod_kunenasearch.ini</language>
+        <language tag="zh-CN">zh-CN.mod_kunenasearch.ini</language>
 	</languages>
 
 	<params>
