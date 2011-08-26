@@ -28,6 +28,9 @@ Legend:
 
 KunenaSearch 1.7.0-DEV
 
+26-August-2011 Xillibit
+# [#6] Norvegian language file misnammed
+
 22-August-2011 Matias
 ^ Updated version to 1.7.0-DEV, Kunena 1.7 required
 
