@@ -14,10 +14,20 @@
 	<isbrowseable>true</isbrowseable>
 	<description>PLG_COMMUNITY_KUNENAGROUPS_DESC</description>
 	<languages folder="languages">
+        <language tag="bg-BG">bg-BG.plg_community_kunenagroups.ini</language>
+        <language tag="ca-ES">ca-ES.plg_community_kunenagroups.ini</language>
+        <language tag="de-DE">de-DE.plg_community_kunenagroups.ini</language>
+        <language tag="el-GR">el-GR.plg_community_kunenagroups.ini</language>
 		<language tag="en-GB">en-GB.plg_community_kunenagroups.ini</language>
+        <language tag="es-ES">es-ES.plg_community_kunenagroups.ini</language>
+        <language tag="fa-FR">fa-FR.plg_community_kunenagroups.ini</language>
 		<language tag="fr-FR">fr-FR.plg_community_kunenagroups.ini</language>
+        <language tag="lt-LT">lt-LT.plg_community_kunenagroups.ini</language>
 		<language tag="nb-NO">nb-NO.plg_community_kunenagroups.ini</language>
+        <language tag="nl-NL">nl-NL.plg_community_kunenagroups.ini</language>
+        <language tag="pl-PL">pl-PL.plg_community_kunenagroups.ini</language>
 		<language tag="ru-RU">ru-RU.plg_community_kunenagroups.ini</language>
+        <language tag="zh-CN">zh-CN.plg_community_kunenagroups.ini</language>
 	</languages>
 	<files>
 		<file plugin="kunenagroups">kunenagroups.php</file>
