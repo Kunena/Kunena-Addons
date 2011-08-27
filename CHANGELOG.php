@@ -28,6 +28,9 @@ Legend:
 
 KunenaSearch 1.7.0-DEV
 
+27-August-2011 Matias
+# [#3] Broken English translation file
+
 26-August-2011 Xillibit
 # [#6] Norvegian language file misnammed
 
