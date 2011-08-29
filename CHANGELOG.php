@@ -28,10 +28,15 @@ Legend:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-KunenaStats 1.7.0-DEV
+KunenaStats 1.7.0
+
+29-August-2011 Matias
+^ Kunena Stats 1.7.0 Release
 
 22-August-2011 Matias
 ^ Updated version to 1.7.0-DEV, Kunena 1.7 required
+
+KunenaStats 1.6.4
 
 03-April-2011 LDA
 ^ [#24847] update es-ES (thanks Kunena Spanish Team)
