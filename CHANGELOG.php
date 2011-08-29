@@ -26,7 +26,7 @@ Legend:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-KunenaLogin 1.7.0-DEV
+KunenaLogin 1.7.0
 
 29-August-2011 Matias
 ^ Kunena Login 1.7.0 Release
