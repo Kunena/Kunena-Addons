@@ -29,6 +29,10 @@ Legend:
 
 JomsocialKunenaMenu 1.7.0-DEV
 
+29-August-2011 Matias
+# [#5] Sub-menus are not shown if plugin configuration hasn't been saved
+# [#6] Forum menu link is wrong
+
 22-August-2011 Matias
 ^ Updated version to 1.7.0-DEV, Kunena 1.7 required
 
