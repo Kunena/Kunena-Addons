@@ -27,7 +27,10 @@ Legend:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-JomsocialKunenaMenu 1.7.0-DEV
+JomsocialKunenaMenu 1.7.0
+
+29-August-2011 Matias
+^ Kunena Menu 1.7.0 Release
 
 29-August-2011 Matias
 # [#5] Sub-menus are not shown if plugin configuration hasn't been saved
