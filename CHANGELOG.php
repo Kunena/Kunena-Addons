@@ -26,7 +26,10 @@ Legend:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-KunenaSearch 1.7.0-DEV
+KunenaSearch 1.7.0
+
+29-August-2011 Matias
+^ K1.7.0 Release
 
 27-August-2011 Matias
 # [#3] Broken English translation file
