@@ -220,6 +220,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 						$article->fulltext = preg_replace ( "/{kunena_discuss:$kunenaTopic}/", '', $article->fulltext, 1 );
 					if ($kunenaTopic == 0) {
 						$this->debug ( "onPrepareContent: Searched for {kunena_discuss:#}: Discussion of this article has been disabled." );
+						return;
 					}
 				}
 				$this->debug ( "onPrepareContent: Searched for {kunena_discuss:#}: Custom Topic " . ($kunenaTopic ? "{$kunenaTopic} found." : "not found.") );
