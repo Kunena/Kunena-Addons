@@ -20,12 +20,12 @@ class plgContentKunenaDiscuss extends JPlugin {
 
 	// *** initialization ***
 	function plgContentKunenaDiscuss(&$subject, $params) {
-
-		$this->_app = JFactory::getApplication ( 'site' );
+		$this->_app = JFactory::getApplication ();
+		if ($this->_app->isAdmin()) return;
 
 		// If plugin is not enabled in current scope, do not register it
 		if (! $this->enabled ())
-			return null;
+			return;
 
 		if (version_compare(JVERSION, '1.6', '>')) {
 			$this->basepath = 'plugins/content/kunenadiscuss';
@@ -40,11 +40,11 @@ class plgContentKunenaDiscuss extends JPlugin {
 		$minKunenaVersion = '1.7';
 		if (!class_exists('Kunena') || version_compare(Kunena::version(), $minKunenaVersion, '<')) {
 			$this->_app->enqueueMessage( JText::sprintf ( 'PLG_KUNENADISCUSS_DEPENDENCY_FAIL', $minKunenaVersion ) );
-			return null;
+			return;
 		}
 		// Kunena online check
 		if (!Kunena::enabled()) {
-			return null;
+			return;
 		}
 		// Initialize session
 		$session = KunenaFactory::getSession ();
@@ -160,7 +160,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 
 			$view = JRequest::getVar ( 'view' );
 			$layout = JRequest::getVar ( 'layout' );
-			$isBlogPage = $view == 'category' && $layout == 'blog';
+			$isBlogPage = ($view == 'section' || $view == 'category') && $layout == 'blog';
 			$isFrontPage = $view == 'frontpage' || $view == 'featured';
 			if ($isBlogPage) {
 				$this->debug ( "onPrepareContent: we are in blog page." );
