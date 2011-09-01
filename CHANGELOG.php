@@ -29,6 +29,15 @@ Legend:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Kunena Discuss Plugin 1.7.1-DEV
+
+1-September-2011 Matias
+# Disable plugin in Joomla administration
+
+30-August-2011 Matias
+^ Updated version to 1.7.1-DEV
+# Tag {kunenadiscuss:0} has no effect
+
 Kunena Discuss Plugin 1.7.0
 
 29-August-2011 Matias
