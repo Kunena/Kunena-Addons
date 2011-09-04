@@ -15,11 +15,11 @@ defined ( '_JEXEC' ) or die ( '' );
 <div class="klatest <?php echo $this->params->get ( 'moduleclass_sfx' ); echo $this->params->get ( 'sh_moduleshowtype' )?>">
 
 <?php
-if (is_array ( $this->klistpost ) && !$this->kunena_config->board_offline) {
-	foreach ( $this->klistpost as $item ) {
+if (is_array ( $this->klistpost ) && !$this->kunena_config->board_offline) { ?>
+<ul class="klatest-items">
+<?php 	foreach ( $this->klistpost as $item ) {
 		$threadPages = ceil ( $item->msgcount / $this->kunena_config->messages_per_page );
 ?>
-<ul class="klatest-items">
 <li class="klatest-item">
 	<ul class="klatest-itemdetails">
 		<?php
