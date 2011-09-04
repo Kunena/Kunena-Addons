@@ -29,6 +29,11 @@ Legend:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Kunena Discuss Plugin 1.7.1-DEV
+
+4-September-2011 Xillibit
+# [#22] Plugin doesn't follow askemail setting
+
 Kunena Discuss Plugin 1.6.5-DEV
 
 24-July-2011 Xillibit

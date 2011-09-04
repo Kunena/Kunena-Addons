@@ -438,6 +438,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 
 	protected function showForm($row, $catid, $thread, $subject ) {
 		$canPost = $this->canPost ( $catid, $thread );
+		$this->config = KunenaFactory::getConfig();
 		if (! $canPost) {
 			if (! $this->_my->id) {
 				$this->debug ( "showForm: Public posting is not permitted, show login instead" );
