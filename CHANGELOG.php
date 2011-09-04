@@ -34,7 +34,24 @@ Kunena Discuss Plugin 1.7.1-DEV
 4-September-2011 Xillibit
 # [#22] Plugin doesn't follow askemail setting
 
-Kunena Discuss Plugin 1.6.5-DEV
+1-September-2011 Matias
+# Disable plugin in Joomla administration
+
+30-August-2011 Matias
+^ Updated version to 1.7.1-DEV
+# Tag {kunenadiscuss:0} has no effect
+
+Kunena Discuss Plugin 1.7.0
+
+29-August-2011 Matias
+^ K1.7.0 Release
+
+22-August-2011 Matias
+^ Updated version to 1.7.0-DEV, Kunena 1.7 required
+
+04-August-2011 Matias
+# [#12] Improve Joomla 1.7 support
+>>>>>>> upstream/master
 
 24-July-2011 Xillibit
 # [#7] Undefined variable with method showTopic()

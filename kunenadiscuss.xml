@@ -2,7 +2,7 @@
 <!DOCTYPE install>
 <install version="1.5" type="plugin" group="content" method="upgrade">
 	<name>Content - Kunena Discuss</name>
-	<version>1.6.5-DEV</version>
+	<version>1.7.1-DEV</version>
 	<creationDate>@kunenaversiondate@</creationDate>
 	<build>@kunenaversionbuild@</build>
 	<author>Kunena Team</author>
@@ -16,15 +16,23 @@
 		<folder>kunenadiscuss</folder>
 	</files>
 	<languages folder="languages">
-		<language tag="de-DE">de-DE.plg_content_kunenadiscuss.ini</language>
-		<language tag="el-GR">el-GR.plg_content_kunenadiscuss.ini</language>
+        <language tag="bg-BG">bg-BG.plg_content_kunenadiscuss.ini</language>
+        <language tag="ca-ES">ca-ES.plg_content_kunenadiscuss.ini</language>
+        <language tag="de-DE">de-DE.plg_content_kunenadiscuss.ini</language>
+        <language tag="el-GR">el-GR.plg_content_kunenadiscuss.ini</language>
 		<language tag="en-GB">en-GB.plg_content_kunenadiscuss.ini</language>
-		<language tag="es-ES">es-ES.plg_content_kunenadiscuss.ini</language>
-		<language tag="fi-FI">fi-FI.plg_content_kunenadiscuss.ini</language>
+        <language tag="es-ES">es-ES.plg_content_kunenadiscuss.ini</language>
+        <language tag="fa-IR">fa-IR.plg_content_kunenadiscuss.ini</language>
+        <language tag="fi-FI">fi-FI.plg_content_kunenadiscuss.ini</language>
 		<language tag="fr-FR">fr-FR.plg_content_kunenadiscuss.ini</language>
-		<language tag="hu-HU">hu-HU.plg_content_kunenadiscuss.ini</language>
+        <language tag="hu-HU">hu-HU.plg_content_kunenadiscuss.ini</language>
+        <language tag="it-IT">it-IT.plg_content_kunenadiscuss.ini</language>
+        <language tag="lt-LT">lt-LT.plg_content_kunenadiscuss.ini</language>
 		<language tag="nb-NO">nb-NO.plg_content_kunenadiscuss.ini</language>
+        <language tag="nl-NL">nl-NL.plg_content_kunenadiscuss.ini</language>
+        <language tag="pl-PL">pl-PL.plg_content_kunenadiscuss.ini</language>
 		<language tag="ru-RU">ru-RU.plg_content_kunenadiscuss.ini</language>
+        <language tag="zh-CN">zh-CN.plg_content_kunenadiscuss.ini</language>
 	</languages>
 	<params>
 		<param name="limit" type="text" default="25" label="PLG_KUNENADISCUSS_LIMIT" description="PLG_KUNENADISCUSS_LIMIT_DESC" />
