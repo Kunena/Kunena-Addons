@@ -26,7 +26,12 @@ Legend:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-KunenaSearch 1.7.0-DEV
+KunenaSearch 1.7.1-DEV
+
+5-September-2011 Xillibit
+# [#12] Prevent to load language file in frontend
+
+KunenaSearch 1.7.0
 
 26-August-2011 Xillibit
 # [#6] Norvegian language file misnammed
