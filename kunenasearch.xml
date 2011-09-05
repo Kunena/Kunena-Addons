@@ -3,7 +3,7 @@
 <install version="1.5" type="plugin" group="search" method="upgrade">
 	<name>Search - Kunena</name>
 	<author>Kunena Team</author>
-	<version>1.7.0-DEV</version>
+	<version>1.7.0</version>
 	<creationDate>@kunenaversiondate@</creationDate>
 	<build>@kunenaversionbuild@</build>
 	<copyright>(c)2010-2011 Kunena Team. All rights reserved.</copyright>
@@ -15,13 +15,26 @@
 		<filename plugin="kunenasearch">kunenasearch.php</filename>
 	</files>
 	<languages folder="languages">
-		<language tag="de-DE">de-DE.plg_search_kunenasearch.ini</language>
-		<language tag="en-GB">en-GB.plg_search_kunenasearch.ini</language>
-		<language tag="es-ES">es-ES.plg_search_kunenasearch.ini</language>
-		<language tag="fi-FI">fi-FI.plg_search_kunenasearch.ini</language>
-		<language tag="fr-FR">fr-FR.plg_search_kunenasearch.ini</language>
-		<language tag="nb-NO">nb-NO.plg_search_kunenasearch.ini</language>
-		<language tag="ru-RU">ru-RU.plg_search_kunenasearch.ini</language>
+        <language tag="bg-BG">bg-BG.plg_search_kunenasearch.ini</language>
+        <language tag="ca-ES">ca-ES.plg_search_kunenasearch.ini</language>
+        <language tag="da-DK">da-DK.plg_search_kunenasearch.ini</language>
+        <language tag="de-DE">de-DE.plg_search_kunenasearch.ini</language>
+        <language tag="el-GR">el-GR.plg_search_kunenasearch.ini</language>
+        <language tag="en-GB">en-GB.plg_search_kunenasearch.ini</language>
+        <language tag="es-ES">es-ES.plg_search_kunenasearch.ini</language>
+        <language tag="fa-IR">fa-IR.plg_search_kunenasearch.ini</language>
+        <language tag="fi-FI">fi-FI.plg_search_kunenasearch.ini</language>
+        <language tag="fr-FR">fr-FR.plg_search_kunenasearch.ini</language>
+        <language tag="it-IT">it-IT.plg_search_kunenasearch.ini</language>
+        <language tag="km-KH">km-KH.plg_search_kunenasearch.ini</language>
+        <language tag="lt-LT">lt-LT.plg_search_kunenasearch.ini</language>
+        <language tag="nb-NO">nb-NO.plg_search_kunenasearch.ini</language>
+        <language tag="nl-NL">nl-NL.plg_search_kunenasearch.ini</language>
+        <language tag="pl-PL">pl-PL.plg_search_kunenasearch.ini</language>
+        <language tag="ru-RU">ru-RU.plg_search_kunenasearch.ini</language>
+        <language tag="sr-RS">sr-RS.plg_search_kunenasearch.ini</language>
+        <language tag="sr-YU">sr-YU.plg_search_kunenasearch.ini</language>
+        <language tag="zh-CN">zh-CN.plg_search_kunenasearch.ini</language>
 	</languages>
 
 	<params>
