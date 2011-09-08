@@ -28,6 +28,12 @@ Legend:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+KunenaLatest 1.7.1-DEV
+
+4-September-2011 Xillibit
+# [#14] Somes issues with validation
+# [#14] Somes issues with validation (Part 2)
+
 KunenaLatest 1.7.0
 
 29-August-2011 Matias
