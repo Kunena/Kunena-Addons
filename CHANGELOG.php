@@ -31,6 +31,12 @@ Legend:
 
 Kunena Discuss Plugin 1.7.1-DEV
 
+5-September-2011 Xillibit
+# [#22] Plugin doesn't follow askemail setting (update changelog)
+
+4-September-2011 Xillibit
+# [#22] Plugin doesn't follow askemail setting
+
 1-September-2011 Matias
 # Disable plugin in Joomla administration
 

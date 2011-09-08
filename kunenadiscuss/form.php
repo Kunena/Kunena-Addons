@@ -24,7 +24,7 @@ defined( '_JEXEC' ) or die ( '' );
 						<td><span class="kdiscuss-quick-post-label"><?php echo JText::_('PLG_KUNENADISCUSS_NAME') ?></span></td>
 						<td><input type="text" name="name" value="<?php echo $this->name ?>" <?php if ($this->_my->id) echo 'disabled="disabled" '; ?>/></td>
 					</tr>
-					<?php if(!$this->_my->id) : ?>
+					<?php if(!$this->_my->id && $this->config->askemail) : ?>
 					<tr>
 						<td><span class="kdiscuss-quick-post-label"><?php echo JText::_('PLG_KUNENADISCUSS_EMAIL') ?></span></td>
 						<td><input type="text" name="email" value="" /></td>
