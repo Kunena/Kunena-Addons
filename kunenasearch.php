@@ -32,13 +32,11 @@ $app->registerEvent ( 'onContentSearchAreas', 'plgSearchKunenaAreas' );
 // load Kunena main language file so we can leverage language strings from it
 KunenaFactory::loadLanguage();
 
-JPlugin::loadLanguage ( 'plg_search_kunenasearch', JPATH_ADMINISTRATOR );
-
 //Then define a function to return an array of search areas.
 function &plgSearchKunenaAreas() {
 	static $areas = array();
 	if (empty($areas)) {
-		$areas['kunena'] = JText::_('PLG_KUNENASEARCH_FORUM');
+		$areas['kunena'] = JText::_('COM_KUNENA_FORUM');
 	}
 	return $areas;
 }
