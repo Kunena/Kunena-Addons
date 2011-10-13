@@ -30,6 +30,9 @@ Legend:
 
 KunenaLatest 1.7.1-DEV
 
+9-October-2011 Xillibit
+^ [#17] Follow Kunena date format settings
+
 4-September-2011 Xillibit
 # [#14] Somes issues with validation
 # [#14] Somes issues with validation (Part 2)
