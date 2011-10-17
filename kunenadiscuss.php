@@ -16,10 +16,12 @@ class plgContentKunenaDiscuss extends JPlugin {
 	// Associative array to hold results of the plugin
 	static $plgDisplay = array ();
 	static $includedCss = false;
+	static $inevent = false;
+	static $j15 = false;
 	protected $basepath = null;
 
 	// *** initialization ***
-	function plgContentKunenaDiscuss(&$subject, $params) {
+	public function plgContentKunenaDiscuss(&$subject, $params) {
 		$this->_app = JFactory::getApplication ();
 		if ($this->_app->isAdmin()) return;
 
@@ -52,6 +54,9 @@ class plgContentKunenaDiscuss extends JPlugin {
 
 		// Initialize plugin
 		parent::__construct ( $subject, $params );
+
+		// Store Joomla version
+		self::$j15 = version_compare(JVERSION, '1.6', '<');
 
 		// Initialize variables
 		$this->_db = JFactory::getDbo ();
@@ -98,23 +103,43 @@ class plgContentKunenaDiscuss extends JPlugin {
 
 	// Joomla 1.5 support
 	public function onPrepareContent(&$article, &$params, $limitstart=0) {
+		// Make sure that event gets only called once and only in J!1.5
+		if (self::$inevent || !self::$j15) return;
+		self::$inevent = true;
 		$context = 'com_content.article';
-		return $this->prepare($context, $article, $params);
+		$result = $this->prepare($context, $article, $params);
+		self::$inevent = false;
+		return $result;
 	}
 	function onAfterDisplayContent(&$article, &$params, $limitstart=0) {
+		// Make sure that event gets only called once and only in J!1.5
+		if (self::$inevent || !self::$j15) return;
+		self::$inevent = true;
 		$context = 'com_content.article';
-		return $this->display($context, $article, $params);
+		$result = $this->display($context, $article, $params);
+		self::$inevent = false;
+		return $result;
 	}
 
 	// Joomla 1.6+ support
 	public function onContentBeforeDisplay($context, &$article, &$params, $limitstart=0) {
-		return $this->prepare($context, $article, $params);
+		// Make sure that event gets only called once and only in J!1.6+
+		if (self::$inevent || self::$j15) return;
+		self::$inevent = true;
+		$result = $this->prepare($context, $article, $params);
+		self::$inevent = false;
+		return $result;
 	}
 	public function onContentAfterDisplay($context, &$article, &$params, $limitstart=0) {
-		return $this->display($context, $article, $params);
+		// Make sure that event gets only called once and only in J!1.6+
+		if (self::$inevent || self::$j15) return;
+		self::$inevent = true;
+		$result = $this->display($context, $article, $params);
+		self::$inevent = false;
+		return $result;
 	}
 
-	function enabled() {
+	protected function enabled() {
 		if ($this->_app->scope == 'com_content')
 			return true;
 		if ($this->_app->scope == 'com_kunena')
@@ -380,10 +405,14 @@ class plgContentKunenaDiscuss extends JPlugin {
 			$this->debug ( "showPlugin: Form has been disabled" );
 		} elseif (!$closeTime || $closeTime >= $now) {
 			$canPost = $this->canPost ( $catid, $thread );
-			if ($canPost && JRequest::getInt ( 'kdiscussContentId', 0, 'POST' ) == $row->id) {
+			if ($canPost && JFactory::getUser()->get('guest')) {
+				$this->debug ( "showPlugin: Guest can post: this feature doesn't work well if Joomla caching or Cache Plugin is enabled!" );
+			}
+			if ($canPost && JRequest::getInt ( 'kdiscussContentId', -1, 'POST' ) == $row->id) {
 				$this->debug ( "showPlugin: Reply topic!" );
 				$quickPost .= $this->replyTopic ( $row, $catid, $thread, $subject );
 			} else {
+				$this->debug ( "showPlugin: Displaying form" );
 				$quickPost .= $this->showForm ( $row, $catid, $thread, $subject );
 			}
 		}
@@ -475,6 +504,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 	}
 
 	protected function createTopic($row, $catid, $subject) {
+		$this->debug ( "showPlugin: Create topic!" );
 		require_once (KPATH_SITE . '/lib/kunena.posting.class.php');
 		$message = new CKunenaPosting ( $this->params->get ( 'topic_owner', $row->created_by ) );
 
@@ -513,7 +543,6 @@ class plgContentKunenaDiscuss extends JPlugin {
 		$this->createReference ( $row, $newMessageId );
 
 		// We'll need to know about the new Thread id later...
-		$this->debug ( __FUNCTION__ . "() end" );
 		return $newMessageId;
 	}
 
