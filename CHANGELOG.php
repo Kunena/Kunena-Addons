@@ -31,6 +31,12 @@ Legend:
 
 Kunena Discuss Plugin 1.7.1-DEV
 
+17-October-2011 Matias
+# [#16] Joomla 1.7: Prevent multiple topic creation on first visit(s)
+
+16-October-2011 810
+# [#25] Css: Quote missing
+
 5-September-2011 Xillibit
 # [#22] Plugin doesn't follow askemail setting (update changelog)
 
