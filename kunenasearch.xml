@@ -17,7 +17,6 @@
 	<languages folder="languages">
         <language tag="bg-BG">bg-BG.plg_search_kunenasearch.ini</language>
         <language tag="ca-ES">ca-ES.plg_search_kunenasearch.ini</language>
-        <language tag="da-DK">da-DK.plg_search_kunenasearch.ini</language>
         <language tag="de-DE">de-DE.plg_search_kunenasearch.ini</language>
         <language tag="el-GR">el-GR.plg_search_kunenasearch.ini</language>
         <language tag="en-GB">en-GB.plg_search_kunenasearch.ini</language>
