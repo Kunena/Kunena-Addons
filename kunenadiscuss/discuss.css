@@ -145,7 +145,6 @@ div.kdiscuss-content-cover .code {
 	font-weight:bold;
 	color: red;
 }
-
 #Kunena div.kmsgtext-article, #Kunena div.kmsgtext-quote, #Kunena div.kmsgtext-hide, #Kunena div.kmsgtext-confidential {
 	display: block;
 	border: 1px dotted;
@@ -153,11 +152,18 @@ div.kdiscuss-content-cover .code {
 	padding: 5px;
 	font-style: italic;
 }
-#Kunena div.kmsgtext-article, #Kunena div.kmsgtext-quote, #Kunena div.kmsgtext-hide, #Kunena div.kmsgtext-confidential {
+#Kunena div.kmsgtext-article, #Kunena div.kmsgtext-confidential {
 	border-color: #BFC3C6;
 	font-family: Arial,Helvetica,sans-serif;
 	background-color: #F2F1EE;
 }
 .ktext {
 	width:100%;
+}
+.kmsgtext-quote, .kmsgtext-hide {
+    background-color: #f4f4f4;
+    border-color: #BFC3C6;
+	font-family: Arial,Helvetica,sans-serif;
+	border-radius:5px;
+	padding:5px;
 }
