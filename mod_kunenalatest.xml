@@ -138,6 +138,7 @@
 			<fieldset name="basic">
 				<field name="category_id" type="kunenacategories"
 					default="0"
+					none="MOD_KUNENALATEST_PARAM_CATEGORYLIST_NONE"
 					description="MOD_KUNENALATEST_PARAM_CATEGORYLIST_NONE_DESC"
 					label="MOD_KUNENALATEST_PARAM_CATEGORYLIST_NONE"  multiple="true" size="5" />
 				<field name="sh_category_id_in" type="radio"
