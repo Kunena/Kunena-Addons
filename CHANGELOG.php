@@ -30,6 +30,9 @@ Legend:
 
 KunenaLatest 1.7.1-DEV
 
+1-November-2011 Xillibit
+# [#24] Remove setting horizontal/vertical display
+
 9-October-2011 Xillibit
 ^ [#17] Follow Kunena date format settings
 

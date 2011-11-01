@@ -57,10 +57,10 @@
 			<option value="gotthankyouposts">MOD_KUNENALATEST_SHOW_GOT_THANKYOU_POSTS</option>
 			<option value="userposts">MOD_KUNENALATEST_SHOW_USER_POSTS</option>
 		</param>
-		<param name="sh_moduleshowtype" type="radio" default="kmodvertical" label="MOD_KUNENALATEST_PARAM_DISPLAYTYPE" description="MOD_KUNENALATEST_PARAM_DISPLAYTYPE_DESC">
+		<!--<param name="sh_moduleshowtype" type="radio" default="kmodvertical" label="MOD_KUNENALATEST_PARAM_DISPLAYTYPE" description="MOD_KUNENALATEST_PARAM_DISPLAYTYPE_DESC">
 			<option value="kmodhorizontal">MOD_KUNENALATEST_PARAM_DISPLAYTYPE_HORIZONTAL</option>
 			<option value="kmodvertical">MOD_KUNENALATEST_PARAM_DISPLAYTYPE_VERTICAL</option>
-		</param>
+		</param>-->
 		<param name="@spacer" type="spacer" default="" label="" description="" />
 		<param name="show_list_time" type="list" default="latest" label="MOD_KUNENALATEST_PARAM_SHOW_TOPICS_FROM" description="MOD_KUNENALATEST_PARAM_SHOW_TOPICS_FROM_DESC">
 			<option value="0">MOD_KUNENALATEST_SHOW_LASTVISIT</option>
@@ -161,13 +161,13 @@
 					<option value="gotthankyouposts">MOD_KUNENALATEST_SHOW_GOT_THANKYOU_POSTS</option>
 					<option value="userposts">MOD_KUNENALATEST_SHOW_USER_POSTS</option>
 				</field>
-				<field name="sh_moduleshowtype" type="radio"
+				<!--<field name="sh_moduleshowtype" type="radio"
 					default="kmodvertical"
 					description="MOD_KUNENALATEST_PARAM_DISPLAYTYPE_DESC"
 					label="MOD_KUNENALATEST_PARAM_DISPLAYTYPE">
 					<option value="kmodhorizontal">MOD_KUNENALATEST_PARAM_DISPLAYTYPE_HORIZONTAL</option>
 					<option value="kmodvertical">MOD_KUNENALATEST_PARAM_DISPLAYTYPE_VERTICAL</option> 
-				</field>
+				</field>-->
 				<field name="show_list_time" type="list"
 					default="2"
 					description="MOD_KUNENALATEST_PARAM_SHOW_TOPICS_FROM_DESC"
