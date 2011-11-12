@@ -205,10 +205,6 @@
 					default="!"
 					description="MOD_KUNENALATEST_PARAM_UNREADINDICATOR_DESC"
 					label="MOD_KUNENALATEST_PARAM_UNREADINDICATOR" />
-				<field name="dateformat" type="text"
-					default="at %H:%M on %b %d, %Y (%Z)"
-					description="MOD_KUNENALATEST_PARAM_DATEFORMAT_DESC"
-					label="MOD_KUNENALATEST_PARAM_DATEFORMAT" />
 
 				<field name="sh_topiciconoravatar" type="radio"
 					default="0"
