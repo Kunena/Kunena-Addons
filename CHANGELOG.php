@@ -31,6 +31,9 @@ Legend:
 
 Kunena Discuss Plugin 1.7.1-DEV
 
+15-November-2011 Matias
+^ Update language files
+
 17-October-2011 Matias
 # [#16] Joomla 1.7: Prevent multiple topic creation on first visit(s)
 
