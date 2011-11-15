@@ -30,6 +30,9 @@ Legend:
 
 KunenaLatest 1.7.1-DEV
 
+15-November-2011 Matias
+^ Update language files
+
 4-September-2011 Xillibit
 # [#14] Somes issues with validation
 # [#14] Somes issues with validation (Part 2)
