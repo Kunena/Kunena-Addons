@@ -33,6 +33,16 @@ KunenaLatest 1.7.1-DEV
 15-November-2011 Matias
 ^ Update language files
 
+10-November-2011 Xillibit
+# [#17] Follow Kunena date format settings (missing part)
+
+1-November-2011 Xillibit
+# [#24] Remove setting horizontal/vertical display
+# [#21] Kunena Latest Messed Up First Parameter
+
+9-October-2011 Xillibit
+^ [#17] Follow Kunena date format settings
+
 4-September-2011 Xillibit
 # [#14] Somes issues with validation
 # [#14] Somes issues with validation (Part 2)

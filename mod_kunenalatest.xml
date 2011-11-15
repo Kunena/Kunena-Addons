@@ -78,10 +78,10 @@
 			<option value="gotthankyouposts">MOD_KUNENALATEST_SHOW_GOT_THANKYOU_POSTS</option>
 			<option value="userposts">MOD_KUNENALATEST_SHOW_USER_POSTS</option>
 		</param>
-		<param name="sh_moduleshowtype" type="radio" default="kmodvertical" label="MOD_KUNENALATEST_PARAM_DISPLAYTYPE" description="MOD_KUNENALATEST_PARAM_DISPLAYTYPE_DESC">
+		<!--<param name="sh_moduleshowtype" type="radio" default="kmodvertical" label="MOD_KUNENALATEST_PARAM_DISPLAYTYPE" description="MOD_KUNENALATEST_PARAM_DISPLAYTYPE_DESC">
 			<option value="kmodhorizontal">MOD_KUNENALATEST_PARAM_DISPLAYTYPE_HORIZONTAL</option>
 			<option value="kmodvertical">MOD_KUNENALATEST_PARAM_DISPLAYTYPE_VERTICAL</option>
-		</param>
+		</param>-->
 		<param name="@spacer" type="spacer" default="" label="" description="" />
 		<param name="show_list_time" type="list" default="latest" label="MOD_KUNENALATEST_PARAM_SHOW_TOPICS_FROM" description="MOD_KUNENALATEST_PARAM_SHOW_TOPICS_FROM_DESC">
 			<option value="0">MOD_KUNENALATEST_SHOW_LASTVISIT</option>
@@ -99,8 +99,6 @@
 		<param name="messagelength" type="text" default="150" label="MOD_KUNENALATEST_PARAM_MESSAGELENGTH" description="MOD_KUNENALATEST_PARAM_MESSAGELENGTH_DESC" />
 		<param name="lengthcontentcharacters" type="text" default="" label="MOD_KUNENALATEST_PARAM_CONTENT_CHARACTER_LENGHT" description="MOD_KUNENALATEST_PARAM_CONTENT_CHARACTER_LENGHT_DESC" />
 		<param name="unreadindicator" type="text" default="!" label="MOD_KUNENALATEST_PARAM_UNREADINDICATOR" description="MOD_KUNENALATEST_PARAM_UNREADINDICATOR_DESC" />
-
-		<param name="dateformat" type="text" default="at %H:%M on %b %d, %Y (%Z)" label="MOD_KUNENALATEST_PARAM_DATEFORMAT" description="MOD_KUNENALATEST_PARAM_DATEFORMAT_DESC"/>
 
 		<param name="@spacer" type="spacer" default="" label="" description="" />
 		<param name="sh_topiciconoravatar" type="radio" default="0" label="MOD_KUNENALATEST_PARAM_SHOWTOPICICONS_OR_AVATAR" description="MOD_KUNENALATEST_PARAM_SHOWTOPICICONS_OR_AVATAR_DESC">
@@ -161,6 +159,7 @@
 			<fieldset name="basic">
 				<field name="category_id" type="kunenacategories"
 					default="0"
+					none="MOD_KUNENALATEST_PARAM_CATEGORYLIST_NONE"
 					description="MOD_KUNENALATEST_PARAM_CATEGORYLIST_NONE_DESC"
 					label="MOD_KUNENALATEST_PARAM_CATEGORYLIST_NONE"  multiple="true" size="5" />
 				<field name="sh_category_id_in" type="radio"
@@ -184,13 +183,13 @@
 					<option value="gotthankyouposts">MOD_KUNENALATEST_SHOW_GOT_THANKYOU_POSTS</option>
 					<option value="userposts">MOD_KUNENALATEST_SHOW_USER_POSTS</option>
 				</field>
-				<field name="sh_moduleshowtype" type="radio"
+				<!--<field name="sh_moduleshowtype" type="radio"
 					default="kmodvertical"
 					description="MOD_KUNENALATEST_PARAM_DISPLAYTYPE_DESC"
 					label="MOD_KUNENALATEST_PARAM_DISPLAYTYPE">
 					<option value="kmodhorizontal">MOD_KUNENALATEST_PARAM_DISPLAYTYPE_HORIZONTAL</option>
 					<option value="kmodvertical">MOD_KUNENALATEST_PARAM_DISPLAYTYPE_VERTICAL</option> 
-				</field>
+				</field>-->
 				<field name="show_list_time" type="list"
 					default="2"
 					description="MOD_KUNENALATEST_PARAM_SHOW_TOPICS_FROM_DESC"
@@ -227,10 +226,6 @@
 					default="!"
 					description="MOD_KUNENALATEST_PARAM_UNREADINDICATOR_DESC"
 					label="MOD_KUNENALATEST_PARAM_UNREADINDICATOR" />
-				<field name="dateformat" type="text"
-					default="at %H:%M on %b %d, %Y (%Z)"
-					description="MOD_KUNENALATEST_PARAM_DATEFORMAT_DESC"
-					label="MOD_KUNENALATEST_PARAM_DATEFORMAT" />
 
 				<field name="sh_topiciconoravatar" type="radio"
 					default="0"
