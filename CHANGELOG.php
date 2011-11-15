@@ -29,7 +29,16 @@ Legend:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-JxFinder Kunena Plugin 1.7.0-DEV
+JxFinder Kunena Plugin 1.7.1-DEV
+
+15-November-2011 Matias
+^ Update language files
+
+4-October-2011 Matias
+^ Updated version to 1.7.1-DEV
+^ Cleanup and rename files
+
+JxFinder Kunena Plugin 1.7.0
 
 22-August-2011 Matias
 ^ Updated version to 1.7.0-DEV, Kunena 1.7 required
