@@ -1,8 +1,7 @@
 <?php
 /**
- * @version $Id$
- * JXtended Finder Kunena  Plugin
- * @package Kunena Discuss
+ * JXtended Finder Kunena Plugin
+ * @package Kunena Finder Plugin
  *
  * @Copyright (C) 2010 Kunena Team All rights reserved
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
@@ -19,21 +18,21 @@ require_once JPATH_ADMINISTRATOR.'/components/com_finder/helpers/indexer/adapter
 
 // Load the language files for the adapter.
 $lang = JFactory::getLanguage();
-$lang->load('languages/plg_finder_jxfinder_kunena');
-$lang->load('languages/plg_finder_jxfinder_kunena.custom');
+$lang->load('languages/plg_finder_kunena');
+$lang->load('languages/plg_finder_kunena.custom');
 
 /**
  * Finder adapter for Labels Labels.
  *
  * @package		JXtended.Finder
- * @subpackage	plgFinderKunena_Posts
+ * @subpackage	plgFinderKunena
  */
-class plgFinderKunena_Posts extends FinderIndexerAdapter
+class plgFinderKunena extends FinderIndexerAdapter
 {
 	/**
 	 * @var		string		The plugin identifier.
 	 */
-	protected $_context = 'jxFinder_Kunena';
+	protected $_context = 'Kunena';
 
 	/**
 	 * @var		string		The sublayout to use when rendering the results.
@@ -49,11 +48,6 @@ class plgFinderKunena_Posts extends FinderIndexerAdapter
 	 * @var		object		Kunena configuration object.
 	 */
 	private $_config;
-
-	/**
-	 * @var		array		Kunena emoticon configuration array.
-	 */
-	private $_emoticons;
 
 	/**
 	 * Method to reindex the link information for an item that has been saved.
@@ -94,24 +88,16 @@ class plgFinderKunena_Posts extends FinderIndexerAdapter
 	protected function _index(FinderIndexerResult $item)
 	{
 		// Build the necessary route and path information.
-		$item->url		= $this->_getURL($item->id);
+		$item->url		= $this->_getURL($item);
 		$item->itemid	= '&Itemid='.KunenaRoute::getItemId($item->url);
-		$item->route	= $item->url.'&catid='.$item->catid.$item->itemid;
+		$item->route	= $item->url.$item->itemid;
 		$item->path		= FinderIndexerHelper::getContentPath($item->route);
 
 		// Add the meta-data processing instructions.
 		$item->addInstruction(FinderIndexer::META_CONTEXT, 'author');
 
-		// Strip slashes!
-		$item->title	= stripslashes($item->title);
-		$item->summary	= stripslashes($item->summary);
-		$item->author	= stripslashes($item->author);
-
 		// Process the message text.
-		$item->summary	= @smile::smileReplace($item->summary, 0, $this->_config->disemoticons, $this->_emoticons);
-		$item->summary	= nl2br($item->summary);
-		$item->summary	= str_replace("__FBTAB__", "\t", $item->summary);
-		$item->summary	= FinderIndexerHelper::prepareContent($item->summary);
+		$item->summary	= FinderIndexerHelper::prepareContent(KunenaParser::parseBBCode($item->summary));
 
 		// Translate the access group to an access level.
 		$item->cat_access = $this->_getAccessLevel($item->cat_access);
@@ -156,17 +142,13 @@ class plgFinderKunena_Posts extends FinderIndexerAdapter
 		$session->updateAllowedForums();
 
 		// Load dependencies.
-		require_once KPATH_SITE.DS.'class.kunena.php';
-		require_once KPATH_SITE.DS.'lib'.DS.'kunena.smile.class.php';
+		require_once KPATH_SITE.'/class.kunena.php';
 
 		// Load the component language file.
 		JFactory::getLanguage()->load('com_kunena', KPATH_SITE);
 
 		// Load configuration.
 		$this->_config = KunenaFactory::getConfig();
-
-		// Load emoticons.
-		$this->_emoticons = smile::getEmoticons(0);
 
 		// Prime the router and application libraries.
 		FinderIndexerHelper::getContentPath('');
@@ -206,9 +188,9 @@ class plgFinderKunena_Posts extends FinderIndexerAdapter
 	 * @param	mixed		The id of the item.
 	 * @return	string		The URL of the item.
 	 */
-	protected function _getURL($id)
+	protected function _getURL($item)
 	{
-		return 'index.php?option=com_kunena&func=view&id='.$id;
+		return "index.php?option=com_kunena&func=view&catid={$item->catid}&id={$item->id}";
 	}
 
 	/**
@@ -219,7 +201,7 @@ class plgFinderKunena_Posts extends FinderIndexerAdapter
 	 */
 	private function _getAccessLevel($groupId)
 	{
-		static $cache;
+		static $cache = array();
 
 		// Check if public.
 		if ($groupId == 0) {
@@ -229,11 +211,6 @@ class plgFinderKunena_Posts extends FinderIndexerAdapter
 		// Check the cache.
 		if (isset($cache[$groupId])) {
 			return $cache[$groupId];
-		}
-
-		// Initialize the cache if necessary.
-		if (!is_array($cache)) {
-			$cache = array();
 		}
 
 		// Get the ACL object.

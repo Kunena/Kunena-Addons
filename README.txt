@@ -9,14 +9,14 @@
 
 Kunena Discuss Plugin README
 
-PLEASE READ THIS ENTIRE FILE BEFORE INSTALLING Kunena JxFinder Plugin @kunenaversion@!
+PLEASE READ THIS ENTIRE FILE BEFORE INSTALLING Kunena JxFinder Plugin 1.7.1-DEV!
 
 INTRODUCTION
 ============
 
-Kunena JxFinder Plugin enables your jxFinder component to index Kunena 1.6+ forum content.
+Kunena JxFinder Plugin enables your jxFinder component to index Kunena 1.7+ forum content.
 
-Requirements: Joomla 1.5, Kunena Forum 1.6
+Requirements: Joomla 1.5, Kunena Forum 1.7
 
 END OF README
 =============
