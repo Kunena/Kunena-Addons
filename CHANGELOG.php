@@ -30,6 +30,9 @@ Legend:
 
 KunenaLatest 1.7.1-DEV
 
+15-November-2011 Matias
+^ Update language files
+
 10-November-2011 Xillibit
 # [#17] Follow Kunena date format settings (missing part)
 
