@@ -28,8 +28,8 @@ Legend:
 
 KunenaSearch 1.7.1-DEV
 
-17-October-2011 Matias
-# Remove missing language da-DK from manifest
+15-November-2011 Matias
+^ Update language files
 
 5-September-2011 Xillibit
 # [#12] Prevent to load language file in frontend
