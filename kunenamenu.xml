@@ -5,7 +5,7 @@
 	<author>Kunena Team</author>
 	<authorEmail>admin@kunena.org</authorEmail>
 	<authorUrl>http://www.kunena.org</authorUrl>
-	<version>1.7.1-DEV</version>
+	<version>1.7.1</version>
 	<creationDate>@kunenaversiondate@</creationDate>
 	<build>@kunenaversionbuild@</build>
 	<copyright>(c)2009-2011 Kunena Team. All rights reserved.</copyright>
