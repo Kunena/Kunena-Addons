@@ -5,7 +5,7 @@
 	<author>Kunena Team</author>
 	<authorEmail>kunena@kunena.com</authorEmail>
 	<authorUrl>http://www.kunena.com</authorUrl>
-	<version>1.7.1-DEV</version>
+	<version>1.7.1</version>
 	<creationDate>@kunenaversiondate@</creationDate>
 	<build>@kunenaversionbuild@</build>
 	<copyright>(c) 2009-2011 Kunena Team. All rights reserved.</copyright>
@@ -35,7 +35,7 @@
 		<!--language tag="he-IL">he-IL.plg_community_kunenagroups.ini</language-->
 		<!--language tag="hu-HU">hu-HU.plg_community_kunenagroups.ini</language-->
 		<language tag="it-IT">it-IT.plg_community_kunenagroups.ini</language>
-		<!--language tag="kz-KZ">kz-KZ.plg_community_kunenagroups.ini</language-->
+		<language tag="kz-KZ">kz-KZ.plg_community_kunenagroups.ini</language>
 		<!--language tag="km-KH">km-KH.plg_community_kunenagroups.ini</language-->
 		<language tag="lt-LT">lt-LT.plg_community_kunenagroups.ini</language>
 		<!--language tag="mk-MK">mk-MK.plg_community_kunenagroups.ini</language-->
