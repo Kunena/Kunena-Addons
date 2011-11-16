@@ -28,7 +28,10 @@ Legend:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-KunenaLogin 1.7.1-DEV
+KunenaSearch 1.7.1
+
+16-November-2011 Matias
+^ Prepare 1.7.1 Release
 
 15-November-2011 Matias
 ^ Update language files
