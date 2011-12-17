@@ -12,7 +12,7 @@
 // no direct access
 defined ( '_JEXEC' ) or die ( '' );
 ?>
-<div class="klatest <?php echo $this->params->get ( 'moduleclass_sfx' ); echo $this->params->get ( 'sh_moduleshowtype' )?>">
+<div class="klatest <?php echo $this->params->get ( 'moduleclass_sfx' ).' '; echo $this->params->get ( 'sh_moduleshowtype' )?>">
 
 <?php
 if (is_array ( $this->klistpost ) && !$this->kunena_config->board_offline) { ?>
