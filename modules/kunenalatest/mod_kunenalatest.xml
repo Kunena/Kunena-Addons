@@ -2,7 +2,7 @@
 <!DOCTYPE install>
 <install type="module" version="1.5.0" method="upgrade">
 	<name>Kunena Latest</name>
-	<version>1.7.1</version>
+	<version>1.7.2-DEV</version>
 	<creationDate>@kunenaversiondate@</creationDate>
 	<build>@kunenaversionbuild@</build>
 	<author>www.kunena.org</author>
@@ -274,8 +274,8 @@
 				</field>
 				<field name="sh_favorite" type="radio"
 					default="0"
-					description="MOD_KUNENALATEST_PARAM_SHOW_AUTHOR_DESC"
-					label="MOD_KUNENALATEST_PARAM_SHOW_AUTHOR">
+					description="MOD_KUNENALATEST_PARAM_SHOWFAVORITE_DESC"
+					label="MOD_KUNENALATEST_PARAM_SHOWFAVORITE">
 					<option value="1">MOD_KUNENALATEST_PARAM_VALUE_SHOW</option>
 					<option value="0">MOD_KUNENALATEST_PARAM_VALUE_NOT_SHOW</option>
 				</field>
