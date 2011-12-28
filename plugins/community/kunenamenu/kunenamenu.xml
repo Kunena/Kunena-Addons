@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install>
+<install version="1.5" type="plugin" group="community" method="upgrade">
+	<name>My Kunena Forum Menu</name>
+	<author>Kunena Team</author>
+	<authorEmail>admin@kunena.org</authorEmail>
+	<authorUrl>http://www.kunena.org</authorUrl>
+	<version>1.7.1</version>
+	<creationDate>@kunenaversiondate@</creationDate>
+	<build>@kunenaversionbuild@</build>
+	<copyright>(c)2009-2011 Kunena Team. All rights reserved.</copyright>
+	<license>GNU/GPL</license>
+	<isapplication>true</isapplication>
+	<isbrowseable>true</isbrowseable>
+	<description>PLG_COMMUNITY_KUNENAMENU_DESC</description>
+	<languages folder="languages">
+		<!-- Transifex alphabetical order -->
+		<language tag="en-GB">en-GB.plg_community_kunenamenu.ini</language>
+		<!--language tag="sq-AL">sq-AL.plg_community_kunenamenu.ini</language-->
+		<!--language tag="ar-AA">ar-AA.plg_community_kunenamenu.ini</language-->
+		<!--language tag="az-AZ">az-AZ.plg_community_kunenamenu.ini</language-->
+		<!--language tag="bs-BA">bs-BA.plg_community_kunenamenu.ini</language-->
+		<language tag="bg-BG">bg-BG.plg_community_kunenamenu.ini</language>
+		<language tag="ca-ES">ca-ES.plg_community_kunenamenu.ini</language>
+		<language tag="zh-CN">zh-CN.plg_community_kunenamenu.ini</language>
+		<language tag="zh-TW">zh-TW.plg_community_kunenamenu.ini</language>
+		<!--language tag="hr-HR">hr-HR.plg_community_kunenamenu.ini</language-->
+		<!--language tag="da-DK">da-DK.plg_community_kunenamenu.ini</language-->
+		<language tag="nl-NL">nl-NL.plg_community_kunenamenu.ini</language>
+		<!--language tag="et-EE">et-EE.plg_community_kunenamenu.ini</language-->
+		<!--language tag="fi-FI">fi-FI.plg_community_kunenamenu.ini</language-->
+		<language tag="fr-FR">fr-FR.plg_community_kunenamenu.ini</language>
+		<language tag="de-DE">de-DE.plg_community_kunenamenu.ini</language>
+		<language tag="el-GR">el-GR.plg_community_kunenamenu.ini</language>
+		<!--language tag="he-IL">he-IL.plg_community_kunenamenu.ini</language-->
+		<!--language tag="hu-HU">hu-HU.plg_community_kunenamenu.ini</language-->
+		<language tag="it-IT">it-IT.plg_community_kunenamenu.ini</language>
+		<language tag="kz-KZ">kz-KZ.plg_community_kunenamenu.ini</language>
+		<!--language tag="km-KH">km-KH.plg_community_kunenamenu.ini</language-->
+		<language tag="lt-LT">lt-LT.plg_community_kunenamenu.ini</language>
+		<!--language tag="mk-MK">mk-MK.plg_community_kunenamenu.ini</language-->
+		<language tag="nb-NO">nb-NO.plg_community_kunenamenu.ini</language>
+		<language tag="fa-IR">fa-IR.plg_community_kunenamenu.ini</language>
+		<language tag="pl-PL">pl-PL.plg_community_kunenamenu.ini</language>
+		<!--language tag="pt-BR">pt-BR.plg_community_kunenamenu.ini</language-->
+		<!--language tag="pt-PT">pt-PT.plg_community_kunenamenu.ini</language-->
+		<!--language tag="ro-RO">ro-RO.plg_community_kunenamenu.ini</language-->
+		<language tag="ru-RU">ru-RU.plg_community_kunenamenu.ini</language>
+		<!--language tag="sr-YU">sr-YU.plg_community_kunenamenu.ini</language-->
+		<!--language tag="sr-RS">sr-RS.plg_community_kunenamenu.ini</language-->
+		<language tag="es-ES">es-ES.plg_community_kunenamenu.ini</language>
+		<!--language tag="sv-SE">sv-SE.plg_community_kunenamenu.ini</language-->
+		<language tag="th-TH">th-TH.plg_community_kunenamenu.ini</language>
+		<!--language tag="tr-TR">tr-TR.plg_community_kunenamenu.ini</language-->
+	</languages>
+	<files>
+		<file plugin="kunenamenu">kunenamenu.php</file>
+		<folder>kunenamenu</folder>
+	</files>
+	
+	<params>
+		<param name="coreapp" type="list" default="0" label="PLG_COMMUNITY_KUNENAMENU_PARAM_COREAPP" description="PLG_COMMUNITY_KUNENAMENU_PARAM_COREAPP_DESC">
+			<option value="0">PLG_COMMUNITY_KUNENAMENU_OPTION_NO</option>
+			<option value="1">PLG_COMMUNITY_KUNENAMENU_OPTION_YES</option>
+		</param>
+		
+		<param name="sh_editprofile" type="list" default="1" label="PLG_COMMUNITY_KUNENAMENU_PARAM_SHOW_EDITPROFILE" description="PLG_COMMUNITY_KUNENAMENU_PARAM_SHOW_EDITPROFILE_DESC">
+			<option value="0">PLG_COMMUNITY_KUNENAMENU_OPTION_NO</option>
+			<option value="1">PLG_COMMUNITY_KUNENAMENU_OPTION_YES</option>
+		</param>
+		<param name="sh_myprofile" type="list" default="1" label="PLG_COMMUNITY_KUNENAMENU_PARAM_SHOW_MYPROFILE" description="PLG_COMMUNITY_KUNENAMENU_PARAM_SHOW_MYPROFILE_DESC">
+			<option value="0">PLG_COMMUNITY_KUNENAMENU_OPTION_NO</option>
+			<option value="1">PLG_COMMUNITY_KUNENAMENU_OPTION_YES</option>
+		</param>
+		<param name="sh_myposts" type="list" default="1" label="PLG_COMMUNITY_KUNENAMENU_PARAM_SHOW_MYPOSTS" description="PLG_COMMUNITY_KUNENAMENU_PARAM_SHOW_MYPOSTS_DESC">
+			<option value="0">PLG_COMMUNITY_KUNENAMENU_OPTION_NO</option>
+			<option value="1">PLG_COMMUNITY_KUNENAMENU_OPTION_YES</option>
+		</param>
+		<param name="sh_mysubscriptions" type="list" default="1" label="PLG_COMMUNITY_KUNENAMENU_PARAM_SHOW_MYSUBSCRIPTIONS" description="PLG_COMMUNITY_KUNENAMENU_PARAM_SHOW_MYSUBSCRIPTIONS_DESC">
+			<option value="0">PLG_COMMUNITY_KUNENAMENU_OPTION_NO</option>
+			<option value="1">PLG_COMMUNITY_KUNENAMENU_OPTION_YES</option>
+		</param>
+		<param name="sh_myfavorites" type="list" default="1" label="PLG_COMMUNITY_KUNENAMENU_PARAM_SHOW_MYFAVORITES" description="PLG_COMMUNITY_KUNENAMENU_PARAM_SHOW_MYFAVORITES_DESC">
+			<option value="0">PLG_COMMUNITY_KUNENAMENU_OPTION_NO</option>
+			<option value="1">PLG_COMMUNITY_KUNENAMENU_OPTION_YES</option>
+		</param>
+	</params>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">	
+				<field name="coreapp" type="list" default="0" description="PLG_COMMUNITY_KUNENAMENU_PARAM_COREAPP_DESC" label="PLG_COMMUNITY_KUNENAMENU_PARAM_COREAPP">
+					<option value="0">PLG_COMMUNITY_KUNENAMENU_OPTION_NO</option>
+					<option value="1">PLG_COMMUNITY_KUNENAMENU_OPTION_YES</option>
+				</field>
+				<field name="sh_editprofile"  type="list" default="1" label="PLG_COMMUNITY_KUNENAMENU_PARAM_SHOW_EDITPROFILE" description="PLG_COMMUNITY_KUNENAMENU_PARAM_SHOW_EDITPROFILE_DESC">
+					<option value="0">PLG_COMMUNITY_KUNENAMENU_OPTION_NO</option>
+					<option value="1">PLG_COMMUNITY_KUNENAMENU_OPTION_YES</option>
+				</field>
+				<field name="sh_myprofile" type="list" default="1" description="PLG_COMMUNITY_KUNENAMENU_PARAM_SHOW_MYPROFILE_DESC" label="PLG_COMMUNITY_KUNENAMENU_PARAM_SHOW_MYPROFILE">
+					<option value="0">PLG_COMMUNITY_KUNENAMENU_OPTION_NO</option>
+					<option value="1">PLG_COMMUNITY_KUNENAMENU_OPTION_YES</option> 
+				</field>
+				<field name="sh_myposts" type="list" default="1" description="PLG_COMMUNITY_KUNENAMENU_PARAM_SHOW_MYPOSTS_DESC" label="PLG_COMMUNITY_KUNENAMENU_PARAM_SHOW_MYPOSTS">
+					<option value="0">PLG_COMMUNITY_KUNENAMENU_OPTION_NO</option>
+					<option value="1">PLG_COMMUNITY_KUNENAMENU_OPTION_YES</option>
+				</field>
+				<field name="sh_mysubscriptions" type="list" default="1" description="PLG_COMMUNITY_KUNENAMENU_PARAM_SHOW_MYSUBSCRIPTIONS_DESC" label="PLG_COMMUNITY_KUNENAMENU_PARAM_SHOW_MYSUBSCRIPTIONS">
+					<option value="0">PLG_COMMUNITY_KUNENAMENU_OPTION_NO</option>
+					<option value="1">PLG_COMMUNITY_KUNENAMENU_OPTION_YES</option>
+				</field>
+				<field name="sh_myfavorites" type="list" default="1" description="PLG_COMMUNITY_KUNENAMENU_PARAM_SHOW_MYFAVORITES_DESC" label="PLG_COMMUNITY_KUNENAMENU_PARAM_SHOW_MYFAVORITES">
+					<option value="0">PLG_COMMUNITY_KUNENAMENU_OPTION_NO</option>
+					<option value="1">PLG_COMMUNITY_KUNENAMENU_OPTION_YES</option>
+				</field>				
+			</fieldset>
+		</fields>
+	</config>
+</install>
