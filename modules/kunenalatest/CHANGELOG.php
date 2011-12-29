@@ -28,6 +28,11 @@ Legend:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+KunenaLatest 1.7.2-DEV
+
+28-December-2011 Xillibit
+# Parameter favorite under Joomla 1.7 has the wrong label
+
 KunenaLatest 1.7.1
 
 16-November-2011 Matias
