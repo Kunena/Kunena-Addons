@@ -149,6 +149,10 @@ class plgContentKunenaDiscuss extends JPlugin {
 
 	// *** Prepare content ***
 	protected function prepare($context, &$article, &$params) {
+		if (!isset($article->state) || $article->state != 1) {
+			$this->debug ( "onPrepareContent: Article not published" );
+			return;
+		}
 		// Only proceed if this event is not originated by Kunena itself or we run the danger of an event recursion
 		$ksource = '';
 		if ($params instanceof JParameter){
