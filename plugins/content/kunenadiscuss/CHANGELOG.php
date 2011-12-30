@@ -29,6 +29,11 @@ Legend:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Kunena Discuss Plugin 1.7.2
+
+30-December-2011 Matias
+# [#31] Unpublished articles create forum topics
+
 Kunena Discuss Plugin 1.7.1
 
 16-November-2011 Matias
