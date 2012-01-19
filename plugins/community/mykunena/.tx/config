@@ -6,4 +6,4 @@ lang_map = ar:ar-AA, az_AZ:az-AZ, bg_BG:bg-BG, bs_BA:bs-BA, ca_ES:ca-ES, cs_CZ:c
 file_filter = languages/<lang>.plg_community_mykunena.ini
 source_file = languages/en-GB.plg_community_mykunena.ini
 source_lang = en-GB
-
+minimum_perc = 99
