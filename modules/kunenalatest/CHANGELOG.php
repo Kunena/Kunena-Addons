@@ -30,6 +30,9 @@ Legend:
 
 KunenaLatest 1.7.2-DEV
 
+25-January-2012 Matias
+# Make module Joomla 2.5 native
+
 28-December-2011 Xillibit
 # Parameter favorite under Joomla 1.7 has the wrong label
 
