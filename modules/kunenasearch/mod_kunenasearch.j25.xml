@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE install>
-<install type="module" version="1.5.0" client="site" method="upgrade">
-	<name>Kunena Search</name>
-	<version>1.7.2-DEV</version>
+<!DOCTYPE extension>
+<extension type="module" version="1.6.0" client="site" method="upgrade">
+	<name>mod_kunenasearch</name>
+	<version>@kunenaversion@</version>
 	<creationDate>@kunenaversiondate@</creationDate>
 	<build>@kunenaversionbuild@</build>
 	<author>Kunena Team</author>
@@ -12,6 +12,7 @@
 	<license>GNU/GPL</license>
 	<description>MOD_KUNENASEARCH_DESCRIPTION</description>
 	
+	<scriptfile>install.script.php</scriptfile>
 	<files>
 		<filename module="mod_kunenasearch">mod_kunenasearch.php</filename>
 		<filename>class.php</filename>
@@ -22,6 +23,7 @@
 	<languages folder="language">
 		<!-- Transifex alphabetical order -->
 		<language tag="en-GB">en-GB/en-GB.mod_kunenasearch.ini</language>
+		<language tag="en-GB">en-GB/en-GB.mod_kunenasearch.sys.ini</language>
 		<!--language tag="sq-AL">sq-AL/sq-AL.mod_kunenasearch.ini</language-->
 		<!--language tag="ar-AA">ar-AA/ar-AA.mod_kunenasearch.ini</language-->
 		<!--language tag="az-AZ">az-AZ/az-AZ.mod_kunenasearch.ini</language-->
@@ -60,26 +62,31 @@
 		<!--language tag="tr-TR">tr-TR/tr-TR.mod_kunenasearch.ini</language-->
 	</languages>
 
-	<params>
-		<param name="ksearch_width" type="text" default="20" label="MOD_KUNENASEARCH_BOX_WIDTH" description="MOD_KUNENASEARCH_BOX_WIDTH_DESC" />
-		<param name="ksearch_txt" type="text" default="" label="MOD_KUNENASEARCH_PARAMTEXT" description="MOD_KUNENASEARCH_PARAMTEXT_DESC" />
-		<param name="ksearch_button" type="radio" default="" label="MOD_KUNENASEARCH_SEARCHBUTTON" description="MOD_KUNENASEARCH_SEARCHBUTTON_DESC">
-			<option value="">MOD_KUNENASEARCH_HIDE</option>
-			<option value="1">MOD_KUNENASEARCH_SHOW</option>
-		</param>
-		<param name="ksearch_button_pos" type="list" default="right" label="MOD_KUNENASEARCH_SEARCHBUTTON_POSITION" description="MOD_KUNENASEARCH_SEARCHBUTTON_POSITION_DESC">
-			<option value="right">MOD_KUNENASEARCH_RIGHT</option>
-			<option value="bottom">MOD_KUNENASEARCH_BOTTOM</option>
-		</param>
-		<param name="ksearch_button_txt" type="text" default="Search" label="MOD_KUNENASEARCH_SEARCHBUTTON_TEXT" description="MOD_KUNENASEARCH_SEARCHBUTTON_TEXT_DESC" />
-		<param name="@spacer" type="spacer" default="" label="" description="" />
-		<param name="moduleclass_sfx" type="text" default="" label="MOD_KUNENASEARCH_PARAMMODULECLASSSUFFIX" description="MOD_KUNENASEARCH_PARAMMODULECLASSSUFFIX_DESC" />
-	</params>
-	<params group="advanced">
-		<param name="cache" type="list" default="1" label="MOD_KUNENASEARCH_CACHING" description="MOD_KUNENASEARCH_CACHING_DESC">
-			<option value="1">MOD_KUNENASEARCH_CACHING_GLOBAL</option>
-			<option value="0">MOD_KUNENASEARCH_CACHING_DISABLED</option>
-		</param>
-		<param name="cache_time" type="text" default="900" label="MOD_KUNENASEARCH_CACHING_TIME" description="MOD_KUNENASEARCH_CACHING_TIME_DESC" />
-	</params>
-</install>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="ksearch_width" type="text" default="20" label="MOD_KUNENASEARCH_BOX_WIDTH" description="MOD_KUNENASEARCH_BOX_WIDTH_DESC" />
+				<field name="ksearch_txt" type="text" default="" label="MOD_KUNENASEARCH_PARAMTEXT" description="MOD_KUNENASEARCH_PARAMTEXT_DESC" />
+				<field name="ksearch_button" type="radio" default="" label="MOD_KUNENASEARCH_SEARCHBUTTON" description="MOD_KUNENASEARCH_SEARCHBUTTON_DESC">
+					<option value="">MOD_KUNENASEARCH_HIDE</option>
+					<option value="1">MOD_KUNENASEARCH_SHOW</option>
+				</field>
+				<field name="ksearch_button_pos" type="list" default="right" label="MOD_KUNENASEARCH_SEARCHBUTTON_POSITION" description="MOD_KUNENASEARCH_SEARCHBUTTON_POSITION_DESC">
+					<option value="right">MOD_KUNENASEARCH_RIGHT</option>
+					<option value="bottom">MOD_KUNENASEARCH_BOTTOM</option>
+				</field>
+				<field name="ksearch_button_txt" type="text" default="Search" label="MOD_KUNENASEARCH_SEARCHBUTTON_TEXT" description="MOD_KUNENASEARCH_SEARCHBUTTON_TEXT_DESC" />
+				<field name="@spacer" type="spacer" default="" label="" description="" />
+				<field name="moduleclass_sfx" type="text" default="" label="MOD_KUNENASEARCH_PARAMMODULECLASSSUFFIX" description="MOD_KUNENASEARCH_PARAMMODULECLASSSUFFIX_DESC" />
+			</fieldset>
+				
+			<fieldset group="advanced">
+				<field name="cache" type="list" default="1" label="MOD_KUNENASEARCH_CACHING" description="MOD_KUNENASEARCH_CACHING_DESC">
+					<option value="1">MOD_KUNENASEARCH_CACHING_GLOBAL</option>
+					<option value="0">MOD_KUNENASEARCH_CACHING_DISABLED</option>
+				</field>
+				<field name="cache_time" type="text" default="900" label="MOD_KUNENASEARCH_CACHING_TIME" description="MOD_KUNENASEARCH_CACHING_TIME_DESC" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>
