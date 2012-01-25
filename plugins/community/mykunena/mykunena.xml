@@ -13,45 +13,27 @@
 	<isapplication>true</isapplication>
 	<isbrowseable>true</isbrowseable>
 	<description>PLG_MYKUNENA_DESCRIPTION</description>
-	<languages folder="languages">
+	<languages folder="language">
 		<!-- Transifex alphabetical order -->
-		<language tag="en-GB">en-GB.plg_community_mykunena.ini</language>
-		<!--language tag="sq-AL">sq-AL.plg_community_mykunena.ini</language-->
-		<!--language tag="ar-AA">ar-AA.plg_community_mykunena.ini</language-->
-		<!--language tag="az-AZ">az-AZ.plg_community_mykunena.ini</language-->
-		<!--language tag="bs-BA">bs-BA.plg_community_mykunena.ini</language-->
-		<language tag="bg-BG">bg-BG.plg_community_mykunena.ini</language>
-		<language tag="ca-ES">ca-ES.plg_community_mykunena.ini</language>
-		<language tag="zh-CN">zh-CN.plg_community_mykunena.ini</language>
-		<language tag="zh-TW">zh-TW.plg_community_mykunena.ini</language>
-		<!--language tag="hr-HR">hr-HR.plg_community_mykunena.ini</language-->
-		<!--language tag="da-DK">da-DK.plg_community_mykunena.ini</language-->
-		<language tag="nl-NL">nl-NL.plg_community_mykunena.ini</language>
-		<language tag="et-EE">et-EE.plg_community_mykunena.ini</language>
-		<!--language tag="fi-FI">fi-FI.plg_community_mykunena.ini</language-->
-		<language tag="fr-FR">fr-FR.plg_community_mykunena.ini</language>
-		<language tag="de-DE">de-DE.plg_community_mykunena.ini</language>
-		<language tag="el-GR">el-GR.plg_community_mykunena.ini</language>
-		<!--language tag="he-IL">he-IL.plg_community_mykunena.ini</language-->
-		<!--language tag="hu-HU">hu-HU.plg_community_mykunena.ini</language-->
-		<language tag="it-IT">it-IT.plg_community_mykunena.ini</language>
-		<language tag="kz-KZ">kz-KZ.plg_community_mykunena.ini</language>
-		<!--language tag="km-KH">km-KH.plg_community_mykunena.ini</language-->
-		<language tag="lt-LT">lt-LT.plg_community_mykunena.ini</language>
-		<!--language tag="mk-MK">mk-MK.plg_community_mykunena.ini</language-->
-		<language tag="nb-NO">nb-NO.plg_community_mykunena.ini</language>
-		<language tag="fa-IR">fa-IR.plg_community_mykunena.ini</language>
-		<language tag="pl-PL">pl-PL.plg_community_mykunena.ini</language>
-		<!--language tag="pt-BR">pt-BR.plg_community_mykunena.ini</language-->
-		<!--language tag="pt-PT">pt-PT.plg_community_mykunena.ini</language-->
-		<!--language tag="ro-RO">ro-RO.plg_community_mykunena.ini</language-->
-		<language tag="ru-RU">ru-RU.plg_community_mykunena.ini</language>
-		<!--language tag="sr-YU">sr-YU.plg_community_mykunena.ini</language-->
-		<!--language tag="sr-RS">sr-RS.plg_community_mykunena.ini</language-->
-		<language tag="es-ES">es-ES.plg_community_mykunena.ini</language>
-		<!--language tag="sv-SE">sv-SE.plg_community_mykunena.ini</language-->
-		<language tag="th-TH">th-TH.plg_community_mykunena.ini</language>
-		<!--language tag="tr-TR">tr-TR.plg_community_mykunena.ini</language-->
+		<language tag="en-GB">en-GB/en-GB.plg_community_mykunena.ini</language>
+		<language tag="bg-BG">bg-BG/bg-BG.plg_community_mykunena.ini</language>
+		<language tag="ca-ES">ca-ES/ca-ES.plg_community_mykunena.ini</language>
+		<language tag="zh-CN">zh-CN/zh-CN.plg_community_mykunena.ini</language>
+		<language tag="zh-TW">zh-TW/zh-TW.plg_community_mykunena.ini</language>
+		<language tag="nl-NL">nl-NL/nl-NL.plg_community_mykunena.ini</language>
+		<language tag="et-EE">et-EE/et-EE.plg_community_mykunena.ini</language>
+		<language tag="fr-FR">fr-FR/fr-FR.plg_community_mykunena.ini</language>
+		<language tag="de-DE">de-DE/de-DE.plg_community_mykunena.ini</language>
+		<language tag="el-GR">el-GR/el-GR.plg_community_mykunena.ini</language>
+		<language tag="it-IT">it-IT/it-IT.plg_community_mykunena.ini</language>
+		<language tag="kz-KZ">kz-KZ/kz-KZ.plg_community_mykunena.ini</language>
+		<language tag="lt-LT">lt-LT/lt-LT.plg_community_mykunena.ini</language>
+		<language tag="nb-NO">nb-NO/nb-NO.plg_community_mykunena.ini</language>
+		<language tag="fa-IR">fa-IR/fa-IR.plg_community_mykunena.ini</language>
+		<language tag="pl-PL">pl-PL/pl-PL.plg_community_mykunena.ini</language>
+		<language tag="ru-RU">ru-RU/ru-RU.plg_community_mykunena.ini</language>
+		<language tag="es-ES">es-ES/es-ES.plg_community_mykunena.ini</language>
+		<language tag="th-TH">th-TH/th-TH.plg_community_mykunena.ini</language>
 	</languages>
 	<files>
 		<file plugin="mykunena">mykunena.php</file>
