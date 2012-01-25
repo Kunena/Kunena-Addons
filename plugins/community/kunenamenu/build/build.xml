@@ -116,8 +116,8 @@
 
 		<copy file="${project_dir}/${cfg.name}.xml" todir="${tmp_dir}" overwrite="true" filtering="true" />
 		<copy file="${project_dir}/${cfg.name}.php" todir="${tmp_dir}" overwrite="true" filtering="false" />
-		<copy todir="${tmp_dir}/languages" overwrite="true" filtering="true" >
-			<fileset dir="${project_dir}/languages" />
+		<copy todir="${tmp_dir}/language" overwrite="true" filtering="true" >
+			<fileset dir="${project_dir}/language" />
 		</copy>
 		<copy file="${project_dir}/CHANGELOG.php" todir="${tmp_dir}" overwrite="true" filtering="false" />
 		<copy file="${project_dir}/COPYRIGHT.php" todir="${tmp_dir}" overwrite="true" filtering="true" />
