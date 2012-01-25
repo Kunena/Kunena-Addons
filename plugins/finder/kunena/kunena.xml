@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE install>
-<install version="1.5" type="plugin" group="finder" method="upgrade">
+<install version="1.5.0" type="plugin" group="finder" method="upgrade">
 	<name>Finder - Kunena</name>
-	<version>1.7.1-DEV</version>
+	<version>1.7.2-DEV</version>
 	<creationDate>@kunenaversiondate@</creationDate>
 	<build>@kunenaversionbuild@</build>
 	<author>Kunena Team</author>
 	<authorEmail>admin@kunena.org</authorEmail>
 	<authorUrl>http://www.kunena.org</authorUrl>
-	<copyright>(c)2010-2011 Kunena Team. All rights reserved.</copyright>
+	<copyright>(c)2010-2012 Kunena Team. All rights reserved.</copyright>
 	<license>GNU/GPL</license>
 	<description>PLG_FINDER_KUNENA_DESC</description>
+
 	<files>
 		<filename plugin="kunena">kunena.php</filename>
 	</files>
+
 	<languages folder="language">
 		<!-- Transifex alphabetical order -->
 		<language tag="en-GB">en-GB/en-GB.plg_finder_kunena.ini</language>
