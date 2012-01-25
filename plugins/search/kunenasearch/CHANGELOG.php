@@ -26,6 +26,11 @@ Legend:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+KunenaSearch 1.7.2-DEV
+
+25-January-2012 Matias
+# Make plugin Joomla 2.5 native
+
 KunenaSearch 1.7.1
 
 16-November-2011 Matias
