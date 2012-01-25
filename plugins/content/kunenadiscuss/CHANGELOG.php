@@ -29,7 +29,10 @@ Legend:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Kunena Discuss Plugin 1.7.2
+Kunena Discuss Plugin 1.7.2-DEV
+
+25-January-2012 Matias
+# Make plugin Joomla 2.5 native
 
 30-December-2011 Matias
 # [#31] Unpublished articles create forum topics
