@@ -28,6 +28,11 @@ Legend:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+KunenaStats 1.7.2-DEV
+
+25-January-2012 Matias
+# Make module Joomla 2.5 native
+
 KunenaStats 1.7.1
 
 16-November-2011 Matias

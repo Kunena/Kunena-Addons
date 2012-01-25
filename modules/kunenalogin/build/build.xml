@@ -111,8 +111,8 @@
 		<filter token="kunenaversiondate" value="${version.date}" />
 		<filter token="kunenaversionbuild" value="${build.number}" />
 		<filter token="kunenaversionname" value="${xml.versionname}" />
-		<copy file="${project_dir}/mod_kunenalogin.xml" todir="${tmp_dir}"
-			overwrite="true" filtering="true" />
+		<copy file="${project_dir}/mod_kunenalogin.xml" todir="${tmp_dir}" overwrite="true" filtering="true" />
+		<copy file="${project_dir}/mod_kunenalogin.j25.xml" todir="${tmp_dir}" overwrite="true" filtering="true" />
 		<copy file="${project_dir}/README.txt" todir="${tmp_dir}"
 			overwrite="true" filtering="true" />
 		<copy todir="${tmp_dir}/language" overwrite="true" filtering="true" >
