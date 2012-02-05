@@ -2,7 +2,7 @@
 <!DOCTYPE install>
 <install version="1.5.0" type="plugin" group="content" method="upgrade">
 	<name>Content - Kunena Discuss</name>
-	<version>1.7.2-DEV</version>
+	<version>1.7.2</version>
 	<build>@kunenaversionbuild@</build>
 	<creationDate>@kunenaversiondate@</creationDate>
 	<author>Kunena Team</author>

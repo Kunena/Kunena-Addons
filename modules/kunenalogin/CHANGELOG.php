@@ -1,10 +1,9 @@
 <?php
 /**
- * @version $Id$
  * KunenaLogin Module
  * @package Kunena login
  *
- * @Copyright (C) 2010 www.kunena.com All rights reserved
+ * @Copyright (C) 2010-2012 Kunena Team. All rights reserved.
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link http://www.kunena.com
  */
@@ -26,7 +25,10 @@ Legend:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-KunenaLogin 1.7.2-DEV
+KunenaLogin 1.7.2
+
+5-February-2012 Matias
+^ Release 1.7.2
 
 25-January-2012 Matias
 # Make module Joomla 2.5 native

@@ -1,16 +1,13 @@
 <?php
 /**
- * @version $Id$
  * Kunena Discuss Plugin
  * @package Kunena Discuss
  *
- * @Copyright (C) 2010 Kunena Team. All rights reserved
+ * @Copyright (C) 2010-2012 Kunena Team. All rights reserved.
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link http://www.kunena.org
  **/
-
-// no direct access
-die( '' );
+die();
 ?>
 <!--
 
@@ -29,7 +26,10 @@ Legend:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Kunena Discuss Plugin 1.7.2-DEV
+Kunena Discuss Plugin 1.7.2
+
+5-February-2012 Matias
+^ Release 1.7.2
 
 25-January-2012 Matias
 # Make plugin Joomla 2.5 native
