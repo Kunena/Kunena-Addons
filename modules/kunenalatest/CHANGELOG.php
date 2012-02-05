@@ -1,10 +1,9 @@
 <?php
 /**
-* @version $Id$
 * KunenaLatest Module
 * @package Kunena latest
 *
-* @Copyright (C)2010-2011 Kunena Project. All rights reserved.
+* @Copyright (C)2010-2012 Kunena Project. All rights reserved.
 * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
 * @link http://www.kunena.org
 */
@@ -28,7 +27,10 @@ Legend:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-KunenaLatest 1.7.2-DEV
+KunenaLatest 1.7.2
+
+5-February-2012 Matias
+^ Release 1.7.2
 
 25-January-2012 Matias
 # Make module Joomla 2.5 native
