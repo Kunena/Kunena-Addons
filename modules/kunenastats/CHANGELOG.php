@@ -1,16 +1,13 @@
 <?php
 /**
-* @version $Id$
 * KunenaStats Module
 * @package Kunena Stats
 *
-* @Copyright (C) 2009 www.kunena.com All rights reserved
+* @Copyright (C) 2009-2012 Kunena Team. All rights reserved.
 * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
 * @link http://www.kunena.com
 */
-
-// no direct access
-defined( '_VALID_MOS' ) or die( 'Restricted access' );
+die ();
 ?>
 <!--
 Changelog
@@ -28,7 +25,10 @@ Legend:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-KunenaStats 1.7.2-DEV
+KunenaStats 1.7.2
+
+5-February-2012 Matias
+^ Release 1.7.2
 
 25-January-2012 Matias
 # Make module Joomla 2.5 native

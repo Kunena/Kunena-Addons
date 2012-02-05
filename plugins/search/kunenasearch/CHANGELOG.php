@@ -1,10 +1,9 @@
 <?php
 /**
-* @version $Id$
 * Kunena Search Plugin
 * @package Kunena Search
 *
-* @Copyright (C) 2010 www.kunena.com All rights reserved
+* @Copyright (C) 2010-2012 Kunena Team. All rights reserved.
 * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
 * @link http://www.kunena.com
 */
@@ -26,7 +25,10 @@ Legend:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-KunenaSearch 1.7.2-DEV
+KunenaSearch 1.7.2
+
+5-February-2012 Matias
+^ Release 1.7.2
 
 25-January-2012 Matias
 # Make plugin Joomla 2.5 native
