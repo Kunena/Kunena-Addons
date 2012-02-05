@@ -1,16 +1,13 @@
 <?php
 /**
-* @version $Id$
 * KunenaSearch Module
 * @package Kunena Search
 *
-* @Copyright (C) 2009 www.kunena.org All rights reserved
+* @Copyright (C) 2009-2012 Kunena Team. All rights reserved.
 * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
 * @link http://www.kunena.org
 */
-
-// no direct access
-defined( '_VALID_MOS' ) or die( 'Restricted access' );
+die ();
 ?>
 <!--
 Changelog
@@ -28,7 +25,10 @@ Legend:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-KunenaSearch 1.7.2-DEV
+KunenaSearch 1.7.2
+
+5-February-2012 Matias
+^ Release 1.7.2
 
 25-January-2012 Matias
 # Make module Joomla 2.5 native

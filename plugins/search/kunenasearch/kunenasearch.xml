@@ -2,7 +2,7 @@
 <!DOCTYPE install>
 <install version="1.5.0" type="plugin" group="search" method="upgrade">
 	<name>Search - Kunena</name>
-	<version>1.7.2-DEV</version>
+	<version>1.7.2</version>
 	<creationDate>@kunenaversiondate@</creationDate>
 	<build>@kunenaversionbuild@</build>
 	<author>Kunena Team</author>
