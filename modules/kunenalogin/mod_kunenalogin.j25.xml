@@ -27,13 +27,13 @@
 		<!--language tag="sq-AL">sq-AL/sq-AL.mod_kunenalogin.ini</language-->
 		<!--language tag="ar-AA">ar-AA/ar-AA.mod_kunenalogin.ini</language-->
 		<!--language tag="az-AZ">az-AZ/az-AZ.mod_kunenalogin.ini</language-->
-		<!--language tag="bs-BA">bs-BA/bs-BA.mod_kunenalogin.ini</language-->
+		<language tag="bs-BA">bs-BA/bs-BA.mod_kunenalogin.ini</language>
 		<language tag="bg-BG">bg-BG/g-BG.mod_kunenalogin.ini</language>
 		<language tag="ca-ES">ca-ES/ca-ES.mod_kunenalogin.ini</language>
 		<language tag="zh-CN">zh-CN/zh-CN.mod_kunenalogin.ini</language>
 		<language tag="zh-TW">zh-TW/zh-TW.mod_kunenalogin.ini</language>
 		<!--language tag="hr-HR">hr-HR/hr-HR.mod_kunenalogin.ini</language-->
-		<!--language tag="da-DK">da-DK/da-DK.mod_kunenalogin.ini</language-->
+		<language tag="da-DK">da-DK/da-DK.mod_kunenalogin.ini</language>
 		<language tag="nl-NL">nl-NL/nl-NL.mod_kunenalogin.ini</language>
 		<!--language tag="et-EE">et-EE/et-EE.mod_kunenalogin.ini</language-->
 		<language tag="fi-FI">fi-FI/fi-FI.mod_kunenalogin.ini</language>
@@ -57,8 +57,10 @@
 		<!--language tag="sr-YU">sr-YU/sr-YU.mod_kunenalogin.ini</language-->
 		<!--language tag="sr-RS">sr-RS/sr-RS.mod_kunenalogin.ini</language-->
 		<language tag="es-ES">es-ES/es-ES.mod_kunenalogin.ini</language>
-		<!--language tag="sv-SE">sv-SE/sv-SE.mod_kunenalogin.ini</language-->
+		<language tag="sv-SE">sv-SE/sv-SE.mod_kunenalogin.ini</language>
 		<language tag="th-TH">th-TH/th-TH.mod_kunenalogin.ini</language>
+		<language tag="ug-CN">ug-CN/ug-CN.mod_kunenalogin.ini</language>
+		<language tag="vi-VN">vi-VN/vi-VN.mod_kunenalogin.ini</language>
 		<!--language tag="tr-TR">tr-TR/tr-TR.mod_kunenalogin.ini</language-->
 	</languages>
 

@@ -31,6 +31,7 @@
 		<language tag="de-DE">de-DE/de-DE.plg_finder_kunena.ini</language>
 		<language tag="el-GR">el-GR/el-GR.plg_finder_kunena.ini</language>
 		<language tag="he-IL">he-IL/he-IL.plg_finder_kunena.ini</language>
+		<language tag="hu-HU">hu-HU/hu-HU.plg_finder_kunena.ini</language>
 		<language tag="it-IT">it-IT/it-IT.plg_finder_kunena.ini</language>
 		<language tag="kz-KZ">kz-KZ/kz-KZ.plg_finder_kunena.ini</language>
 		<language tag="lv-LV">lv-LV/lv-LV.plg_finder_kunena.ini</language>
@@ -39,9 +40,13 @@
 		<language tag="fa-IR">fa-IR/fa-IR.plg_finder_kunena.ini</language>
 		<language tag="pl-PL">pl-PL/pl-PL.plg_finder_kunena.ini</language>
 		<language tag="pt-BR">pt-BR/pt-BR.plg_finder_kunena.ini</language>
+		<language tag="pt-PT">pt-PT/pt-PT.plg_finder_kunena.ini</language>
 		<language tag="ru-RU">ru-RU/ru-RU.plg_finder_kunena.ini</language>
 		<language tag="es-ES">es-ES/es-ES.plg_finder_kunena.ini</language>
 		<language tag="sv-SE">sv-SE/sv-SE.plg_finder_kunena.ini</language>
 		<language tag="th-TH">th-TH/th-TH.plg_finder_kunena.ini</language>
+		<language tag="tr-TR">tr-TR/tr-TR.plg_finder_kunena.ini</language>
+		<language tag="ug-CN">ug-CN/ug-CN.plg_finder_kunena.ini</language>
+		<language tag="vi-VN">vi-VN/vi-VN.plg_finder_kunena.ini</language>
 	</languages>
 </install>
