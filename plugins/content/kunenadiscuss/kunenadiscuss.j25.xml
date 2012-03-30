@@ -28,6 +28,7 @@
 		<language tag="zh-CN">zh-CN/zh-CN.plg_content_kunenadiscuss.ini</language>
 		<language tag="zh-TW">zh-TW/zh-TW.plg_content_kunenadiscuss.ini</language>
 		<language tag="cs-CZ">cs-CZ/cs-CZ.plg_content_kunenadiscuss.ini</language>
+		<language tag="da-DK">da-DK/da-DK.plg_content_kunenadiscuss.ini</language>
 		<language tag="nl-NL">nl-NL/nl-NL.plg_content_kunenadiscuss.ini</language>
 		<language tag="fi-FI">fi-FI/fi-FI.plg_content_kunenadiscuss.ini</language>
 		<language tag="fr-FR">fr-FR/fr-FR.plg_content_kunenadiscuss.ini</language>
@@ -39,11 +40,15 @@
 		<language tag="kz-KZ">kz-KZ/kz-KZ.plg_content_kunenadiscuss.ini</language>
 		<language tag="lt-LT">lt-LT/lt-LT.plg_content_kunenadiscuss.ini</language>
 		<language tag="nb-NO">nb-NO/nb-NO.plg_content_kunenadiscuss.ini</language>
+		<language tag="fa-IR">fa-IR/fa-IR.plg_content_kunenadiscuss.ini</language>
 		<language tag="pl-PL">pl-PL/pl-PL.plg_content_kunenadiscuss.ini</language>
 		<language tag="pt-BR">pt-BR/pt-BR.plg_content_kunenadiscuss.ini</language>
 		<language tag="ru-RU">ru-RU/ru-RU.plg_content_kunenadiscuss.ini</language>
 		<language tag="es-ES">es-ES/es-ES.plg_content_kunenadiscuss.ini</language>
+		<language tag="sv-SE">sv-SE/sv-SE.plg_content_kunenadiscuss.ini</language>
 		<language tag="th-TH">th-TH/th-TH.plg_content_kunenadiscuss.ini</language>
+		<language tag="ug-CN">ug-CN/ug-CN.plg_content_kunenadiscuss.ini</language>
+		<language tag="vi-VN">vi-VN/vi-VN.plg_content_kunenadiscuss.ini</language>
 	</languages>
 
 	<config>

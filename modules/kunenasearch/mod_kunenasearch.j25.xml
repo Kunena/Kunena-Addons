@@ -33,15 +33,15 @@
 		<language tag="zh-CN">zh-CN/zh-CN.mod_kunenasearch.ini</language>
 		<language tag="zh-TW">zh-TW/zh-TW.mod_kunenasearch.ini</language>
 		<!--language tag="hr-HR">hr-HR/hr-HR.mod_kunenasearch.ini</language-->
-		<!--language tag="da-DK">da-DK/da-DK.mod_kunenasearch.ini</language-->
+		<language tag="da-DK">da-DK/da-DK.mod_kunenasearch.ini</language>
 		<language tag="nl-NL">nl-NL/nl-NL.mod_kunenasearch.ini</language>
 		<language tag="et-EE">et-EE/et-EE.mod_kunenasearch.ini</language>
 		<language tag="fi-FI">fi-FI/fi-FI.mod_kunenasearch.ini</language>
 		<language tag="fr-FR">fr-FR/fr-FR.mod_kunenasearch.ini</language>
 		<language tag="de-DE">de-DE/de-DE.mod_kunenasearch.ini</language>
 		<language tag="el-GR">el-GR/el-GR.mod_kunenasearch.ini</language>
-		<!--language tag="he-IL">he-IL/he-IL.mod_kunenasearch.ini</language-->
-		<!--language tag="hu-HU">hu-HU/hu-HU.mod_kunenasearch.ini</language-->
+		<language tag="he-IL">he-IL/he-IL.mod_kunenasearch.ini</language>
+		<language tag="hu-HU">hu-HU/hu-HU.mod_kunenasearch.ini</language>
 		<language tag="it-IT">it-IT/it-IT.mod_kunenasearch.ini</language>
 		<language tag="kz-KZ">kz-KZ/kz-KZ.mod_kunenasearch.ini</language>
 		<!--language tag="km-KH">km-KH/km-KH.mod_kunenasearch.ini</language-->
@@ -49,7 +49,7 @@
 		<!--language tag="mk-MK">mk-MK/mk-MK.mod_kunenasearch.ini</language-->
 		<language tag="nb-NO">nb-NO/nb-NO.mod_kunenasearch.ini</language>
 		<language tag="fa-IR">fa-IR/fa-IR.mod_kunenasearch.ini</language>
-		<!--language tag="pl-PL">pl-PL/pl-PL.mod_kunenasearch.ini</language-->
+		<language tag="pl-PL">pl-PL/pl-PL.mod_kunenasearch.ini</language>
 		<!--language tag="pt-BR">pt-BR/pt-BR.mod_kunenasearch.ini</language-->
 		<!--language tag="pt-PT">pt-PT/pt-PT.mod_kunenasearch.ini</language-->
 		<!--language tag="ro-RO">ro-RO/ro-RO.mod_kunenasearch.ini</language-->
@@ -57,8 +57,10 @@
 		<!--language tag="sr-YU">sr-YU/sr-YU.mod_kunenasearch.ini</language-->
 		<!--language tag="sr-RS">sr-RS/sr-RS.mod_kunenasearch.ini</language-->
 		<language tag="es-ES">es-ES/es-ES.mod_kunenasearch.ini</language>
-		<!--language tag="sv-SE">sv-SE/sv-SE.mod_kunenasearch.ini</language-->
+		<language tag="sv-SE">sv-SE/sv-SE.mod_kunenasearch.ini</language>
 		<language tag="th-TH">th-TH/th-TH.mod_kunenasearch.ini</language>
+		<language tag="ug-CN">ug-CN/ug-CN.mod_kunenasearch.ini</language>
+		<language tag="vi-VN">vi-VN/vi-VN.mod_kunenasearch.ini</language>
 		<!--language tag="tr-TR">tr-TR/tr-TR.mod_kunenasearch.ini</language-->
 	</languages>
 

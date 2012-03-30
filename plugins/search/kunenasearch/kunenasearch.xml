@@ -24,6 +24,7 @@
 		<language tag="ca-ES">ca-ES/ca-ES.plg_search_kunenasearch.ini</language>
 		<language tag="zh-CN">zh-CN/zh-CN.plg_search_kunenasearch.ini</language>
 		<language tag="zh-TW">zh-TW/zh-TW.plg_search_kunenasearch.ini</language>
+		<language tag="da-DK">da-DK/da-DK.plg_search_kunenasearch.ini</language>
 		<language tag="nl-NL">nl-NL/nl-NL.plg_search_kunenasearch.ini</language>
 		<language tag="et-EE">et-EE/et-EE.plg_search_kunenasearch.ini</language>
 		<language tag="fi-FI">fi-FI/fi-FI.plg_search_kunenasearch.ini</language>
@@ -31,13 +32,22 @@
 		<language tag="de-DE">de-DE/de-DE.plg_search_kunenasearch.ini</language>
 		<language tag="el-GR">el-GR/el-GR.plg_search_kunenasearch.ini</language>
 		<language tag="he-IL">he-IL/he-IL.plg_search_kunenasearch.ini</language>
+		<language tag="hu-HU">hu-HU/hu-HU.plg_search_kunenasearch.ini</language>
 		<language tag="it-IT">it-IT/it-IT.plg_search_kunenasearch.ini</language>
 		<language tag="kz-KZ">kz-KZ/kz-KZ.plg_search_kunenasearch.ini</language>
+		<language tag="km_KH">km_KH/km_KH.plg_search_kunenasearch.ini</language>
 		<language tag="lt-LT">lt-LT/lt-LT.plg_search_kunenasearch.ini</language>
+		<language tag="fa-IR">fa-IR/fa-IR.plg_search_kunenasearch.ini</language>
 		<language tag="nb-NO">nb-NO/nb-NO.plg_search_kunenasearch.ini</language>
+		<language tag="pl-PL">pl-PL/pl-PL.plg_search_kunenasearch.ini</language>
+		<language tag="pt-PT">pt-PT/pt-PT.plg_search_kunenasearch.ini</language>
 		<language tag="ru-RU">ru-RU/ru-RU.plg_search_kunenasearch.ini</language>
 		<language tag="es-ES">es-ES/es-ES.plg_search_kunenasearch.ini</language>
+		<language tag="sv-SE">sv-SE/sv-SE.plg_search_kunenasearch.ini</language>
 		<language tag="th-TH">th-TH/th-TH.plg_search_kunenasearch.ini</language>
+		<language tag="tr-TR">tr-TR/tr-TR.plg_search_kunenasearch.ini</language>
+		<language tag="ug-CN">ug-CN/ug-CN.plg_search_kunenasearch.ini</language>
+		<language tag="vi-VN">vi-VN/vi-VN.plg_search_kunenasearch.ini</language>
 	</languages>
 
 	<params>
