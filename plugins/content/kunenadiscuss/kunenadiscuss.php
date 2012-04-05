@@ -138,6 +138,20 @@ class plgContentKunenaDiscuss extends JPlugin {
 		self::$inevent = false;
 		return $result;
 	}
+	
+	//Method to allow access to discussion count per article
+	//e.g. Called using echo plgContentKunenaDiscuss::displayDiscussionInfo($this->article->id, 'count');
+	public function displayDiscussionInfo($id,$type) {
+		if($id AND $type) {
+			switch($type){
+				case 'count':	return plgContentKunenaDiscuss::$plgDisplay['totals'][$id];
+				break;
+				
+				case 'link':	return plgContentKunenaDiscuss::$plgDisplay['totalslink'][$id];
+				break;
+			}
+		}	
+	}
 
 	protected function enabled() {
 		if ($this->_app->scope == 'com_content')
