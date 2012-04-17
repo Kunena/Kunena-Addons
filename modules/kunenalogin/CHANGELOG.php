@@ -1,12 +1,12 @@
 <?php
 /**
- * KunenaLogin Module
- * @package Kunena login
+ * Kunena Login Module
+ * @package Kunena.mod_kunenalogin
  *
- * @Copyright (C) 2010-2012 Kunena Team. All rights reserved.
+ * @copyright (C) 2008 - 2012 Kunena Team. All rights reserved.
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @link http://www.kunena.com
- */
+ * @link http://www.kunena.org
+ **/
 die ();
 ?>
 <!--
@@ -24,6 +24,11 @@ Legend:
 ! -> Note
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+KunenaLogin 2.0.0-DEV
+
+17-April-2012 Matias
+^ Convert module to Kunena 2.0 API
 
 KunenaLogin 1.7.2
 
