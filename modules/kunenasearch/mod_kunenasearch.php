@@ -1,27 +1,30 @@
 <?php
 /**
-* @package		Kunena Search
-* @copyright	(C) 2010 Kunena Project. All rights reserved.
-* @license		GNU/GPL
-*/
-
-// no direct access
-defined('_JEXEC') or die('Restricted access');
+ * Kunena Search Module
+ * @package Kunena.mod_kunenasearch
+ *
+ * @copyright (C) 2008 - 2012 Kunena Team. All rights reserved.
+ * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
+ * @link http://www.kunena.org
+ **/
+defined ( '_JEXEC' ) or die ();
 
 // Kunena detection and version check
-$minKunenaVersion = '1.7';
-if (!class_exists('Kunena') || version_compare(Kunena::version(), $minKunenaVersion, '<') ) {
-	echo JText::sprintf ( 'MOD_KUNENASEARCH_KUNENA_NOT_INSTALLED', $minKunenaVersion );
+$minKunenaVersion = '2.0';
+if (!class_exists('KunenaForum') || !KunenaForum::isCompatible($minKunenaVersion)) {
+	echo JText::sprintf('MOD_KUNENASEARCH_KUNENA_NOT_INSTALLED', $minKunenaVersion);
 	return;
 }
 // Kunena online check
-if (!Kunena::enabled()) {
-	echo JText::_ ( 'MOD_KUNENASEARCH_KUNENA_OFFLINE' );
+if (!KunenaForum::enabled()) {
+	echo JText::_('MOD_KUNENASEARCH_KUNENA_OFFLINE');
 	return;
 }
 
-// Include the syndicate functions only once
-require_once( dirname(__FILE__).DS.'class.php' );
+require_once( dirname(__FILE__) . '/class.php' );
 
 $params = ( object ) $params;
-$ksearch = new modKunenaSearch ( $params );
+$module = ( object ) $module;
+
+$instance = new modKunenaSearch ( $module, $params );
+$instance->display ();

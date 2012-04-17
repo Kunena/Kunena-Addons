@@ -1,16 +1,16 @@
 <?php
 /**
-* @package		Kunena Search
-* @copyright	(C) 2010 Kunena Project. All rights reserved.
-* @license		GNU/GPL
-*/
-
-defined('_JEXEC') or die('Restricted access');
-$doc = JFactory::getDocument();
-$doc->addStyleSheet( JURI::root().'modules/mod_kunenasearch/tmpl/css/kunenasearch.css' );
+ * Kunena Search Module
+ * @package Kunena.mod_kunenasearch
+ *
+ * @copyright (C) 2008 - 2012 Kunena Team. All rights reserved.
+ * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
+ * @link http://www.kunena.org
+ **/
+defined ( '_JEXEC' ) or die ();
 ?>
 
-<form action="<?php echo CKunenaLink::GetSearchURL('advsearch'); ?>" method="post" id="ksearch-form" name="adminForm">
+<form action="<?php echo $this->url ?>" method="post" id="ksearch-form" name="adminForm">
 	<div class="ksearch<?php echo $this->ksearch_moduleclass_sfx; ?>">
 		<fieldset class="ksearch-fieldset">
 			<legend class="ksearch-legend"><?php echo JText::_('MOD_KUNENASEARCH_SEARCHBY_KEYWORD'); ?></legend>
