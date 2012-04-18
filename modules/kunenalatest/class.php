@@ -1,157 +1,110 @@
 <?php
 /**
- * @version $Id$
  * Kunena Latest Module
- * @package Kunena latest
+ * @package Kunena.mod_kunenalatest
  *
-* @Copyright (C)2010-2011 www.kunena.org. All rights reserved
-* @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
-* @link http://www.kunena.org
- */
+ * @copyright (C) 2008 - 2012 Kunena Team. All rights reserved.
+ * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
+ * @link http://www.kunena.org
+ **/
+defined ( '_JEXEC' ) or die ();
 
-// no direct access
-defined ( '_JEXEC' ) or die ( '' );
 class modKunenaLatest {
+	static protected $cssadded = false;
+
 	protected $params = null;
 
-	public function __construct($params) {
-		static $cssadded = false;
-
+	public function __construct($module, $params) {
+		require_once KPATH_SITE . '/lib/kunena.link.class.php';
 		$this->params = $params;
-		$this->document = JFactory::getDocument ();
-
-		if ($cssadded == false && $this->params->get( 'kunena_load_css', 1 )) {
-			$this->document->addStyleSheet ( JURI::root () . 'modules/mod_kunenalatest/tmpl/css/kunenalatest.css' );
-			$cssadded = true;
-		}
 	}
 
-	public function display() {
-		static $cssadded = false;
-
-		require_once (KUNENA_PATH_LIB . DS . 'kunena.link.class.php');
-		require_once (KUNENA_PATH_LIB . DS . 'kunena.image.class.php');
-		require_once (KUNENA_PATH_LIB . DS . 'kunena.timeformat.class.php');
-		require_once (KUNENA_PATH_FUNCS . DS . 'latestx.php');
-		require_once (JPATH_ADMINISTRATOR . '/components/com_kunena/libraries/html/parser.php');
-		$this->kunena_config = KunenaFactory::getConfig ();
-		$this->myprofile = KunenaFactory::getUser ();
-
-		// load Kunena main language file so we can leverage langaueg strings from it
+	function display() {
 		KunenaFactory::loadLanguage();
 
-		// Initialize session
-		$session = KunenaFactory::getSession ();
-		$session->updateAllowedForums();
-
-		$this->latestdo = null;
-
-		if ($this->params->get ( 'choosemodel' ) != 'latest') {
-			$this->latestdo = $this->params->get ( 'choosemodel' );
+		// Load CSS only once
+		$this->document = JFactory::getDocument ();
+		if (self::$cssadded == false) {
+			$this->document->addStyleSheet ( JURI::root (true) . '/modules/mod_kunenalatest/tmpl/css/kunenalatest.css' );
+			self::$cssadded = true;
 		}
 
-		$this->ktemplate = KunenaFactory::getTemplate();
-		$this->klistpost = modKunenaLatestHelper::getKunenaLatestList ( $this->params );
-		$this->topic_ordering = modKunenaLatestHelper::getTopicsOrdering($this->myprofile, $this->kunena_config);
+		$me = KunenaFactory::getUser();
+		$cache = JFactory::getCache('com_kunena', 'output');
 
-		require (JModuleHelper::getLayoutPath ( 'mod_kunenalatest' ));
-	}
-}
+		// Force caching for 3 minutes
+		$cache->setLifeTime(180);
+		$hash = md5(serialize($this->params));
+		if ($cache->start("display.{$me->userid}.{$hash}", 'mod_kunenalatest')) return;
 
-class modKunenaLatestHelper {
-	function getModel() {
-		$model = new CKunenaLatestX ( '', 0 );
-
-		return $model;
-	}
-
-	function getKunenaLatestList($params) {
-		$model = self::getModel ($params);
-		$model->threads_per_page = $params->get ( 'nbpost' );
-		$model->latestcategory = $params->get ( 'category_id' );
-		$model->latestcategory_in = $params->get ( 'sh_category_id_in' );
-		$model->show_list_time = $params->get ( 'show_list_time' );
-
-		$result = array ();
-		$threadmode = true;
-
-		switch ( $params->get( 'choosemodel' ) ) {
+		// Convert module parameters into topics view parameters
+		$categories = $this->params->get ( 'category_id', 0 );
+		$categories = is_array($categories) ? implode(',', $categories) : $categories;
+		$this->params->set('limitstart', 0);
+		$this->params->set('limit', $this->params->get ( 'nbpost',5 ));
+		$this->params->set('topics_categories', $categories);
+		$this->params->set('topics_catselection', $this->params->get ( 'sh_category_id_in', 1 ));
+		$this->params->set('topics_time', $this->params->get ( 'show_list_time', 168 ));
+		$userid = 0;
+		switch ( $this->params->get( 'choosemodel' ) ) {
 			case 'latestposts' :
-				$model->getLatestPosts();
-				$threadmode = false;
+				$layout = 'posts';
+				$mode = 'recent';
 				break;
 			case 'noreplies' :
-				$model->getNoReplies();
+				$layout = 'default';
+				$mode = 'noreplies';
+				break;
+			case 'catsubscriptions' :
+				// TODO
 				break;
 			case 'subscriptions' :
-				$model->getSubscriptions();
+				$userid = -1;
+				$layout = 'user';
+				$mode = 'subscriptions';
 				break;
 			case 'favorites' :
-				$model->getFavorites();
+				$userid = -1;
+				$layout = 'user';
+				$mode = 'favorites';
 				break;
 			case 'owntopics' :
-				$model->getOwnTopics();
+				$layout = 'user';
+				$mode = 'posted';
 				break;
 			case 'deleted' :
-				$model->getDeletedPosts();
-				$threadmode = false;
+				$layout = 'posts';
+				$mode = 'deleted';
 				break;
 			case 'saidthankyouposts' :
-				$model->getSaidThankYouPosts();
-				$threadmode = false;
+				$userid = -1;
+				$layout = 'posts';
+				$mode = 'mythanks';
 				break;
 			case 'gotthankyouposts' :
-				$model->getGotThankYouPosts();
-				$threadmode = false;
+				$userid = -1;
+				$layout = 'posts';
+				$mode = 'thankyou';
 				break;
 			case 'userposts' :
-				$model->getUserPosts();
-				$threadmode = false;
+				$userid = -1;
+				$layout = 'posts';
+				$mode = 'recent';
 				break;
 			case 'latesttopics' :
 			default :
-				$model->getLatest ();
+				$layout = 'default';
+				$mode = 'recent';
 		}
+		$this->params->set('layout', $layout);
+		$this->params->set('mode', $mode);
+		$this->params->set('userid', $userid);
 
-		if ($threadmode == true) {
-			// for thread mode we merge the thread data with the latestreply data
-			// we want to keep the subject from the thread, but userinfo and lastest post info
-			// from the lastest posts array - by doing so we can leverage a single template for
-			// thread and message mode
-			$result = $model->threads;
+		// Set template path to module
+		$this->params->set('templatepath', dirname (JModuleHelper::getLayoutPath ( 'mod_kunenalatest' )));
 
-			foreach ($result as $message) {
-				$message->id = $model->lastreply[$message->thread]->id;
-				$message->message = $model->lastreply[$message->thread]->message;
-				$message->userid = $model->lastreply[$message->thread]->userid;
-				$message->name = $model->lastreply[$message->thread]->name;
-				$message->lasttime = $model->lastreply[$message->thread]->lasttime;
-			}
-
-		} else {
-			$result = $model->customreply;
-		}
-
-		if (empty ( $result )){
-			echo '<p class="klatest-none">'.JText::_ ( 'MOD_KUNENALATEST_NO_MESSAGE' ).'</p>';
-		}
-
-		return $result;
+		// Display topics view
+		KunenaForum::display('topics', $layout, null, $this->params);
+		$cache->end();
 	}
-
-	function userAvatar($userid, $params) {
-		$kunena_user = KunenaFactory::getUser ( ( int ) $userid );
-		$username = $kunena_user->getName(); // Takes care of realname vs username setting
-		$avatarlink = $kunena_user->getAvatarLink ( '', $params->get ( 'avatarwidth' ), $params->get ( 'avatarheight' ) );
-		return CKunenaLink::GetProfileLink ( $userid, $avatarlink, $username );
-	}
-
-	function getTopicsOrdering($myprofile, $kunena_config) {
-		if ($myprofile->ordering != '0') {
-			$topic_ordering = $myprofile->ordering == '1' ? 'DESC' : 'ASC';
-		} else {
-			$topic_ordering =  $kunena_config->default_sort == 'asc' ? 'ASC' : 'DESC'; // Just to make sure only valid options make it
-		}
-		return $topic_ordering;
-  	}
 }

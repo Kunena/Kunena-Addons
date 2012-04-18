@@ -1,34 +1,40 @@
 <?php
 /**
-* @package		Kunena Search
-* @copyright	(C) 2010 Kunena Project. All rights reserved.
-* @license		GNU/GPL
-*/
-
-
-// no direct access
-defined('_JEXEC') or die('Restricted access');
+ * Kunena Search Module
+ * @package Kunena.mod_kunenasearch
+ *
+ * @copyright (C) 2008 - 2012 Kunena Team. All rights reserved.
+ * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
+ * @link http://www.kunena.org
+ **/
+defined ( '_JEXEC' ) or die ();
 
 class modKunenaSearch {
-	public function __construct($params) {
-	$this->document = JFactory::getDocument ();
+	static protected $cssadded = false;
 
-	require_once (KUNENA_PATH_LIB . '/kunena.link.class.php');
+	protected $params = null;
 
-	// Initialize session
-	$session = KunenaFactory::getSession ();
-	$session->updateAllowedForums();
+	public function __construct($module, $params) {
+		$this->document = JFactory::getDocument ();
+		$this->params = $params;
+	}
 
-	$this->ksearch_button			= $params->get('ksearch_button', '');
-	$this->ksearch_button_pos		= $params->get('ksearch_button_pos', 'right');
-	$this->ksearch_button_txt	 	= $params->get('ksearch_button_txt', JText::_('Search'));
-	$this->ksearch_width			= intval($params->get('ksearch_width', 20));
-	$this->ksearch_maxlength		= $this->ksearch_width > 20 ? $this->ksearch_width : 20;
-	$this->ksearch_txt			 	= $params->get('ksearch_txt', JText::_('Search...'));
-	$this->ksearch_moduleclass_sfx 	= $params->get('moduleclass_sfx', '');
+	public function display() {
+		// Load CSS only once
+		if (self::$cssadded == false) {
+			$this->document->addStyleSheet ( JURI::root (true) . '/modules/mod_kunenasearch/tmpl/css/kunenasearch.css' );
+			self::$cssadded = true;
+		}
 
-	$this->params = $params;
+		$this->ksearch_button			= $this->params->get('ksearch_button', '');
+		$this->ksearch_button_pos		= $this->params->get('ksearch_button_pos', 'right');
+		$this->ksearch_button_txt		= $this->params->get('ksearch_button_txt', JText::_('Search'));
+		$this->ksearch_width			= intval($this->params->get('ksearch_width', 20));
+		$this->ksearch_maxlength		= $this->ksearch_width > 20 ? $this->ksearch_width : 20;
+		$this->ksearch_txt				= $this->params->get('ksearch_txt', JText::_('Search...'));
+		$this->ksearch_moduleclass_sfx	= $this->params->get('moduleclass_sfx', '');
+		$this->url						= KunenaRoute::_('index.php?option=com_kunena&view=search');
 
-	require(JModuleHelper::getLayoutPath('mod_kunenasearch'));
+		require(JModuleHelper::getLayoutPath('mod_kunenasearch'));
 	}
 }
