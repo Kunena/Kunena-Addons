@@ -1,14 +1,12 @@
 <?php
 /**
-* KunenaLatest Module
-* @package Kunena latest
-*
-* @Copyright (C)2010-2012 Kunena Project. All rights reserved.
-* @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
-* @link http://www.kunena.org
-*/
-
-// no direct access
+ * Kunena Latest Module
+ * @package Kunena.mod_kunenalatest
+ *
+ * @copyright (C) 2008 - 2012 Kunena Team. All rights reserved.
+ * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
+ * @link http://www.kunena.org
+ **/
 die( '' );
 ?>
 <!--
@@ -26,6 +24,11 @@ Legend:
 ! -> Note
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+KunenaLatest 2.0.0-DEV
+
+17-April-2012 Matias
+^ Convert module to Kunena 2.0 API
 
 KunenaLatest 1.7.2
 

@@ -1,12 +1,12 @@
 <?php
 /**
-* KunenaSearch Module
-* @package Kunena Search
-*
-* @Copyright (C) 2009-2012 Kunena Team. All rights reserved.
-* @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
-* @link http://www.kunena.org
-*/
+ * Kunena Search Module
+ * @package Kunena.mod_kunenasearch
+ *
+ * @copyright (C) 2008 - 2012 Kunena Team. All rights reserved.
+ * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
+ * @link http://www.kunena.org
+ **/
 die ();
 ?>
 <!--
@@ -24,6 +24,11 @@ Legend:
 ! -> Note
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+KunenaSearch 2.0.0-DEV
+
+5-February-2012 Matias
+^ Convert module to Kunena 2.0 API
 
 KunenaSearch 1.7.2
 

@@ -1,12 +1,11 @@
 /**
- * @version $Id$
- * Kunenalogin Module
- * @package Kunena login
+ * Kunena Login Module
+ * @package Kunena.mod_kunenalogin
  *
- * @Copyright (C) 2010 www.kunena.com All rights reserved
+ * @copyright (C) 2008 - 2012 Kunena Team. All rights reserved.
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @link http://www.kunena.com
- */
+ * @link http://www.kunena.org
+ **/
 
 Kunena Login Module README
 
@@ -22,7 +21,7 @@ Configuration settings), another link will be shown to enable self-registration
 for users. It also display Avatar from Kunena Forum and link to My Profile, 
 My Discussions and Recent Discussions.
 
-Requirements: Joomla 1.5.19+, Kunena Forum 1.6.x +
+Requirements: Joomla 1.5 / 2.5, Kunena Forum 2.0
 
 END OF README
 =============
