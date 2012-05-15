@@ -2,62 +2,98 @@
 host = https://www.transifex.net
 lang_map = ar:ar-AA, az_AZ:az-AZ, bg_BG:bg-BG, bs_BA:bs-BA, ca_ES:ca-ES, cs_CZ:cs-CZ, da_DK:da-DK, de_DE:de-DE, el_GR:el-GR, es_ES:es-ES, et_EE:et-EE, fa_IR:fa-IR, fi_FI:fi-FI, fr:fr-FR, he_IL:he-IL, hr_HR:hr-HR, hu_HU:hu-HU, id_ID:id-ID, it_IT:it-IT, ja_JP:ja-JP, kk:kz-KZ, km_KH:km-KH, lt_LT:lt-LT, lv_LV:lv-LV, mk_MK:mk-MK, nb_NO:nb-NO, nl_NL:nl-NL, pl:pl-PL, pt_BR:pt-BR, pt_PT:pt-PT, ro:ro-RO, ru_RU:ru-RU, sk_SK:sk-SK, sq_AL:sq-AL, sr_RS:sr-RS, sr@latin:sr-YU, sv_SE:sv-SE, th_TH:th-TH, tr_TR:tr-TR, ug:ug-CN, ur_PK:ur-PK, vi_VN:vi-VN, zh_CN:zh-CN, zh_TW:zh-TW
 
-[Kunena.16module_mod_kunenalatest]
+[Kunena.Kunena-module-latest]
 file_filter = modules/kunenalatest/language/<lang>/<lang>.mod_kunenalatest.ini
 source_file = modules/kunenalatest/language/en-GB/en-GB.mod_kunenalatest.ini
 source_lang = en_GB
-minimum_perc = 100
+minimum_perc = 80
 
-[Kunena.16module_mod_kunenalogin]
+[Kunena.Kunena-module-latest-sys]
+file_filter = modules/kunenalatest/language/<lang>/<lang>.mod_kunenalatest.sys.ini
+source_file = modules/kunenalatest/language/en-GB/en-GB.mod_kunenalatest.sys.ini
+source_lang = en_GB
+minimum_perc = 80
+
+[Kunena.kunena-module-login]
 file_filter = modules/kunenalogin/language/<lang>/<lang>.mod_kunenalogin.ini
 source_file = modules/kunenalogin/language/en-GB/en-GB.mod_kunenalogin.ini
 source_lang = en_GB
-minimum_perc = 100
+minimum_perc = 80
 
-[Kunena.16module_mod_kunenasearch]
+[Kunena.kunena-module-login-sys]
+file_filter = modules/kunenalogin/language/<lang>/<lang>.mod_kunenalogin.sys.ini
+source_file = modules/kunenalogin/language/en-GB/en-GB.mod_kunenalogin.sys.ini
+source_lang = en_GB
+minimum_perc = 80
+
+[Kunena.kunena-module-search]
 file_filter = modules/kunenasearch/language/<lang>/<lang>.mod_kunenasearch.ini
 source_file = modules/kunenasearch/language/en-GB/en-GB.mod_kunenasearch.ini
 source_lang = en_GB
-minimum_perc = 100
+minimum_perc = 80
 
-[Kunena.16module_mod_kunenastats]
+[Kunena.kunena-module-search-sys]
+file_filter = modules/kunenasearch/language/<lang>/<lang>.mod_kunenasearch.sys.ini
+source_file = modules/kunenasearch/language/en-GB/en-GB.mod_kunenasearch.sys.ini
+source_lang = en_GB
+minimum_perc = 80
+
+[Kunena.kunena-module-stats]
 file_filter = modules/kunenastats/language/<lang>/<lang>.mod_kunenastats.ini
 source_file = modules/kunenastats/language/en-GB/en-GB.mod_kunenastats.ini
 source_lang = en_GB
-minimum_perc = 100
+minimum_perc = 80
 
-[Kunena.16plugin_plg_community_kunenagroups]
+[Kunena.kunena-module-stats-sys]
+file_filter = modules/kunenastats/language/<lang>/<lang>.mod_kunenastats.sys.ini
+source_file = modules/kunenastats/language/en-GB/en-GB.mod_kunenastats.sys.ini
+source_lang = en_GB
+minimum_perc = 80
+
+[Kunena.kunena-plugin-community]
 file_filter = plugins/community/kunenagroups/language/<lang>/<lang>.plg_community_kunenagroups.ini
 source_file = plugins/community/kunenagroups/language/en-GB/en-GB.plg_community_kunenagroups.ini
 source_lang = en_GB
-minimum_perc = 100
+minimum_perc = 80
 
-[Kunena.16plugin_plg_community_kunenamenu]
+[Kunena.kunena-plugin-community-menu]
 file_filter = plugins/community/kunenamenu/language/<lang>/<lang>.plg_community_kunenamenu.ini
 source_file = plugins/community/kunenamenu/language/en-GB/en-GB.plg_community_kunenamenu.ini
 source_lang = en_GB
-minimum_perc = 100
+minimum_perc = 80
 
-[Kunena.16plugin_plg_community_mykunena]
+[Kunena.kunena-plugin-community-mykunena]
 file_filter = plugins/community/mykunena/language/<lang>/<lang>.plg_community_mykunena.ini
 source_file = plugins/community/mykunena/language/en-GB/en-GB.plg_community_mykunena.ini
 source_lang = en_GB
-minimum_perc = 100
+minimum_perc = 80
 
-[Kunena.16plugin_plg_content_kunenadiscuss]
+[Kunena.kunena-plugin-content-discuss]
 file_filter = plugins/content/kunenadiscuss/language/<lang>/<lang>.plg_content_kunenadiscuss.ini
 source_file = plugins/content/kunenadiscuss/language/en-GB/en-GB.plg_content_kunenadiscuss.ini
 source_lang = en_GB
-minimum_perc = 100
+minimum_perc = 80
 
-[Kunena.16plugin_plg_finder_kunena]
+[Kunena.kunena-plugin-content-discuss-sys]
+file_filter = plugins/content/kunenadiscuss/language/<lang>/<lang>.plg_content_kunenadiscuss.sys.ini
+source_file = plugins/content/kunenadiscuss/language/en-GB/en-GB.plg_content_kunenadiscuss.sys.ini
+source_lang = en_GB
+minimum_perc = 80
+
+[Kunena.kunena-plugin-finder]
 file_filter = plugins/finder/kunena/language/<lang>/<lang>.plg_finder_kunena.ini
 source_file = plugins/finder/kunena/language/en-GB/en-GB.plg_finder_kunena.ini
 source_lang = en_GB
-minimum_perc = 100
+minimum_perc = 80
 
-[Kunena.16plugin_plg_search_kunenasearch]
+[Kunena.kunena-plugin-search]
 file_filter = plugins/search/kunenasearch/language/<lang>/<lang>.plg_search_kunenasearch.ini
 source_file = plugins/search/kunenasearch/language/en-GB/en-GB.plg_search_kunenasearch.ini
 source_lang = en_GB
-minimum_perc = 100
+minimum_perc = 80
+
+[Kunena.kunena-plugin-search-sys]
+file_filter = plugins/search/kunenasearch/language/<lang>/<lang>.plg_search_kunenasearch.sys.ini
+source_file = plugins/search/kunenasearch/language/en-GB/en-GB.plg_search_kunenasearch.sys.ini
+source_lang = en_GB
+minimum_perc = 80
