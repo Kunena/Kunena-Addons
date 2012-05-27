@@ -138,6 +138,20 @@ class plgContentKunenaDiscuss extends JPlugin {
 		self::$inevent = false;
 		return $result;
 	}
+	
+	//Method to allow access to discussion count per article
+	//e.g. Called using echo plgContentKunenaDiscuss::displayDiscussionInfo($this->article->id, 'count');
+	public function displayDiscussionInfo($id,$type) {
+		if($id AND $type) {
+			switch($type){
+				case 'count':	return plgContentKunenaDiscuss::$plgDisplay['totals'][$id];
+				break;
+				
+				case 'link':	return plgContentKunenaDiscuss::$plgDisplay['totalslink'][$id];
+				break;
+			}
+		}	
+	}
 
 	protected function enabled() {
 		if ($this->_app->scope == 'com_content')
@@ -203,6 +217,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 			}
 			if (! $show || isset ( self::$plgDisplay [$article->id] )) {
 				$this->debug ( "onPrepareContent: Configured to show nothing" );
+				self::$plgDisplay [$article->id] = $this->showPlugin ( $kunenaCategory, $kunenaTopic, $article, -1 );
 				if (isset ( $article->text ))
 					$article->text = preg_replace ( $regex, '', $article->text );
 				if (isset ( $article->introtext ))
@@ -388,13 +403,27 @@ class plgContentKunenaDiscuss extends JPlugin {
 			}
 		}
 
-		if ($linkOnly && $thread) {
-			$this->debug ( "showPlugin: Link only" );
+		if($thread) {
+			$this->debug ( "showPlugin: Calculating messages in topic" );
 
 			$sql = "SELECT COUNT(*) FROM #__kunena_messages WHERE hold=0 AND parent!=0 AND thread={$this->_db->quote($thread)}";
 			$this->_db->setQuery ( $sql );
 			$postCount = $this->_db->loadResult ();
 			CKunenaTools::checkDatabaseError ();
+			
+			self::$plgDisplay ['totals'][$row->id] = $postCount;
+			self::$plgDisplay ['totalslink'][$row->id] = JHTML::link('#comments',$postCount);
+		} else {
+			self::$plgDisplay ['totals'][$row->id] = 0;
+			self::$plgDisplay ['totalslink'][$row->id] = JHTML::link('#comments',0);
+		}
+
+		if($linkOnly == -1) {
+			//stop here if just getting numbers for blogs etc
+			return;
+		} elseif($linkOnly) {
+			$this->debug ( "showPlugin: Link only" );
+
 			$linktitle = JText::sprintf ( 'PLG_KUNENADISCUSS_DISCUSS_ON_FORUMS', $postCount );
 			require_once (KPATH_SITE . '/lib/kunena.link.class.php');
 			$link = CKunenaLink::GetThreadLink ( 'view', $catid, $thread, $linktitle, $linktitle );
