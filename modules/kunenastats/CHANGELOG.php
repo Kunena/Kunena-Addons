@@ -1,12 +1,12 @@
 <?php
 /**
-* KunenaStats Module
-* @package Kunena Stats
-*
-* @Copyright (C) 2009-2012 Kunena Team. All rights reserved.
-* @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
-* @link http://www.kunena.com
-*/
+ * Kunena Statistics Module
+ * @package Kunena.mod_kunenastats
+ *
+ * @copyright (C) 2008 - 2012 Kunena Team. All rights reserved.
+ * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
+ * @link http://www.kunena.org
+ **/
 die ();
 ?>
 <!--

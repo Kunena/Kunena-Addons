@@ -1,16 +1,17 @@
 <?php
 /**
- * @version $Id$
- * KunenaStats Module
- * @package Kunena Stats
+ * Kunena Statistics Module
+ * @package Kunena.mod_kunenastats
  *
- * @Copyright (C) 2010 www.kunena.com All rights reserved
+ * @copyright (C) 2008 - 2012 Kunena Team. All rights reserved.
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @link http://www.kunena.com
- */
+ * @link http://www.kunena.org
+ **/
 defined ( '_JEXEC' ) or die ();
 
 class ModuleKunenaStats {
+	static protected $cssadded = false;
+
 	protected $params = null;
 	protected $api = null;
 	protected $type = null;
@@ -26,21 +27,17 @@ class ModuleKunenaStats {
 		$this->type = $this->params->get ( 'type', 'general' );
 		$this->items = ( int ) $this->params->get ( 'items', 5 );
 
-		// load Kunena main language file so we can leverage langaueg strings from it
-		KunenaFactory::loadLanguage();
-
-		// Initialize session
-		$session = KunenaFactory::getSession ();
-		$session->updateAllowedForums();
-
-		$this->api = Kunena::getStatsAPI();
+		KunenaForum::setup();
 	}
 
 	function display() {
 		$this->stats = $this->getStats ();
 		require JModuleHelper::getLayoutPath ( 'mod_kunenastats' );
-		$this->document = JFactory::getDocument ();
-		$this->document->addStyleSheet ( JURI::root () . 'modules/mod_kunenastats/tmpl/css/kunenastats.css' );
+		if (!self::$cssadded) {
+			self::$cssadded = true;
+			$this->document = JFactory::getDocument ();
+			$this->document->addStyleSheet ( JURI::root () . 'modules/mod_kunenastats/tmpl/css/kunenastats.css' );
+		}
 	}
 
 	function getBarWidth($count) {
@@ -53,6 +50,13 @@ class ModuleKunenaStats {
 	}
 
 	function getStats() {
+		$kunena_stats = KunenaForumStatistics::getInstance ( );
+		$kunena_stats->loadAll();
+
+		$this->assign($kunena_stats);
+		$this->latestMemberLink = KunenaFactory::getUser(intval($this->lastUserId))->getLink();
+		$this->userlist = CKunenaLink::GetUserlistLink('', intval($this->get('memberCount')));
+		
 		switch ($this->type) {
 			case 'topics':
 				$this->titleHeader = JText::_('MOD_KUNENASTATS_TOPTOPICS');

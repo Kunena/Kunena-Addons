@@ -1,16 +1,13 @@
 <?php
 /**
-* @version $Id$
-* Kunena Stats Module
-* @package Kunena Stats
-*
-* @Copyright (C)2010-2011 Kunena Team. All rights reserved
-* @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
-* @link http://www.kunena.org
-*/
-
-// no direct access
-defined('_JEXEC') or die('Restricted access');
+ * Kunena Statistics Module
+ * @package Kunena.mod_kunenastats
+ *
+ * @copyright (C) 2008 - 2012 Kunena Team. All rights reserved.
+ * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
+ * @link http://www.kunena.org
+ **/
+defined('_JEXEC') or die();
 $i=0;
 
 //JString::substr ( htmlspecialchars ( $item->subject ), '0', $this->params->get ( 'titlelength' ) )

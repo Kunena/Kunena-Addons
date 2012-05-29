@@ -3,12 +3,12 @@
 <!--
   Kunena ant build file
 
-  @version      $Id$
-  KunenaStats Module
-  @package Kunena Stats
-  @copyright	Copyright (C) 2008 - 2009 Kunena Team. All rights reserved.  				
-  @license		GNU General Public License <http://www.gnu.org/copyleft/gpl.html>
-  @link			http://www.kunena.com
+ Kunena Statistics Module
+ @package Kunena.mod_kunenastats
+
+ @copyright (C) 2008 - 2012 Kunena Team. All rights reserved.
+ @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
+ @link http://www.kunena.org
   
   The following parameters can be defined inside the Eclipse build task as Arguments. They
   allow the build file to be platform independent as not path information resides within
@@ -66,21 +66,17 @@
 
 	<target name="init" depends="copy">
 		<xmlproperty file="${kunena.directory}/mod_kunenastats.xml" collapseAttributes="true" prefix="xml" keepRoot="false" />
-		<buildnumber />
 		<tstamp>
 			<format property="str.datefmt" pattern="${cfg.datefmt}" locale="${cfg.dateloc}" />
 		</tstamp>
 
-		<condition property="str.build" value="_${cfg.buildprefix}${build.number}" else="">
-			<istrue value="${cfg.addbuild}" />
-		</condition>
 		<condition property="str.version" value="_${cfg.versionprefix}${xml.version}" else="">
 			<istrue value="${cfg.addversion}" />
 		</condition>
 		<condition property="str.date" value="_${str.datefmt}" else="">
 			<istrue value="${cfg.adddate}" />
 		</condition>
-		<property name="str.destfile" value="${package_dir}/${cfg.prefix}${cfg.name}${str.version}${str.build}${str.date}" />
+		<property name="str.destfile" value="${package_dir}/${cfg.prefix}${cfg.name}${str.version}${str.date}" />
 
 		<condition property="do.tar">
 			<istrue value="${cfg.tar}" />
@@ -103,7 +99,6 @@
 		</condition>
 		<filter token="kunenaversion" value="${xml.version}" />
 		<filter token="kunenaversiondate" value="${version.date}" />
-		<filter token="kunenaversionbuild" value="${build.number}" />
 		<filter token="kunenaversionname" value="${xml.versionname}" />
 		<copy file="${project_dir}/mod_kunenastats.xml" todir="${tmp_dir}" overwrite="true" filtering="true" />
 		<copy file="${project_dir}/mod_kunenastats.j25.xml" todir="${tmp_dir}" overwrite="true" filtering="true" />
@@ -138,7 +133,6 @@
 		<echo message="XML Copyright:   ${xml.copyright}" />
 		<echo message="XML License:     ${xml.license}" />
 		<echo message="XML Description: ${xml.description}" />
-		<echo message="Build:           ${build.number}" />
 		<echo message="Date:            ${TODAY}" />
 	</target>
 
