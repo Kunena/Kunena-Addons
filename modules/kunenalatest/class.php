@@ -20,7 +20,9 @@ class modKunenaLatest {
 	}
 
 	function display() {
+		KunenaForum::setup();
 		KunenaFactory::loadLanguage();
+		KunenaFactory::loadLanguage('com_kunena.templates');
 
 		// Load CSS only once
 		$this->document = JFactory::getDocument ();
