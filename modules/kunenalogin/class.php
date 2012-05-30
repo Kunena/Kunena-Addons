@@ -20,7 +20,9 @@ class ModKunenaLogin {
 	}
 
 	function display() {
+		KunenaForum::setup();
 		KunenaFactory::loadLanguage();
+		KunenaFactory::loadLanguage('com_kunena.templates');
 
 		$this->params->def ( 'greeting', 1 );
 

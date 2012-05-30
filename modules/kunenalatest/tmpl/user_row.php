@@ -22,7 +22,7 @@ if ( $this->params->get ( 'sh_topiciconoravatar' ) == 1 ) : ?>
 <?php endif; ?>
 
 <li class="klatest-subject">
-	<?php echo $this->getTopicLink($this->topic, null, $this->escape ( JString::substr ( $this->topic->subject, '0', $this->params->get ( 'titlelength' ) ) )) ?>
+	<?php echo modKunenaLatest::shortenLink( $this->getTopicLink($this->topic), $this->params->get ( 'titlelength' ) ) ?>
 	<?php
 	if ($this->topic->unread) {
 		echo $this->getTopicLink($this->topic, 'unread', '<sup class="knewchar">(' . JText::_($this->params->get ( 'unreadindicator' )) . ')</sup>');

@@ -1,7 +1,7 @@
 <?php
 /**
- * Kunena Stats Module
- * @package Kunena Stats
+ * Kunena Statistics Module
+ * @package Kunena.mod_kunenastats
  *
  * @copyright (C) 2008 - 2012 Kunena Team. All rights reserved.
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
