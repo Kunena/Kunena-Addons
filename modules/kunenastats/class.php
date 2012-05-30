@@ -40,58 +40,75 @@ class ModuleKunenaStats {
 		}
 	}
 
-	function getBarWidth($count) {
-		if ($count == $this->top) {
-			$barwidth = 100;
-		} else {
-			$barwidth = round(($count * 100) / $this->top);
-		}
-		return $barwidth;
-	}
-
 	function getStats() {
-		$kunena_stats = KunenaForumStatistics::getInstance ( );
-		$kunena_stats->loadAll();
+		$stats = KunenaForumStatistics::getInstance ( );
 
-		$this->assign($kunena_stats);
-		$this->latestMemberLink = KunenaFactory::getUser(intval($this->lastUserId))->getLink();
-		$this->userlist = CKunenaLink::GetUserlistLink('', intval($this->get('memberCount')));
-		
 		switch ($this->type) {
 			case 'topics':
 				$this->titleHeader = JText::_('MOD_KUNENASTATS_TOPTOPICS');
 				$this->valueHeader = JText::_('MOD_KUNENASTATS_HITS');
-				$items = $this->api->getTopicsStats ( $this->items );
-				if (!empty($items)) $this->top = $items[0]->hits;
+				$items = $stats->loadTopTopics( $this->items );
 				break;
 			case 'posters':
 				$this->titleHeader = JText::_('MOD_KUNENASTATS_TOPPOSTERS');
 				$this->valueHeader = JText::_('MOD_KUNENASTATS_POSTS');
-				$items = $this->api->getPostersStats ( $this->items );
-				if (!empty($items)) $this->top = $items[0]->posts;
+				$items = $stats->loadTopPosters( $this->items );
 				break;
 			case 'profiles':
 				$this->titleHeader = JText::_('MOD_KUNENASTATS_TOPPROFILES');
 				$this->valueHeader = JText::_('MOD_KUNENASTATS_HITS');
-				$items = $this->api->getProfileStats ( $this->items );
-				if (!empty($items)) $this->top = $items[0]->hits;
+				$items = $stats->loadTopProfiles( $this->items );
 				break;
 			case 'polls':
 				$this->titleHeader = JText::_('MOD_KUNENASTATS_TOPPOLLS');
 				$this->valueHeader = JText::_('MOD_KUNENASTATS_VOTES');
-				$items = $this->api->getTopPollStats ( $this->items );
-				if (!empty($items)) $this->top = $items[0]->total;
+				$items = $stats->loadTopPolls( $this->items );
 				break;
 			case 'thanks':
 				$this->titleHeader = JText::_('MOD_KUNENASTATS_TOPTHANKS');
 				$this->valueHeader = JText::_('MOD_KUNENASTATS_THANKS');
-				$items = $this->api->getTopThanks ( $this->items );
-				if (!empty($items)) $this->top = $items[0]->receivedthanks;
+				$items = $stats->loadTopThankyous( $this->items );
 				break;
 			default:
-				$items = array();
-				break;
+				$this->type = 'general';
+				$stats->loadGeneral(true);
+				$this->latestMemberLink = KunenaFactory::getUser(intval($stats->lastUserId))->getLink();
+				$this->userlist = CKunenaLink::GetUserlistLink('', $this->formatLargeNumber($stats->memberCount, 4));
+				$items = $stats;
 		}
 		return $items;
+	}
+
+	public function shortenLink($link, $len) {
+		return preg_replace('/>([^<]{'.$len.'})[^<]*</u', '>\1...<', $link);
+	}
+
+	/**
+	 * This function formats a number to n significant digits when above
+	 * 10,000. Starting at 10,0000 the out put changes to 10k, starting
+	 * at 1,000,000 the output switches to 1m. Both k and m are defined
+	 * in the language file. The significant digits are used to limit the
+	 * number of digits displayed when in 10k or 1m mode.
+	 *
+	 * @param int $number 		Number to be formated
+	 * @param int $precision	Significant digits for output
+	 */
+	public function formatLargeNumber($number, $precision = 3) {
+		$output = '';
+		// Do we need to reduce the number of significant digits?
+		if ($number >= 10000){
+			// Round the number to n significant digits
+			$number = round ($number, -1*(log10($number)+1) + $precision);
+		}
+
+		if ($number < 10000) {
+			$output = $number;
+		} elseif ($number >= 1000000) {
+			$output = $number / 1000000 . JText::_('COM_KUNENA_MILLION');
+		} else {
+			$output = $number / 1000 . JText::_('COM_KUNENA_THOUSAND');
+		}
+
+		return $output;
 	}
 }
