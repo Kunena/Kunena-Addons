@@ -1,12 +1,3 @@
-/**
-* @version $Id$
-* KunenaMenu Plugin for JomSocial
-* @package plg_jomsocial_kunenamenu
-* @Copyright (C) 2009-2010 Kunena All rights reserved
-* @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
-* @link http://www.kunena.com
-**/
-
 Kunena README
 
 PLEASE READ THIS ENTIRE FILE BEFORE INSTALLING plg_jomsocial_kunenamenu @kunenaversion@!
