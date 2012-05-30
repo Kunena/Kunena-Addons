@@ -1,11 +1,3 @@
-/**
- * Kunena Search Module
- * @package Kunena.mod_kunenasearch
- *
- * @copyright (C) 2008 - 2012 Kunena Team. All rights reserved.
- * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @link http://www.kunena.org
- **/
 
 Kunena Search Module README
 

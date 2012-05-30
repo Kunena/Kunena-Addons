@@ -18,6 +18,6 @@ defined ( '_JEXEC' ) or die ();
 		<?php endif; ?>
 	</ul>
 	<?php if ($this->topics && $this->params->get ( 'sh_morelink' )): ?>
-	<p class="klatest-more"><?php echo CKunenaLink::GetShowLatestLink ( JText::_ ( 'MOD_KUNENALATEST_MORE_LINK' ) , $this->latestdo ); ?></p>
+	<p class="klatest-more"><?php echo JHtml::_('kunenaforum.link', $this->params->get ( 'moreuri' ), JText::_ ( 'MOD_KUNENALATEST_MORE_LINK' ) ); ?></p>
 	<?php endif; ?>
 </div>

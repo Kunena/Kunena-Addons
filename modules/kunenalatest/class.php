@@ -20,7 +20,9 @@ class modKunenaLatest {
 	}
 
 	function display() {
+		KunenaForum::setup();
 		KunenaFactory::loadLanguage();
+		KunenaFactory::loadLanguage('com_kunena.templates');
 
 		// Load CSS only once
 		$this->document = JFactory::getDocument ();
@@ -77,17 +79,17 @@ class modKunenaLatest {
 				$mode = 'deleted';
 				break;
 			case 'saidthankyouposts' :
-				$userid = -1;
+				$userid = KunenaUserHelper::getMyself()->userid;
 				$layout = 'posts';
 				$mode = 'mythanks';
 				break;
 			case 'gotthankyouposts' :
-				$userid = -1;
+				$userid = KunenaUserHelper::getMyself()->userid;
 				$layout = 'posts';
 				$mode = 'thankyou';
 				break;
 			case 'userposts' :
-				$userid = -1;
+				$userid = KunenaUserHelper::getMyself()->userid;
 				$layout = 'posts';
 				$mode = 'recent';
 				break;
@@ -99,6 +101,7 @@ class modKunenaLatest {
 		$this->params->set('layout', $layout);
 		$this->params->set('mode', $mode);
 		$this->params->set('userid', $userid);
+		$this->params->set('moreuri', "index.php?option=com_kunena&view=topics&layout={$layout}&mode={$mode}".($userid ? "&userid={$userid}" : ''));
 
 		// Set template path to module
 		$this->params->set('templatepath', dirname (JModuleHelper::getLayoutPath ( 'mod_kunenalatest' )));
@@ -106,5 +109,9 @@ class modKunenaLatest {
 		// Display topics view
 		KunenaForum::display('topics', $layout, null, $this->params);
 		$cache->end();
+	}
+
+	static public function shortenLink($link, $len) {
+		return preg_replace('/>([^<]{'.$len.'})[^<]*</u', '>\1...<', $link);
 	}
 }
