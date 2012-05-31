@@ -87,13 +87,13 @@ source_lang = en_GB
 minimum_perc = 80
 
 [Kunena.kunena-plugin-search]
-file_filter = plugins/search/kunenasearch/language/<lang>/<lang>.plg_search_kunenasearch.ini
-source_file = plugins/search/kunenasearch/language/en-GB/en-GB.plg_search_kunenasearch.ini
+file_filter = plugins/search/kunena/language/<lang>/<lang>.plg_search_kunena.ini
+source_file = plugins/search/kunena/language/en-GB/en-GB.plg_search_kunena.ini
 source_lang = en_GB
 minimum_perc = 80
 
 [Kunena.kunena-plugin-search-sys]
-file_filter = plugins/search/kunenasearch/language/<lang>/<lang>.plg_search_kunenasearch.sys.ini
-source_file = plugins/search/kunenasearch/language/en-GB/en-GB.plg_search_kunenasearch.sys.ini
+file_filter = plugins/search/kunena/language/<lang>/<lang>.plg_search_kunena.sys.ini
+source_file = plugins/search/kunena/language/en-GB/en-GB.plg_search_kunena.sys.ini
 source_lang = en_GB
 minimum_perc = 80
