@@ -15,8 +15,8 @@ if (! is_file ( $path ))
 require_once $path;
 
 class plgCommunityKunenaMenu extends CApplications {
-	var $name = "Kunena Menu";
-	var $_name = 'kunenamenu';
+	var $name = "My Forum Menu";
+	var $_name = 'community_kunenamenu';
 
 	function plgCommunityKunenaMenu(& $subject, $config) {
 		//Load Language file.

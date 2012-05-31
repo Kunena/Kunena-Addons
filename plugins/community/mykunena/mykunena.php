@@ -1,12 +1,12 @@
 <?php
 /**
- * @version		$Id$
- * MyKunena Plugin
- * @package plg_jomsocial_mykunena
- * @copyright	Copyright (C) 2009 - 2010 Kunena Team. All rights reserved.
- * @license		GNU General Public License <http://www.gnu.org/copyleft/gpl.html>
- * @link		http://www.kunena.com
- */
+ * My Kunena Plugin for Jomsocial
+ * @package Kunena.plg_community_mykunena
+ *
+ * @copyright (C) 2008 - 2012 Kunena Team. All rights reserved.
+ * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
+ * @link http://www.kunena.org
+ **/
 defined ( '_JEXEC' ) or die ();
 
 $path = JPATH_ROOT . '/components/com_community/libraries/core.php';
@@ -15,26 +15,27 @@ if (! is_file ( $path ))
 require_once $path;
 
 class plgCommunityMyKunena extends CApplications {
-	var $name = "My Kunena Posts";
-	var $_name = 'mykunena';
+	var $name = "My Forum Posts";
+	var $_name = 'community_mykunena';
 
-	function plgCommunityKunenaMenu(& $subject, $config) {
+	function plgCommunityMyKunena(& $subject, $config) {
+		//Load Language file.
+		JPlugin::loadLanguage ( 'plg_community_mykunena', JPATH_ADMINISTRATOR );
+
 		parent::__construct ( $subject, $config );
 	}
 
 	protected static function kunenaOnline() {
 		// Kunena detection and version check
-		$minKunenaVersion = '1.7';
-		if (! class_exists ( 'Kunena' ) || version_compare(Kunena::version(), $minKunenaVersion, '<')) {
+		$minKunenaVersion = '2.0';
+		if (! class_exists ( 'KunenaForum' ) || !KunenaForum::isCompatible($minKunenaVersion)) {
 			return false;
 		}
 		// Kunena online check
-		if (! Kunena::enabled ()) {
+		if (! KunenaForum::enabled ()) {
 			return false;
 		}
-		// Initialize session
-		$session = KunenaFactory::getSession ();
-		$session->updateAllowedForums();
+		KunenaForum::setup();
 
 		return true;
 	}
@@ -42,22 +43,14 @@ class plgCommunityMyKunena extends CApplications {
 	function onProfileDisplay() {
 		if (! self::kunenaOnline ()) return;
 
-		//Load Language file.
-		JPlugin::loadLanguage ( 'plg_community_mykunena', JPATH_ADMINISTRATOR );
-
 		$document = JFactory::getDocument ();
 		$document->addStyleSheet ( JURI::base () . 'plugins/community/mykunena/style.css' );
 
-		$items = array();
 		$user = CFactory::getRequestUser ();
+		$messages = array();
 		if ($user->id) {
-			require_once KPATH_SITE . '/funcs/latestx.php';
-			$obj = new CKunenaLatestX('userposts', 0);
-			$obj->user = JFactory::getUser($user->id);
-			$obj->threads_per_page = $this->params->get ( 'count', 5 );
-			$obj->embedded = 1;
-			$obj->getUserPosts();
-			$items = $obj->customreply;
+			$params = array('user'=>$user->id, 'starttime'=>-1);
+			list($total, $messages) = KunenaForumMessageHelper::getLatestMessages(false, 0, $this->params->get ( 'count', 5 ), $params);
 		}
 
 		$caching = $this->params->get ( 'cache', 1 );
@@ -66,16 +59,16 @@ class plgCommunityMyKunena extends CApplications {
 			$caching = $app->getCfg ( 'caching' );
 		}
 
-		$cache = JFactory::getCache ( 'plgCommunityMyKunena' );
+		$cache = JFactory::getCache ( 'community' );
 		$cache->setCaching ( $caching );
-		$callback = array ('plgCommunityMyKunena', '_getMyKunenaHTML' );
-		$content = $cache->call ( $callback, $user, $items );
+		$callback = array ($this, '_getMyKunenaHTML' );
+		$content = $cache->call ( $callback, $user, $messages );
+
 		return $content;
 	}
 
 	function _getMyKunenaHTML($user, $items) {
 		ob_start ();
-
 		$template = KunenaFactory::getTemplate ();
 		if ( !$items ) : ?>
 
@@ -92,8 +85,8 @@ class plgCommunityMyKunena extends CApplications {
 			?>
 				<li>
 					<div class="content">
-						<a href="<?php echo KunenaRoute::_ ( "index.php?option=com_kunena&func=view&catid={$item->catid}&id={$item->id}" ); ?>" class="kjsubject"><?php echo $item->subject; ?></a> <?php echo JText::_('PLG_MYKUNENA_POST_IN'); ?>
-						<a href="<?php echo KunenaRoute::_ ( "index.php?option=com_kunena&func=showcat&catid={$item->catid}" ); ?>" class="kjcategory"><?php echo $item->catname; ?></a> <?php echo JText::_('PLG_MYKUNENA_POST_ON'); ?>
+						<a href="<?php echo KunenaRoute::_ ( "index.php?option=com_kunena&view=topic&catid={$item->catid}&id={$item->thread}&mesid={$item->id}" ); ?>" class="kjsubject"><?php echo $item->getTopic()->displayField('subject'); ?></a> <?php echo JText::_('PLG_MYKUNENA_POST_IN'); ?>
+						<a href="<?php echo KunenaRoute::_ ( "index.php?option=com_kunena&view=category&catid={$item->catid}" ); ?>" class="kjcategory"><?php echo $item->getCategory()->displayField('name'); ?></a> <?php echo JText::_('PLG_MYKUNENA_POST_ON'); ?>
 						<span class="kjdate"><?php echo $postDate->toFormat ( JText::_ ( 'DATE_FORMAT_LC2' ) ); ?></span>
 					</div>
 				</li>
