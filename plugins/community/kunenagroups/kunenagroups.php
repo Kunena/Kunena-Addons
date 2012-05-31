@@ -1,13 +1,12 @@
 <?php
 /**
- * @version		$Id$
- * KunenaMenu Plugin for JomSocial
- * @package plg_jomsocial_kunenamenu
- * @copyright	Copyright (C) 2009 - 2010 Kunena Team. All rights reserved.
- * @license		GNU General Public License <http://www.gnu.org/copyleft/gpl.html>
- * @link		http://www.kunena.com
- */
-
+ * Kunena Groups Plugin for Jomsocial
+ * @package Kunena.plg_community_kunenagroups
+ *
+ * @copyright (C) 2008 - 2012 Kunena Team. All rights reserved.
+ * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
+ * @link http://www.kunena.org
+ **/
 defined ( '_JEXEC' ) or die ();
 
 $path = JPATH_ROOT . '/components/com_community/libraries/core.php';
@@ -17,7 +16,7 @@ require_once $path;
 
 class plgCommunityKunenaGroups extends CApplications {
 	var $name = "Kunena Groups";
-	var $_name = 'kunenagroups';
+	var $_name = 'community_kunenagroups';
 
 	function plgCommunityKunenaGroups(& $subject, $config) {
 		//Load Language file.
@@ -28,21 +27,18 @@ class plgCommunityKunenaGroups extends CApplications {
 
 	protected static function kunenaOnline() {
 		// Kunena detection and version check
-		$minKunenaVersion = '1.7';
-		if (! class_exists ( 'Kunena' ) || version_compare(Kunena::version(), $minKunenaVersion, '<')) {
+		$minKunenaVersion = '2.0';
+		if (! class_exists ( 'KunenaForum' ) || !KunenaForum::isCompatible($minKunenaVersion)) {
 			JFactory::getApplication()->enqueueMessage(JText::sprintf('PLG_COMMUNITY_KUNENAGROUPS_KUNENA_NOT_INSTALLED', $minKunenaVersion),'notice');
 			return false;
 		}
-		// Kunena online check
-		if (! Kunena::enabled ()) {
+		// Kunena installed check
+		if (! KunenaForum::installed ()) {
 			JFactory::getApplication()->enqueueMessage(JText::_('PLG_COMMUNITY_KUNENAGROUPS_KUNENA_OFFLINE'),'notice');
 			return false;
 		}
-		// Initialize session
-		$session = KunenaFactory::getSession ();
-		$session->updateAllowedForums();
+		KunenaForum::setup();
 
-		kimport ('category');
 		return true;
 	}
 
@@ -53,19 +49,17 @@ class plgCommunityKunenaGroups extends CApplications {
 		$catid = self::getForumCategory($group->categoryid);
 		if ($catid === false) return;
 
-		$category = new KunenaCategory();
-		$category->set('parent', $catid);
+		$category = new KunenaForumCategory();
+		$category->set('parent_id', $catid);
 		$category->set('name', $group->name);
 		$category->set('description', $group->description);
 		$category->set('headerdesc', $group->description);
 		$category->set('accesstype', 'jomsocial');
 		$category->set('access', $group->id);
-		$category->set('pub_access', 1);
 		$category->set('published', $group->published);
 		$success = $category->save();
 		if (!$success) {
-			$app = JFactory::getApplication ();
-			$app->enqueueMessage ( JText::sprintf('PLG_COMMUNITY_KUNENAGROUPS_GROUP_CREATE_FAILED', 'notice'));
+			JFactory::getApplication ()->enqueueMessage ( JText::sprintf('PLG_COMMUNITY_KUNENAGROUPS_GROUP_CREATE_FAILED', 'notice'));
 			return;
 		}
 
@@ -75,51 +69,60 @@ class plgCommunityKunenaGroups extends CApplications {
 	function onGroupDisable( $group ) {
 		if (! self::kunenaOnline ()) return;
 
-		$categories = KunenaCategory::getCategoriesByAccess($group->id, 'jomsocial');
+		$categories = KunenaForumCategoryHelper::getCategoriesByAccess('jomsocial', $group->id);
 		foreach ($categories as $category) {
 			$category->set('published', 0);
 			$success = $category->save();
 			if (!$success) {
-				$app = JFactory::getApplication ();
-				$app->enqueueMessage ( JText::sprintf('PLG_COMMUNITY_KUNENAGROUPS_GROUP_SAVE_FAILED', 'notice'));
+				JFactory::getApplication ()->enqueueMessage ( JText::sprintf('PLG_COMMUNITY_KUNENAGROUPS_GROUP_SAVE_FAILED', 'notice'));
 			}
 		}
 	}
+
 	function onAfterGroupDelete( $group ) {
 		if (! self::kunenaOnline ()) return;
 
-		$categories = KunenaCategory::getCategoriesByAccess($group->id, 'jomsocial');
+		$categories = KunenaForumCategoryHelper::getCategoriesByAccess('jomsocial', $group->id);
 		foreach ($categories as $category) {
 			$success = $category->delete();
 			if (!$success) {
-				$app = JFactory::getApplication ();
-				$app->enqueueMessage ( JText::sprintf('PLG_COMMUNITY_KUNENAGROUPS_GROUP_DELETE_FAILED', 'notice'));
+				JFactory::getApplication ()->enqueueMessage ( JText::sprintf('PLG_COMMUNITY_KUNENAGROUPS_GROUP_DELETE_FAILED', 'notice'));
 			}
 		}
 	}
+
 	function onGroupJoin( $group, $memberid ) {
 		if (! self::kunenaOnline ()) return;
+
 		$access = KunenaFactory::getAccessControl();
 		$access->clearCache();
 	}
+
 	function onGroupJoinApproved( $group, $memberid ) {
 		if (! self::kunenaOnline ()) return;
+
 		$access = KunenaFactory::getAccessControl();
 		$access->clearCache();
 	}
+
 	function onGroupLeave( $group, $memberid ) {
 		if (! self::kunenaOnline ()) return;
+
 		$access = KunenaFactory::getAccessControl();
 		$access->clearCache();
 	}
+
 	function onAfterEventsUserBlocked() {
 		if (! self::kunenaOnline ()) return;
+
 		$access = KunenaFactory::getAccessControl();
 		$access->clearCache();
 	}
+
 	function onFormDisplay( $formName ) {
 		$fields = array();
 		if (! self::kunenaOnline ()) return $fields;
+
 		if( $formName == 'jsform-groups-forms' || $formName == 'jsform-groups-form' ) {
 			$groupid = JRequest::getInt('groupid', 0);
 			$forum = 0;
@@ -129,7 +132,7 @@ class plgCommunityKunenaGroups extends CApplications {
 				$group = JTable::getInstance('Group','CTable');
 				$group->load( $groupid );
 
-				$categories = KunenaCategory::getCategoriesByAccess( $group->id, 'jomsocial' );
+				$categories = KunenaForumCategoryHelper::getCategoriesByAccess( 'jomsocial', $group->id );
 				foreach ($categories as $category) {
 					$forum = $forum || $category->published;
 				}
@@ -142,6 +145,11 @@ class plgCommunityKunenaGroups extends CApplications {
 				<div><input type="radio" name="kunenaforum" id="kunenaforum-members" value="0" '. ($forum ? 'checked="checked"' : '') . ' />
 				<label for="kunenaforum-members" class="label lblradio">'. JText::_('PLG_COMMUNITY_KUNENAGROUPS_FORUMS_ALLOW').'</label></div>
 				<div class="small">'. JText::_('PLG_COMMUNITY_KUNENAGROUPS_FORUMS_NOTE').'</div>';
+// TODO: add link to category manager
+/*			if ($forum) {
+				$element->html .= '<div><a href="'.KunenaRoute::_('index.php?option=com_kunena&view=category&layout=manage').'">'.JText::_('PLG_COMMUNITY_KUNENAGROUPS_FORUMS_MANAGE').'</a></div>';
+			}
+*/
 			$element->position = 'after';
 			$fields[] = $element;
 		}
@@ -150,6 +158,7 @@ class plgCommunityKunenaGroups extends CApplications {
 
 	function onFormSave( $formName ) {
 		if (! self::kunenaOnline ()) return true;
+
 		if( $formName == 'jsform-groups-forms' ) {
 			$groupid = JRequest::getInt('groupid', 0);
 			if (!$groupid) return true;
@@ -159,7 +168,7 @@ class plgCommunityKunenaGroups extends CApplications {
 
 			$parent = self::getForumCategory($group->categoryid);
 			$published = (JRequest::getInt('kunenaforum', 0) == 0 && $group->published);
-			$categories = KunenaCategory::getCategoriesByAccess($group->id, 'jomsocial');
+			$categories = KunenaForumCategoryHelper::getCategoriesByAccess('jomsocial', $group->id);
 			foreach ($categories as $category) {
 				if ($category->parent == $parent) {
 					$category->set('name', $group->name);
@@ -170,8 +179,7 @@ class plgCommunityKunenaGroups extends CApplications {
 				$category->set('published', $published);
 				$success = $category->save();
 				if (!$success) {
-					$app = JFactory::getApplication ();
-					$app->enqueueMessage ( JText::sprintf('PLG_COMMUNITY_KUNENAGROUPS_GROUP_SAVE_FAILED', 'notice'));
+					JFactory::getApplication ()->enqueueMessage ( JText::sprintf('PLG_COMMUNITY_KUNENAGROUPS_GROUP_SAVE_FAILED', 'notice'));
 				}
 			}
 			if (empty($categories) && $published) {

@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE install>
 <install version="1.5" type="plugin" group="community" method="upgrade">
-	<name>My Kunena Forum Posts</name>
+	<name>My Forum Posts</name>
+	<version>2.0.0-RC1</version>
 	<creationDate>@kunenaversiondate@</creationDate>
 	<author>Kunena Team</author>
 	<authorEmail>admin@kunena.org</authorEmail>
 	<authorUrl>http://www.kunena.org</authorUrl>
-	<copyright>(c)2009-2011 Kunena Team. All rights reserved.</copyright>
+	<copyright>(C) 2008 - 2012 Kunena Team. All rights reserved.</copyright>
 	<license>GNU/GPL</license>
-	<version>1.7.1</version>
-	<build>@kunenaversionbuild@</build>
 	<isapplication>true</isapplication>
 	<isbrowseable>true</isbrowseable>
-	<description>PLG_MYKUNENA_DESCRIPTION</description>
+	<description>PLG_COMMUNITY_MYKUNENA_DESCRIPTION</description>
 	<languages folder="language">
 		<!-- Transifex alphabetical order -->
 		<language tag="en-GB">en-GB/en-GB.plg_community_mykunena.ini</language>
@@ -47,21 +46,15 @@
 		<folder>mykunena</folder>
 	</files>
 	
-	<menuitem>
-		<menu label="Groups" position="toolbar">
-			<link label="Groups">task=groups</link>
-		</menu>
-	</menuitem>
-	
 	<params>
-		<param name="count" type="text" default="5" label="PLG_MYKUNENA_POST_COUNT" description="PLG_MYKUNENA_POST_COUNT_DESC" />	
-		<param name="coreapp" type="list" default="0" label="PLG_MYKUNENA_CORE_APPS" description="PLG_MYKUNENA_CORE_APPS_DESC">
-			<option value="0">PLG_MYKUNENA_CORE_APPS_NO</option>
-			<option value="1">PLG_MYKUNENA_CORE_APPS_YES</option>
+		<param name="count" type="text" default="5" label="PLG_COMMUNITY_MYKUNENA_POST_COUNT" description="PLG_COMMUNITY_MYKUNENA_POST_COUNT_DESC" />
+		<param name="coreapp" type="list" default="0" label="PLG_COMMUNITY_MYKUNENA_CORE_APPS" description="PLG_COMMUNITY_MYKUNENA_CORE_APPS_DESC">
+			<option value="0">PLG_COMMUNITY_MYKUNENA_CORE_APPS_NO</option>
+			<option value="1">PLG_COMMUNITY_MYKUNENA_CORE_APPS_YES</option>
 		</param>
-		<param name="cache" type="list" default="1" label="PLG_MYKUNENA_CACHING" description="PLG_MYKUNENA_CACHING_DESC">
-			<option value="1">PLG_MYKUNENA_CACHING_GLOBAL</option>
-			<option value="0">PLG_MYKUNENA_CORE_APPS_NO</option>
+		<param name="cache" type="list" default="1" label="PLG_COMMUNITY_MYKUNENA_CACHING" description="PLG_COMMUNITY_MYKUNENA_CACHING_DESC">
+			<option value="1">PLG_COMMUNITY_MYKUNENA_CACHING_GLOBAL</option>
+			<option value="0">PLG_COMMUNITY_MYKUNENA_CORE_APPS_NO</option>
 		</param>
 	</params>
 	<config>
@@ -69,15 +62,15 @@
 			<fieldset name="basic">	
 				<field name="count" type="text"
 					default="5"
-					description="PLG_MYKUNENA_POST_COUNT_DESC"
-					label="PLG_MYKUNENA_POST_COUNT" />
-				<field name="coreapp" type="list" default="0" description="PLG_MYKUNENA_CORE_APPS_DESC" label="PLG_MYKUNENA_CORE_APPS">
-					<option value="0">PLG_MYKUNENA_CORE_APPS_NO</option>
-					<option value="1">PLG_MYKUNENA_CORE_APPS_YES</option>
+					description="PLG_COMMUNITY_MYKUNENA_POST_COUNT_DESC"
+					label="PLG_COMMUNITY_MYKUNENA_POST_COUNT" />
+				<field name="coreapp" type="list" default="0" description="PLG_COMMUNITY_MYKUNENA_CORE_APPS_DESC" label="PLG_COMMUNITY_MYKUNENA_CORE_APPS">
+					<option value="0">PLG_COMMUNITY_MYKUNENA_CORE_APPS_NO</option>
+					<option value="1">PLG_COMMUNITY_MYKUNENA_CORE_APPS_YES</option>
 				</field>
-				<field name="cache"  type="list" default="1" label="PLG_MYKUNENA_CACHING" description="PLG_MYKUNENA_CACHING_DESC">
-					<option value="1">PLG_MYKUNENA_CACHING_GLOBAL</option>
-					<option value="0">PLG_MYKUNENA_CORE_APPS_NO</option>
+				<field name="cache"  type="list" default="1" label="PLG_COMMUNITY_MYKUNENA_CACHING" description="PLG_COMMUNITY_MYKUNENA_CACHING_DESC">
+					<option value="1">PLG_COMMUNITY_MYKUNENA_CACHING_GLOBAL</option>
+					<option value="0">PLG_COMMUNITY_MYKUNENA_CORE_APPS_NO</option>
 				</field>
 			</fieldset>
 		</fields>

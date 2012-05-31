@@ -1,13 +1,12 @@
 <?php
 /**
-* @version $Id$
-* MyKunena Plugin
-* @package plg_jomsocial_mykunena
-*
-* @Copyright (C) 2009-2011 Kunena Team. All rights reserved
-* @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
-* @link http://www.kunena.org
-*/
+ * My Kunena Plugin for Jomsocial
+ * @package Kunena.plg_community_mykunena
+ *
+ * @copyright (C) 2008 - 2012 Kunena Team. All rights reserved.
+ * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
+ * @link http://www.kunena.org
+ **/
 die();
 ?>
 <!--
