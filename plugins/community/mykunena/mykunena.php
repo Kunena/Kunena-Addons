@@ -85,8 +85,8 @@ class plgCommunityMyKunena extends CApplications {
 			?>
 				<li>
 					<div class="content">
-						<a href="<?php echo KunenaRoute::_ ( "index.php?option=com_kunena&view=topic&catid={$item->catid}&id={$item->thread}&mesid={$item->id}" ); ?>" class="kjsubject"><?php echo $item->getTopic()->displayField('subject'); ?></a> <?php echo JText::_('PLG_MYKUNENA_POST_IN'); ?>
-						<a href="<?php echo KunenaRoute::_ ( "index.php?option=com_kunena&view=category&catid={$item->catid}" ); ?>" class="kjcategory"><?php echo $item->getCategory()->displayField('name'); ?></a> <?php echo JText::_('PLG_MYKUNENA_POST_ON'); ?>
+						<a href="<?php echo KunenaRoute::_ ( "index.php?option=com_kunena&view=topic&catid={$item->catid}&id={$item->thread}&mesid={$item->id}" ); ?>" class="kjsubject"><?php echo $item->getTopic()->displayField('subject'); ?></a> <?php echo JText::_('PLG_COMMUNITY_MYKUNENA_POST_IN'); ?>
+						<a href="<?php echo KunenaRoute::_ ( "index.php?option=com_kunena&view=category&catid={$item->catid}" ); ?>" class="kjcategory"><?php echo $item->getCategory()->displayField('name'); ?></a> <?php echo JText::_('PLG_COMMUNITY_MYKUNENA_POST_ON'); ?>
 						<span class="kjdate"><?php echo $postDate->toFormat ( JText::_ ( 'DATE_FORMAT_LC2' ) ); ?></span>
 					</div>
 				</li>
