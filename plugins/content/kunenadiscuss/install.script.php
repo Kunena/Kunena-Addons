@@ -1,7 +1,7 @@
 <?php
 /**
- * Content - Kunena Discuss Plugin
- * @package Kunena Discuss
+ * Kunena Discuss Plugin
+ * @package Kunena.plg_content_kunenadiscuss
  *
  * @copyright (C) 2008 - 2012 Kunena Team. All rights reserved.
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
