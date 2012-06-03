@@ -3,8 +3,7 @@
 <!--
   Kunena Discuss plugin ant build file
 
-  @version      $Id:kunena.build.xml 95 2010-01-23 21:46:51Z fxstein $
-  @copyright    Copyright (c) 2008 - 2010 Kunena Team 
+  @copyright    Copyright (c) 2008 - 2012 Kunena Team. All rights reserved.
   				portions 2007 MjazTools. All rights reserved.
   @license      GNU/GPL
   @link         http://www.kunena.org
@@ -65,21 +64,17 @@
 
 	<target name="init" depends="copy">
 		<xmlproperty file="${kunena.directory}/kunenadiscuss.xml" collapseAttributes="true" prefix="xml" keepRoot="false" />
-		<buildnumber />
 		<tstamp>
 			<format property="str.datefmt" pattern="${cfg.datefmt}" locale="${cfg.dateloc}" />
 		</tstamp>
 
-		<condition property="str.build" value="_${cfg.buildprefix}${build.number}" else="">
-			<istrue value="${cfg.addbuild}" />
-		</condition>
 		<condition property="str.version" value="_${cfg.versionprefix}${xml.version}" else="">
 			<istrue value="${cfg.addversion}" />
 		</condition>
 		<condition property="str.date" value="_${str.datefmt}" else="">
 			<istrue value="${cfg.adddate}" />
 		</condition>
-		<property name="str.destfile" value="${package_dir}/${cfg.prefix}${cfg.name}${str.version}${str.build}${str.date}" />
+		<property name="str.destfile" value="${package_dir}/${cfg.prefix}${cfg.name}${str.version}${str.date}" />
 
 		<condition property="do.tar">
 			<istrue value="${cfg.tar}" />
@@ -137,7 +132,6 @@
 		<echo message="XML Copyright:   ${xml.copyright}" />
 		<echo message="XML License:     ${xml.license}" />
 		<echo message="XML Description: ${xml.description}" />
-		<echo message="Build:           ${build.number}" />
 		<echo message="Date:            ${TODAY}" />
 	</target>
 

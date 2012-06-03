@@ -1,10 +1,9 @@
 <?php
 /**
- * @version $Id$
  * Kunena Discuss Plugin
- * @package Kunena Discuss
+ * @package Kunena.plg_content_kunenadiscuss
  *
- * @Copyright (C) 2010 Kunena Team All rights reserved
+ * @copyright (C) 2008 - 2012 Kunena Team. All rights reserved.
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link http://www.kunena.org
  **/
@@ -29,51 +28,45 @@ class plgContentKunenaDiscuss extends JPlugin {
 		if (! $this->enabled ())
 			return;
 
-		if (version_compare(JVERSION, '1.6', '>')) {
-			$this->basepath = 'plugins/content/kunenadiscuss';
-		} else {
-			$this->basepath = 'plugins/content';
-		}
+		// Store Joomla version
+		self::$j15 = version_compare(JVERSION, '1.6', '<');
 
-		// Load language files
+		$this->basepath = !self::$j15 ? 'plugins/content/kunenadiscuss' : 'plugins/content';
+
+		// Load plugin language
 		$this->loadLanguage ( 'plg_content_kunenadiscuss', JPATH_ADMINISTRATOR );
 
 		// Kunena detection and version check
-		$minKunenaVersion = '1.7';
-		if (!class_exists('Kunena') || version_compare(Kunena::version(), $minKunenaVersion, '<')) {
+		$minKunenaVersion = '2.0.0-RC2';
+		if (!class_exists('KunenaForum') || !KunenaForum::isCompatible($minKunenaVersion)) {
 			$this->_app->enqueueMessage( JText::sprintf ( 'PLG_KUNENADISCUSS_DEPENDENCY_FAIL', $minKunenaVersion ) );
 			return;
 		}
 		// Kunena online check
-		if (!Kunena::enabled()) {
+		if (!KunenaForum::enabled()) {
 			return;
 		}
-		// Initialize session
-		$session = KunenaFactory::getSession ();
-		$session->updateAllowedForums();
+		KunenaForum::setup();
+
+		// load Kunena main language file so we can leverage language strings from it
+		KunenaFactory::loadLanguage();
+
+		require_once KPATH_SITE . '/lib/kunena.link.class.php';
 
 		// Initialize plugin
 		parent::__construct ( $subject, $params );
 
-		// Store Joomla version
-		self::$j15 = version_compare(JVERSION, '1.6', '<');
-
 		// Initialize variables
 		$this->_db = JFactory::getDbo ();
 		$this->_my = JFactory::getUser ();
-
-		require_once (KUNENA_PATH . DS . 'class.kunena.php');
-
+		$this->user = KunenaFactory::getUser ();
 		$this->config = KunenaFactory::getConfig ();
-
-		// load Kunena main language file so we can leverage language strings from it
-		KunenaFactory::loadLanguage();
 
 		// Create plugin table if doesn't exist
 		$query = "SHOW TABLES LIKE '{$this->_db->getPrefix()}kunenadiscuss'";
 		$this->_db->setQuery ( $query );
 		if (!$this->_db->loadResult ()) {
-			CKunenaTools::checkDatabaseError ();
+			KunenaError::checkDatabaseError ();
 			$query = "CREATE TABLE IF NOT EXISTS `#__kunenadiscuss`
 					(`content_id` int(11) NOT NULL default '0',
 					 `thread_id` int(11) NOT NULL default '0',
@@ -81,7 +74,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 					 )";
 			$this->_db->setQuery ( $query );
 			$this->_db->query ();
-			CKunenaTools::checkDatabaseError ();
+			KunenaError::checkDatabaseError ();
 			$this->debug ( "Created #__kunenadiscuss cross reference table." );
 
 			// Migrate data from old FireBoard discussbot if it exists
@@ -93,7 +86,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 					FROM `#__fb_discussbot`";
 				$this->_db->setQuery ( $query );
 				$this->_db->query ();
-				CKunenaTools::checkDatabaseError ();
+				KunenaError::checkDatabaseError ();
 				$this->debug ( "Migrated old data." );
 			}
 		}
@@ -155,7 +148,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 		}
 		// Only proceed if this event is not originated by Kunena itself or we run the danger of an event recursion
 		$ksource = '';
-		if ($params instanceof JParameter){
+		if ($params instanceof JRegistry){
 			$ksource = $params->get( 'ksource', '');
 		}
 
@@ -177,7 +170,9 @@ class plgContentKunenaDiscuss extends JPlugin {
 
 			$regex = '/{kunena_discuss:(\d+?)}/s';
 
-			if (JRequest::getVar ( 'tmpl', '' ) == 'component' || JRequest::getBool ( 'print' ) || JRequest::getVar ( 'format', 'html' ) != 'html' || (isset ( $article->state ) && ! $article->state) || empty ( $article->id ) || $this->_app->scope == 'com_kunena') {
+			if (JRequest::getVar ( 'tmpl', '' ) == 'component' || JRequest::getBool ( 'print' )
+					|| JRequest::getVar ( 'format', 'html' ) != 'html' || (isset ( $article->state ) && ! $article->state)
+					|| empty ( $article->id ) || $this->_app->scope == 'com_kunena') {
 				$this->debug ( "onPrepareContent: Not allowed - removing tags." );
 				if (isset ( $article->text ))
 					$article->text = preg_replace ( $regex, '', $article->text );
@@ -222,7 +217,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 					$query = "SELECT `fulltext` FROM #__content WHERE id ={$this->_db->quote($article->id)}";
 					$this->_db->setQuery ( $query );
 					$fulltext = $this->_db->loadResult ();
-					CKunenaTools::checkDatabaseError ();
+					KunenaError::checkDatabaseError ();
 					$text = $article->introtext . ' ' . $fulltext;
 				} else {
 					if (isset ( $article->text )) {
@@ -275,7 +270,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 	/******************************************************************************
 	 *
 	 *****************************************************************************/
-	protected function showPlugin($catid, $thread, &$row, $linkOnly) {
+	protected function showPlugin($catid, $topic_id, &$row, $linkOnly) {
 		// Show a simple form to allow posting to forum from the plugin
 		$plgShowForm = $this->params->get ( 'form', 1 );
 		// Default is to put QuickPost at the very bottom.
@@ -284,70 +279,71 @@ class plgContentKunenaDiscuss extends JPlugin {
 		// Don't repeat the CSS for each instance of this plugin in a page!
 		if (! self::$includedCss) {
 			$doc = JFactory::getDocument ();
-			$doc->addStyleSheet ( KUNENA_JLIVEURL . $this->basepath .'/kunenadiscuss/discuss.css' );
+			$doc->addStyleSheet ( JUri::root() . "/{$this->basepath}/kunenadiscuss/css/discuss.css" );
 			self::$includedCss = true;
 		}
 
+		// Find cross reference and the real topic
+		$query = "SELECT thread_id FROM #__kunenadiscuss WHERE content_id = {$this->_db->quote($row->id)}";
+		$this->_db->setQuery ( $query );
+		$result = $this->_db->loadResult ();
+		KunenaError::checkDatabaseError ();
+
+		if ($topic_id) {
+			// Custom topic found
+			$this->debug ( "showPlugin: Loading Custom Topic {$topic_id}" );
+			$id = $topic_id;
+		} elseif ($result) {
+			// Reference found
+			$this->debug ( "showPlugin: Loading Stored Topic {$result}" );
+			$id = $result;
+		} else {
+			// No topic exists
+			$this->debug ( "showPlugin: No topic found" );
+			$id = 0;
+		}
+		$topic = KunenaForumTopicHelper::get($id);
+		// If topic has been moved, find the real topic
+		while ($topic->moved_id) {
+			$this->debug ( "showPlugin: Topic {$topic->id} has been moved to {$topic->moved_id}" );
+			$topic = KunenaForumTopicHelper::get($topic->moved_id);
+		}
+
+		if ($result) {
+			if (!$topic->exists()) {
+				$this->debug ( "showPlugin: Topic does not exist, removing reference to {$result}" );
+				$this->deleteReference ( $row );
+			} elseif ($topic->id != $id) {
+				$this->debug ( "showPlugin: Topic has been moved or changed, updating reference to {$topic->id}" );
+				$this->updateReference ( $row, $topic->id );
+			}
+		} elseif ($topic_id && $topic->exists()) {
+			$this->debug ( "showPlugin: First hit to Custom Topic, created reference to topic {$topic_id}" );
+			$this->createReference ( $row, $topic_id );
+		}
+
+		// Initialise some variables
 		$subject = $row->title;
 		$published = JFactory::getDate(isset($row->publish_up) ? $row->publish_up : 'now')->toUnix();
 		$now = JFactory::getDate()->toUnix();
 
-		// Find cross reference and the real topic
-		$query = "SELECT d.content_id, d.thread_id, m.id AS mesid, t.thread, t.time
-			FROM #__kunenadiscuss AS d
-			LEFT JOIN #__kunena_messages AS m ON d.thread_id = m.id
-			LEFT JOIN #__kunena_messages AS t ON t.id = m.thread
-			WHERE d.content_id = {$this->_db->quote($row->id)}";
-		$this->_db->setQuery ( $query );
-		$result = $this->_db->loadObject ();
-		CKunenaTools::checkDatabaseError ();
+		if ( $topic->exists() ) {
+			// If current user doesn't have authorisation to read existing topic, we are done
+			if ($id && !$topic->authorise('read')) {
+				$this->debug ( "showPlugin: {$topic->getError()}" );
+				return '';
+			}
 
-		if ( is_object($result) ) {
-			if ($thread && $thread != $result->mesid) {
-				// Custom Topic is not the same as cross reference, additional check needed
-				$query = "SELECT t.thread
-					FROM #__kunena_messages AS m
-					LEFT JOIN #__kunena_messages AS t ON t.id = m.thread
-					WHERE m.id = {$this->_db->quote($thread)}";
-				$this->_db->setQuery ( $query );
-				$result->thread = $this->_db->loadResult ();
-				CKunenaTools::checkDatabaseError ();
-				if (!$result->thread) {
-					$this->debug ( "showPlugin: Custom Topic does not exist, aborting" );
-					return '';
-				}
-				$this->debug ( "showPlugin: Custom Topic points to new location {$result->thread}" );
-			}
-			if ($result->thread != $result->thread_id) {
-				// Topic has been moved, has been deleted or tag inside message has been changed
-				$this->debug ( "showPlugin: Removing cross reference record pointing to topic {$result->thread_id}" );
-				$query = "DELETE FROM #__kunenadiscuss WHERE content_id={$this->_db->quote($result->content_id)}";
-				$this->_db->setQuery ( $query );
-				$this->_db->query ();
-				CKunenaTools::checkDatabaseError ();
-				// We may need to add new cross reference or create new topic
-				$thread = $result->thread;
-				$result = null;
-			}
-		}
-		if ( !is_object($result) && $thread) {
-			// Find the real topic
-			$query = "SELECT {$this->_db->quote($row->id)} AS content_id, t.id AS thread_id, m.id AS mesid, t.thread, t.time
-				FROM #__kunena_messages AS m
-				LEFT JOIN #__kunena_messages AS t ON t.id = m.thread
-				WHERE m.id = {$this->_db->quote($thread)}";
-			$this->_db->setQuery ( $query );
-			$result = $this->_db->loadObject ();
-			CKunenaTools::checkDatabaseError ();
+			$category = $topic->getCategory();
 
-			if ( !is_object($result) ) {
-				$this->createReference ( $row, $thread );
-				$this->debug ( "showPlugin: First hit to Custom Topic, created cross reference to topic {$thread}" );
-			} else {
-				$this->debug ( "showPlugin: First hit to Custom Topic, cross reference not created to topic {$thread} because it exist already" );
+		} else {
+			// If current user doesn't have authorisation to read category, we are done
+			$category = KunenaForumCategoryHelper::get($catid);
+			if ($category->authorise('read')) {
+				$this->debug ( "showPlugin: {$category->getError()}" );
+				return '';
 			}
-		} else if (! is_object($result) ) {
-			$thread = 0;
+
 			$create = $this->params->get ( 'create', 0 );
 			$createTime = $this->params->get ( 'create_time', 0 )*604800; // Weeks in seconds
 			if ($createTime && $published+$createTime < $now) {
@@ -355,78 +351,64 @@ class plgContentKunenaDiscuss extends JPlugin {
 				return '';
 			}
 			if ($create) {
-				$thread = $this->createTopic ( $row, $catid, $subject );
-				$this->debug ( "showPlugin: First hit, created new topic {$thread} into forum" );
+				$this->debug ( "showPlugin: First hit, created new topic {$topic_id} into forum" );
+				$topic = $this->createTopic ( $row, $category, $subject );
 			}
-		} else {
-			$thread = $result->thread_id;
-			$this->debug ( "showPlugin: Topic {$thread} exists in the forum" );
 		}
 
 		// Do we allow answers into the topic?
-		$closeTime = $this->params->get ( 'close_time', 0 ) * 604800; // Weeks in seconds or 0
-		if ($closeTime) {
-			$this->debug ( "showPlugin: Check if topic is closed" );
-			if ($result) {
-				$closeReason = $this->params->get ( 'close_reason', 0 );
-				if ($closeReason) {
-					// Close topic by last post time
-					$query = "SELECT MAX(time)
-						FROM #__kunena_messages
-						WHERE thread = {$this->_db->quote($result->thread)}";
-					$this->_db->setQuery ( $query );
-					$closeTime = $this->_db->loadResult () + $closeTime;
-					CKunenaTools::checkDatabaseError ();
-					$this->debug ( "showPlugin: Close time by last post" );
-				} else {
-					// Close topic by cration time
-					$closeTime = $result->time + $closeTime;
-					$this->debug ( "showPlugin: Close time by topic creation" );
-				}
+		$closeTime = $this->params->get ( 'close_time', 0 ) * 604800; // Weeks in seconds or 0 (forever)
+		if ($closeTime && $topic->exists()) {
+			$closeReason = $this->params->get ( 'close_reason', 0 );
+			if ($closeReason) {
+				$this->debug ( "showPlugin: Close time by last post" );
+				$closeTime += $topic->last_post_time;
 			} else {
-				$closeTime = $now;
-			}
+				$this->debug ( "showPlugin: Close time by topic creation" );
+				$closeTime += $topic->first_post_time;
+				}
+		} else {
+			// Topic has not yet been created or will kept open forever
+			$closeTime = $now + 1;
 		}
 
-		if ($linkOnly && $thread) {
-			$this->debug ( "showPlugin: Link only" );
-
-			$sql = "SELECT COUNT(*) FROM #__kunena_messages WHERE hold=0 AND parent!=0 AND thread={$this->_db->quote($thread)}";
-			$this->_db->setQuery ( $sql );
-			$postCount = $this->_db->loadResult ();
-			CKunenaTools::checkDatabaseError ();
-			$linktitle = JText::sprintf ( 'PLG_KUNENADISCUSS_DISCUSS_ON_FORUMS', $postCount );
-			require_once (KPATH_SITE . '/lib/kunena.link.class.php');
-			$link = CKunenaLink::GetThreadLink ( 'view', $catid, $thread, $linktitle, $linktitle );
-			return '<div class="kunenadiscuss">' . $link . '</div>';
+		$linktopic = '';
+		$linktitle = JText::sprintf ( 'PLG_KUNENADISCUSS_DISCUSS_ON_FORUMS', $topic->posts );
+		if ($topic->exists() && $linkOnly) {
+			$this->debug ( "showPlugin: Displaying only link to the topic" );
+			return JHtml::_('kunenaforum.link', $topic->getUri ($category), $linktitle, $linktitle );
+		} elseif ( $topic->exists() && !$plgShowForm ) {
+			$this->debug ( "showPlugin: Displaying link to the topic because the form is disabled" );
+			$linktopic = JHtml::_('kunenaforum.link', $topic->getUri ($category), $linktitle, $linktitle );
+		} elseif ( !$topic->exists() && !$plgShowForm ) {
+			$linktopic = JText::_('PLG_KUNENADISCUSS_NEW_TOPIC_NOT_CREATED');
 		}
 
 		// ************************************************************************
 		// Process the QuickPost form
 
 		$quickPost = '';
-		if (!$plgShowForm) {
-			$this->debug ( "showPlugin: Form has been disabled" );
-		} elseif (!$closeTime || $closeTime >= $now) {
-			$canPost = $this->canPost ( $catid, $thread );
-			if ($canPost && JFactory::getUser()->get('guest')) {
+		$canPost = $this->canPost ( $category, $topic );
+		if ($canPost && $plgShowForm && (!$closeTime || $closeTime >= $now)) {
+			if (JFactory::getUser()->get('guest')) {
 				$this->debug ( "showPlugin: Guest can post: this feature doesn't work well if Joomla caching or Cache Plugin is enabled!" );
 			}
-			if ($canPost && JRequest::getInt ( 'kdiscussContentId', -1, 'POST' ) == $row->id) {
+			if (JRequest::getInt ( 'kdiscussContentId', -1, 'POST' ) == $row->id) {
 				$this->debug ( "showPlugin: Reply topic!" );
-				$quickPost .= $this->replyTopic ( $row, $catid, $thread, $subject );
+				$quickPost .= $this->replyTopic ( $row, $category, $topic, $subject );
 			} else {
 				$this->debug ( "showPlugin: Displaying form" );
-				$quickPost .= $this->showForm ( $row, $catid, $thread, $subject );
+				$quickPost .= $this->showForm ( $row, $category, $topic, $subject );
 			}
 		}
 
 		// This will be used all the way through to tell users how many posts are in the forum.
-		$content = $this->showTopic ( $catid, $thread );
+		$content = $this->showTopic ( $category, $topic, $linktopic );
 
 		if (!$content && !$quickPost) {
 			return '';
 		}
+
 		if ($formLocation) {
 			$content = '<div class="kunenadiscuss">' . $content . '<br />' . $quickPost . '</div>';
 		} else {
@@ -440,39 +422,34 @@ class plgContentKunenaDiscuss extends JPlugin {
 	 * Output
 	 *****************************************************************************/
 
-	protected function showTopic($catid, $thread) {
-		if (!$thread) {
+	protected function showTopic($category, $topic, $link_topic) {
+		if (!$topic->exists()) {
 			$this->debug ( "showTopic: No messages to render" );
 			return '';
 		}
 
 		$this->debug ( "showTopic: Rendering discussion" );
 
-		// Limits the number of posts
-		$limit = $this->params->get ( 'limit', 25 );
-		// Show the first X posts, versus the last X posts
 		$ordering = $this->params->get ( 'ordering', 1 ); // 0=ASC, 1=DESC
-		$first = (int)!$ordering;
-
-		require_once (KPATH_SITE . '/funcs/view.php');
-		$thread = new CKunenaView ( 'view', $catid, $thread, $first, $limit+$first );
-		$thread->setTemplate ( "/{$this->basepath}/kunenadiscuss" );
-		$thread->ordering = $ordering ? 'DESC' : 'ASC';
-		$thread->hold = 0;
-
+		$params = array(
+			'catid' => $category->id,
+			'id' => $topic->id,
+			'limitstart' => (int)!$ordering,
+			'limit' => $this->params->get ( 'limit', 25 ),
+			'filter_order_Dir' => $ordering ? 'desc' : 'asc',
+			'templatepath' => dirname (__FILE__) . '/kunenadiscuss/tmpl'
+		);
 		ob_start ();
-		$thread->display ();
-
+		KunenaForum::display('topic', 'default', null, $params);
 		$str = ob_get_contents ();
 		ob_end_clean ();
-		return $str;
+		return $link_topic . $str;
 	}
 
-	protected function showForm($row, $catid, $thread, $subject ) {
-		$canPost = $this->canPost ( $catid, $thread );
-		$this->config = KunenaFactory::getConfig();
+	protected function showForm($row, $category, $topic, $subject ) {
+		$canPost = $this->canPost ( $category, $topic );
 		if (! $canPost) {
-			if (! $this->_my->id) {
+			if (! $this->user->exists()) {
 				$this->debug ( "showForm: Public posting is not permitted, show login instead" );
 				$login = KunenaFactory::getLogin ();
 				$loginlink = $login->getLoginURL ();
@@ -483,12 +460,11 @@ class plgContentKunenaDiscuss extends JPlugin {
 				$this->msg = JText::_ ( 'PLG_KUNENADISCUSS_NO_PERMISSION_TO_POST' );
 			}
 		}
-		$myprofile = KunenaFactory::getUser();
 		$this->open = $this->params->get ( 'quickpost_open', false );
-		$this->name = $myprofile->getName();
+		$this->name = $this->user->getName();
 		ob_start ();
 		$this->debug ( "showForm: Rendering form" );
-		include (JPATH_ROOT . "/{$this->basepath}/kunenadiscuss/form.php");
+		include (JPATH_ROOT . "/{$this->basepath}/kunenadiscuss/tmpl/form.php");
 		$str = ob_get_contents ();
 		ob_end_clean ();
 		return $str;
@@ -498,99 +474,87 @@ class plgContentKunenaDiscuss extends JPlugin {
 	 * Create and reply to topic
 	 *****************************************************************************/
 
-	protected function createReference($row, $thread) {
+	protected function createReference($row, $topic_id) {
 		$query = "INSERT INTO #__kunenadiscuss (content_id, thread_id) VALUES(
 			{$this->_db->quote($row->id)},
-			{$this->_db->quote($thread)})";
+			{$this->_db->quote($topic_id)})";
 		$this->_db->setQuery ( $query );
 		$this->_db->query ();
-		CKunenaTools::checkDatabaseError ();
+		KunenaError::checkDatabaseError ();
 	}
 
-	protected function createTopic($row, $catid, $subject) {
-		$this->debug ( "showPlugin: Create topic!" );
-		require_once (KPATH_SITE . '/lib/kunena.posting.class.php');
-		$message = new CKunenaPosting ( $this->params->get ( 'topic_owner', $row->created_by ) );
+	protected function updateReference($row, $topic_id) {
+		$query = "UPDATE #__kunenadiscuss SET content_id={$this->_db->quote($row->id)}, thread_id={$this->_db->quote($topic_id)})";
+		$this->_db->setQuery ( $query );
+		$this->_db->query ();
+		KunenaError::checkDatabaseError ();
+	}
 
-		$options = array();
-		$fields ['subject'] = $subject;
-		switch ($this->params->get('bbcode')) {
+	protected function deleteReference($row) {
+		$query = "DELETE FROM #__kunenadiscuss WHERE content_id={$this->_db->quote($row->id)}";
+		$this->_db->setQuery ( $query );
+		$this->_db->query ();
+		KunenaError::checkDatabaseError ();
+	}
+
+	protected function createTopic($row, $category, $subject) {
+		$this->debug ( "showPlugin: Create topic!" );
+
+		$type = $this->params->get('bbcode');
+		switch ($type) {
 			case 'full':
-				$fields ['message'] = "[article=full]{$row->id}[/article]";
-				break;
 			case 'intro':
-				$fields ['message'] = "[article=intro]{$row->id}[/article]";
-				break;
 			case 'link':
-				$fields ['message'] = "[article=link]{$row->id}[/article]";
+				$contents = "[article={$type}]{$row->id}[/article]";
 				break;
 			default:
-				$fields ['message'] = "[article]{$row->id}[/article]";
+				$contents= "[article]{$row->id}[/article]";
 		}
-		$fields ['time'] = JFactory::getDate(isset($row->publish_up) ? $row->publish_up : 'now')->toUnix();
-		$success = $message->post ( $catid, $fields, $options );
+		$params = array(
+			'subject' => $subject,
+			'message' => $contents,
+		);
+		list ($topic, $message) = $category->newTopic($params, $this->params->get ( 'topic_owner', $row->created_by ));
+		$message->time = JFactory::getDate(isset($row->publish_up) ? $row->publish_up : 'now')->toUnix();
 
-		if ($success) {
-			$newMessageId = $message->save ();
-		}
-
-		// Handle errors
-		if (! $success || ! $newMessageId) {
-			$errors = $message->getErrors ();
-			foreach ( $errors as $field => $error ) {
-				$this->_app->enqueueMessage ( $field . ': ' . $error, 'error' );
-			}
+		$success = $message->save ();
+		if (! $success) {
+			$this->_app->enqueueMessage ( $message->getError (), 'error' );
 			return false;
 		}
 
-		// Keep a cross reference of Threads we create through this plugin
-		$this->createReference ( $row, $newMessageId );
-
-		// We'll need to know about the new Thread id later...
-		return $newMessageId;
+		// Create a reference
+		$this->createReference ( $row, $topic->id );
+		return $topic;
 	}
 
-	protected function replyTopic($row, $catid, $thread, $subject) {
+	protected function replyTopic($row, $category, $topic, $subject) {
 		if (JRequest::checkToken () == false) {
 			$this->_app->enqueueMessage ( JText::_ ( 'COM_KUNENA_ERROR_TOKEN' ), 'error' );
 			return false;
 		}
-		$this->isBanned();
-		$this->verifyCaptcha();
-		$this->checkFlood();
-
-		require_once (KPATH_SITE . '/lib/kunena.posting.class.php');
-
-		if (intval ( $thread ) == 0) {
-			$thread = $this->createTopic ( $row, $catid, $subject );
-		}
-		$message = new CKunenaPosting ( );
-		$myprofile = KunenaFactory::getUser();
-		$fields ['name'] = JRequest::getString ( 'name', $myprofile->getName (), 'POST' );
-		$fields ['email'] = JRequest::getString ( 'email', null, 'POST' );
-		$fields ['subject'] = $subject;
-		$fields ['message'] = JRequest::getString ( 'message', null, 'POST' );
-
-		$success = $message->reply ( $thread, $fields );
-		if ($success) {
-			$newMessageId = $message->save ();
-		}
-
-		// Handle errors
-		if (! $success || ! $newMessageId) {
-			$errors = $message->getErrors ();
-			foreach ( $errors as $field => $error ) {
-				$this->_app->enqueueMessage ( $field . ': ' . $error, 'error' );
-			}
+		if ($this->hasCaptcha() && !$this->verifyCaptcha()) {
 			return false;
 		}
+		// Create topic if it doesn't exist
+		if (!$topic->exists()) {
+			$topic = $this->createTopic ( $row, $category, $subject );
+		}
+		$params = array (
+			'name' => JRequest::getString ( 'name', $this->user->getName(), 'POST' ),
+			'email' => JRequest::getString ( 'email', null, 'POST' ),
+			'subject' => $subject,
+			'message' => JRequest::getString ( 'message', null, 'POST' ),
+		);
+		$message = $topic->newReply($params);
+		$success = $message->save ();
+		if (! $success) {
+			$this->_app->enqueueMessage ( $message->getError(), 'error' );
+			return false;
+		}
+		$message->sendNotification();
 
-		$config = KunenaFactory::getConfig();
-		$holdPost = $message->get ( 'hold' );
-		require_once (KPATH_SITE . '/lib/kunena.link.class.php');
-		$message->emailToSubscribers(false, $config->allowsubscriptions && ! $holdPost, $config->mailmod || $holdPost, $config->mailadmin || $holdPost);
-
-		if ($holdPost) {
+		if ($message->hold) {
 			$result = JText::_ ( 'PLG_KUNENADISCUSS_PENDING_MODERATOR_APPROVAL' );
 		} else {
 			$result = JText::_ ( 'PLG_KUNENADISCUSS_MESSAGE_POSTED' );
@@ -611,7 +575,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 		$debugUsers = $this->params->get ( 'show_debug_userids', '' ); // Joomla Id's of Users who can see debug info
 
 
-		if (! $debug || ($debugUsers && ! in_array ( $this->_my->id, explode ( ',', $debugUsers ) )))
+		if (! $debug || ($debugUsers && ! in_array ( $this->user->userid, explode ( ',', $debugUsers ) )))
 			return;
 
 		if ($fatal) {
@@ -676,37 +640,30 @@ class plgContentKunenaDiscuss extends JPlugin {
 		return $default;
 	}
 
-	protected function canPost($catid, $thread) {
-		require_once (KPATH_SITE . '/lib/kunena.posting.class.php');
-		$message = new CKunenaPosting ( );
-		if ($thread) {
-			return $message->reply ( $thread );
+	protected function canPost($category, $topic) {
+		if ($topic->exists()) {
+			return $topic->authorise('reply');
 		} else {
-			return $message->post ( $catid );
+			return $category->authorise('topic.reply');
 		}
 	}
 
-	protected function isBanned() {
-		require_once(KPATH_SITE . '/funcs/post.php');
-		$post = new CKunenaPost();
-		return $post->isUserBanned();
-	}
-
-	protected function checkFlood() {
-		require_once(KPATH_SITE . '/funcs/post.php');
-		$post = new CKunenaPost();
-		return $post->floodProtection();
+	public function hasCaptcha() {
+		$captcha = KunenaSpamRecaptcha::getInstance();
+		$result = $captcha->enabled();
+		return $result;
 	}
 
 	protected function displayCaptcha() {
-		require_once(KPATH_SITE . '/funcs/post.php');
-		$post = new CKunenaPost();
-		$post->displayCaptcha();
+		$captcha = KunenaSpamRecaptcha::getInstance();
+		$result = $captcha->getHtml();
+		return $result;
 	}
 
 	protected function verifyCaptcha() {
-		require_once(KPATH_SITE . '/funcs/post.php');
-		$post = new CKunenaPost();
-		return $post->verifyCaptcha();
+		$captcha = KunenaSpamRecaptcha::getInstance();
+		$result = $captcha->verify();
+		if (!$result) $this->_app->enqueueMessage( $captcha->getError() );
+		return $result;
 	}
 }

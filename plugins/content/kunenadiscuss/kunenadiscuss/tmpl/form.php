@@ -1,14 +1,13 @@
 <?php
 /**
- * @version $Id$
- * Kunena Discuss Plug-in
- * @package Kunena Discuss
+ * Kunena Discuss Plugin
+ * @package Kunena.plg_content_kunenadiscuss
  *
- * @Copyright (C) 2010-2011 Kunena Team. All rights reserved.
+ * @copyright (C) 2008 - 2012 Kunena Team. All rights reserved.
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link http://www.kunena.org
  **/
-defined( '_JEXEC' ) or die ( '' );
+defined( '_JEXEC' ) or die ();
 ?>
 <div id="kdiscuss-quick-post<?php echo $row->id ?>" class="kdiscuss-form">
 	<div class="kdiscuss-title"><?php echo JText::_('PLG_KUNENADISCUSS_DISCUSS') ?></div>
@@ -22,9 +21,9 @@ defined( '_JEXEC' ) or die ( '' );
 					<table>
 					<tr>
 						<td><span class="kdiscuss-quick-post-label"><?php echo JText::_('PLG_KUNENADISCUSS_NAME') ?></span></td>
-						<td><input type="text" name="name" value="<?php echo $this->name ?>" <?php if ($this->_my->id) echo 'disabled="disabled" '; ?>/></td>
+						<td><input type="text" name="name" value="<?php echo $this->name ?>" <?php if ($this->user->exists()) echo 'disabled="disabled" '; ?>/></td>
 					</tr>
-					<?php if(!$this->_my->id && $this->config->askemail) : ?>
+					<?php if(!$this->user->exists() && $this->config->askemail) : ?>
 					<tr>
 						<td><span class="kdiscuss-quick-post-label"><?php echo JText::_('PLG_KUNENADISCUSS_EMAIL') ?></span></td>
 						<td><input type="text" name="email" value="" /></td>
@@ -37,7 +36,7 @@ defined( '_JEXEC' ) or die ( '' );
 					<tr>
 						<td colspan="2"><textarea name="message" rows="5" cols="60" class="ktext"></textarea></td>
 					</tr>
-					<?php if ($this->config->captcha && !$this->_my->id) : ?>
+					<?php if ($this->hasCaptcha()) : ?>
 					<tr>
 						<td><span class="kdiscuss-quick-post-label"><?php echo JText::_('PLG_KUNENADISCUSS_CAPTCHA') ?></span></td>
 						<td><?php $this->displayCaptcha(); ?></td>
