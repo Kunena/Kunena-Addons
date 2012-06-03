@@ -1,9 +1,9 @@
 <?php
 /**
  * Kunena Discuss Plugin
- * @package Kunena Discuss
+ * @package Kunena.plg_content_kunenadiscuss
  *
- * @Copyright (C) 2010-2012 Kunena Team. All rights reserved.
+ * @copyright (C) 2008 - 2012 Kunena Team. All rights reserved.
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link http://www.kunena.org
  **/
