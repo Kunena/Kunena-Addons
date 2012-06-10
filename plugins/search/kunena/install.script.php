@@ -9,7 +9,7 @@
  **/
 defined ( '_JEXEC' ) or die ();
 
-class PlgSearchKunenasearchInstallerScript {
+class PlgSearchKunenaInstallerScript {
 	function postflight($type, $parent) {
 		// Rename manifest file
 		$path = $parent->getParent()->getPath('extension_root');
