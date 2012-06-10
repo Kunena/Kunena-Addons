@@ -26,7 +26,7 @@
 			<isset property="project_dir" />
 		</not>
 	</condition>
-	<condition property="package_dir" value="../../packages">
+	<condition property="package_dir" value="../../../../packages">
 		<not>
 			<isset property="package_dir" />
 		</not>
@@ -110,7 +110,6 @@
 
 		<copy file="${project_dir}/${cfg.name}.xml" todir="${tmp_dir}" overwrite="true" filtering="true" />
 		<copy file="${project_dir}/${cfg.name}.php" todir="${tmp_dir}" overwrite="true" filtering="false" />
-		<copy file="${project_dir}/CHANGELOG.php" todir="${tmp_dir}" overwrite="true" filtering="false" />
 		<copy file="${project_dir}/COPYRIGHT.php" todir="${tmp_dir}" overwrite="true" filtering="true" />
 		<copy file="${project_dir}/README.txt" todir="${tmp_dir}" overwrite="true" filtering="true" />
 		<copy todir="${tmp_dir}/language" overwrite="true" filtering="true" >
