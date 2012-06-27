@@ -33,7 +33,7 @@ class modKunenaSearch {
 		$this->ksearch_maxlength		= $this->ksearch_width > 20 ? $this->ksearch_width : 20;
 		$this->ksearch_txt				= $this->params->get('ksearch_txt', JText::_('Search...'));
 		$this->ksearch_moduleclass_sfx	= $this->params->get('moduleclass_sfx', '');
-		$this->url						= KunenaRoute::_('index.php?option=com_kunena&view=search');
+		$this->url						= KunenaRoute::_('index.php?option=com_kunena');
 
 		require(JModuleHelper::getLayoutPath('mod_kunenasearch'));
 	}

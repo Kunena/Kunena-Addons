@@ -11,6 +11,8 @@ defined ( '_JEXEC' ) or die ();
 ?>
 
 <form action="<?php echo $this->url ?>" method="post" id="ksearch-form" name="ksearch-form">
+	<input type="hidden" name="view" value="search" />
+	<input type="hidden" name="task" value="results" />
 	<div class="ksearch<?php echo $this->ksearch_moduleclass_sfx; ?>">
 		<fieldset class="ksearch-fieldset">
 			<legend class="ksearch-legend"><?php echo JText::_('MOD_KUNENASEARCH_SEARCHBY_KEYWORD'); ?></legend>
