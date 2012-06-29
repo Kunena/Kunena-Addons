@@ -12,7 +12,7 @@ defined ( '_JEXEC' ) or die ();
 <?php
 if ( $this->params->get ( 'sh_topiciconoravatar' ) == 1 ) : ?>
 <li class="klatest-avatar">
-	<?php echo $this->lastPostAuthor->getLink($this->lastPostAuthor->getAvatarImage('', $this->params->get ( 'avatarwidth' ), $this->params->get ( 'avatarheight' ))) ?>
+	<?php echo $this->message->getAuthor()->getLink($this->message->getAuthor()->getAvatarImage('', $this->params->get ( 'avatarwidth' ), $this->params->get ( 'avatarheight' ))) ?>
 </li>
 <?php elseif ( $this->params->get ( 'sh_topiciconoravatar' ) == 0 ) : ?>
 <li class="klatest-topicicon"><?php echo $this->getTopicLink ( $this->topic, 'unread', '[K=TOPIC_ICON]' ) ?></li>
@@ -42,7 +42,7 @@ if ( $this->params->get ( 'sh_topiciconoravatar' ) == 1 ) : ?>
 <li class="klatest-cat"><?php echo JText::_ ( 'MOD_KUNENALATEST_IN_CATEGORY' ).' '. $this->categoryLink ?></li>
 <?php endif; ?>
 <?php if ($this->params->get ( 'sh_author' )) : ?>
-<li class="klatest-author"><?php echo JText::_ ( 'MOD_KUNENALATEST_POSTED_BY' ) .' '. CKunenaLink::GetProfileLink ( $this->message->userid, $this->escape ( $this->message->name ) ); ?></li>
+<li class="klatest-author"><?php echo JText::_ ( 'MOD_KUNENALATEST_POSTED_BY' ) .' '. $this->message->getAuthor()->getLink(); ?></li>
 <?php endif; ?>
 <?php if ($this->params->get ( 'sh_time' )) : ?>
 <li class="klatest-posttime"><?php $override = $this->params->get ( 'dateformat' ); echo KunenaDate::getInstance($this->message->time)->toKunena($override ? $override : 'config_post_dateformat'); ?></li>
