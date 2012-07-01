@@ -47,7 +47,7 @@ defined('_JEXEC') or die();
 				<?php if ($this->params->get('showprofile')) : ?>
 					<li class="klogin-myprofile"><?php echo $this->me->getLink ( JText::_ ( 'MOD_KUNENALOGIN_MYPROFILE' ) ); ?></li>
 				<?php endif; ?>
-				<?php if (0 && $this->params->get('showmyposts')) : ?>
+				<?php if ($this->params->get('showmyposts')) : ?>
 					<li class="klogin-mypost"><?php echo $this->myPosts ?></li>
 				<?php endif; ?>
 				<?php if ($this->params->get('showrecent')) : ?>
