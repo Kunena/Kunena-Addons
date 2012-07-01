@@ -19,7 +19,7 @@ defined('_JEXEC') or die();
 			<?php echo JHTML::_( 'form.token' ); ?>
 
 			<div class="klogin-avatar">
-				<?php if ($this->params->get('showav')) echo  $this->kunenaAvatar( $this->my->id ) ?>
+				<?php if ($this->params->get('showav')) echo  $this->kunenaAvatar( $this->me->userid ) ?>
 			</div>
 			<div class="klogin-middle">
 				<ul>
