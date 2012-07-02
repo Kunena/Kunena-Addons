@@ -19,6 +19,7 @@
 	<languages folder="language">
 		<!-- Transifex alphabetical order -->
 		<language tag="en-GB">en-GB/en-GB.plg_search_kunena.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_search_kunena.sys.ini</language>
 		<language tag="bs-BA">bs-BA/bs-BA.plg_search_kunena.ini</language>
 		<language tag="bg-BG">bg-BG/bg-BG.plg_search_kunena.ini</language>
 		<language tag="ca-ES">ca-ES/ca-ES.plg_search_kunena.ini</language>

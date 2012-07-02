@@ -29,8 +29,9 @@ class PlgSearchKunenaInstallerScript {
 			// Joomla 1.5
 			$query = "SELECT id FROM #__plugins WHERE folder='{$folder}' AND element='{$name}'";
 		}
-		$this->db->setQuery ( $query );
-		$pluginid = $this->db->loadResult ();
+		$db = JFactory::getDbo();
+		$db->setQuery ( $query );
+		$pluginid = $db->loadResult ();
 		if ($pluginid) {
 			$installer = new JInstaller ( );
 			$installer->uninstall ( 'plugin', $pluginid );
