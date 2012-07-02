@@ -18,5 +18,22 @@ class PlgSearchKunenaInstallerScript {
 			if ( JFile::exists("{$path}/{$name}.xml")) JFile::delete("{$path}/{$name}.xml");
 			JFile::move("{$path}/{$name}.j25.xml", "{$path}/{$name}.xml");
 		}
+		$this->uninstallPlugin('search', 'kunenasearch');
+	}
+
+	function uninstallPlugin($folder, $name) {
+		if (version_compare(JVERSION, '1.6','>')) {
+			// Joomla 1.6+
+			$query = "SELECT extension_id FROM #__extensions WHERE type='plugin' AND folder='{$folder}' AND element='{$name}'";
+		} else {
+			// Joomla 1.5
+			$query = "SELECT id FROM #__plugins WHERE folder='{$folder}' AND element='{$name}'";
+		}
+		$this->db->setQuery ( $query );
+		$pluginid = $this->db->loadResult ();
+		if ($pluginid) {
+			$installer = new JInstaller ( );
+			$installer->uninstall ( 'plugin', $pluginid );
+		}
 	}
 }
