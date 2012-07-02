@@ -9,6 +9,7 @@
  **/
 defined ( '_JEXEC' ) or die ();
 ?>
+<li class="klatest-item">
 <ul class="klatest-itemdetails">
 <?php
 if ( $this->params->get ( 'sh_topiciconoravatar' ) == 1 ) : ?>
@@ -51,3 +52,4 @@ if ( $this->params->get ( 'sh_topiciconoravatar' ) == 1 ) : ?>
 <li class="klatest-posttime"><?php $override = $this->params->get ( 'dateformat' ); echo KunenaDate::getInstance($this->topic->last_post_time)->toKunena($override ? $override : 'config_post_dateformat');?></li>
 <?php endif; ?>
 </ul>
+</li>
