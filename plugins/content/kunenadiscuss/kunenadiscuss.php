@@ -330,17 +330,19 @@ class plgContentKunenaDiscuss extends JPlugin {
 		if ( $topic->exists() ) {
 			// If current user doesn't have authorisation to read existing topic, we are done
 			if ($id && !$topic->authorise('read')) {
-				$this->debug ( "showPlugin: {$topic->getError()}" );
+				$this->debug ( "showPlugin: Topic said {$topic->getError()}" );
 				return '';
 			}
 
 			$category = $topic->getCategory();
 
 		} else {
+			$this->debug ( "showPlugin: Let's see what we can do.." );
+
 			// If current user doesn't have authorisation to read category, we are done
 			$category = KunenaForumCategoryHelper::get($catid);
-			if ($category->authorise('read')) {
-				$this->debug ( "showPlugin: {$category->getError()}" );
+			if (!$category->authorise('read')) {
+				$this->debug ( "showPlugin: Category {$catid} said {$category->getError()}" );
 				return '';
 			}
 

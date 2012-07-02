@@ -9,6 +9,7 @@
  **/
 defined ( '_JEXEC' ) or die ();
 ?>
+<li class="klatest-item">
 <ul class="klatest-itemdetails">
 <?php
 if ( $this->params->get ( 'sh_topiciconoravatar' ) == 1 ) : ?>
@@ -22,10 +23,10 @@ if ( $this->params->get ( 'sh_topiciconoravatar' ) == 1 ) : ?>
 <?php endif; ?>
 
 <li class="klatest-subject">
-	<?php echo modKunenaLatest::shortenLink( $this->getTopicLink($this->topic), $this->params->get ( 'titlelength' ) ) ?>
+	<?php echo modKunenaLatest::shortenLink( $this->getTopicLink($this->topic, 'unread'), $this->params->get ( 'titlelength' ) ) ?>
 	<?php
 	if ($this->topic->unread) {
-		echo $this->getTopicLink($this->topic, 'unread', '<sup class="knewchar">(' . JText::_($this->params->get ( 'unreadindicator' )) . ')</sup>');
+		echo '<sup class="knewchar">(' . JText::_($this->params->get ( 'unreadindicator' )) . ')</sup>';
 	}
 	if ($this->params->get ( 'sh_sticky' ) && $this->topic->ordering) {
 		echo $this->getIcon ( 'ktopicsticky', JText::_('MOD_KUNENALATEST_STICKY_TOPIC') );
@@ -51,3 +52,4 @@ if ( $this->params->get ( 'sh_topiciconoravatar' ) == 1 ) : ?>
 <li class="klatest-posttime"><?php $override = $this->params->get ( 'dateformat' ); echo KunenaDate::getInstance($this->topic->last_post_time)->toKunena($override ? $override : 'config_post_dateformat');?></li>
 <?php endif; ?>
 </ul>
+</li>
