@@ -80,17 +80,17 @@ class modKunenaLatest {
 				$mode = 'deleted';
 				break;
 			case 'saidthankyouposts' :
-				$userid = KunenaUserHelper::getMyself()->userid;
+				$userid = -1;
 				$layout = 'posts';
 				$mode = 'mythanks';
 				break;
 			case 'gotthankyouposts' :
-				$userid = KunenaUserHelper::getMyself()->userid;
+				$userid = -1;
 				$layout = 'posts';
 				$mode = 'thankyou';
 				break;
 			case 'userposts' :
-				$userid = KunenaUserHelper::getMyself()->userid;
+				$userid = -1;
 				$layout = 'posts';
 				$mode = 'recent';
 				break;
@@ -101,7 +101,7 @@ class modKunenaLatest {
 		}
 		$this->params->set('layout', $layout);
 		$this->params->set('mode', $mode);
-		$this->params->set('userid', $userid);
+		$this->params->set('user', $userid);
 		$this->params->set('moreuri', "index.php?option=com_kunena&view=topics&layout={$layout}&mode={$mode}".($userid ? "&userid={$userid}" : ''));
 
 		// Set template path to module
