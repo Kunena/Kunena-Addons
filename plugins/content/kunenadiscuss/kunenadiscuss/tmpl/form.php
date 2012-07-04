@@ -26,7 +26,7 @@ defined( '_JEXEC' ) or die ();
 					<?php if(!$this->user->exists() && $this->config->askemail) : ?>
 					<tr>
 						<td><span class="kdiscuss-quick-post-label"><?php echo JText::_('PLG_KUNENADISCUSS_EMAIL') ?></span></td>
-						<td><input type="text" name="email" value="" /></td>
+						<td><input type="text" name="email" value="<?php echo $this->email ?>" /></td>
 					</tr>
 					<?php endif; ?>
 					<tr>
@@ -34,7 +34,7 @@ defined( '_JEXEC' ) or die ();
 						<?php echo JText::_('PLG_KUNENADISCUSS_MESSAGE') ?></span>
 					</tr>
 					<tr>
-						<td colspan="2"><textarea name="message" rows="5" cols="60" class="ktext"></textarea></td>
+						<td colspan="2"><textarea name="message" rows="5" cols="60" class="ktext"><?php echo $this->message ?></textarea></td>
 					</tr>
 					<?php if ($this->hasCaptcha()) : ?>
 					<tr>

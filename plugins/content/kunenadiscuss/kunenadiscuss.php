@@ -355,6 +355,9 @@ class plgContentKunenaDiscuss extends JPlugin {
 			if ($create) {
 				$this->debug ( "showPlugin: First hit, created new topic {$topic_id} into forum" );
 				$topic = $this->createTopic ( $row, $category, $subject );
+				if ($topic === false) {
+					return '';
+				}
 			}
 		}
 
@@ -463,7 +466,9 @@ class plgContentKunenaDiscuss extends JPlugin {
 			}
 		}
 		$this->open = $this->params->get ( 'quickpost_open', false );
-		$this->name = $this->user->getName();
+		$this->name = JRequest::getString ( 'name', $this->user->getName(), 'POST' );
+		$this->email = JRequest::getString ( 'email', null, 'POST' );
+		$this->message = JRequest::getString ( 'message', null, 'POST' );
 		ob_start ();
 		$this->debug ( "showForm: Rendering form" );
 		include (JPATH_ROOT . "/{$this->basepath}/kunenadiscuss/tmpl/form.php");
@@ -536,7 +541,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 			return false;
 		}
 		if ($this->hasCaptcha() && !$this->verifyCaptcha()) {
-			return false;
+			return $this->showForm ( $row, $category, $topic, $subject );
 		}
 		// Create topic if it doesn't exist
 		if (!$topic->exists()) {
@@ -659,7 +664,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 	protected function displayCaptcha() {
 		$captcha = KunenaSpamRecaptcha::getInstance();
 		$result = $captcha->getHtml();
-		return $result;
+		echo $result;
 	}
 
 	protected function verifyCaptcha() {
