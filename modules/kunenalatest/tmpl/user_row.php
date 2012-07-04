@@ -23,10 +23,12 @@ if ( $this->params->get ( 'sh_topiciconoravatar' ) == 1 ) : ?>
 <?php endif; ?>
 
 <li class="klatest-subject">
-	<?php echo modKunenaLatest::shortenLink( $this->getTopicLink($this->topic, 'unread'), $this->params->get ( 'titlelength' ) ) ?>
 	<?php
+	echo modKunenaLatest::shortenLink( $this->getTopicLink($this->topic, 'unread'), $this->params->get ( 'titlelength' ) );
+	if ( $this->params->get ( 'sh_postcount' ) ) echo ' ('.$this->topic->getTotal().' '.JText::_('MOD_KUNENALATEST_MSG').')';
+
 	if ($this->topic->unread) {
-		echo '<sup class="knewchar">(' . JText::_($this->params->get ( 'unreadindicator' )) . ')</sup>';
+		echo ' <sup class="knewchar">(' . JText::_($this->params->get ( 'unreadindicator' )) . ')</sup>';
 	}
 	if ($this->params->get ( 'sh_sticky' ) && $this->topic->ordering) {
 		echo $this->getIcon ( 'ktopicsticky', JText::_('MOD_KUNENALATEST_STICKY_TOPIC') );
