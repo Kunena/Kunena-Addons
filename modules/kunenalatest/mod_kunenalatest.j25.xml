@@ -48,7 +48,7 @@
 		<language tag="lv-LV">lv-LV/lv-LV.mod_kunenalatest.ini</language>
 		<language tag="lt-LT">lt-LT/lt-LT.mod_kunenalatest.ini</language>
 		<!--language tag="mk-MK">mk-MK/mk-MK.mod_kunenalatest.ini</language-->
-		<language tag="nb-NO">nb-NO/b-NO.mod_kunenalatest.ini</language>
+		<language tag="nb-NO">nb-NO/nb-NO.mod_kunenalatest.ini</language>
 		<language tag="fa-IR">fa-IR/fa-IR.mod_kunenalatest.ini</language>
 		<language tag="pl-PL">pl-PL/pl-PL.mod_kunenalatest.ini</language>
 		<!--language tag="pt-BR">pt-BR/pt-BR.mod_kunenalatest.ini</language-->
@@ -69,8 +69,10 @@
 	<config>
 		<fields name="params"  addfieldpath="/administrator/components/com_kunena/libraries/form/fields">
 			<fieldset name="basic">
-				<field name="category_id" type="kunenacategorylist" default="0" none="MOD_KUNENALATEST_PARAM_CATEGORYLIST_NONE" description="MOD_KUNENALATEST_PARAM_CATEGORYLIST_NONE_DESC" label="MOD_KUNENALATEST_PARAM_CATEGORYLIST_NONE"  multiple="true" size="5" />
-				<field name="sh_category_id_in" type="radio" default="0" description="MOD_KUNENALATEST_PARAM_CAT_IDS_IN_DESC" label="MOD_KUNENALATEST_PARAM_CAT_IDS_IN">
+				<field name="category_id" type="kunenacategorylist" default="0" none="MOD_KUNENALATEST_PARAM_CATEGORYLIST_NONE" description="MOD_KUNENALATEST_PARAM_CATEGORYLIST_NONE_DESC" label="MOD_KUNENALATEST_PARAM_CATEGORYLIST_NONE"  multiple="true" size="5">
+					<option value="0">MOD_KUNENALATEST_PARAM_CATEGORYLIST_NONE</option>
+				</field>
+				<field name="sh_category_id_in" type="radio" default="1" description="MOD_KUNENALATEST_PARAM_CAT_IDS_IN_DESC" label="MOD_KUNENALATEST_PARAM_CAT_IDS_IN">
 					<option value="1">MOD_KUNENALATEST_PARAM_SHOW_CATS</option>
 					<option value="0">MOD_KUNENALATEST_PARAM_HIDE_CATS</option>
 				</field>
