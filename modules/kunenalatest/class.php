@@ -21,6 +21,7 @@ class modKunenaLatest {
 
 	function display() {
 		KunenaForum::setup();
+		KunenaFactory::loadLanguage('com_kunena.sys', 'admin');
 		KunenaFactory::loadLanguage();
 		KunenaFactory::loadLanguage('com_kunena.templates');
 
