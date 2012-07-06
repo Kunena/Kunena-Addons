@@ -23,11 +23,12 @@
 		<!-- Transifex alphabetical order -->
 		<language tag="en-GB">en-GB/en-GB.mod_kunenastats.ini</language>
 		<!--language tag="sq-AL">sq-AL/sq-AL.mod_kunenastats.ini</language-->
-		<!--language tag="ar-AA">ar-AA/ar-AA.mod_kunenastats.ini</language-->
+		<language tag="ar-AA">ar-AA/ar-AA.mod_kunenastats.ini</language>
 		<!--language tag="az-AZ">az-AZ/az-AZ.mod_kunenastats.ini</language-->
 		<!--language tag="bs-BA">bs-BA/bs-BA.mod_kunenastats.ini</language-->
 		<language tag="bg-BG">bg-BG/bg-BG.mod_kunenastats.ini</language>
 		<language tag="ca-ES">ca-ES/ca-ES.mod_kunenastats.ini</language>
+		<language tag="cs-CZ">cs-CZ/cs-CZ.mod_kunenastats.ini</language>
 		<language tag="zh-CN">zh-CN/zh-CN.mod_kunenastats.ini</language>
 		<language tag="zh-TW">zh-TW/zh-TW.mod_kunenastats.ini</language>
 		<!--language tag="hr-HR">hr-HR/hr-HR.mod_kunenastats.ini</language-->

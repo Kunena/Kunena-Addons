@@ -20,17 +20,18 @@
 		<!-- Transifex alphabetical order -->
 		<language tag="en-GB">en-GB/en-GB.mod_kunenalogin.ini</language>
 		<!--language tag="sq-AL">sq-AL/sq-AL.mod_kunenalogin.ini</language-->
-		<!--language tag="ar-AA">ar-AA/ar-AA.mod_kunenalogin.ini</language-->
+		<language tag="ar-AA">ar-AA/ar-AA.mod_kunenalogin.ini</language>
 		<!--language tag="az-AZ">az-AZ/az-AZ.mod_kunenalogin.ini</language-->
 		<language tag="bs-BA">bs-BA/bs-BA.mod_kunenalogin.ini</language>
-		<language tag="bg-BG">bg-BG/g-BG.mod_kunenalogin.ini</language>
+		<language tag="bg-BG">bg-BG/bg-BG.mod_kunenalogin.ini</language>
 		<language tag="ca-ES">ca-ES/ca-ES.mod_kunenalogin.ini</language>
+		<language tag="cs-CZ">cs-CZ/cs-CZ.mod_kunenalogin.ini</language>
 		<language tag="zh-CN">zh-CN/zh-CN.mod_kunenalogin.ini</language>
 		<language tag="zh-TW">zh-TW/zh-TW.mod_kunenalogin.ini</language>
 		<!--language tag="hr-HR">hr-HR/hr-HR.mod_kunenalogin.ini</language-->
 		<language tag="da-DK">da-DK/da-DK.mod_kunenalogin.ini</language>
 		<language tag="nl-NL">nl-NL/nl-NL.mod_kunenalogin.ini</language>
-		<!--language tag="et-EE">et-EE/et-EE.mod_kunenalogin.ini</language-->
+		<language tag="et-EE">et-EE/et-EE.mod_kunenalogin.ini</language>
 		<language tag="fi-FI">fi-FI/fi-FI.mod_kunenalogin.ini</language>
 		<language tag="fr-FR">fr-FR/fr-FR.mod_kunenalogin.ini</language>
 		<language tag="de-DE">de-DE/de-DE.mod_kunenalogin.ini</language>
@@ -45,7 +46,7 @@
 		<language tag="nb-NO">nb-NO/nb-NO.mod_kunenalogin.ini</language>
 		<language tag="fa-IR">fa-IR/fa-IR.mod_kunenalogin.ini</language>
 		<language tag="pl-PL">pl-PL/pl-PL.mod_kunenalogin.ini</language>
-		<!--language tag="pt-BR">pt-BR/pt-BR.mod_kunenalogin.ini</language-->
+		<language tag="pt-BR">pt-BR/pt-BR.mod_kunenalogin.ini</language>
 		<!--language tag="pt-PT">pt-PT/pt-PT.mod_kunenalogin.ini</language-->
 		<!--language tag="ro-RO">ro-RO/ro-RO.mod_kunenalogin.ini</language-->
 		<language tag="ru-RU">ru-RU/ru-RU.mod_kunenalogin.ini</language>
