@@ -73,6 +73,9 @@
 		</param>
 		<param name="choosemodel" type="list" default="latest" label="MOD_KUNENALATEST_PARAM_CHOOSE_MODEL" description="MOD_KUNENALATEST_PARAM_CHOOSE_MODEL_DESC">
 			<option value="latesttopics">MOD_KUNENALATEST_SHOW_LATEST_TOPICS</option>
+			<option value="latesttopicsteaser">MOD_KUNENALATEST_SHOW_LATEST_TOPICS_TEASER</option>
+			<option value="latestposts">MOD_KUNENALATEST_SHOW_LATEST_MESSAGES</option>
+			<option value="latestpoststeaser">MOD_KUNENALATEST_SHOW_LATEST_MESSAGES_TEASER</option>
 			<option value="latestposts">MOD_KUNENALATEST_SHOW_LATEST_MESSAGES</option>
 			<option value="noreplies">MOD_KUNENALATEST_SHOW_NO_REPLIES</option>
 			<option value="subscriptions">MOD_KUNENALATEST_SHOW_SUBSCRIPTIONS</option>
