@@ -2,7 +2,7 @@
 <!DOCTYPE install>
 <install version="1.5" type="plugin" group="community" method="upgrade">
 	<name>Kunena Groups</name>
-	<version>2.0.0</version>
+	<version>2.0.1</version>
 	<creationDate>@kunenaversiondate@</creationDate>
 	<author>Kunena Team</author>
 	<authorEmail>admin@kunena.org</authorEmail>
@@ -15,12 +15,15 @@
 	<languages folder="language">
 		<!-- Transifex alphabetical order -->
 		<language tag="en-GB">en-GB/en-GB.plg_community_kunenagroups.ini</language>
+		<language tag="ar-AA">ar-AA/ar-AA.plg_community_kunenagroups.ini</language>
 		<language tag="bg-BG">bg-BG/bg-BG.plg_community_kunenagroups.ini</language>
 		<language tag="ca-ES">ca-ES/ca-ES.plg_community_kunenagroups.ini</language>
+		<language tag="cs-CZ">cs-CZ/cs-CZ.plg_community_kunenagroups.ini</language>
 		<language tag="zh-CN">zh-CN/zh-CN.plg_community_kunenagroups.ini</language>
 		<language tag="zh-TW">zh-TW/zh-TW.plg_community_kunenagroups.ini</language>
 		<language tag="da-DK">da-DK/da-DK.plg_community_kunenagroups.ini</language>
 		<language tag="nl-NL">nl-NL/nl-NL.plg_community_kunenagroups.ini</language>
+		<language tag="et-EE">et-EE/et-EE.plg_community_kunenagroups.ini</language>
 		<language tag="fr-FR">fr-FR/fr-FR.plg_community_kunenagroups.ini</language>
 		<language tag="de-DE">de-DE/de-DE.plg_community_kunenagroups.ini</language>
 		<language tag="el-GR">el-GR/el-GR.plg_community_kunenagroups.ini</language>

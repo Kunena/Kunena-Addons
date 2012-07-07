@@ -2,7 +2,7 @@
 <!DOCTYPE install>
 <install version="1.5.0" type="plugin" group="content" method="upgrade">
 	<name>Content - Kunena Discuss</name>
-	<version>2.0.0</version>
+	<version>2.0.1</version>
 	<creationDate>@kunenaversiondate@</creationDate>
 	<author>Kunena Team</author>
 	<authorEmail>admin@kunena.org</authorEmail>
@@ -27,6 +27,7 @@
 		<language tag="cs-CZ">cs-CZ/cs-CZ.plg_content_kunenadiscuss.ini</language>
 		<language tag="da-DK">da-DK/da-DK.plg_content_kunenadiscuss.ini</language>
 		<language tag="nl-NL">nl-NL/nl-NL.plg_content_kunenadiscuss.ini</language>
+		<language tag="et-EE">et-EE/et-EE.plg_content_kunenadiscuss.ini</language>
 		<language tag="fi-FI">fi-FI/fi-FI.plg_content_kunenadiscuss.ini</language>
 		<language tag="fr-FR">fr-FR/fr-FR.plg_content_kunenadiscuss.ini</language>
 		<language tag="de-DE">de-DE/de-DE.plg_content_kunenadiscuss.ini</language>
