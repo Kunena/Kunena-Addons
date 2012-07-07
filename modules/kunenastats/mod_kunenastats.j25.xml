@@ -24,15 +24,10 @@
 	<languages folder="language">
 		<!-- Transifex alphabetical order -->
 		<language tag="en-GB">en-GB/en-GB.mod_kunenastats.ini</language>
-		<!--language tag="sq-AL">sq-AL/sq-AL.mod_kunenastats.ini</language-->
-		<!--language tag="ar-AA">ar-AA/ar-AA.mod_kunenastats.ini</language-->
-		<!--language tag="az-AZ">az-AZ/az-AZ.mod_kunenastats.ini</language-->
-		<!--language tag="bs-BA">bs-BA/bs-BA.mod_kunenastats.ini</language-->
 		<language tag="bg-BG">bg-BG/bg-BG.mod_kunenastats.ini</language>
 		<language tag="ca-ES">ca-ES/ca-ES.mod_kunenastats.ini</language>
 		<language tag="zh-CN">zh-CN/zh-CN.mod_kunenastats.ini</language>
 		<language tag="zh-TW">zh-TW/zh-TW.mod_kunenastats.ini</language>
-		<!--language tag="hr-HR">hr-HR/hr-HR.mod_kunenastats.ini</language-->
 		<language tag="da-DK">da-DK/da-DK.mod_kunenastats.ini</language>
 		<language tag="nl-NL">nl-NL/nl-NL.mod_kunenastats.ini</language>
 		<language tag="et-EE">et-EE/et-EE.mod_kunenastats.ini</language>
@@ -44,24 +39,16 @@
 		<language tag="hu-HU">hu-HU/hu-HU.mod_kunenastats.ini</language>
 		<language tag="it-IT">it-IT/it-IT.mod_kunenastats.ini</language>
 		<language tag="kz-KZ">kz-KZ/kz-KZ.mod_kunenastats.ini</language>
-		<!--language tag="km-KH">km-KH/km-KH.mod_kunenastats.ini</language-->
 		<language tag="lt-LT">lt-LT/lt-LT.mod_kunenastats.ini</language>
-		<!--language tag="mk-MK">mk-MK/mk-MK.mod_kunenastats.ini</language-->
 		<language tag="nb-NO">nb-NO/nb-NO.mod_kunenastats.ini</language>
 		<language tag="fa-IR">fa-IR/fa-IR.mod_kunenastats.ini</language>
 		<language tag="pl-PL">pl-PL/pl-PL.mod_kunenastats.ini</language>
-		<!--language tag="pt-BR">pt-BR/pt-BR.mod_kunenastats.ini</language-->
-		<!--language tag="pt-PT">pt-PT/pt-PT.mod_kunenastats.ini</language-->
-		<!--language tag="ro-RO">ro-RO/ro-RO.mod_kunenastats.ini</language-->
 		<language tag="ru-RU">ru-RU/ru-RU.mod_kunenastats.ini</language>
-		<!--language tag="sr-YU">sr-YU/sr-YU.mod_kunenastats.ini</language-->
-		<!--language tag="sr-RS">sr-RS/sr-RS.mod_kunenastats.ini</language-->
 		<language tag="es-ES">es-ES/es-ES.mod_kunenastats.ini</language>
 		<language tag="sv-SE">sv-SE/sv-SE.mod_kunenastats.ini</language>
 		<language tag="th-TH">th-TH/th-TH.mod_kunenastats.ini</language>
 		<language tag="ug-CN">ug-CN/ug-CN.mod_kunenastats.ini</language>
 		<language tag="vi-VN">vi-VN/vi-VN.mod_kunenastats.ini</language>
-		<!--language tag="tr-TR">tr-TR/tr-TR.mod_kunenastats.ini</language-->
 	</languages>
 
 	<config>
