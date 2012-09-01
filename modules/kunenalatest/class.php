@@ -101,7 +101,7 @@ class modKunenaLatest {
 		}
 		$this->params->set('layout', $layout);
 		$this->params->set('mode', $mode);
-		$this->params->set('user', $userid);
+		$this->params->set('userid', $userid);
 		$this->params->set('moreuri', "index.php?option=com_kunena&view=topics&layout={$layout}&mode={$mode}".($userid ? "&userid={$userid}" : ''));
 
 		// Set template path to module
