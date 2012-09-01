@@ -505,6 +505,11 @@ class plgContentKunenaDiscuss extends JPlugin {
 	}
 
 	protected function createTopic($row, $category, $subject) {
+		if (!$category->exists()) {
+			$this->debug ( "showPlugin: Topic creation failed: forum category doesn't exist!" );
+			return false;
+		}
+
 		$this->debug ( "showPlugin: Create topic!" );
 
 		$type = $this->params->get('bbcode');
@@ -620,7 +625,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 		}
 
 		if (!empty ( $categoryMap ) && isset ( $categoryMap [$catid] )) {
-			$forumcatid = $categoryMap [$catid];
+			$forumcatid = intval($categoryMap [$catid]);
 			if (!$forumcatid) {
 				$this->debug ( "onPrepareContent.Deny: Category {$catid} was disabled in the category map." );
 				return false;
