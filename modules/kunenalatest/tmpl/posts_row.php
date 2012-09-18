@@ -36,7 +36,7 @@ if ( $this->params->get ( 'sh_topiciconoravatar' ) == 1 ) : ?>
 		echo $this->getIcon ( 'kfavoritestar', JText::_('COM_KUNENA_FAVORITE') );
 	}
 	if ($this->params->get ( 'sh_postcount' )) {
-		JText::sprintf( 'MOD_KUNENALATEST_POST_COUNT', $this->topic->posts);
+		echo JText::sprintf( 'MOD_KUNENALATEST_POST_COUNT', $this->topic->posts);
 	}
 	?>
 </li>
