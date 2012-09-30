@@ -147,6 +147,11 @@
 					<option value="1">MOD_KUNENALATEST_PARAM_VALUE_YES</option>
 					<option value="0">MOD_KUNENALATEST_PARAM_VALUE_NO</option>
 				</field>
+				<field name="subjecttitle" type="radio" default="0" description="MOD_KUNENALATEST_PARAM_SUBJECTTITLE_DESC" label="MOD_KUNENALATEST_PARAM_SUBJECTTITLE">
+					<option value="none">MOD_KUNENALATEST_PARAM_SUBJECTTITLE_NONE</option>
+					<option value="subject_only">MOD_KUNENALATEST_PARAM_SUBJECTTITLE_SUBJECTONLY</option>
+					<option value="body">MOD_KUNENALATEST_PARAM_SUBJECTTITLE_CONTENT</option>
+				</field>
 				<field name="moduleclass_sfx" type="text" default="" description="MOD_KUNENALATEST_PARAM_MODULECLASSSUFFIX_DESC" label="MOD_KUNENALATEST_PARAM_MODULECLASSSUFFIX" />
 			</fieldset>
 		</fields>
