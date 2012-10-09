@@ -18,13 +18,13 @@ if ( $this->params->get ( 'sh_topiciconoravatar' ) == 1 ) : ?>
 </li>
 <?php elseif ( $this->params->get ( 'sh_topiciconoravatar' ) == 0 ) : ?>
 <li class="klatest-topicicon">
-	<?php echo $this->getTopicLink ( $this->topic, 'unread', '[K=TOPIC_ICON]' ) ?>
+	<?php echo $this->getTopicLink ( $this->topic, 'last', '[K=TOPIC_ICON]' ) ?>
 </li>
 <?php endif; ?>
 
 <li class="klatest-subject">
 	<?php
-	echo modKunenaLatest::shortenLink( $this->getTopicLink($this->topic, 'unread'), $this->params->get ( 'titlelength' ) );
+	echo modKunenaLatest::shortenLink( $this->getTopicLink($this->topic, 'last'), $this->params->get ( 'titlelength' ) );
 	if ( $this->params->get ( 'sh_postcount' ) ) echo ' ('.$this->topic->getTotal().' '.JText::_('MOD_KUNENALATEST_MSG').')';
 
 	if ($this->topic->unread) {

@@ -17,7 +17,7 @@ if ( $this->params->get ( 'sh_topiciconoravatar' ) == 1 ) : ?>
 	<?php echo $this->message->getAuthor()->getLink($this->message->getAuthor()->getAvatarImage('', $this->params->get ( 'avatarwidth' ), $this->params->get ( 'avatarheight' ))) ?>
 </li>
 <?php elseif ( $this->params->get ( 'sh_topiciconoravatar' ) == 0 ) : ?>
-<li class="klatest-topicicon"><?php echo $this->getTopicLink ( $this->topic, 'unread', '[K=TOPIC_ICON]' ) ?></li>
+<li class="klatest-topicicon"><?php echo $this->getTopicLink ( $this->topic, 'last', '[K=TOPIC_ICON]' ) ?></li>
 <?php endif; ?>
 
 <li class="klatest-subject">

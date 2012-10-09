@@ -89,7 +89,6 @@ class plgCommunityMyKunena extends CApplications {
 						<a href="<?php echo KunenaRoute::_ ( "index.php?option=com_kunena&view=category&catid={$item->catid}" ); ?>" class="kjcategory"><?php echo $item->getCategory()->displayField('name'); ?></a> <?php echo JText::_('PLG_COMMUNITY_MYKUNENA_POST_ON'); ?>
 						<span class="kjdate"><?php echo version_compare(JVERSION, '1.7','>') ? $postDate->Format ( JText::_ ( 'DATE_FORMAT_LC2' ) ) : $postDate->toFormat ( JText::_('DATE_FORMAT_LC2')) ?></span>
 					</div>
-					</div>
 				</li>
 			<?php endforeach; ?>
 			</ul>
