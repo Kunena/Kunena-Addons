@@ -491,7 +491,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 	}
 
 	protected function updateReference($row, $topic_id) {
-		$query = "UPDATE #__kunenadiscuss SET content_id={$this->_db->quote($row->id)}, thread_id={$this->_db->quote($topic_id)})";
+		$query = "UPDATE #__kunenadiscuss SET content_id={$this->_db->quote($row->id)}, thread_id={$this->_db->quote($topic_id)}";
 		$this->_db->setQuery ( $query );
 		$this->_db->query ();
 		KunenaError::checkDatabaseError ();
