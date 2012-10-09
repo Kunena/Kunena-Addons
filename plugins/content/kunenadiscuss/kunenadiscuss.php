@@ -279,7 +279,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 		// Don't repeat the CSS for each instance of this plugin in a page!
 		if (! self::$includedCss) {
 			$doc = JFactory::getDocument ();
-			$doc->addStyleSheet ( JUri::root() . "/{$this->basepath}/kunenadiscuss/css/discuss.css" );
+			$doc->addStyleSheet (  JUri::root(true) . "/{$this->basepath}/kunenadiscuss/css/discuss.css" );
 			self::$includedCss = true;
 		}
 
