@@ -162,7 +162,7 @@
 			<option value="1">MOD_KUNENALATEST_PARAM_VALUE_YES</option>
 			<option value="0">MOD_KUNENALATEST_PARAM_VALUE_NO</option>
 		</param>
-		<param name="subjecttitle" type="radio" default="1" label="MOD_KUNENALATEST_PARAM_SUBJECTTITLE" description="MOD_KUNENALATEST_PARAM_SUBJECTTITLE_DESC">
+		<param name="subjecttitle" type="radio" default="none" label="MOD_KUNENALATEST_PARAM_SUBJECTTITLE" description="MOD_KUNENALATEST_PARAM_SUBJECTTITLE_DESC">
 			<option value="none">MOD_KUNENALATEST_PARAM_SUBJECTTITLE_NONE</option>
 			<option value="subject_only">MOD_KUNENALATEST_PARAM_SUBJECTTITLE_SUBJECTONLY</option>
 			<option value="body">MOD_KUNENALATEST_PARAM_SUBJECTTITLE_CONTENT</option>

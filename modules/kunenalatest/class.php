@@ -117,10 +117,8 @@ class modKunenaLatest {
 	}
 
 	static public function setSubjectTitle($params, $topic) {
-		$title = '';
-		if ( $params->get('subjecttitle') == 'none' ) {
-			$title = null;
-		} elseif ( $params->get('subjecttitle') == 'subject_only' ) {
+		$title = null;
+		if ( $params->get('subjecttitle') == 'subject_only' ) {
 			$title = $topic->subject;
 		} elseif ( $params->get('subjecttitle') == 'body' ) {
 			$title = $topic->first_post_message;
