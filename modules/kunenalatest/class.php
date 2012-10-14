@@ -15,7 +15,6 @@ class modKunenaLatest {
 	protected $params = null;
 
 	public function __construct($module, $params) {
-		require_once KPATH_SITE . '/lib/kunena.link.class.php';
 		$this->params = $params;
 	}
 
