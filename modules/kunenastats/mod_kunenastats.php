@@ -25,5 +25,3 @@ require_once dirname ( __FILE__ ) . '/class.php';
 $params = ( object ) $params;
 $kstats = new ModuleKunenaStats ( $params );
 $kstats->display ();
-
-
