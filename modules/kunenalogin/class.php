@@ -15,6 +15,7 @@ class ModKunenaLogin {
 	protected $params = null;
 
 	function __construct($module, $params) {
+		require_once (KPATH_SITE . '/lib/kunena.link.class.php');
 		$this->params = $params;
 	}
 
