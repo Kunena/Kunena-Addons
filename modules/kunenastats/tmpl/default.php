@@ -43,6 +43,6 @@ $i=0;
 	</table>
 	<?php endif; ?>
 	<?php if ($this->params->get( 'sh_statslink' )) : ?>
-	<div class="kstats-all"><?php echo CKunenaLink::GetStatsLink(JText::_('MOD_KUNENASTATS_LINK')); ?></div>
+	<div class="kstats-all"><?php echo $this->stats_link ?></div>
 	<?php endif; ?>
 </div>

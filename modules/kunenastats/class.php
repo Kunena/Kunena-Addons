@@ -22,10 +22,10 @@ class ModuleKunenaStats {
 	protected $top = 0;
 
 	public function __construct($params) {
-		require_once KPATH_SITE . '/lib/kunena.link.class.php';
 		$this->params = $params;
 		$this->type = $this->params->get ( 'type', 'general' );
 		$this->items = ( int ) $this->params->get ( 'items', 5 );
+		$this->stats_link = $this->_getStatsLink(JText::_('MOD_KUNENASTATS_LINK'),JText::_('MOD_KUNENASTATS_LINK'));
 
 		KunenaForum::setup();
 	}
@@ -73,7 +73,7 @@ class ModuleKunenaStats {
 				$this->type = 'general';
 				$stats->loadGeneral(true);
 				$this->latestMemberLink = KunenaFactory::getUser(intval($stats->lastUserId))->getLink();
-				$this->userlist = CKunenaLink::GetUserlistLink('', $this->formatLargeNumber($stats->memberCount, 4));
+				$this->userlist = $this->_getUserListLink('', $this->formatLargeNumber($stats->memberCount, 4));
 				$items = $stats;
 		}
 		return $items;
@@ -110,5 +110,17 @@ class ModuleKunenaStats {
 		}
 
 		return $output;
+	}
+
+	protected function _getUserListLink($action, $name, $title = null, $rel = 'nofollow'){
+		$profile = KunenaFactory::getProfile ();
+		$link = $profile->getUserListURL ( $action, true );
+		return "<a href=\"{$link}\" title=\"{$title}\" rel=\"{$rel}\">{$name}</a>";
+	}
+
+	protected function _getStatsLink($name, $title = null, $rel = 'follow') {
+		$link = KunenaRoute::_ ( 'index.php?option=com_kunena&view=stats' );
+
+		return "<a href=\"{$link}\" title=\"{$title}\" rel=\"{$rel}\">{$name}</a>";
 	}
 }
