@@ -115,4 +115,15 @@ class modKunenaLatest {
 	static public function shortenLink($link, $len) {
 		return preg_replace('/>([^<]{'.$len.'})[^<]*</u', '>\1...<', $link);
 	}
+
+	static public function setSubjectTitle($params, $topic) {
+		$title = null;
+		if ( $params->get('subjecttitle') == 'subject_only' ) {
+			$title = $topic->subject;
+		} elseif ( $params->get('subjecttitle') == 'body' ) {
+			$title = $topic->first_post_message;
+		}
+
+		return $title;
+	}
 }
