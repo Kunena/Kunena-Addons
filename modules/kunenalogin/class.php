@@ -75,7 +75,9 @@ class ModKunenaLogin {
 	function getReturnURL() {
 		$itemid = $this->params->get ( $this->type );
 		if ($itemid) {
-			$item = JSite::getMenu ()->getItem ( $itemid );
+			$app = JFactory::getApplication();
+			$menu = $app->getMenu();
+			$item = $menu->getItem ( $itemid );
 			$url = JRoute::_ ( $item->link . '&Itemid=' . $itemid, false );
 		} else {
 			// stay on the same page
