@@ -157,7 +157,7 @@
 			<fieldset
 				name="advanced">
 				<field
-					name="cache"
+					name="owncache"
 					type="list"
 					default="0"
 					label="MOD_KUNENALATEST_PARAM_CACHING_LABEL"
@@ -170,7 +170,7 @@
 				<field
 					name="cache_time"
 					type="text"
-					default="900"
+					default="180"
 					label="MOD_KUNENALATEST_PARAM_CACHE_TIME_LABEL"
 					description="MOD_KUNENALATEST_PARAM_CACHE_TIME_DESC" />
 			</fieldset>

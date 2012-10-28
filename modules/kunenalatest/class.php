@@ -32,12 +32,17 @@ class modKunenaLatest {
 		}
 
 		$me = KunenaFactory::getUser();
+		$caching = $this->params->get ('owncache', 0);
 		$cache = JFactory::getCache('com_kunena', 'output');
 
-		// Force caching for 3 minutes
-		$cache->setLifeTime(180);
-		$hash = md5(serialize($this->params));
-		if ($cache->start("display.{$me->userid}.{$hash}", 'mod_kunenalatest')) return;
+		// Use caching also for registered users.
+		if ($caching) {
+			$cache->setLifeTime($this->params->get ('cache_time', 180));
+			$hash = md5(serialize($this->params));
+			if ($cache->start("display.{$me->userid}.{$hash}", 'mod_kunenalatest')) {
+				return;
+			}
+		}
 
 		// Convert module parameters into topics view parameters
 		$categories = $this->params->get ( 'category_id', 0 );
@@ -108,7 +113,9 @@ class modKunenaLatest {
 
 		// Display topics view
 		KunenaForum::display('topics', $layout, null, $this->params);
-		$cache->end();
+		if ($caching) {
+			$cache->end();
+		}
 	}
 
 	static public function shortenLink($link, $len) {
