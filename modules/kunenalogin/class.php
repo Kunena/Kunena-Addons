@@ -73,12 +73,15 @@ class ModKunenaLogin {
 	}
 
 	function getReturnURL() {
-		$itemid = $this->params->get ( $this->type );
+		$itemid = (int) $this->params->get ( $this->type );
 		if ($itemid) {
 			$app = JFactory::getApplication();
 			$menu = $app->getMenu();
 			$item = $menu->getItem ( $itemid );
-			$url = JRoute::_ ( $item->link . '&Itemid=' . $itemid, false );
+		}
+		if ($item) {
+			// Found existing menu item
+			$url = JRoute::_($item->link . '&Itemid=' . $itemid, false);
 		} else {
 			// stay on the same page
 			$uri = JFactory::getURI ();
