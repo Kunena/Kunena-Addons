@@ -526,7 +526,10 @@ class plgContentKunenaDiscuss extends JPlugin {
 			'subject' => $subject,
 			'message' => $contents,
 		);
-		list ($topic, $message) = $category->newTopic($params, $this->params->get ( 'topic_owner', $row->created_by ));
+		$safefields = array(
+				'category_id' => intval($category->id)
+		);
+		list ($topic, $message) = $category->newTopic($params, $this->params->get ( 'topic_owner', $row->created_by ), $safefields);
 		$message->time = JFactory::getDate(isset($row->publish_up) ? $row->publish_up : 'now')->toUnix();
 
 		$success = $message->save ();
