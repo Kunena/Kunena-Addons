@@ -2,7 +2,7 @@
 <!DOCTYPE install>
 <install version="1.5" type="plugin" group="community" method="upgrade">
 	<name>My Forum Posts</name>
-	<version>2.0.3-DEV</version>
+	<version>2.0.3</version>
 	<creationDate>@kunenaversiondate@</creationDate>
 	<author>Kunena Team</author>
 	<authorEmail>admin@kunena.org</authorEmail>
