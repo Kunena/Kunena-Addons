@@ -53,6 +53,7 @@ class modKunenaLatest {
 		$this->params->set('topics_catselection', $this->params->get ( 'sh_category_id_in', 1 ));
 		$this->params->set('topics_time', $this->params->get ( 'show_list_time', 168 ));
 		$userid = 0;
+		$teaser = 0;
 		switch ( $this->params->get( 'choosemodel' ) ) {
 			case 'latestposts' :
 				$layout = 'posts';
@@ -102,7 +103,19 @@ class modKunenaLatest {
 			default :
 				$layout = 'default';
 				$mode = 'recent';
+				break;
+			case 'latesttopicsteaser' :
+				$layout = 'default';
+				$mode = 'recent';
+				$teaser = 1;
+				break;
+			case 'latestpoststeaser' :
+				$layout = 'posts';
+				$mode = 'recent';
+				$teaser = 1;
+				break;
 		}
+		$this->params->set('teaser',$teaser);
 		$this->params->set('layout', $layout);
 		$this->params->set('mode', $mode);
 		$this->params->set('userid', $userid);
