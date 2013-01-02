@@ -9,7 +9,7 @@
 	<authorUrl>http://www.kunena.org</authorUrl>
 	<copyright>(C) 2008 - 2012 Kunena Team. All rights reserved.</copyright>
 	<license>GNU/GPL</license>
-	<description>PLG_KUNENASEARCH_DESCRIPTION</description>
+	<description>PLG_SEARCH_KUNENA_DESCRIPTION</description>
 
 	<files>
 		<filename plugin="kunena">kunena.php</filename>
@@ -59,15 +59,15 @@
 	</languages>
 
 	<params>
-		<param name="search_limit" type="text" size="5" default="50" label="PLG_KUNENASEARCH_PARAM_SEARCH_LIMIT" description="PLG_KUNENASEARCH_PARAM_SEARCH_LIMIT_DESC"/>
-		<param name="content_limit" type="text" size="5" default="40" label="PLG_KUNENASEARCH_PARAM_CONTENT_LIMIT" description="PLG_KUNENASEARCH_PARAM_CONTENT_LIMIT_DESC"/>
-		<param name="show_bbcode" type="radio" default="1" label="PLG_KUNENASEARCH_PARAM_SHOW_BBCODE" description="PLG_KUNENASEARCH_PARAM_SHOW_BBCODE_DESC">
-			<option value="0">PLG_KUNENASEARCH_OPTION_NO</option>
-			<option value="1">PLG_KUNENASEARCH_OPTION_YES</option>
+		<param name="search_limit" type="text" size="5" default="50" label="PLG_SEARCH_KUNENA_PARAM_SEARCH_LIMIT" description="PLG_SEARCH_KUNENA_PARAM_SEARCH_LIMIT_DESC"/>
+		<param name="content_limit" type="text" size="5" default="40" label="PLG_SEARCH_KUNENA_PARAM_CONTENT_LIMIT" description="PLG_SEARCH_KUNENA_PARAM_CONTENT_LIMIT_DESC"/>
+		<param name="show_bbcode" type="radio" default="1" label="PLG_SEARCH_KUNENA_PARAM_SHOW_BBCODE" description="PLG_SEARCH_KUNENA_PARAM_SHOW_BBCODE_DESC">
+			<option value="0">PLG_SEARCH_KUNENA_OPTION_NO</option>
+			<option value="1">PLG_SEARCH_KUNENA_OPTION_YES</option>
 		</param>
-		<param name="open_new_page" type="radio" default="1" label="PLG_KUNENASEARCH_PARAM_OPEN_NEWPAGE" description="PLG_KUNENASEARCH_PARAM_OPEN_NEWPAGE">
-			<option value="0">PLG_KUNENASEARCH_OPTION_NO</option>
-			<option value="1">PLG_KUNENASEARCH_OPTION_YES</option>
+		<param name="open_new_page" type="radio" default="1" label="PLG_SEARCH_KUNENA_PARAM_OPEN_NEWPAGE" description="PLG_SEARCH_KUNENA_PARAM_OPEN_NEWPAGE">
+			<option value="0">PLG_SEARCH_KUNENA_OPTION_NO</option>
+			<option value="1">PLG_SEARCH_KUNENA_OPTION_YES</option>
 		</param>
 	</params>
 </install>
