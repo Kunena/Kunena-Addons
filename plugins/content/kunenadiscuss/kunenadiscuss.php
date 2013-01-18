@@ -378,7 +378,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 		}
 
 		$linktopic = '';
-		$linktitle = JText::sprintf ( 'PLG_KUNENADISCUSS_DISCUSS_ON_FORUMS', $topic->posts );
+		$linktitle = JText::sprintf ( 'PLG_KUNENADISCUSS_DISCUSS_ON_FORUMS', $topic->getReplies() );
 		if ($topic->exists() && $linkOnly) {
 			$this->debug ( "showPlugin: Displaying only link to the topic" );
 			return JHtml::_('kunenaforum.link', $topic->getUri ($category), $linktitle, $linktitle );
