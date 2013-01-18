@@ -122,12 +122,12 @@ class modKunenaLatest {
 		return preg_replace('/>([^<]{'.$len.'})[^<]*</u', '>\1...<', $link);
 	}
 
-	static public function setSubjectTitle($params, $topic) {
+	static public function setSubjectTitle($view, $message) {
 		$title = null;
-		if ( $params->get('subjecttitle') == 'subject_only' ) {
-			$title = $topic->subject;
-		} elseif ( $params->get('subjecttitle') == 'body' ) {
-			$title = $topic->first_post_message;
+		if ( $view->params->get('subjecttitle') == 'subject_only' ) {
+			$title = $view->escape($view->topic->subject);
+		} elseif ( $view->params->get('subjecttitle') == 'body' ) {
+			$title = KunenaHtmlParser::stripBBCode($message, $view->params->get ( 'titlelength' ));
 		}
 
 		return $title;
