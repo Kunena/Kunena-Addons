@@ -101,7 +101,6 @@
 		<filter token="kunenaversiondate" value="${version.date}" />
 		<filter token="kunenaversionname" value="${xml.versionname}" />
 		<copy file="${project_dir}/mod_kunenalatest.xml" todir="${tmp_dir}" overwrite="true" filtering="true" />
-		<copy file="${project_dir}/mod_kunenalatest.j25.xml" todir="${tmp_dir}" overwrite="true" filtering="true" />
 		<copy file="${project_dir}/README.txt" todir="${tmp_dir}" overwrite="true" filtering="true" />
 		<copy todir="${tmp_dir}/language" overwrite="true" filtering="true" >
 			<fileset dir="${project_dir}/language" />
