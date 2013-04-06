@@ -12,11 +12,11 @@ defined ( '_JEXEC' ) or die ();
 $template = $this->params->get ( 'template', '0' );
 switch ($template) {
 	case "horizontal" :
-		require_once (dirname(__FILE__) . DS . 'horizontal.php');
+		require_once (dirname(__FILE__) . '/horizontal.php');
 		break;
 	case "horizontal2" :
-		require_once (dirname(__FILE__) . DS . 'horizontal2.php');
+		require_once (dirname(__FILE__) . '/horizontal2.php');
 		break;
 	default :
-		require_once (dirname ( __FILE__ ) . DS . 'vertical.php');
+		require_once (dirname ( __FILE__ ) . '/vertical.php');
 }
