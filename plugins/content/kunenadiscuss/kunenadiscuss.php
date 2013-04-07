@@ -51,8 +51,6 @@ class plgContentKunenaDiscuss extends JPlugin {
 		// load Kunena main language file so we can leverage language strings from it
 		KunenaFactory::loadLanguage();
 
-		require_once KPATH_SITE . '/lib/kunena.link.class.php';
-
 		// Initialize plugin
 		parent::__construct ( $subject, $params );
 
