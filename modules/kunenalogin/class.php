@@ -27,7 +27,7 @@ class ModKunenaLogin {
 
 		$this->document = JFactory::getDocument ();
 		$this->me = KunenaFactory::getUser ();
-		$token = JUtility::getToken();
+		$token = JSession::getFormToken();
 
 		// Load CSS only once
 		if (self::$cssadded == false) {
@@ -51,7 +51,7 @@ class ModKunenaLogin {
 		} else {
 			$this->type = 'logout';
 			$this->logout = null;
-			$this->lastvisitDate = new KunenaDate($this->me->lastvisitDate);
+			$this->lastvisitDate = KunenaDate::getInstance($this->me->lastvisitDate);
 			if ($login) {
 				$this->logout = $login->getLogoutURL();
 				$this->recentPosts = JHtml::_('kunenaforum.link', 'index.php?option=com_kunena&view=topics', JText::_ ( 'MOD_KUNENALOGIN_RECENT' ));

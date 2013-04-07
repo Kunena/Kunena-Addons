@@ -33,7 +33,7 @@ defined('_JEXEC') or die();
 		<ul>
 			<li class="kms">
 				<span class="klogin-lasttext"><?php echo JText::_('MOD_KUNENALOGIN_LASTVISIT'); ?></span>
-				<?php echo $this->lastvisitDate->toSpan('date_today', 'ago', 'klogin-lastdate') ?>
+				<?php echo $this->lastvisitDate->toSpan('date_today', 'ago', false, 'klogin-lastdate') ?>
 			</li>
 		</ul>
 	</div>
