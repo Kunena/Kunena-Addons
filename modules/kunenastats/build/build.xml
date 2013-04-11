@@ -6,7 +6,7 @@
  Kunena Statistics Module
  @package Kunena.mod_kunenastats
 
- @copyright (C) 2008 - 2012 Kunena Team. All rights reserved.
+ @copyright (C) 2008 - 2013 Kunena Team. All rights reserved.
  @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
  @link http://www.kunena.org
   
@@ -15,9 +15,9 @@
   any of the build files.
 
   Parameters: (with default values - adjust the directories in Eclispe to your individual setup)
-  	-Dproject_dir=..				(= workspace/mod_kunenasts)
+  	-Dproject_dir=..				(= workspace/mod_kunenastats)
   	-Dpackage_dir=../../packages	(= workspace/packages)
-  	-Dtmp_dir=tmp					(= workspace/mod_kunenalatest/build/tmp)
+  	-Dtmp_dir=tmp					(= workspace/mod_kunenastats/build/tmp)
 -->
 <project name="KunenaStats" default="dist" basedir=".">
 	<description>Ant Build File for Kunena Stats module</description>

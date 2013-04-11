@@ -7,7 +7,7 @@ INTRODUCTION
 
 Kunena Discuss enables your site visitors to discuss your content articles in designated forum categories.
 
-Requirements: Joomla 1.5 / 2.5, Kunena Forum 2.0
+Requirements: Joomla 2.5, Kunena Forum 2.0
 
 END OF README
 =============
