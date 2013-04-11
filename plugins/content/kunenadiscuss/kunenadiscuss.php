@@ -16,7 +16,6 @@ class plgContentKunenaDiscuss extends JPlugin {
 	static $plgDisplay = array ();
 	static $includedCss = false;
 	static $inevent = false;
-	static $j15 = false;
 	protected $basepath = null;
 
 	// *** initialization ***
@@ -28,16 +27,13 @@ class plgContentKunenaDiscuss extends JPlugin {
 		if (! $this->enabled ())
 			return;
 
-		// Store Joomla version
-		self::$j15 = version_compare(JVERSION, '1.6', '<');
-
-		$this->basepath = !self::$j15 ? 'plugins/content/kunenadiscuss' : 'plugins/content';
+		$this->basepath = 'plugins/content/kunenadiscuss';
 
 		// Load plugin language
 		$this->loadLanguage ( 'plg_content_kunenadiscuss', JPATH_ADMINISTRATOR );
 
 		// Kunena detection and version check
-		$minKunenaVersion = '2.0.0-RC2';
+		$minKunenaVersion = '2.0.4';
 		if (!class_exists('KunenaForum') || !KunenaForum::isCompatible($minKunenaVersion)) {
 			$this->_app->enqueueMessage( JText::sprintf ( 'PLG_KUNENADISCUSS_DEPENDENCY_FAIL', $minKunenaVersion ) );
 			return;
@@ -92,38 +88,18 @@ class plgContentKunenaDiscuss extends JPlugin {
 		$this->debug ( "Constructor called in " . $this->_app->scope );
 	}
 
-	// Joomla 1.5 support
-	public function onPrepareContent(&$article, &$params, $limitstart=0) {
-		// Make sure that event gets only called once and only in J!1.5
-		if (self::$inevent || !self::$j15) return;
-		self::$inevent = true;
-		$context = 'com_content.article';
-		$result = $this->prepare($context, $article, $params);
-		self::$inevent = false;
-		return $result;
-	}
-	function onAfterDisplayContent(&$article, &$params, $limitstart=0) {
-		// Make sure that event gets only called once and only in J!1.5
-		if (self::$inevent || !self::$j15) return;
-		self::$inevent = true;
-		$context = 'com_content.article';
-		$result = $this->display($context, $article, $params);
-		self::$inevent = false;
-		return $result;
-	}
-
-	// Joomla 1.6+ support
+	// Joomla 2.5+ support
 	public function onContentBeforeDisplay($context, &$article, &$params, $limitstart=0) {
-		// Make sure that event gets only called once and only in J!1.6+
-		if (self::$inevent || self::$j15) return;
+		// Make sure that event gets only called once and only in J!2.5+
+		if (self::$inevent) return;
 		self::$inevent = true;
 		$result = $this->prepare($context, $article, $params);
 		self::$inevent = false;
 		return $result;
 	}
 	public function onContentAfterDisplay($context, &$article, &$params, $limitstart=0) {
-		// Make sure that event gets only called once and only in J!1.6+
-		if (self::$inevent || self::$j15) return;
+		// Make sure that event gets only called once and only in J!2.5+
+		if (self::$inevent) return;
 		self::$inevent = true;
 		$result = $this->display($context, $article, $params);
 		self::$inevent = false;
