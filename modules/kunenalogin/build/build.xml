@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project>
-	<!--
-		Kunena ant build file @version $Id: build.xml 2260 2010-04-13
-		13:14:32Z mahagr $ Kunena Login Module @package Kunena login
-		@copyright Copyright (C) 2008 - 2010 Kunena Team. All rights reserved.
-		@license GNU General Public License
-		<http://www.gnu.org/copyleft/gpl.html> @link http://www.kunena.com The
-		following parameters can be defined inside the Eclipse build task as
-		Arguments. They allow the build file to be platform independent as not
-		path information resides within any of the build files. Parameters:
-		(with default values - adjust the directories in Eclispe to your
-		individual setup) -Dproject_dir=.. (= workspace/mod_kunenalogin)
-		-Dpackage_dir=../../packages (= workspace/packages) -Dtmp_dir=tmp (=
-		workspace/mod_kunenalogin/build/tmp)
-	-->
+<!--
+  Kunena ant build file
+
+  @version      $Id$
+  Kunena Login Module
+  @package Kunena login
+  @copyright	Copyright (C) 2008 - 2013 Kunena Team. All rights reserved.
+  @license		GNU General Public License <http://www.gnu.org/copyleft/gpl.html>
+  @link			http://www.kunena.org
+  
+  The following parameters can be defined inside the Eclipse build task as Arguments. They
+  allow the build file to be platform independent as not path information resides within
+  any of the build files.
+
+  Parameters: (with default values - adjust the directories in Eclispe to your individual setup)
+  	-Dproject_dir=..				(= workspace/mod_kunenalogin)
+  	-Dpackage_dir=../../packages	(= workspace/packages)
+  	-Dtmp_dir=tmp					(= workspace/mod_kunenalogin/build/tmp)
+-->
 <project name="KunenaLogin" default="dist" basedir=".">
 	<description>Ant Build File for Kunena Login Module</description>
 	<condition property="project_dir" value="..">
