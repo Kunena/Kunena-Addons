@@ -352,12 +352,13 @@ class plgContentKunenaDiscuss extends JPlugin {
 		}
 
 		$linktopic = '';
-		$linktitle = JText::sprintf ( 'PLG_KUNENADISCUSS_DISCUSS_ON_FORUMS', $topic->getReplies() );
 		if ($topic->exists() && $linkOnly) {
 			$this->debug ( "showPlugin: Displaying only link to the topic" );
+			$linktitle = JText::sprintf ( 'PLG_KUNENADISCUSS_DISCUSS_ON_FORUMS', $topic->getReplies() );
 			return JHtml::_('kunenaforum.link', $topic->getUri ($category), $linktitle, $linktitle );
 		} elseif ( $topic->exists() && !$plgShowForm ) {
 			$this->debug ( "showPlugin: Displaying link to the topic because the form is disabled" );
+			$linktitle = JText::sprintf ( 'PLG_KUNENADISCUSS_DISCUSS_ON_FORUMS', $topic->getReplies() );
 			$linktopic = JHtml::_('kunenaforum.link', $topic->getUri ($category), $linktitle, $linktitle );
 		} elseif ( !$topic->exists() && !$plgShowForm ) {
 			$linktopic = JText::_('PLG_KUNENADISCUSS_NEW_TOPIC_NOT_CREATED');
@@ -385,7 +386,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 		$content = $this->showTopic ( $category, $topic, $linktopic );
 
 		if (!$content && !$quickPost) {
-			return '';
+			return $linktopic;
 		}
 
 		if ($formLocation) {
