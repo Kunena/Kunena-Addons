@@ -21,10 +21,9 @@ if (!KunenaForum::enabled()) {
 	return;
 }
 
-require_once( dirname(__FILE__) . '/class.php' );
+require_once __DIR__ . '/class.php';
 
-$params = ( object ) $params;
-$module = ( object ) $module;
-
-$instance = new modKunenaSearch ( $module, $params );
-$instance->display ();
+/** @var stdClass $module */
+/** @var JRegistry $params */
+$instance = new ModuleKunenaSearch($module, $params);
+$instance->display();

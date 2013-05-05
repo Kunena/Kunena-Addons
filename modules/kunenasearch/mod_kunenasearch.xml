@@ -10,7 +10,7 @@
 	<copyright>(C) 2008 - 2013 Kunena Team. All rights reserved.</copyright>
 	<license>GNU/GPL</license>
 	<description>MOD_KUNENASEARCH_DESCRIPTION</description>
-	
+
 	<scriptfile>install.script.php</scriptfile>
 	<files>
 		<filename module="mod_kunenasearch">mod_kunenasearch.php</filename>
@@ -64,16 +64,33 @@
 					<option value="bottom">MOD_KUNENASEARCH_BOTTOM</option>
 				</field>
 				<field name="ksearch_button_txt" type="text" default="Search" label="MOD_KUNENASEARCH_SEARCHBUTTON_TEXT" description="MOD_KUNENASEARCH_SEARCHBUTTON_TEXT_DESC" />
-				<field name="@spacer" type="spacer" default="" label="" description="" />
-				<field name="moduleclass_sfx" type="text" default="" label="MOD_KUNENASEARCH_PARAMMODULECLASSSUFFIX" description="MOD_KUNENASEARCH_PARAMMODULECLASSSUFFIX_DESC" />
 			</fieldset>
-				
-			<fieldset group="advanced">
-				<field name="cache" type="list" default="1" label="MOD_KUNENASEARCH_CACHING" description="MOD_KUNENASEARCH_CACHING_DESC">
-					<option value="1">MOD_KUNENASEARCH_CACHING_GLOBAL</option>
-					<option value="0">MOD_KUNENASEARCH_CACHING_DISABLED</option>
+
+			<fieldset name="advanced">
+				<field
+						name="moduleclass_sfx"
+						type="text"
+						label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+						description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+
+				<field
+						name="owncache"
+						type="list"
+						default="1"
+						label="COM_MODULES_FIELD_CACHING_LABEL"
+						description="COM_MODULES_FIELD_CACHING_DESC">
+					<option
+							value="1">JGLOBAL_USE_GLOBAL</option>
+					<option
+							value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
 				</field>
-				<field name="cache_time" type="text" default="900" label="MOD_KUNENASEARCH_CACHING_TIME" description="MOD_KUNENASEARCH_CACHING_TIME_DESC" />
+
+				<field
+						name="cache_time"
+						type="text"
+						default="180"
+						label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+						description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
 			</fieldset>
 		</fields>
 	</config>

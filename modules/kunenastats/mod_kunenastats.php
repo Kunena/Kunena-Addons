@@ -20,8 +20,11 @@ if (!KunenaForum::enabled()) {
 	echo JText::_('MOD_KUNENASTATS_KUNENA_OFFLINE');
 	return;
 }
-require_once dirname ( __FILE__ ) . '/class.php';
 
-$params = ( object ) $params;
-$kstats = new ModuleKunenaStats ( $params );
-$kstats->display ();
+require_once __DIR__ . '/class.php';
+
+/** @var stdClass $module */
+/** @var JRegistry $params */
+$instance = new ModuleKunenaStats($module, $params);
+$instance->display();
+

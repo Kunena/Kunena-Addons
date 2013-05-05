@@ -9,16 +9,52 @@
  **/
 defined ( '_JEXEC' ) or die ();
 
-class ModKunenaLogin {
+/**
+ * Class ModuleKunenaLogin
+ */
+class ModuleKunenaLogin {
 	static protected $cssadded = false;
 
+	/**
+	 * @var stdClass
+	 */
+	protected $module = null;
+	/**
+	 * @var JRegistry
+	 */
 	protected $params = null;
 
-	function __construct($module, $params) {
+	/**
+	 * @param stdClass $module
+	 * @param JRegistry $params
+	 */
+	public function __construct($module, $params) {
+		$this->module = $module;
 		$this->params = $params;
+		$this->document = JFactory::getDocument();
 	}
 
 	function display() {
+		// Load CSS only once
+		if (self::$cssadded !== true) {
+			self::$cssadded = true;
+			$this->document->addStyleSheet(JURI::root(true) . '/modules/mod_kunenalogin/tmpl/css/kunenalogin.css');
+		}
+
+		// Use caching also for registered users if enabled.
+		if ($this->params->get('owncache', 0)) {
+			/** @var $cache JCacheControllerOutput */
+			$cache = JFactory::getCache('com_kunena', 'output');
+
+			$me = KunenaFactory::getUser();
+			$cache->setLifeTime($this->params->get('cache_time', 180));
+			$hash = md5(serialize($this->params));
+			if ($cache->start("display.{$me->userid}.{$hash}", 'mod_kunenalogin')) {
+				return;
+			}
+		}
+
+		// Initialize Kunena and load language files.
 		KunenaForum::setup();
 		KunenaFactory::loadLanguage();
 		KunenaFactory::loadLanguage('com_kunena.templates');
@@ -28,15 +64,6 @@ class ModKunenaLogin {
 		$this->document = JFactory::getDocument ();
 		$this->me = KunenaFactory::getUser ();
 		$token = JSession::getFormToken();
-
-		// Load CSS only once
-		if (self::$cssadded == false) {
-			$this->document->addStyleSheet ( JURI::root (true) . '/modules/mod_kunenalogin/tmpl/css/kunenalogin.css' );
-			self::$cssadded = true;
-		}
-
-		$cache = JFactory::getCache('com_kunena', 'output');
-		if ($cache->start("{$this->me->userid}.$token", 'mod_kunenalogin')) return;
 
 		$login = KunenaLogin::getInstance();
 		if (!$this->me->exists()) {
@@ -69,7 +96,10 @@ class ModKunenaLogin {
 		$this->return = $this->getReturnURL ();
 
 		require JModuleHelper::getLayoutPath ( 'mod_kunenalogin' );
-		$cache->end();
+
+		if (isset($cache)) {
+			$cache->end();
+		}
 	}
 
 	function getReturnURL() {
