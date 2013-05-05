@@ -48,7 +48,7 @@
 		<language tag="ug-CN">ug-CN/ug-CN.mod_kunenalogin.ini</language>
 		<language tag="vi-VN">vi-VN/vi-VN.mod_kunenalogin.ini</language>
 	</languages>
-	
+
 	<config>
 		<fields name="params">
 			<fieldset name="basic">
@@ -84,7 +84,7 @@
 					default="128px" description="MOD_KUNENALOGIN_AVATAR_WIDTH_DESC" />
 				<field name="avatar_h" type="text" label="MOD_KUNENALOGIN_AVATAR_HEIGHT"
 					default="128px" description="MOD_KUNENALOGIN_AVATAR_HEIGHT_DESC" />
-		
+
 				<field name="showprofile" type="radio" default="1"
 					label="MOD_KUNENALOGIN_MYPROFILE" description="MOD_KUNENALOGIN_MYPROFILE_DESC">
 					<option value="0">MOD_KUNENALOGIN_HIDE</option>
@@ -107,12 +107,30 @@
 				</field>
 			</fieldset>
 			<fieldset name="advanced">
-				<field name="cache" type="list" default="1"
-					label="MOD_KUNENALOGIN_CACHING" description="MOD_KUNENALOGIN_CACHING_DESC">
-					<option value="0">MOD_KUNENALOGIN_NEVER</option>
+				<field
+						name="moduleclass_sfx"
+						type="text"
+						label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+						description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+
+				<field
+						name="owncache"
+						type="list"
+						default="1"
+						label="COM_MODULES_FIELD_CACHING_LABEL"
+						description="COM_MODULES_FIELD_CACHING_DESC">
+					<option
+							value="1">JGLOBAL_USE_GLOBAL</option>
+					<option
+							value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
 				</field>
-				<field name="moduleclass_sfx" type="text" default=""
-					label="MOD_KUNENALOGIN_CLASS_SUFFIX" description="MOD_KUNENALOGIN_CLASS_SUFFIX_DESC" />
+
+				<field
+						name="cache_time"
+						type="text"
+						default="180"
+						label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+						description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
 			</fieldset>
 		</fields>
 	</config>

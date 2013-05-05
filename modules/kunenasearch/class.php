@@ -9,21 +9,49 @@
  **/
 defined ( '_JEXEC' ) or die ();
 
-class modKunenaSearch {
+/**
+ * Class ModuleKunenaSearch
+ */
+class ModuleKunenaSearch {
 	static protected $cssadded = false;
 
+	/**
+	 * @var stdClass
+	 */
+	protected $module = null;
+	/**
+	 * @var JRegistry
+	 */
 	protected $params = null;
 
+	/**
+	 * @param stdClass $module
+	 * @param JRegistry $params
+	 */
 	public function __construct($module, $params) {
-		$this->document = JFactory::getDocument ();
+		$this->module = $module;
 		$this->params = $params;
+		$this->document = JFactory::getDocument();
 	}
 
 	public function display() {
 		// Load CSS only once
-		if (self::$cssadded == false) {
-			$this->document->addStyleSheet ( JURI::root (true) . '/modules/mod_kunenasearch/tmpl/css/kunenasearch.css' );
+		if (self::$cssadded !== true) {
 			self::$cssadded = true;
+			$this->document->addStyleSheet(JURI::root (true) . '/modules/mod_kunenasearch/tmpl/css/kunenasearch.css');
+		}
+
+		// Use caching also for registered users if enabled.
+		if ($this->params->get('owncache', 0)) {
+			/** @var $cache JCacheControllerOutput */
+			$cache = JFactory::getCache('com_kunena', 'output');
+
+			$me = KunenaFactory::getUser();
+			$cache->setLifeTime($this->params->get('cache_time', 180));
+			$hash = md5(serialize($this->params));
+			if ($cache->start("display.{$me->userid}.{$hash}", 'mod_kunenalatest')) {
+				return;
+			}
 		}
 
 		$this->ksearch_button			= $this->params->get('ksearch_button', '');
@@ -36,5 +64,9 @@ class modKunenaSearch {
 		$this->url						= KunenaRoute::_('index.php?option=com_kunena');
 
 		require(JModuleHelper::getLayoutPath('mod_kunenasearch'));
+
+		if (isset($cache)) {
+			$cache->end();
+		}
 	}
 }

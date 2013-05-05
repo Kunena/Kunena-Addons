@@ -9,10 +9,21 @@
  **/
 defined ( '_JEXEC' ) or die ();
 
+/**
+ * Class ModuleKunenaStats
+ */
 class ModuleKunenaStats {
 	static protected $cssadded = false;
 
+	/**
+	 * @var stdClass
+	 */
+	protected $module = null;
+	/**
+	 * @var JRegistry
+	 */
 	protected $params = null;
+
 	protected $api = null;
 	protected $type = null;
 	protected $items = 0;
@@ -21,22 +32,46 @@ class ModuleKunenaStats {
 	protected $valueHeader = '';
 	protected $top = 0;
 
-	public function __construct($params) {
+	/**
+	 * @param stdClass $module
+	 * @param JRegistry $params
+	 */
+	public function __construct($module, $params) {
+		$this->module = $module;
 		$this->params = $params;
-		$this->type = $this->params->get ( 'type', 'general' );
-		$this->items = ( int ) $this->params->get ( 'items', 5 );
-		$this->stats_link = $this->_getStatsLink(JText::_('MOD_KUNENASTATS_LINK'),JText::_('MOD_KUNENASTATS_LINK'));
+		$this->document = JFactory::getDocument();
+
+		$this->type = $this->params->get('type', 'general');
+		$this->items = (int) $this->params->get('items', 5);
+		$this->stats_link = $this->_getStatsLink(JText::_('MOD_KUNENASTATS_LINK'), JText::_('MOD_KUNENASTATS_LINK'));
 
 		KunenaForum::setup();
 	}
 
 	function display() {
-		$this->stats = $this->getStats ();
-		require JModuleHelper::getLayoutPath ( 'mod_kunenastats' );
-		if (!self::$cssadded) {
+		if (self::$cssadded !== true) {
 			self::$cssadded = true;
-			$this->document = JFactory::getDocument ();
-			$this->document->addStyleSheet ( JURI::root () . 'modules/mod_kunenastats/tmpl/css/kunenastats.css' );
+			$this->document->addStyleSheet(JURI::root() . 'modules/mod_kunenastats/tmpl/css/kunenastats.css');
+		}
+
+		// Use caching also for registered users if enabled.
+		if ($this->params->get('owncache', 0)) {
+			/** @var $cache JCacheControllerOutput */
+			$cache = JFactory::getCache('com_kunena', 'output');
+
+			$me = KunenaFactory::getUser();
+			$cache->setLifeTime($this->params->get('cache_time', 180));
+			$hash = md5(serialize($this->params));
+			if ($cache->start("display.{$me->userid}.{$hash}", 'mod_kunenalatest')) {
+				return;
+			}
+		}
+
+		$this->stats = $this->getStats();
+		require JModuleHelper::getLayoutPath('mod_kunenastats');
+
+		if (isset($cache)) {
+			$cache->end();
 		}
 	}
 
