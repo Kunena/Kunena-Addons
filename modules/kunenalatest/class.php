@@ -9,40 +9,56 @@
  **/
 defined ( '_JEXEC' ) or die ();
 
-class modKunenaLatest {
+/**
+ * Class ModuleKunenaLatest
+ */
+class ModuleKunenaLatest {
 	static protected $cssadded = false;
 
+	/**
+	 * @var stdClass
+	 */
+	protected $module = null;
+	/**
+	 * @var JRegistry
+	 */
 	protected $params = null;
 
+	/**
+	 * @param stdClass $module
+	 * @param JRegistry $params
+	 */
 	public function __construct($module, $params) {
+		$this->module = $module;
 		$this->params = $params;
+		$this->document = JFactory::getDocument();
 	}
 
 	function display() {
-		KunenaForum::setup();
-		KunenaFactory::loadLanguage('com_kunena.sys', 'admin');
-		KunenaFactory::loadLanguage();
-		KunenaFactory::loadLanguage('com_kunena.templates');
-
 		// Load CSS only once
-		$this->document = JFactory::getDocument ();
-		if (self::$cssadded == false) {
-			$this->document->addStyleSheet ( JURI::root (true) . '/modules/mod_kunenalatest/tmpl/css/kunenalatest.css' );
+		if (self::$cssadded !== true) {
 			self::$cssadded = true;
+			$this->document->addStyleSheet(JURI::root(true) . '/modules/mod_kunenalatest/tmpl/css/kunenalatest.css');
 		}
 
-		$me = KunenaFactory::getUser();
-		$caching = $this->params->get ('owncache', 0);
-		$cache = JFactory::getCache('com_kunena', 'output');
+		// Use caching also for registered users if enabled.
+		if ($this->params->get('owncache', 0)) {
+			/** @var $cache JCacheControllerOutput */
+			$cache = JFactory::getCache('com_kunena', 'output');
 
-		// Use caching also for registered users.
-		if ($caching) {
-			$cache->setLifeTime($this->params->get ('cache_time', 180));
+			$me = KunenaFactory::getUser();
+			$cache->setLifeTime($this->params->get('cache_time', 180));
 			$hash = md5(serialize($this->params));
 			if ($cache->start("display.{$me->userid}.{$hash}", 'mod_kunenalatest')) {
 				return;
 			}
 		}
+
+		// Initialize Kunena and load language files.
+		KunenaForum::setup();
+		KunenaFactory::loadLanguage('com_kunena.sys', 'admin');
+		KunenaFactory::loadLanguage();
+		KunenaFactory::loadLanguage('com_kunena.templates');
 
 		// Convert module parameters into topics view parameters
 		$categories = $this->params->get ( 'category_id', 0 );
@@ -113,17 +129,30 @@ class modKunenaLatest {
 
 		// Display topics view
 		KunenaForum::display('topics', $layout, null, $this->params);
-		if ($caching) {
+
+		if (isset($cache)) {
 			$cache->end();
 		}
 	}
 
+	/**
+	 * @param string $link
+	 * @param int $len
+	 *
+	 * @return string
+	 */
 	static public function shortenLink($link, $len) {
 		return preg_replace('/>([^<]{'.$len.'})[^<]*</u', '>\1...<', $link);
 	}
 
+	/**
+	 * @param KunenaViewTopics $view
+	 * @param string $message
+	 *
+	 * @return string
+	 */
 	static public function setSubjectTitle($view, $message) {
-		$title = null;
+		$title = '';
 		if ( $view->params->get('subjecttitle') == 'subject_only' ) {
 			$title = $view->escape($view->topic->subject);
 		} elseif ( $view->params->get('subjecttitle') == 'body' ) {
@@ -133,3 +162,8 @@ class modKunenaLatest {
 		return $title;
 	}
 }
+
+/**
+ * Class modKunenaLatest is for backwards compatibility.
+ */
+class modKunenaLatest extends ModuleKunenaLatest {};
