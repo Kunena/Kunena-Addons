@@ -26,13 +26,9 @@ KunenaFactory::loadLanguage('com_kunena.sys', 'admin');
 // Initialize plugin
 jimport ('joomla.html.parameter');
 $app = JFactory::getApplication ();
-if (version_compare(JVERSION, '1.6', '>')) {
-	$app->registerEvent ( 'onContentSearch', 'plgSearchKunena' );
-	$app->registerEvent ( 'onContentSearchAreas', 'plgSearchKunenaAreas' );
-} else {
-	$app->registerEvent ( 'onSearch', 'plgSearchKunena' );
-	$app->registerEvent ( 'onSearchAreas', 'plgSearchKunenaAreas' );
-}
+
+$app->registerEvent ( 'onContentSearch', 'plgSearchKunena' );
+$app->registerEvent ( 'onContentSearchAreas', 'plgSearchKunenaAreas' );
 
 //Then define a function to return an array of search areas.
 function &plgSearchKunenaAreas() {
@@ -54,14 +50,14 @@ function plgSearchKunena($text, $phrase = '', $ordering = '', $areas = null) {
 	}
 
 	$plugin = JPluginHelper::getPlugin ( 'search', 'kunena' );
-	// FIXME: deprecated in J!2.5
-	$pluginParams = new JParameter ( $plugin->params );
+	$pluginParams = new JRegistry();
+	$pluginParams->loadString($plugin->params);
 
 	//And define the parameters. For example like this..
-	$limit = $pluginParams->def ( 'search_limit', 50 );
-	$contentLimit = $pluginParams->def ( 'content_limit', 40 );
-	$bbcode = $pluginParams->def ( 'show_bbcode', 1 );
-	$openInNewPage = $pluginParams->def ( 'open_new_page', 1 );
+	$limit = $pluginParams->get ( 'search_limit', 50 );
+	$contentLimit = $pluginParams->get ( 'content_limit', 40 );
+	$bbcode = $pluginParams->get ( 'show_bbcode', 1 );
+	$openInNewPage = $pluginParams->get ( 'open_new_page', 1 );
 
 	//Use the function trim to delete spaces in front of or at the back of the searching terms
 	$text = trim ( $text );
