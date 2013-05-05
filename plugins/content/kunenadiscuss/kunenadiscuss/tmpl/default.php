@@ -9,6 +9,10 @@
  **/
 defined( '_JEXEC' ) or die ( '' );
 ?>
+<?php if(!$this->me->exists()): ?>
+		<a href="<?php echo JRoute::_('index.php?option=com_users&view=login'); ?>"> <?php echo JText::_('PLG_KUNENADISCUSS_LOGIN_TO_POST_A_MESSAGE'); ?></a>
+<?php endif; ?>
+
 <div class="kdiscuss-title">
 	<?php echo JHtml::_('kunenaforum.link', $this->topic->getUri ($this->category), JText::_('PLG_KUNENADISCUSS_POSTS') ) ?>
 </div>
