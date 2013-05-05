@@ -12,50 +12,11 @@ defined ( '_JEXEC' ) or die ();
 /**
  * Class ModuleKunenaLatest
  */
-class ModuleKunenaLatest {
-	static protected $cssadded = false;
+class ModuleKunenaLatest extends KunenaModule {
+	static protected $css = '/modules/mod_kunenalatest/tmpl/css/kunenalatest.css';
 
-	/**
-	 * @var stdClass
-	 */
-	protected $module = null;
-	/**
-	 * @var JRegistry
-	 */
-	protected $params = null;
-
-	/**
-	 * @param stdClass $module
-	 * @param JRegistry $params
-	 */
-	public function __construct($module, $params) {
-		$this->module = $module;
-		$this->params = $params;
-		$this->document = JFactory::getDocument();
-	}
-
-	function display() {
-		// Load CSS only once
-		if (self::$cssadded !== true) {
-			self::$cssadded = true;
-			$this->document->addStyleSheet(JURI::root(true) . '/modules/mod_kunenalatest/tmpl/css/kunenalatest.css');
-		}
-
-		// Use caching also for registered users if enabled.
-		if ($this->params->get('owncache', 0)) {
-			/** @var $cache JCacheControllerOutput */
-			$cache = JFactory::getCache('com_kunena', 'output');
-
-			$me = KunenaFactory::getUser();
-			$cache->setLifeTime($this->params->get('cache_time', 180));
-			$hash = md5(serialize($this->params));
-			if ($cache->start("display.{$me->userid}.{$hash}", 'mod_kunenalatest')) {
-				return;
-			}
-		}
-
-		// Initialize Kunena and load language files.
-		KunenaForum::setup();
+	protected function _display() {
+		// Load language files.
 		KunenaFactory::loadLanguage('com_kunena.sys', 'admin');
 		KunenaFactory::loadLanguage();
 		KunenaFactory::loadLanguage('com_kunena.templates');
@@ -129,10 +90,6 @@ class ModuleKunenaLatest {
 
 		// Display topics view
 		KunenaForum::display('topics', $layout, null, $this->params);
-
-		if (isset($cache)) {
-			$cache->end();
-		}
 	}
 
 	/**
