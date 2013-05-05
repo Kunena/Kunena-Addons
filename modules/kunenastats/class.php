@@ -12,17 +12,8 @@ defined ( '_JEXEC' ) or die ();
 /**
  * Class ModuleKunenaStats
  */
-class ModuleKunenaStats {
-	static protected $cssadded = false;
-
-	/**
-	 * @var stdClass
-	 */
-	protected $module = null;
-	/**
-	 * @var JRegistry
-	 */
-	protected $params = null;
+class ModuleKunenaStats extends KunenaModule {
+	static protected $css = '/modules/mod_kunenastats/tmpl/css/kunenastats.css';
 
 	protected $api = null;
 	protected $type = null;
@@ -32,47 +23,13 @@ class ModuleKunenaStats {
 	protected $valueHeader = '';
 	protected $top = 0;
 
-	/**
-	 * @param stdClass $module
-	 * @param JRegistry $params
-	 */
-	public function __construct($module, $params) {
-		$this->module = $module;
-		$this->params = $params;
-		$this->document = JFactory::getDocument();
-
+	protected function _display() {
 		$this->type = $this->params->get('type', 'general');
 		$this->items = (int) $this->params->get('items', 5);
 		$this->stats_link = $this->_getStatsLink(JText::_('MOD_KUNENASTATS_LINK'), JText::_('MOD_KUNENASTATS_LINK'));
 
-		KunenaForum::setup();
-	}
-
-	function display() {
-		if (self::$cssadded !== true) {
-			self::$cssadded = true;
-			$this->document->addStyleSheet(JURI::root() . 'modules/mod_kunenastats/tmpl/css/kunenastats.css');
-		}
-
-		// Use caching also for registered users if enabled.
-		if ($this->params->get('owncache', 0)) {
-			/** @var $cache JCacheControllerOutput */
-			$cache = JFactory::getCache('com_kunena', 'output');
-
-			$me = KunenaFactory::getUser();
-			$cache->setLifeTime($this->params->get('cache_time', 180));
-			$hash = md5(serialize($this->params));
-			if ($cache->start("display.{$me->userid}.{$hash}", 'mod_kunenalatest')) {
-				return;
-			}
-		}
-
 		$this->stats = $this->getStats();
 		require JModuleHelper::getLayoutPath('mod_kunenastats');
-
-		if (isset($cache)) {
-			$cache->end();
-		}
 	}
 
 	function getStats() {
