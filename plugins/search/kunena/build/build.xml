@@ -5,7 +5,7 @@
 
   KunenaSearch Plugin
   @package Kunena Search
-  @copyright	Copyright (C) 2008 - 2012 Kunena Team. All rights reserved.  				
+  @copyright	Copyright (C) 2008 - 2013 Kunena Team. All rights reserved.  				
   @license		GNU General Public License <http://www.gnu.org/copyleft/gpl.html>
   @link			http://www.kunena.com
   
@@ -100,7 +100,6 @@
 		<filter token="kunenaversiondate" value="${version.date}" />
 		<filter token="kunenaversionname" value="${xml.versionname}" />
 		<copy file="${project_dir}/kunena.xml" todir="${tmp_dir}" overwrite="true" filtering="true" />
-		<copy file="${project_dir}/kunena.j25.xml" todir="${tmp_dir}" overwrite="true" filtering="true" />
 		<copy file="${project_dir}/README.txt" todir="${tmp_dir}" overwrite="true" filtering="true" />
 		<copy todir="${tmp_dir}/language" overwrite="true" filtering="true" >
 			<fileset dir="${project_dir}/language" />
