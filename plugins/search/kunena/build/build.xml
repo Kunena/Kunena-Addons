@@ -5,10 +5,10 @@
 
   KunenaSearch Plugin
   @package Kunena Search
-  @copyright	Copyright (C) 2008 - 2013 Kunena Team. All rights reserved.  				
+  @copyright	Copyright (C) 2008 - 2013 Kunena Team. All rights reserved.
   @license		GNU General Public License <http://www.gnu.org/copyleft/gpl.html>
   @link			http://www.kunena.com
-  
+
   The following parameters can be defined inside the Eclipse build task as Arguments. They
   allow the build file to be platform independent as not path information resides within
   any of the build files.
@@ -103,7 +103,7 @@
 		<copy file="${project_dir}/README.txt" todir="${tmp_dir}" overwrite="true" filtering="true" />
 		<copy todir="${tmp_dir}/language" overwrite="true" filtering="true" >
 			<fileset dir="${project_dir}/language" />
-		</copy>		
+		</copy>
 	</target>
 
 	<target name="tar" depends="package" if="do.tar">
