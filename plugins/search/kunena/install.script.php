@@ -17,6 +17,7 @@ class PlgSearchKunenaInstallerScript {
 		if (JFile::exists("{$path}/{$name}.j25.xml")) {
 			JFile::delete("{$path}/{$name}.j25.xml");
 		}
+		// Uninstall old version of the plug-in.
 		$this->uninstallPlugin('search', 'kunenasearch');
 	}
 
