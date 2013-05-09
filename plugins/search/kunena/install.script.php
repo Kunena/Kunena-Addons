@@ -24,7 +24,6 @@ class PlgSearchKunenaInstallerScript {
 	function uninstallPlugin($folder, $name) {
 		// Joomla 2.5+
 		$query = "SELECT extension_id FROM #__extensions WHERE type='plugin' AND folder='{$folder}' AND element='{$name}'";
-
 		$db = JFactory::getDbo();
 		$db->setQuery ( $query );
 		$pluginid = $db->loadResult ();

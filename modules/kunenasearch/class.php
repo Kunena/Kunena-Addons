@@ -12,7 +12,7 @@ defined ( '_JEXEC' ) or die ();
 /**
  * Class ModuleKunenaSearch
  */
-class ModuleKunenaSearch {
+class ModuleKunenaSearch extends KunenaModule {
 	static protected $css = '/modules/mod_kunenasearch/tmpl/css/kunenasearch.css';
 
 	protected function _display() {
