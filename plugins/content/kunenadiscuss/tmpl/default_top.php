@@ -9,4 +9,4 @@
  **/
 defined( '_JEXEC' ) or die ( '' );
 
-include dirname (__FILE__) . '/default_left.php';
+include dirname(__FILE__) . '/default_left.php';
