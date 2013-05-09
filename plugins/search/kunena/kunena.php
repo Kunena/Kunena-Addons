@@ -3,14 +3,14 @@
  * Kunena Search Plugin
  * @package Kunena.plg_search_kunena
  *
- * @copyright (C) 2008 - 2012 Kunena Team. All rights reserved.
+ * @copyright (C) 2008 - 2013 Kunena Team. All rights reserved.
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link http://www.kunena.org
  **/
 defined ( '_JEXEC' ) or die ();
 
 // Kunena detection and version check
-$minKunenaVersion = '2.0';
+$minKunenaVersion = '3.0';
 if (!class_exists('KunenaForum') || !KunenaForum::isCompatible($minKunenaVersion)) {
 	return;
 }
@@ -24,13 +24,15 @@ KunenaForum::setup();
 KunenaFactory::loadLanguage('com_kunena.sys', 'admin');
 
 // Initialize plugin
-jimport ('joomla.html.parameter');
-$app = JFactory::getApplication ();
+$app = JFactory::getApplication();
+$app->registerEvent('onContentSearch', 'plgSearchKunena');
+$app->registerEvent('onContentSearchAreas', 'plgSearchKunenaAreas');
 
-$app->registerEvent ( 'onContentSearch', 'plgSearchKunena' );
-$app->registerEvent ( 'onContentSearchAreas', 'plgSearchKunenaAreas' );
-
-//Then define a function to return an array of search areas.
+/**
+ * Function to return an array of search areas.
+ *
+ * @return mixed
+ */
 function &plgSearchKunenaAreas() {
 	static $areas = array();
 	if (empty($areas)) {
@@ -39,35 +41,39 @@ function &plgSearchKunenaAreas() {
 	return $areas;
 }
 
-//Then the real function has to be created. The database connection should be made.
-//The function will be closed with an } at the end of the file.
+/**
+ * @param        $text
+ * @param string $phrase
+ * @param string $ordering
+ * @param null   $areas
+ *
+ * @return array
+ */
 function plgSearchKunena($text, $phrase = '', $ordering = '', $areas = null) {
 	//If the array is not correct, return it:
-	if (is_array ( $areas )) {
-		if (! array_intersect ( $areas, array_keys ( plgSearchKunenaAreas () ) )) {
-			return array ();
-		}
+	if (is_array($areas) && !array_intersect($areas, array_keys(plgSearchKunenaAreas()))) {
+		return array();
 	}
 
-	$plugin = JPluginHelper::getPlugin ( 'search', 'kunena' );
+	$plugin = JPluginHelper::getPlugin('search', 'kunena');
 	$pluginParams = new JRegistry();
 	$pluginParams->loadString($plugin->params);
 
 	//And define the parameters. For example like this..
-	$limit = $pluginParams->get ( 'search_limit', 50 );
-	$contentLimit = $pluginParams->get ( 'content_limit', 40 );
-	$bbcode = $pluginParams->get ( 'show_bbcode', 1 );
-	$openInNewPage = $pluginParams->get ( 'open_new_page', 1 );
+	$limit = $pluginParams->get('search_limit', 50);
+	$contentLimit = $pluginParams->get('content_limit', 40);
+	$bbcode = $pluginParams->get('show_bbcode', 1);
+	$openInNewPage = $pluginParams->get('open_new_page', 1);
 
 	//Use the function trim to delete spaces in front of or at the back of the searching terms
-	$text = trim ( $text );
+	$text = trim($text);
 
 	//Return Array when nothing was filled in
 	if ($text == '') {
 		return array ();
 	}
 
-	$db = JFactory::getDBO ();
+	$db = JFactory::getDbo();
 
 	//After this, you have to add the database part. This will be the most difficult part, because this changes per situation.
 	//In the coding examples later on you will find some of the examples used by Joomla! 1.5 core Search Plugins.
@@ -76,7 +82,7 @@ function plgSearchKunena($text, $phrase = '', $ordering = '', $areas = null) {
 
 		//search exact
 		case 'exact' :
-			$text = $db->Quote ( '%' . $db->getEscaped ( $text, true ) . '%', false );
+			$text = $db->quote('%' . $db->escape($text) . '%', false);
 			$where = "(m.subject LIKE {$text} OR t.message LIKE {$text})";
 			break;
 
@@ -87,7 +93,7 @@ function plgSearchKunena($text, $phrase = '', $ordering = '', $areas = null) {
 			$where = array ();
 			$words = explode ( ' ', $text );
 			foreach ( $words as $word ) {
-				$word = $db->Quote ( '%' . $db->getEscaped ( trim($word), true ) . '%', false );
+				$word = $db->quote('%' . $db->escape(trim($word)) . '%', false);
 				$where [] = "m.subject LIKE {$word} OR t.message LIKE {$word}";
 			}
 			$where = '(' . implode ( ($phrase == 'all' ? ') AND (' : ') OR ('), $where ) . ')';
@@ -124,17 +130,18 @@ function plgSearchKunena($text, $phrase = '', $ordering = '', $areas = null) {
 	list($total, $messages) = KunenaForumMessageHelper::getLatestMessages(false, 0, $limit, $params);
 	$rows = array();
 	foreach ($messages as $message) {
+		/** @var KunenaForumMessage $message */
 		// Function must return: href, title, section, created, text, browsernav
 		$row = new StdClass();
 		$row->id = $message->id;
 		$row->href = $message->getUrl();
-		$row->title = JString::substr ( $message->subject, '0', $contentLimit );
+		$row->title = JString::substr($message->subject, '0', $contentLimit);
 		$row->section = $message->getCategory()->name;
 		$row->created = $message->time;
 		if ($bbcode) {
-			$row->text = KunenaHtmlParser::parseBBCode ( $message->message, $contentLimit );
+			$row->text = KunenaHtmlParser::parseBBCode($message->message, $contentLimit);
 		} else {
-			$row->text = KunenaHtmlParser::stripBBCode ( $message->message, $contentLimit );
+			$row->text = KunenaHtmlParser::stripBBCode($message->message, $contentLimit);
 		}
 		$row->browsernav = $openInNewPage ? 1 : 0;
 		$rows[] = $row;
