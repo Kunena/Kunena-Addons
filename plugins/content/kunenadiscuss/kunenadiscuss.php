@@ -111,7 +111,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 
 		}
 
-		// Make sure that event gets only called once and only in J!2.5+
+		// Make sure that event gets only called once.
 		if (self::$inevent) return '';
 
 		self::$inevent = true;
