@@ -59,28 +59,38 @@ class ModuleKunenaLogin extends KunenaModule {
 		require JModuleHelper::getLayoutPath ( 'mod_kunenalogin' );
 	}
 
-	function getReturnURL() {
-		$itemid = (int) $this->params->get ( $this->type );
+	/**
+	 * @return string
+	 */
+	protected function getReturnURL() {
+		$item = null;
+		$itemid = (int) $this->params->get($this->type);
 		if ($itemid) {
 			$app = JFactory::getApplication();
 			$menu = $app->getMenu();
-			$item = $menu->getItem ( $itemid );
+
+			$item = $menu->getItem($itemid);
+			if ($item && $item->type == 'alias' && isset($item->query['Itemid'])) {
+				$item = $menu->getItem($item->query['Itemid']);
+			}
 		}
-		if ($item) {
+		$url = '';
+		if ($item && $item->type == 'component') {
 			// Found existing menu item
-			$url = JRoute::_($item->link . '&Itemid=' . $itemid, false);
-		} else {
-			// stay on the same page
-			$uri = JFactory::getURI ();
-			$url = $uri->toString ( array ('path', 'query', 'fragment' ) );
+			$url = $item->link . '&Itemid=' . $itemid;
 		}
 
-		return base64_encode ( $url );
+		return base64_encode($url);
 	}
 
-	function kunenaAvatar($userid) {
-		$user = KunenaFactory::getUser ( ( int ) $userid );
-		$avatarlink = $user->getAvatarImage ( '', $this->params->get ( 'avatar_w' ), $this->params->get ( 'avatar_h' ) );
-		return $user->getLink ( $avatarlink );
+	/**
+	 * @param $userid
+	 *
+	 * @return string|null
+	 */
+	protected function kunenaAvatar($userid) {
+		$user = KunenaFactory::getUser((int)$userid);
+		$avatarlink = $user->getAvatarImage('', $this->params->get('avatar_w'), $this->params->get('avatar_h'));
+		return $user->getLink($avatarlink);
 	}
 }
