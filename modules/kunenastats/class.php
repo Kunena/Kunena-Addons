@@ -32,7 +32,7 @@ class ModuleKunenaStats extends KunenaModule {
 		require JModuleHelper::getLayoutPath('mod_kunenastats');
 	}
 
-	function getStats() {
+	protected function getStats() {
 		$stats = KunenaForumStatistics::getInstance ( );
 
 		switch ($this->type) {
