@@ -62,9 +62,13 @@
 				<field name="posttext" type="textarea" cols="30" rows="3"
 					label="MOD_KUNENALOGIN_POST_TEXT" description="MOD_KUNENALOGIN_POST_TEXT_DESC" />
 				<field name="login" type="menuitem" default="" disable="separator"
-					label="MOD_KUNENALOGIN_LOGIN_REDIRECTION_URL" description="MOD_KUNENALOGIN_LOGIN_REDIRECTION_URL_DESC" />
+					label="MOD_KUNENALOGIN_LOGIN_REDIRECTION_URL" description="MOD_KUNENALOGIN_LOGIN_REDIRECTION_URL_DESC">
+				 	<option value="">JDEFAULT</option>
+				</field>
 				<field name="logout" type="menuitem" default="" disable="separator"
-					label="MOD_KUNENALOGIN_LOGOUT_REDIRECTION_URL" description="MOD_KUNENALOGIN_LOGOUT_REDIRECTION_URL_DESC" />
+					label="MOD_KUNENALOGIN_LOGOUT_REDIRECTION_URL" description="MOD_KUNENALOGIN_LOGOUT_REDIRECTION_URL_DESC">
+					<option value="">JDEFAULT</option>
+				</field>
 				<field name="greeting" type="radio" default="1"
 					label="MOD_KUNENALOGIN_GREETING" description="MOD_KUNENALOGIN_GREETING_DESC">
 					<option value="0">MOD_KUNENALOGIN_HIDE</option>
