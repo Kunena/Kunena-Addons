@@ -51,24 +51,6 @@ source_file = modules/kunenastats/language/en-GB/en-GB.mod_kunenastats.sys.ini
 source_lang = en_GB
 minimum_perc = 80
 
-[Kunena.kunena-plugin-community]
-file_filter = plugins/community/kunenagroups/language/<lang>/<lang>.plg_community_kunenagroups.ini
-source_file = plugins/community/kunenagroups/language/en-GB/en-GB.plg_community_kunenagroups.ini
-source_lang = en_GB
-minimum_perc = 80
-
-[Kunena.kunena-plugin-community-menu]
-file_filter = plugins/community/kunenamenu/language/<lang>/<lang>.plg_community_kunenamenu.ini
-source_file = plugins/community/kunenamenu/language/en-GB/en-GB.plg_community_kunenamenu.ini
-source_lang = en_GB
-minimum_perc = 80
-
-[Kunena.kunena-plugin-community-mykunena]
-file_filter = plugins/community/mykunena/language/<lang>/<lang>.plg_community_mykunena.ini
-source_file = plugins/community/mykunena/language/en-GB/en-GB.plg_community_mykunena.ini
-source_lang = en_GB
-minimum_perc = 80
-
 [Kunena.kunena-plugin-content-discuss]
 file_filter = plugins/content/kunenadiscuss/language/<lang>/<lang>.plg_content_kunenadiscuss.ini
 source_file = plugins/content/kunenadiscuss/language/en-GB/en-GB.plg_content_kunenadiscuss.ini
