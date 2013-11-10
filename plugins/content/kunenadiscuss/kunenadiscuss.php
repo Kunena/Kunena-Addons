@@ -686,15 +686,40 @@ class plgContentKunenaDiscuss extends JPlugin {
 			return false;
 		}
 
-		if (!empty ( $categoryMap ) && isset ( $categoryMap [$catid] )) {
-			$forumcatid = intval($categoryMap [$catid]);
-			if (!$forumcatid) {
+		// hack by Gray <www.justphp.net> - category mapping by article's category and its parent category
+		$db = $this->db;
+		$query = $db->getQuery( true );
+		$query->select( $db->quoteName( 'parent_id' ) );
+		$query->from( '#__categories' );
+		$query->where( "id = {$db->quote( $catid )}" );
+		$this->db->setQuery( $query );
+		try {
+			$db->execute();
+		} catch ( Exception $e ) {
+			$this->debug ( "onPrepareContent.Parent IDs: Error executing query - " . $e );
+		}
+		$parent_catid = $db->loadResult(); // parend ID of the article's category
+		$this->debug( "onPrepareContent.Parent category ID is: " . $parent_catid );
+
+		if ( !empty( $categoryMap ) ) { // let's check the mapping
+
+			if ( isset( $categoryMap[ $catid ] ) ) { // 1st check - by article's category
+				$forumcatid = intval( $categoryMap[ $catid ] );
+				$msg = "onPrepareContent.Allow: Category {$catid} is in the category map using Kunena category {$forumcatid}";
+			} else if ( !empty( $parent_catid ) && isset( $categoryMap[ $parent_catid ] ) ) { // 2nd check - by parent category
+				$forumcatid = intval( $categoryMap[ $parent_catid ] );
+				$msg = "onPrepareContent.Allow: Paratent category {$parent_catid} of the article category {$catid} is in the category map using Kunena category {$forumcatid}";
+			}
+				
+			if ( !$forumcatid ) {
 				$this->debug ( "onPrepareContent.Deny: Category {$catid} was disabled in the category map." );
 				return false;
 			}
-			$this->debug ( "onPrepareContent.Allow: Category {$catid} is in the category map using Kunena category {$forumcatid}" );
+			$this->debug( $msg );
 			return $forumcatid;
+
 		}
+		// end hack
 
 		if (!$default) {
 			$this->debug ( "onPrepareContent.Deny: There is no default Kunena category" );
