@@ -570,14 +570,22 @@ class plgContentKunenaDiscuss extends JPlugin {
 			default:
 				$contents= "[article]{$row->id}[/article]";
 		}
+		
+		// hack by Gray <www.justphp.net>
+		$topic_owner = $this->params->get( 'topic_owner', $row->created_by ); // save the ID for later use
+		$user = KunenaUserHelper::get( $topic_owner );
+		$email = $user->email; // get real email
 		$params = array(
+			'email' => $email, // we need to pass email of the topic starter (robot) when 'Require E-mail' option is enabled
 			'subject' => $subject,
 			'message' => $contents,
 		);
 		$safefields = array(
-				'category_id' => intval($category->id)
+			'category_id' => intval( $category->id )
 		);
-		list ($topic, $message) = $category->newTopic($params, $this->params->get ( 'topic_owner', $row->created_by ), $safefields);
+		list( $topic, $message ) = $category->newTopic( $params, $topic_owner, $safefields );
+		// end hack
+
 		/** @var KunenaForumTopic $topic */
 		/** @var KunenaForumMessage $message */
 		$message->time = JFactory::getDate(isset($row->publish_up) ? $row->publish_up : 'now')->toUnix();
