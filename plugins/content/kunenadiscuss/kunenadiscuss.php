@@ -729,7 +729,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 			} else if ( !empty( $parent_catid ) && isset( $categoryMap[ $parent_catid ] ) ) { // 2nd check - by parent category
 				$forumcatid = intval( $categoryMap[ $parent_catid ] );
 				$msg = "onPrepareContent.Allow: "
-					. "Paratent category {$parent_catid} of the article category {$catid} is in the category map using Kunena category {$forumcatid}";
+					. "Parent category {$parent_catid} of the article category {$catid} is in the category map using Kunena category {$forumcatid}";
 			}
 				
 			if ( !$forumcatid ) {
