@@ -335,7 +335,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 		// Initialise some variables
 		$subject = $row->title;
 		if (isset($row->publish_up) && $row->publish_up !='0000-00-00 00:00:00') {
-			$published = JFactory::getDate($row->publish_up)->toUnix(); // take start puglishing date
+			$published = JFactory::getDate($row->publish_up)->toUnix(); // take start publishing date
 		} else {
 			$published = JFactory::getDate($row->created)->toUnix(); // or created date if publish_up is empty
 		}
