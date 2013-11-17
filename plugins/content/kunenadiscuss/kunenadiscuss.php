@@ -258,7 +258,8 @@ class plgContentKunenaDiscuss extends JPlugin {
 						return;
 					}
 				}
-				$this->debug ( "onPrepareContent: Searched for {kunena_discuss:#}: Custom Topic " . ($kunenaTopic ? "{$kunenaTopic} found." : "not found.") );
+				$this->debug ("onPrepareContent: Searched for {kunena_discuss:#}: Custom Topic " 
+					. ($kunenaTopic ? "{$kunenaTopic} found." : "not found."));
 			}
 
 			if ($kunenaCategory || $kunenaTopic) {
@@ -333,7 +334,11 @@ class plgContentKunenaDiscuss extends JPlugin {
 
 		// Initialise some variables
 		$subject = $row->title;
-		$published = JFactory::getDate(isset($row->publish_up) ? $row->publish_up : 'now')->toUnix();
+		if (isset($row->publish_up) && $row->publish_up !='0000-00-00 00:00:00') {
+			$published = JFactory::getDate($row->publish_up)->toUnix(); // take start puglishing date
+		} else {
+			$published = JFactory::getDate($row->created)->toUnix(); // or created date if publish_up is empty
+		}
 		$now = JFactory::getDate()->toUnix();
 
 		if ( $topic->exists() ) {
@@ -585,11 +590,18 @@ class plgContentKunenaDiscuss extends JPlugin {
 		);
 		list( $topic, $message ) = $category->newTopic( $params, $topic_owner, $safefields );
 		// end hack
-
+		
+		// Set time of message published by the plugin in the Unix timestamp format
+		if (isset($row->publish_up) && $row->publish_up !='0000-00-00 00:00:00') {
+			$message->time = JFactory::getDate($row->publish_up)->toUnix(); // start puglishing date of the article
+		} else if (isset($row->created) && $row->created !='0000-00-00 00:00:00') {
+			$message->time = JFactory::getDate($row->created)->toUnix(); // created date of the article
+		} else {
+			$message->time = JFactory::getDate()->toUnix(); // current date and time
+		}
+		
 		/** @var KunenaForumTopic $topic */
 		/** @var KunenaForumMessage $message */
-		$message->time = JFactory::getDate(isset($row->publish_up) ? $row->publish_up : 'now')->toUnix();
-
 		$success = $message->save ();
 		if (! $success) {
 			$this->app->enqueueMessage ( $message->getError (), 'error' );
@@ -716,7 +728,8 @@ class plgContentKunenaDiscuss extends JPlugin {
 				$msg = "onPrepareContent.Allow: Category {$catid} is in the category map using Kunena category {$forumcatid}";
 			} else if ( !empty( $parent_catid ) && isset( $categoryMap[ $parent_catid ] ) ) { // 2nd check - by parent category
 				$forumcatid = intval( $categoryMap[ $parent_catid ] );
-				$msg = "onPrepareContent.Allow: Paratent category {$parent_catid} of the article category {$catid} is in the category map using Kunena category {$forumcatid}";
+				$msg = "onPrepareContent.Allow: "
+					. "Paratent category {$parent_catid} of the article category {$catid} is in the category map using Kunena category {$forumcatid}";
 			}
 				
 			if ( !$forumcatid ) {
