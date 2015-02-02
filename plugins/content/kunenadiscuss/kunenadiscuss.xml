@@ -133,6 +133,14 @@
 					<option value="1">PLG_KUNENADISCUSS_OPTION_YES</option>
 				</field>
 				<field name="show_debug_userids" type="text" default="" description="PLG_KUNENADISCUSS_SHOW_DEBUG_USERIDS_DESC" label="PLG_KUNENADISCUSS_SHOW_DEBUG_USERIDS" />
+				<field name="login_public" type="radio" class="btn-group" default="1" label="PLG_KUNENADISCUSS_SHOW_LOGIN_PUBLIC_USERS" description="PLG_KUNENADISCUSS_SHOW_LOGIN_PUBLIC_USERS_DESC" >
+					<option value="0">PLG_KUNENADISCUSS_OPTION_NO</option>
+					<option value="1">PLG_KUNENADISCUSS_OPTION_YES</option>
+				</field>
+                 <field name="add_article_snippet" type="radio" default="1" description="PLG_KUNENADISCUSS_ADD_SNIPPET_DESC" label="PLG_KUNENADISCUSS_ADD_SNIPPET">
+					<option value="0">PLG_KUNENADISCUSS_OPTION_NO</option>
+					<option value="1">PLG_KUNENADISCUSS_OPTION_YES</option>
+				</field>
 			</fieldset>
 		</fields>
 	</config>
