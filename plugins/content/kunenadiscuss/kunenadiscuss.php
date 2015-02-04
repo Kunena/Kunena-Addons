@@ -137,15 +137,15 @@ class plgContentKunenaDiscuss extends JPlugin {
 		if (self::$inevent || !isset($article->id) || !isset(self::$plgDisplay[$article->id])) return '';
 
 		$this->debug("onAfterDisplayContent: Returning content for article {$article->id}");
-		
+
 		$result = self::$plgDisplay[$article->id];
 			$user = JFactory::getUser();
 			if($user->guest){
-				$login_public =  $this->params->get ( 'login_public', 0 );
+				$login_public =  $this->params->get('login_public', 0);
 				if($login_public){
 					$guestHtml=  "<div class='kunenadiscuss kpublic'>";
-					$guestHtml = $guestHtml. "<div class='kdiscuss-title login-discuss'>Discuss this article</div>";
-					$guestHtml = $guestHtml. "<a class='klogin-to-discuss' href='".JRoute::_('index.php?option=com_users&view=login&Itemid=1988')."' >Log in to comment</a>";
+					$guestHtml = $guestHtml. "<div class='kdiscuss-title login-discuss'>" . JText::_('PLG_KUNENADISCUSS_DISCUSS_THIS_ARTICLE') . "</div>";
+					$guestHtml = $guestHtml. "<a class='klogin-to-discuss' href='".JRoute::_('index.php?option=com_users&view=login&Itemid=1988')."' >" . JText::_('PLG_KUNENADISCUSS_LOG_IN_TO_COMMENT') . "</a>";
 					$guestHtml = $guestHtml. "</div>";
 				$result =  $guestHtml. $result ;
 				}
@@ -275,7 +275,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 			if ($kunenaCategory || $kunenaTopic) {
 				self::$plgDisplay [$article->id] = $this->showPlugin ( $kunenaCategory, $kunenaTopic, $article, $show == 1 );
 			}
-			
+
 		} // end of $ksource!='kunena' check
 	}
 
@@ -381,7 +381,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 				}
 			}
 		}
-	
+
 		// Do we allow answers into the topic?
 		$closeTime = $this->params->get ( 'close_time', 0 ) * 604800; // Weeks in seconds or 0 (forever)
 		if ($closeTime && $topic->exists()) {
@@ -411,15 +411,15 @@ class plgContentKunenaDiscuss extends JPlugin {
 			$linktopic = JText::_('PLG_KUNENADISCUSS_NEW_TOPIC_NOT_CREATED');
 		}
 
-		
+
 		// ************************************************************************
 		// Process the QuickPost form
-		
+
 		$quickPost = '';
 		$canPost = $this->canPost ( $category, $topic );
-		
+
 		if ($canPost && $plgShowForm && (!$closeTime || $closeTime >= $now)) {
-		
+
 			if (JFactory::getUser()->get('guest')) {
 				$this->debug ( "showPlugin: Guest can post: this feature doesn't work well if Joomla caching or Cache Plugin is enabled!" );
 			}
@@ -431,21 +431,21 @@ class plgContentKunenaDiscuss extends JPlugin {
 				$quickPost .= $this->showForm ( $row, $category, $topic, $subject );
 			}
 		}
-		
-		
+
+
 		// This will be used all the way through to tell users how many posts are in the forum.
 		$content = $this->showTopic ( $category, $topic, $linktopic );
 
 		if (!$content && !$quickPost) {
 			return $linktopic;
 		}
-	
+
 		if ($formLocation) {
 			$content = '<div class="kunenadiscuss">' . $content . '<br />' . $quickPost . '</div>';
 		} else {
 			$content = '<div class="kunenadiscuss">' . $quickPost . "<br />" . $content . '</div>';
 		}
-		
+
 		return $content;
 	}
 
@@ -493,7 +493,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 	 * @return string
 	 */
 	protected function showForm($row, KunenaForumCategory $category, KunenaForumTopic $topic, $subject ) {
-		
+
 		$canPost = $this->canPost ( $category, $topic );
 		if (! $canPost) {
 			if (! $this->user->exists()) {
@@ -577,16 +577,16 @@ class plgContentKunenaDiscuss extends JPlugin {
 
 		$this->debug ( "showPlugin: Create topic!" );
 
-                $add_snippet = $this->params->get('add_article_snippet');                             
+                $add_snippet = $this->params->get('add_article_snippet');
                 $textwords = implode(' ', array_slice(explode(' ', $row->fulltext), 0, 10));
 
                 if(empty($textwords))
                 {
                   $textwords = implode(' ', array_slice(explode(' ', $row->introtext), 0, 10));
-                }               
+                }
 
                 $snippet = strip_tags($textwords)."..."."\n\n";
-                
+
 
 		$type = $this->params->get('bbcode');
 		switch ($type) {
@@ -598,7 +598,7 @@ class plgContentKunenaDiscuss extends JPlugin {
                                 $contents = $snippet."[article={$type}]{$row->id}[/article]";
                                 else
 				$contents = "[article={$type}]{$row->id}[/article]";
-                              } 
+                              }
 				 break;
 			default:
                                {
@@ -640,7 +640,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 	 * @return bool|string
 	 */
 	protected function replyTopic($row, KunenaForumCategory $category, KunenaForumTopic $topic, $subject) {
-		
+
 		if (JSession::checkToken() == false) {
 			$this->app->enqueueMessage ( JText::_ ( 'COM_KUNENA_ERROR_TOKEN' ), 'error' );
 			return false;
