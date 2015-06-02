@@ -39,7 +39,7 @@ defined( '_JEXEC' ) or die ();
 					<?php if ($this->hasCaptcha()) : ?>
 					<tr>
 						<td><span class="kdiscuss-quick-post-label"><?php echo JText::_('PLG_KUNENADISCUSS_CAPTCHA') ?></span></td>
-						<td><?php $this->displayCaptcha(); ?></td>
+						<td><div id="dynamic_recaptcha_1"> </div></td>
 					</tr>
 					<?php endif; ?>
 					<tr>
