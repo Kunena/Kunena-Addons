@@ -511,6 +511,12 @@ class plgContentKunenaDiscuss extends JPlugin {
 		$this->name = JRequest::getString ( 'name', $this->user->getName(), 'POST' );
 		$this->email = JRequest::getString ( 'email', null, 'POST' );
 		$this->message = JRequest::getString ( 'message', null, 'POST' );
+
+		if($this->hasCaptcha())
+		{
+			$this->displayCaptcha();
+		}
+
 		ob_start ();
 		$this->debug ( "showForm: Rendering form" );
 		include (__DIR__ . "/tmpl/form.php");
@@ -640,14 +646,15 @@ class plgContentKunenaDiscuss extends JPlugin {
 	 * @return bool|string
 	 */
 	protected function replyTopic($row, KunenaForumCategory $category, KunenaForumTopic $topic, $subject) {
+		$uri = JFactory::getURI ();
 
 		if (JSession::checkToken() == false) {
 			$this->app->enqueueMessage ( JText::_ ( 'COM_KUNENA_ERROR_TOKEN' ), 'error' );
 			return false;
 		}
-		if ($this->hasCaptcha() && !$this->verifyCaptcha()) {
+		/*if ($this->hasCaptcha() && !$this->verifyCaptcha()) {
 			return $this->showForm ( $row, $category, $topic, $subject );
-		}
+		}*/
 		// Create topic if it doesn't exist
 		if (!$topic->exists()) {
 			$topic = $this->createTopic ( $row, $category, $subject );
@@ -658,6 +665,12 @@ class plgContentKunenaDiscuss extends JPlugin {
 			'subject' => $subject,
 			'message' => JRequest::getString ( 'message', null, 'POST' ),
 		);
+
+		if ($this->hasCaptcha() && !$this->verifyCaptcha())
+		{
+			$this->app->redirect ( $uri->toString (), $result );
+		}
+
 		$message = $topic->newReply($params);
 		$success = $message->save ();
 		if (! $success) {
@@ -673,7 +686,6 @@ class plgContentKunenaDiscuss extends JPlugin {
 		}
 
 		// Redirect
-		$uri = JFactory::getURI ();
 		$app = JFactory::getApplication ( 'site' );
 		$app->redirect ( $uri->toString (), $result );
 		return '';
@@ -768,28 +780,76 @@ class plgContentKunenaDiscuss extends JPlugin {
 	}
 
 	/**
+	 * Check if the user will have captcha or not
+	 *
 	 * @return bool
 	 */
-	public function hasCaptcha() {
-		$captcha = KunenaSpamRecaptcha::getInstance();
-		$result = $captcha->enabled();
-		return $result;
-	}
-
-	protected function displayCaptcha() {
-		$captcha = KunenaSpamRecaptcha::getInstance();
-		$result = $captcha->getHtml();
-		echo $result;
+	public function hasCaptcha()
+	{
+		return $this->user->canDoCaptcha();
 	}
 
 	/**
+	 * Display the captcha into the post form
+	 *
+	 * @return string
+	 */
+	protected function displayCaptcha()
+	{
+		if (JPluginHelper::isEnabled('captcha'))
+		{
+			$plugin = JPluginHelper::getPlugin('captcha');
+			$params = new JRegistry($plugin[0]->params);
+			$captcha_pubkey = $params->get('public_key');
+			$catcha_privkey = $params->get('private_key');
+
+			if (!empty($captcha_pubkey) && !empty($catcha_privkey))
+			{
+				JPluginHelper::importPlugin('captcha');
+				$dispatcher = JDispatcher::getInstance();
+				$dispatcher->trigger('onInit', 'dynamic_recaptcha_1');
+			}
+		}
+	}
+
+	/**
+	 * Check if hte captcha given is correct
+	 *
 	 * @return bool
 	 */
-	protected function verifyCaptcha() {
-		$captcha = KunenaSpamRecaptcha::getInstance();
-		$result = $captcha->verify();
-		if (!$result) $this->app->enqueueMessage( $captcha->getError() );
-		return $result;
+	protected function verifyCaptcha()
+	{
+		if (JPluginHelper::isEnabled('captcha') && $this->config->captcha)
+		{
+			$plugin = JPluginHelper::getPlugin('captcha');
+			$params = new JRegistry($plugin[0]->params);
+
+			$captcha_pubkey = $params->get('public_key');
+			$catcha_privkey = $params->get('private_key');
+
+			if (!empty($captcha_pubkey) && !empty($catcha_privkey))
+			{
+				JPluginHelper::importPlugin('captcha');
+				$dispatcher = JDispatcher::getInstance();
+
+				$captcha_response = $this->app->input->getString('g-recaptcha-response');
+
+				if ( !empty($captcha_response) )
+				{
+					// For ReCaptcha API 2.0
+					$res = $dispatcher->trigger('onCheckAnswer', $this->app->input->getString('g-recaptcha-response'));
+				}
+				else
+				{
+					// For ReCaptcha API 1.0
+					$res = $dispatcher->trigger('onCheckAnswer', $this->app->input->getString('recaptcha_response_field'));
+				}
+
+				return $res[0];
+			}
+		}
+
+		return false;
 	}
 
 	protected function createTable() {
