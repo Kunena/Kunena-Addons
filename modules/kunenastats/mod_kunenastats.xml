@@ -2,7 +2,7 @@
 <!DOCTYPE extension>
 <extension type="module" version="1.6.0" client="site" method="upgrade">
 	<name>mod_kunenastats</name>
-	<version>3.0.1</version>
+	<version>4.0.0</version>
 	<creationDate>@kunenaversiondate@</creationDate>
 	<build>@kunenaversionbuild@</build>
 	<author>Kunena Team</author>
