@@ -2,7 +2,7 @@
 <!DOCTYPE extension>
 <extension version="2.5.0" type="plugin" group="content" method="upgrade">
 	<name>plg_content_kunenadiscuss</name>
-	<version>3.0.7</version>
+	<version>4.0.0</version>
 	<creationDate>@kunenaversiondate@</creationDate>
 	<build>@kunenaversionbuild@</build>
 	<author>Kunena Team</author>
@@ -16,7 +16,6 @@
 	<files>
 		<filename plugin="kunenadiscuss">kunenadiscuss.php</filename>
 		<folder>css</folder>
-		<folder>images</folder>
 		<folder>language</folder>
 		<folder>tmpl</folder>
 	</files>

@@ -10,48 +10,39 @@
 defined( '_JEXEC' ) or die ();
 ?>
 <div id="kdiscuss-quick-post<?php echo $row->id ?>" class="kdiscuss-form">
-	<div class="kdiscuss-title"><?php echo JText::_('PLG_KUNENADISCUSS_DISCUSS') ?></div>
+	<div class="panel-heading"><h3><?php echo JText::_('PLG_KUNENADISCUSS_DISCUSS') ?></h3></div>
 	<?php if (isset($this->msg)) : ?>
 		<?php echo $this->msg; ?>
 	<?php else: ?>
-	<form method="post" name="postform">
-		<table>
-			<tr>
-				<td valign="top">
-					<table>
-					<tr>
-						<td><span class="kdiscuss-quick-post-label"><?php echo JText::_('PLG_KUNENADISCUSS_NAME') ?></span></td>
-						<td><input type="text" name="name" value="<?php echo $this->name ?>" <?php if ($this->user->exists()) echo 'disabled="disabled" '; ?>/></td>
-					</tr>
-					<?php if(!$this->user->exists() && $this->config->askemail) : ?>
-					<tr>
-						<td><span class="kdiscuss-quick-post-label"><?php echo JText::_('PLG_KUNENADISCUSS_EMAIL') ?></span></td>
-						<td><input type="text" name="email" value="<?php echo $this->email ?>" /></td>
-					</tr>
-					<?php endif; ?>
-					<tr>
-						<td><span class="kdiscuss-quick-post-label">
-						<?php echo JText::_('PLG_KUNENADISCUSS_MESSAGE') ?></span>
-					</tr>
-					<tr>
-						<td colspan="2"><textarea name="message" rows="5" cols="60" class="ktext"><?php echo $this->message ?></textarea></td>
-					</tr>
-					<?php if ($this->hasCaptcha()) : ?>
-					<tr>
-						<td><span class="kdiscuss-quick-post-label"><?php echo JText::_('PLG_KUNENADISCUSS_CAPTCHA') ?></span></td>
-						<td><div id="dynamic_recaptcha_1"> </div></td>
-					</tr>
-					<?php endif; ?>
-					<tr>
-						<td><input type="submit" class="kbutton" value="<?php echo JText::_('PLG_KUNENADISCUSS_SUBMIT') ?>" /></td>
-					</tr>
-					</table>
-				</td>
-			</tr>
-		</table>
-		<input type="hidden" name="kdiscussContentId" value="<?php echo $row->id ?>" />
-		<?php echo JHTML::_( 'form.token' ); ?>
-	</form>
+		<div class="container">
+			<div class="row">
+				<div class="span6">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<form accept-charset="UTF-8" action="" method="POST" name="postform">
+								<div class="form-group">
+									<label for="name"><?php echo JText::_('PLG_KUNENADISCUSS_NAME') ?></label>
+									<input class="form-control" type="text" name="name" value="<?php echo $this->name ?>" <?php if ($this->user->exists()) echo 'disabled="disabled" '; ?>/>
+								</div>
+								<?php if(!$this->user->exists() && $this->config->askemail) : ?>
+								<div class="form-group">
+									<label for="email"><?php echo JText::_('PLG_KUNENADISCUSS_EMAIL') ?></label>
+									<input class="form-control" type="text" name="email" value="<?php echo $this->email ?>" />
+								</div>
+								<?php endif; ?>
+								<textarea class="form-control counted" name="message" placeholder="<?php echo JText::_('PLG_KUNENADISCUSS_MESSAGE') ?>" rows="5" style="margin-bottom:10px;width:100%"></textarea>
+								<?php if ($this->hasCaptcha()) : ?>
+								<div id="dynamic_recaptcha_1"> </div>
+								<?php endif; ?>
+								<button class="btn btn-info" type="submit"><?php echo JText::_('PLG_KUNENADISCUSS_SUBMIT') ?></button>
+								<input type="hidden" name="kdiscussContentId" value="<?php echo $row->id ?>" />
+								<?php echo JHTML::_( 'form.token' ); ?>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	<?php endif; ?>
 </div>
 
