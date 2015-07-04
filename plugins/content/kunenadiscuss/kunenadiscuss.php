@@ -269,7 +269,8 @@ class plgContentKunenaDiscuss extends JPlugin {
 						return;
 					}
 				}
-				$this->debug ( "onPrepareContent: Searched for {kunena_discuss:#}: Custom Topic " . ($kunenaTopic ? "{$kunenaTopic} found." : "not found.") );
+				$this->debug ("onPrepareContent: Searched for {kunena_discuss:#}: Custom Topic " 
+					. ($kunenaTopic ? "{$kunenaTopic} found." : "not found."));
 			}
 
 			if ($kunenaCategory || $kunenaTopic) {
@@ -345,7 +346,11 @@ class plgContentKunenaDiscuss extends JPlugin {
 
 		// Initialise some variables
 		$subject = $row->title;
-		$published = JFactory::getDate(isset($row->publish_up) ? $row->publish_up : 'now')->toUnix();
+		if (isset($row->publish_up) && $row->publish_up !='0000-00-00 00:00:00') {
+			$published = JFactory::getDate($row->publish_up)->toUnix(); // take start publishing date
+		} else {
+			$published = JFactory::getDate($row->created)->toUnix(); // or created date if publish_up is empty
+		}
 		$now = JFactory::getDate()->toUnix();
 
 		if ( $topic->exists() ) {
@@ -614,18 +619,33 @@ class plgContentKunenaDiscuss extends JPlugin {
 				$contents= "[article]{$row->id}[/article]";
                                }
 		}
+		
+		// hack by Gray <www.justphp.net>
+		$topic_owner = $this->params->get( 'topic_owner', $row->created_by ); // save the ID for later use
+		$user = KunenaUserHelper::get( $topic_owner );
+		$email = $user->email; // get real email
 		$params = array(
+			'email' => $email, // we need to pass email of the topic starter (robot) when 'Require E-mail' option is enabled
 			'subject' => $subject,
 			'message' => $contents,
 		);
 		$safefields = array(
-				'category_id' => intval($category->id)
+			'category_id' => intval( $category->id )
 		);
-		list ($topic, $message) = $category->newTopic($params, $this->params->get ( 'topic_owner', $row->created_by ), $safefields);
+		list( $topic, $message ) = $category->newTopic( $params, $topic_owner, $safefields );
+		// end hack
+		
+		// Set time of message published by the plugin in the Unix timestamp format
+		if (isset($row->publish_up) && $row->publish_up !='0000-00-00 00:00:00') {
+			$message->time = JFactory::getDate($row->publish_up)->toUnix(); // start puglishing date of the article
+		} else if (isset($row->created) && $row->created !='0000-00-00 00:00:00') {
+			$message->time = JFactory::getDate($row->created)->toUnix(); // created date of the article
+		} else {
+			$message->time = JFactory::getDate()->toUnix(); // current date and time
+		}
+		
 		/** @var KunenaForumTopic $topic */
 		/** @var KunenaForumMessage $message */
-		$message->time = JFactory::getDate(isset($row->publish_up) ? $row->publish_up : 'now')->toUnix();
-
 		$success = $message->save ();
 		if (! $success) {
 			$this->app->enqueueMessage ( $message->getError (), 'error' );
@@ -737,15 +757,41 @@ class plgContentKunenaDiscuss extends JPlugin {
 			return false;
 		}
 
-		if (!empty ( $categoryMap ) && isset ( $categoryMap [$catid] )) {
-			$forumcatid = intval($categoryMap [$catid]);
-			if (!$forumcatid) {
+		// hack by Gray <www.justphp.net> - category mapping by article's category and its parent category
+		$db = $this->db;
+		$query = $db->getQuery( true );
+		$query->select( $db->quoteName( 'parent_id' ) );
+		$query->from( '#__categories' );
+		$query->where( "id = {$db->quote( $catid )}" );
+		$this->db->setQuery( $query );
+		try {
+			$db->execute();
+		} catch ( Exception $e ) {
+			$this->debug ( "onPrepareContent.Parent IDs: Error executing query - " . $e );
+		}
+		$parent_catid = $db->loadResult(); // parend ID of the article's category
+		$this->debug( "onPrepareContent.Parent category ID is: " . $parent_catid );
+
+		if ( !empty( $categoryMap ) ) { // let's check the mapping
+
+			if ( isset( $categoryMap[ $catid ] ) ) { // 1st check - by article's category
+				$forumcatid = intval( $categoryMap[ $catid ] );
+				$msg = "onPrepareContent.Allow: Category {$catid} is in the category map using Kunena category {$forumcatid}";
+			} else if ( !empty( $parent_catid ) && isset( $categoryMap[ $parent_catid ] ) ) { // 2nd check - by parent category
+				$forumcatid = intval( $categoryMap[ $parent_catid ] );
+				$msg = "onPrepareContent.Allow: "
+					. "Parent category {$parent_catid} of the article category {$catid} is in the category map using Kunena category {$forumcatid}";
+			}
+				
+			if ( !$forumcatid ) {
 				$this->debug ( "onPrepareContent.Deny: Category {$catid} was disabled in the category map." );
 				return false;
 			}
-			$this->debug ( "onPrepareContent.Allow: Category {$catid} is in the category map using Kunena category {$forumcatid}" );
+			$this->debug( $msg );
 			return $forumcatid;
+
 		}
+		// end hack
 
 		if (!$default) {
 			$this->debug ( "onPrepareContent.Deny: There is no default Kunena category" );
