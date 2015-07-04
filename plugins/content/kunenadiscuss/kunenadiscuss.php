@@ -269,7 +269,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 						return;
 					}
 				}
-				$this->debug ("onPrepareContent: Searched for {kunena_discuss:#}: Custom Topic " 
+				$this->debug ("onPrepareContent: Searched for {kunena_discuss:#}: Custom Topic "
 					. ($kunenaTopic ? "{$kunenaTopic} found." : "not found."));
 			}
 
@@ -619,8 +619,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 				$contents= "[article]{$row->id}[/article]";
                                }
 		}
-		
-		// hack by Gray <www.justphp.net>
+
 		$topic_owner = $this->params->get( 'topic_owner', $row->created_by ); // save the ID for later use
 		$user = KunenaUserHelper::get( $topic_owner );
 		$email = $user->email; // get real email
@@ -633,8 +632,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 			'category_id' => intval( $category->id )
 		);
 		list( $topic, $message ) = $category->newTopic( $params, $topic_owner, $safefields );
-		// end hack
-		
+
 		// Set time of message published by the plugin in the Unix timestamp format
 		if (isset($row->publish_up) && $row->publish_up !='0000-00-00 00:00:00') {
 			$message->time = JFactory::getDate($row->publish_up)->toUnix(); // start puglishing date of the article
@@ -643,7 +641,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 		} else {
 			$message->time = JFactory::getDate()->toUnix(); // current date and time
 		}
-		
+
 		/** @var KunenaForumTopic $topic */
 		/** @var KunenaForumMessage $message */
 		$success = $message->save ();
@@ -757,7 +755,6 @@ class plgContentKunenaDiscuss extends JPlugin {
 			return false;
 		}
 
-		// hack by Gray <www.justphp.net> - category mapping by article's category and its parent category
 		$db = $this->db;
 		$query = $db->getQuery( true );
 		$query->select( $db->quoteName( 'parent_id' ) );
@@ -782,7 +779,7 @@ class plgContentKunenaDiscuss extends JPlugin {
 				$msg = "onPrepareContent.Allow: "
 					. "Parent category {$parent_catid} of the article category {$catid} is in the category map using Kunena category {$forumcatid}";
 			}
-				
+
 			if ( !$forumcatid ) {
 				$this->debug ( "onPrepareContent.Deny: Category {$catid} was disabled in the category map." );
 				return false;
@@ -791,7 +788,6 @@ class plgContentKunenaDiscuss extends JPlugin {
 			return $forumcatid;
 
 		}
-		// end hack
 
 		if (!$default) {
 			$this->debug ( "onPrepareContent.Deny: There is no default Kunena category" );
