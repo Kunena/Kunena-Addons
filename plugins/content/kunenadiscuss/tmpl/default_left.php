@@ -8,6 +8,14 @@
  * @link http://www.kunena.org
  **/
 defined( '_JEXEC' ) or die ( '' );
+$config = KunenaConfig::getInstance();
+
+if ($config->ordering_system == 'mesid')
+{
+	$this->numLink = $this->message->id ;
+} else {
+	$this->numLink = $this->message->replynum +1;
+}
 
 // Do not display first message
 if ($this->message->id == $this->topic->first_post_id) return;
@@ -25,7 +33,7 @@ if ($this->message->hold) return;
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<span><?php echo $this->message->getAuthor()->getLink() . ' ' . JText::_('COM_KUNENA_MESSAGE_REPLIED'); ?></span>
-					<span class="pull-right" style="padding-left: 5px;"><a href="<?php echo $this->message->url; ?>">#<?php echo $this->message->id; ?></a></span>
+					<span class="pull-right" style="padding-left: 5px;"><a href="<?php echo $this->topic->getUri ($this->category) . '#' . $this->message->id; ?>">#<?php echo $this->numLink; ?></a></span>
 					<span class="text-muted pull-right"><?php echo KunenaDate::getInstance($this->message->time)->toKunena('config_post_dateformat') ?></span>
 				</div>
 				<div class="panel-body">
