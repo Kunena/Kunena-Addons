@@ -956,8 +956,16 @@ class plgContentKunenaDiscuss extends JPlugin
 
 			if (isset($categoryMap[$catid]))
 			{ // 1st check - by article's category
-				$forumcatid = intval($categoryMap[$catid]);
-				$msg        = "onPrepareContent.Allow: Category {$catid} is in the category map using Kunena category {$forumcatid}";
+				$forumcatid = intval($categoryMap [$catid]);
+				if (!$forumcatid)
+				{
+					$this->debug("onPrepareContent.Deny: Category {$catid} was disabled in the category map.");
+
+					return false;
+				}
+				$this->debug("onPrepareContent.Allow: Category {$catid} is in the category map using Kunena category {$forumcatid}");
+
+				return $forumcatid;
 			}
 			else
 			{
@@ -966,18 +974,11 @@ class plgContentKunenaDiscuss extends JPlugin
 					$forumcatid = intval($categoryMap[$parent_catid]);
 					$msg        = "onPrepareContent.Allow: "
 						. "Parent category {$parent_catid} of the article category {$catid} is in the category map using Kunena category {$forumcatid}";
+					$this->debug($msg);
+
+					return $forumcatid;
 				}
 			}
-
-			if (!$forumcatid)
-			{
-				$this->debug("onPrepareContent.Deny: Category {$catid} was disabled in the category map.");
-
-				return false;
-			}
-			$this->debug($msg);
-
-			return $forumcatid;
 		}
 
 		if (!$default)
