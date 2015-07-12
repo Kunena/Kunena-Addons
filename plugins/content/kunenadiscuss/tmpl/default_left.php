@@ -9,7 +9,9 @@
  **/
 defined( '_JEXEC' ) or die ( '' );
 $config = KunenaConfig::getInstance();
-$bootstrap = $this->params->get('bootstrap');
+$plugin         = JPluginHelper::getPlugin('content','kunenadiscuss');
+$pluginParams = new JRegistry($plugin->params);
+$bootstrap = $pluginParams->get('bootstrap');
 if ($config->ordering_system == 'mesid')
 {
 	$this->numLink = $this->message->id ;

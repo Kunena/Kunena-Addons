@@ -8,7 +8,9 @@
  * @link http://www.kunena.org
  **/
 defined( '_JEXEC' ) or die ();
-$bootstrap = $this->params->get('bootstrap');
+$plugin         = JPluginHelper::getPlugin('content','kunenadiscuss');
+$pluginParams = new JRegistry($plugin->params);
+$bootstrap = $pluginParams->get('bootstrap');
 ?>
 <div id="kdiscuss-quick-post<?php echo $row->id ?>" class="kdiscuss-form">
 	<div class="panel-heading"><h3><?php echo JText::_('PLG_KUNENADISCUSS_DISCUSS') ?></h3></div>

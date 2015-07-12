@@ -90,7 +90,7 @@
 
 .img-circle {
 	border: 1px solid #ccc;
-	height: 102px;
+	height: auto;
 	width: 102px;
 	margin-left: -40px !important;
 }
