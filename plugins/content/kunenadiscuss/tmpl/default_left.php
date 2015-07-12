@@ -9,12 +9,12 @@
  **/
 defined( '_JEXEC' ) or die ( '' );
 $config = KunenaConfig::getInstance();
-
+$bootstrap = $this->params->get('bootstrap');
 if ($config->ordering_system == 'mesid')
 {
 	$this->numLink = $this->message->id ;
 } else {
-	$this->numLink = $this->message->replynum +1;
+	$this->numLink = $this->message->replynum;
 }
 
 // Do not display first message
@@ -24,12 +24,12 @@ if ($this->message->hold) return;
 
 <div class="container-fluid">
 	<div class="row-fluid">
-		<div class="span1">
+		<div class="<?php echo $bootstrap;?>1">
 			<?php $avatar = $this->message->getAuthor()->getAvatarImage ('img-circle', 120); if ($avatar) : ?>
 				<?php echo $this->message->getAuthor()->getLink($avatar) ?>
 			<?php endif; ?>
 		</div>
-		<div class="span11">
+		<div class="<?php echo $bootstrap;?>11">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<span><?php echo $this->message->getAuthor()->getLink() . ' ' . JText::_('COM_KUNENA_MESSAGE_REPLIED'); ?></span>

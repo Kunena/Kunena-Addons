@@ -8,6 +8,7 @@
  * @link http://www.kunena.org
  **/
 defined( '_JEXEC' ) or die ();
+$bootstrap = $this->params->get('bootstrap');
 ?>
 <div id="kdiscuss-quick-post<?php echo $row->id ?>" class="kdiscuss-form">
 	<div class="panel-heading"><h3><?php echo JText::_('PLG_KUNENADISCUSS_DISCUSS') ?></h3></div>
@@ -16,7 +17,7 @@ defined( '_JEXEC' ) or die ();
 	<?php else: ?>
 		<div class="container">
 			<div class="row">
-				<div class="span6">
+				<div class="<?php echo $bootstrap;?>6">
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<form accept-charset="UTF-8" action="" method="POST" name="postform">
