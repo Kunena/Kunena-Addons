@@ -167,3 +167,8 @@
 .klogin-horiz span.klogin-lastdate {
 	font-weight: normal;
 }
+
+#klogin-username,
+#klogin-passwd {
+	width: auto;
+}
