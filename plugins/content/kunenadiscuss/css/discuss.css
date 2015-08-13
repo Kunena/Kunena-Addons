@@ -93,6 +93,7 @@
 	height: auto;
 	width: 102px;
 	margin-left: -40px !important;
+	max-height: 100px;
 }
 
 i {
