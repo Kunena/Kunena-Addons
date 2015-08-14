@@ -21,12 +21,12 @@ defined( '_JEXEC' ) or die ();
 					<table>
 					<tr>
 						<td><span class="kdiscuss-quick-post-label"><?php echo JText::_('PLG_KUNENADISCUSS_NAME') ?></span></td>
-						<td><input type="text" name="name" value="<?php echo $this->name ?>" <?php if ($this->user->exists()) echo 'disabled="disabled" '; ?>/></td>
+						<td><input type="text" name="name" required="required" value="<?php echo $this->name ?>" <?php if ($this->user->exists()) echo 'disabled="disabled" '; ?>/></td>
 					</tr>
 					<?php if(!$this->user->exists() && $this->config->askemail) : ?>
 					<tr>
 						<td><span class="kdiscuss-quick-post-label"><?php echo JText::_('PLG_KUNENADISCUSS_EMAIL') ?></span></td>
-						<td><input type="text" name="email" value="<?php echo $this->email ?>" /></td>
+						<td><input type="text" name="email" required="required" value="<?php echo $this->email ?>" /></td>
 					</tr>
 					<?php endif; ?>
 					<tr>
@@ -34,7 +34,7 @@ defined( '_JEXEC' ) or die ();
 						<?php echo JText::_('PLG_KUNENADISCUSS_MESSAGE') ?></span>
 					</tr>
 					<tr>
-						<td colspan="2"><textarea name="message" rows="5" cols="60" class="ktext"><?php echo $this->message ?></textarea></td>
+						<td colspan="2"><textarea name="message" rows="5" cols="60" required="required" class="ktext"><?php echo $this->message ?></textarea></td>
 					</tr>
 					<?php if ($this->hasCaptcha()) : ?>
 					<tr>
