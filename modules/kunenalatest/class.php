@@ -118,6 +118,18 @@ class ModuleKunenaLatest extends KunenaModule {
 
 		return $title;
 	}
+
+	static public function getUnreadState()
+	{
+		$user = KunenaFactory::getUser();
+
+		if ($user->exists())
+		{
+			return 'unread';
+		}
+
+		return 'null';
+	}
 }
 
 /**
