@@ -20,7 +20,6 @@ JHTML::_('behavior.formvalidator');
 			<tr>
 				<td valign="top">
 					<table>
-					<!-- ADDED GUEST ALERT-->
 					<?php if(!$this->user->exists()) : ?>
 					<tr>
 						<td></td>
@@ -31,7 +30,6 @@ JHTML::_('behavior.formvalidator');
 						</td>
 					</tr>
 					<?php endif; ?>
-						<!-- END ADDITION -->
 					<tr>
 						<td><span class="kdiscuss-quick-post-label"><?php echo JText::_('PLG_KUNENADISCUSS_NAME') ?></span></td>
 					</tr>
@@ -39,8 +37,10 @@ JHTML::_('behavior.formvalidator');
 						<td><input type="text" name="name" value="<?php echo $this->name ?>" <?php if ($this->user->exists()) echo 'disabled="disabled" '; ?> required/></td>
 					</tr>
 					<?php if(!$this->user->exists() && $this->config->askemail) : ?>
+						<tr>
+							<td><span class="kdiscuss-quick-post-label"><?php echo JText::_('PLG_KUNENADISCUSS_EMAIL') ?></span></td>
+						</tr>
 					<tr>
-						<td><span class="kdiscuss-quick-post-label"><?php echo JText::_('PLG_KUNENADISCUSS_EMAIL') ?></span></td>
 						<td><input type="text" name="email" value="<?php echo $this->email ?>" /></td>
 					</tr>
 					<?php endif; ?>
@@ -53,7 +53,6 @@ JHTML::_('behavior.formvalidator');
 					</tr>
 					<?php if ($this->hasCaptcha()) : ?>
 					<tr>
-						<td><span class="kdiscuss-quick-post-label"><?php echo JText::_('PLG_KUNENADISCUSS_CAPTCHA') ?></span></td>
 						<td><div id="dynamic_recaptcha_1"> </div></td>
 					</tr>
 					<?php endif; ?>
