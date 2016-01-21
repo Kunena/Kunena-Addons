@@ -8,7 +8,15 @@
  * @link http://www.kunena.org
  **/
 defined( '_JEXEC' ) or die ();
-JHTML::_('behavior.formvalidator');
+
+if (version_compare(JVERSION, '3.0', '>'))
+{
+	JHTML::_('behavior.formvalidator');
+}
+else
+{
+	JHtml::_('behavior.formvalidation');
+}
 ?>
 <div id="kdiscuss-quick-post<?php echo $row->id ?>" class="kdiscuss-form">
 	<div class="kdiscuss-title"><?php echo JText::_('PLG_KUNENADISCUSS_DISCUSS') ?></div>
