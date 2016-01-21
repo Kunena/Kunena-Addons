@@ -3,7 +3,7 @@
  * Kunena Search Plugin
  * @package Kunena.plg_search_kunena
  *
- * @copyright (C) 2008 - 2013 Kunena Team. All rights reserved.
+ * @copyright (C) 2008 - 2016 Kunena Team. All rights reserved.
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link http://www.kunena.org
  **/
@@ -135,7 +135,13 @@ function plgSearchKunena($text, $phrase = '', $ordering = '', $areas = null) {
 		$row = new StdClass();
 		$row->id = $message->id;
 		$row->href = $message->getUrl();
+		//Check if the title of the post is empty and make sure
+		//that there's not an unclickable link created
+		if ($message->subject == NULL) {
+		$row->title = "Message title is empty";
+		} else {
 		$row->title = JString::substr($message->subject, '0', $contentLimit);
+		}
 		$row->section = $message->getCategory()->name;
 		$row->created = $message->time;
 		if ($bbcode) {

@@ -3,7 +3,7 @@
  * Kunena Latest Module
  * @package Kunena.mod_kunenalatest
  *
- * @copyright (C) 2008 - 2013 Kunena Team. All rights reserved.
+ * @copyright (C) 2008 - 2016 Kunena Team. All rights reserved.
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link http://www.kunena.org
  **/
@@ -18,13 +18,17 @@ if ( $this->params->get ( 'sh_topiciconoravatar' ) == 1 ) : ?>
 </li>
 <?php elseif ( $this->params->get ( 'sh_topiciconoravatar' ) == 0 ) : ?>
 <li class="klatest-topicicon">
-	<?php echo $this->getTopicLink ( $this->topic, 'unread', '[K=TOPIC_ICON]' ) ?>
+	<?php if ($this->topic->unread) : ?>
+		<?php echo $this->getTopicLink ( $this->topic, 'unread', $this->topic->getIcon() ) ?>
+	<?php else :  ?>
+		<?php echo $this->getTopicLink ( $this->topic, null , $this->topic->getIcon() ) ?>
+	<?php endif;?>
 </li>
 <?php endif; ?>
 
 <li class="klatest-subject">
 	<?php
-	echo ModuleKunenaLatest::shortenLink( $this->getTopicLink($this->topic, 'unread', null , ModuleKunenaLatest::setSubjectTitle($this, $this->topic->last_post_message)), $this->params->get ( 'titlelength' ) );
+	echo ModuleKunenaLatest::shortenLink( $this->getTopicLink($this->topic, ModuleKunenaLatest::getUnreadState(), null , ModuleKunenaLatest::setSubjectTitle($this, $this->topic->last_post_message)), $this->params->get ( 'titlelength' ) );
 	if ( $this->params->get ( 'sh_postcount' ) ) echo ' ('.$this->topic->getTotal().' '.JText::_('MOD_KUNENALATEST_MSG').')';
 
 	if ($this->topic->unread) {

@@ -3,7 +3,7 @@
  * Kunena Latest Module
  * @package Kunena.mod_kunenalatest
  *
- * @copyright (C) 2008 - 2013 Kunena Team. All rights reserved.
+ * @copyright (C) 2008 - 2016 Kunena Team. All rights reserved.
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link http://www.kunena.org
  **/
@@ -117,6 +117,18 @@ class ModuleKunenaLatest extends KunenaModule {
 		}
 
 		return $title;
+	}
+
+	static public function getUnreadState()
+	{
+		$user = KunenaFactory::getUser();
+
+		if ($user->exists())
+		{
+			return 'unread';
+		}
+
+		return 'null';
 	}
 }
 

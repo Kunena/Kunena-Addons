@@ -6,10 +6,10 @@
  Kunena Statistics Module
  @package Kunena.mod_kunenastats
 
- @copyright (C) 2008 - 2013 Kunena Team. All rights reserved.
+ @copyright (C) 2008 - 2016 Kunena Team. All rights reserved.
  @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
  @link http://www.kunena.org
-  
+
   The following parameters can be defined inside the Eclipse build task as Arguments. They
   allow the build file to be platform independent as not path information resides within
   any of the build files.
@@ -104,7 +104,7 @@
 		<copy file="${project_dir}/README.txt" todir="${tmp_dir}" overwrite="true" filtering="true" />
 		<copy todir="${tmp_dir}/language" overwrite="true" filtering="true" >
 			<fileset dir="${project_dir}/language" />
-		</copy>		
+		</copy>
 	</target>
 
 	<target name="tar" depends="package" if="do.tar">

@@ -3,7 +3,7 @@
  * Kunena Latest Module
  * @package Kunena.mod_kunenalatest
  *
- * @copyright (C) 2008 - 2013 Kunena Team. All rights reserved.
+ * @copyright (C) 2008 - 2016 Kunena Team. All rights reserved.
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link http://www.kunena.org
  **/
@@ -16,7 +16,7 @@
 	padding: 0;
 }
 .klatest-items li.klatest-item {
-	list-style: none !important; 
+	list-style: none !important;
 	margin: 2px 0;
 	padding: 0 0 1px;
 	clear: both;
@@ -80,7 +80,7 @@ p.klatest-more {
 .klatest-itemdetails li.klatest-posttime {
 	display:block;
 }
-	
+
 .klatest-preview-content li {
 	margin-bottom: 0 !important;
 	display: block;

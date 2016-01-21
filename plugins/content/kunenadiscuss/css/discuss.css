@@ -3,7 +3,7 @@
  * Kunena Discuss Plugin
  * @package Kunena.plg_content_kunenadiscuss
  *
- * @copyright (C) 2008 - 2013 Kunena Team. All rights reserved.
+ * @copyright (C) 2008 - 2016 Kunena Team. All rights reserved.
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link http://www.kunena.org
  **/
@@ -48,10 +48,10 @@
 	color:#666;
 	background: #ffffff;
 }
-.kdiscuss-avatar a:link, 
+.kdiscuss-avatar a:link,
 .kdiscuss-avatar a:visited,
 .kdiscuss-avatar a:hover,
-.kdiscuss-avatar a:active, 
+.kdiscuss-avatar a:active,
 .kdiscuss-avatar a:focus {
 	background: inherit !important;
 }
@@ -120,7 +120,7 @@
 	margin: 10px 5px;
 	font-size: 11px;
 }
-div.kdiscuss-content-cover pre, 
+div.kdiscuss-content-cover pre,
 div.kdiscuss-content-cover .code {
 	border-color:#CCCCCC rgb(204, 204, 204) rgb(204, 204, 204) rgb(244, 169, 79);
 	border-style:solid;
