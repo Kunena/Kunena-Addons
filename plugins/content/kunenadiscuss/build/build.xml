@@ -3,19 +3,19 @@
 <!--
   Kunena Discuss plugin ant build file
 
-  @copyright    Copyright (c) 2008 - 2015 Kunena Team. All rights reserved.
+  @copyright    Copyright (C) 2008 - 2016 Kunena Team. All rights reserved.
   				portions 2007 MjazTools. All rights reserved.
   @license      GNU/GPL
   @link         http://www.kunena.org
-  
+
   The following parameter need to be defined inside the Eclipse build task as Arguments. They
   allow the build file to be platform independent as not path information resides within
   any of the build files.
-   
+
   Required Parameters: (with example - adjust the directories in Eclispe to your individual setup)
   	-Dproject_dir=${project_loc}/kunenadiscuss
-  	-Dpackage_dir=/Development/packages 
-  	-Dtmp_dir=/Development/tmp 
+  	-Dpackage_dir=/Development/packages
+  	-Dtmp_dir=/Development/tmp
 -->
 <project name="KunenaDiscuss" default="dist" basedir=".">
 	<description>Ant Build File for Kunena Discuss plugin</description>
@@ -103,7 +103,7 @@
 		<copy file="${project_dir}/README.txt" todir="${tmp_dir}" overwrite="true" filtering="true" />
 		<copy todir="${tmp_dir}/language" overwrite="true" filtering="true" >
 			<fileset dir="${project_dir}/language" />
-		</copy>		
+		</copy>
 	</target>
 
 	<target name="tar" depends="package" if="do.tar">

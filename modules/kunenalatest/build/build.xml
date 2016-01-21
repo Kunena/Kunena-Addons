@@ -6,10 +6,10 @@
   @version      $Id$
   Kunena Latest Module
   @package Kunena latest
-  @copyright	Copyright (C) 2008 - 2015 Kunena Team. All rights reserved.
+  @copyright	Copyright (C) 2008 - 2016 Kunena Team. All rights reserved.
   @license		GNU General Public License <http://www.gnu.org/copyleft/gpl.html>
   @link			http://www.kunena.org
-  
+
   The following parameters can be defined inside the Eclipse build task as Arguments. They
   allow the build file to be platform independent as not path information resides within
   any of the build files.
@@ -56,7 +56,7 @@
 		</move>
 	</target>
 
-	<target name="copy" depends="mkdir">	
+	<target name="copy" depends="mkdir">
 		<copy todir="${tmp_dir}">
 			<fileset dir="${kunena.directory}">
 				<exclude name="build/" />
