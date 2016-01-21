@@ -29,7 +29,14 @@ defined('_JEXEC') or die ();
 
 		<li class="klatest-subject">
 			<?php
-			echo ModuleKunenaLatest::shortenLink($this->getTopicLink($this->topic, 'last', null, ModuleKunenaLatest::getUnreadState(), ModuleKunenaLatest::setSubjectTitle($this, $this->topic->last_post_message)), $this->params->get('titlelength'));
+			if ($this->topic->unread)
+			{
+				echo ModuleKunenaLatest::shortenLink($this->getTopicLink($this->topic, 'unread', null, null, ModuleKunenaLatest::setSubjectTitle($this, $this->topic->last_post_message)), $this->params->get('titlelength'));
+			}
+			else
+			{
+				echo ModuleKunenaLatest::shortenLink($this->getTopicLink($this->topic, 'last', null, null, ModuleKunenaLatest::setSubjectTitle($this, $this->topic->last_post_message)), $this->params->get('titlelength'));
+			}
 
 			if ($this->params->get('sh_postcount'))
 			{

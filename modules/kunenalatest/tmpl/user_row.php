@@ -28,7 +28,15 @@ if ( $this->params->get ( 'sh_topiciconoravatar' ) == 1 ) : ?>
 
 <li class="klatest-subject">
 	<?php
-	echo ModuleKunenaLatest::shortenLink( $this->getTopicLink($this->topic, ModuleKunenaLatest::getUnreadState(), null , ModuleKunenaLatest::setSubjectTitle($this, $this->topic->last_post_message)), $this->params->get ( 'titlelength' ) );
+	if ($this->topic->unread)
+	{
+		echo ModuleKunenaLatest::shortenLink( $this->getTopicLink($this->topic, 'unread', null, null , ModuleKunenaLatest::setSubjectTitle($this, $this->topic->last_post_message)), $this->params->get ( 'titlelength' ) );
+	}
+	else
+	{
+		echo ModuleKunenaLatest::shortenLink( $this->getTopicLink($this->topic, null, null, null , ModuleKunenaLatest::setSubjectTitle($this, $this->topic->last_post_message)), $this->params->get ( 'titlelength' ) );
+	}
+
 	if ( $this->params->get ( 'sh_postcount' ) ) echo ' ('.$this->topic->getTotal().' '.JText::_('MOD_KUNENALATEST_MSG').')';
 
 	if ($this->topic->unread) {
