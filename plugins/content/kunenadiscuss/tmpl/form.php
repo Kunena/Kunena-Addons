@@ -49,7 +49,7 @@ else
 							<td><span class="kdiscuss-quick-post-label"><?php echo JText::_('PLG_KUNENADISCUSS_EMAIL') ?></span></td>
 						</tr>
 					<tr>
-						<td><input type="text" name="email" value="<?php echo $this->email ?>" /></td>
+						<td><input type="text" name="email" value="<?php echo $this->email ?>" required/></td>
 					</tr>
 					<?php endif; ?>
 					<tr>
