@@ -61,7 +61,7 @@ else
 					</tr>
 					<?php if ($this->hasCaptcha()) : ?>
 					<tr>
-						<td><div id="dynamic_recaptcha_1"> </div></td>
+						<td><?php echo $this->displayCaptcha(); ?></td>
 					</tr>
 					<?php endif; ?>
 					<tr>

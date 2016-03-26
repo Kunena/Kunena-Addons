@@ -1051,9 +1051,24 @@ class plgContentKunenaDiscuss extends JPlugin
 			if (!empty($captcha_pubkey) && !empty($catcha_privkey))
 			{
 				JPluginHelper::importPlugin('captcha');
-				$dispatcher = JDispatcher::getInstance();
-				$dispatcher->trigger('onInit', 'dynamic_recaptcha_1');
+
+				if (version_compare(JVERSION, '3.5',  '<'))
+				{
+					$dispatcher = JDispatcher::getInstance();
+					$dispatcher->trigger('onInit', 'dynamic_recaptcha_1');
+					$output = $dispatcher->trigger('onDisplay', array(null, 'dynamic_recaptcha_1'));
+				}
+				else
+			 	{
+					$dispatcher = JEventDispatcher::getInstance();
+					$dispatcher->trigger('onInit', 'dynamic_recaptcha_1');
+					$output = $dispatcher->trigger('onDisplay', array(null, 'dynamic_recaptcha_1','class="controls g-recaptcha"'));
+				}
+
+			return $output[0];
 			}
+
+		return false;
 		}
 	}
 
@@ -1133,3 +1148,4 @@ class plgContentKunenaDiscuss extends JPlugin
 		}
 	}
 }
+
