@@ -8,32 +8,40 @@
  * @link http://www.kunena.org
  **/
 defined( '_JEXEC' ) or die ( '' );
+$config = KunenaConfig::getInstance();
+$plugin         = JPluginHelper::getPlugin('content','kunenadiscuss');
+$pluginParams = new JRegistry($plugin->params);
+$bootstrap = $pluginParams->get('bootstrap');
+if ($config->ordering_system == 'mesid')
+{
+	$this->numLink = $this->message->id ;
+} else {
+	$this->numLink = $this->message->replynum;
+}
 
 // Do not display first message
 if ($this->message->id == $this->topic->first_post_id) return;
 if ($this->message->hold) return;
 ?>
-<div class="kdiscuss-item kdiscuss-item<?php echo $this->mmm & 1 ? 1 : 2 ?>">
-	<a id="ktopic-<?php echo $this->displayMessageField('id') ?>" > </a>
-	<div class="kdiscuss-reply-header">
-		<span class="kdiscuss-date" title="<?php echo KunenaDate::getInstance($this->message->time)->toKunena('config_post_dateformat_hover') ?>">
-			<?php echo JText::_ ( 'PLG_KUNENADISCUSS_POSTED' )?> <?php echo KunenaDate::getInstance($this->message->time)->toKunena('config_post_dateformat') ?>
-		</span>
-		<span class="kdiscuss-username">
-			<?php echo JText::_ ( 'PLG_KUNENADISCUSS_BY' ) . ' ' . $this->message->getAuthor()->getLink($this->message->name) ?>
-		</span>
-		<span class="kdiscuss-id">
-			<a href="<?php echo $this->message->getUrl() ?>">#<?php echo $this->displayMessageField('id') ?></a>
-		</span>
-	</div>
-	<div class="kdiscuss-reply-body">
-		<?php $avatar = $this->message->getAuthor()->getAvatarImage ('kavatar', 'welcome'); if ($avatar) : ?>
-		<div class="kdiscuss-avatar">
-			<?php echo $this->message->getAuthor()->getLink($avatar) ?>
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="<?php echo $bootstrap;?>1">
+			<?php $avatar = $this->message->getAuthor()->getAvatarImage ('img-circle', 120); if ($avatar) : ?>
+				<?php echo $this->message->getAuthor()->getLink($avatar) ?>
+			<?php endif; ?>
 		</div>
-		<?php endif; ?>
-		<div class="kdiscuss-text">
-			<?php echo $this->displayMessageField('message') ?>
+		<div class="<?php echo $bootstrap;?>11">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<span><?php echo $this->message->getAuthor()->getLink() . ' ' . JText::_('COM_KUNENA_MESSAGE_REPLIED'); ?></span>
+					<span class="pull-right" style="padding-left: 5px;"><a href="<?php echo $this->topic->getUri ($this->category) . '#' . $this->message->id; ?>">#<?php echo $this->numLink; ?></a></span>
+					<span class="text-muted pull-right"><?php echo KunenaDate::getInstance($this->message->time)->toKunena('config_post_dateformat') ?></span>
+				</div>
+				<div class="panel-body">
+					<?php echo $this->displayMessageField('message') ?>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
