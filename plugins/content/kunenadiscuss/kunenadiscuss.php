@@ -4,7 +4,7 @@
  *
  * @package       Kunena.plg_content_kunenadiscuss
  *
- * @copyright (C) 2008 - 2015 Kunena Team. All rights reserved.
+ * @copyright (C) 2008 - 2016 Kunena Team. All rights reserved.
  * @license       http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link          http://www.kunena.org
  **/
@@ -650,11 +650,6 @@ class plgContentKunenaDiscuss extends JPlugin
 		$this->email   = JRequest::getString('email', null, 'POST');
 		$this->message = JRequest::getString('message', null, 'POST');
 
-		if ($this->hasCaptcha())
-		{
-			$this->displayCaptcha();
-		}
-
 		ob_start();
 		$this->debug("showForm: Rendering form");
 		include(__DIR__ . "/tmpl/form.php");
@@ -1047,13 +1042,19 @@ class plgContentKunenaDiscuss extends JPlugin
 			$params         = new JRegistry($plugin[0]->params);
 			$captcha_pubkey = $params->get('public_key');
 			$catcha_privkey = $params->get('private_key');
+			$random         = mt_rand(99, 999);
 
 			if (!empty($captcha_pubkey) && !empty($catcha_privkey))
 			{
 				JPluginHelper::importPlugin('captcha');
-				$dispatcher = JDispatcher::getInstance();
-				$dispatcher->trigger('onInit', 'dynamic_recaptcha_1');
+				$dispatcher = JEventDispatcher::getInstance();
+				$dispatcher->trigger('onInit', 'dynamic_recaptcha_' . $random);
+				$output = $dispatcher->trigger('onDisplay', array(null, 'dynamic_recaptcha_' . $random, 'class="controls g-recaptcha"'));
+
+				return $output[0];
 			}
+
+			return false;
 		}
 	}
 
@@ -1133,3 +1134,5 @@ class plgContentKunenaDiscuss extends JPlugin
 		}
 	}
 }
+
+
