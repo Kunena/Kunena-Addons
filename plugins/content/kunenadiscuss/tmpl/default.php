@@ -9,12 +9,12 @@
  **/
 defined( '_JEXEC' ) or die ( '' );
 ?>
-<div class="kdiscuss-title">
+<div class="panel-heading">
 	<?php echo JHtml::_('kunenaforum.link', $this->topic->getUri ($this->category), JText::_('PLG_KUNENADISCUSS_POSTS') ) ?>
 </div>
 
 <?php $this->displayMessages() ?>
 
-<div class="kdiscuss-more">
+<div class="panel-heading">
 	<?php echo JHtml::_('kunenaforum.link', $this->topic->getUri ($this->category), JText::_('COM_KUNENA_READMORE') ) ?>
 </div>
