@@ -939,7 +939,8 @@ class plgContentKunenaDiscuss extends JPlugin
 		try
 		{
 			$db->execute();
-		} catch (Exception $e)
+		}
+		catch (Exception $e)
 		{
 			$this->debug("onPrepareContent.Parent IDs: Error executing query - " . $e);
 		}
@@ -1047,24 +1048,14 @@ class plgContentKunenaDiscuss extends JPlugin
 			if (!empty($captcha_pubkey) && !empty($catcha_privkey))
 			{
 				JPluginHelper::importPlugin('captcha');
+				$dispatcher = JEventDispatcher::getInstance();
+				$dispatcher->trigger('onInit', 'dynamic_recaptcha_' . $random);
+				$output = $dispatcher->trigger('onDisplay', array(null, 'dynamic_recaptcha_' . $random, 'class="controls g-recaptcha"'));
 
-				if (version_compare(JVERSION, '3.5',  '<'))
-				{
-			 		$dispatcher = JDispatcher::getInstance();
-					$dispatcher->trigger('onInit', 'dynamic_recaptcha_' . $random);
-					$output = $dispatcher->trigger('onDisplay', array(null, 'dynamic_recaptcha_' . $random));
-				}
-				else
-			 	{
-					$dispatcher = JEventDispatcher::getInstance();
-					$dispatcher->trigger('onInit', 'dynamic_recaptcha_' . $random);
-					$output = $dispatcher->trigger('onDisplay', array(null, 'dynamic_recaptcha_' . $random, 'class="controls g-recaptcha"'));
-				}
-
-			return $output[0];
+				return $output[0];
 			}
 
-		return false;
+			return false;
 		}
 	}
 
