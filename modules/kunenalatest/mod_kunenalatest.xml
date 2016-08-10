@@ -97,7 +97,6 @@
 				<field name="messagelength" type="text" default="150" description="MOD_KUNENALATEST_PARAM_MESSAGELENGTH_DESC" label="MOD_KUNENALATEST_PARAM_MESSAGELENGTH" />
 
 				<field name="lengthcontentcharacters" type="text" default="0" description="MOD_KUNENALATEST_PARAM_CONTENT_CHARACTER_LENGHT_DESC" label="MOD_KUNENALATEST_PARAM_CONTENT_CHARACTER_LENGHT" />
-				<field name="unreadindicator" type="text" default="!" description="MOD_KUNENALATEST_PARAM_UNREADINDICATOR_DESC" label="MOD_KUNENALATEST_PARAM_UNREADINDICATOR" />
 
 				<field name="sh_topiciconoravatar" type="radio" default="0" description="MOD_KUNENALATEST_PARAM_SHOWTOPICICONS_OR_AVATAR_DESC" label="MOD_KUNENALATEST_PARAM_SHOWTOPICICONS_OR_AVATAR">
 					<option value="1">MOD_KUNENALATEST_PARAM_VALUE_AVATAR</option>
