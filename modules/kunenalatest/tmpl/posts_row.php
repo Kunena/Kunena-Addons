@@ -9,6 +9,8 @@
  * @link          http://www.kunena.org
  **/
 defined('_JEXEC') or die ();
+$topic = $this->topic;
+
 ?>
 <li class="klatest-item">
 	<ul class="klatest-itemdetails">
@@ -20,33 +22,36 @@ defined('_JEXEC') or die ();
 		<?php elseif ($this->params->get('sh_topiciconoravatar') == 0) : ?>
 			<li class="klatest-topicicon">
 				<?php if ($this->topic->unread) : ?>
-					<?php echo $this->getTopicLink($this->topic, 'unread', $this->topic->getIcon()) ?>
+					<?php echo $this->getTopicLink($topic, 'unread', $topic->getIcon($topic->getCategory()->iconset),null,'hasTooltip') ?>
 				<?php else : ?>
-					<?php echo $this->getTopicLink($this->topic, null, $this->topic->getIcon()) ?>
+					<?php echo $this->getTopicLink($topic, null, $topic->getIcon($topic->getCategory()->iconset),null,'hasTooltip') ?>
 				<?php endif; ?>
 			</li>
 		<?php endif; ?>
 
 		<li class="klatest-subject">
 			<?php
-			echo ModuleKunenaLatest::shortenLink($this->getTopicLink($this->topic, $this->message, null, ModuleKunenaLatest::setSubjectTitle($this, $this->message->message)), $this->params->get('titlelength'));
-			if ($this->params->get('sh_postcount'))
+			if ($topic->unread)
 			{
-				echo ' (' . $this->topic->getTotal() . ' ' . JText::_('MOD_KUNENALATEST_MSG') . ')';
+				echo $this->getTopicLink(
+					$topic,  'unread',
+					$topic->subject . '<sup class="knewchar" dir="ltr">(' . (int) $topic->unread . ' ' . JText::_('COM_KUNENA_A_GEN_NEWCHAR') . ')</sup>', null, 'hasTooltip');
+			}
+			else
+			{
+				echo $this->getTopicLink($topic, null, null, null, 'hasTooltip topictitle');
 			}
 
-			if ($this->topic->unread)
-			{
-				echo ' <sup class="knewchar">(' . JText::_($this->params->get('unreadindicator')) . ')</sup>';
-			}
 			if ($this->params->get('sh_sticky') && $this->topic->ordering)
 			{
 				echo $this->getIcon('ktopicsticky', JText::_('MOD_KUNENALATEST_STICKY_TOPIC'));
 			}
+
 			if ($this->params->get('sh_locked') && $this->topic->locked)
 			{
 				echo $this->getIcon('ktopiclocked', JText::_('COM_KUNENA_GEN_LOCKED_TOPIC'));
 			}
+
 			if ($this->params->get('sh_favorite') && $this->topic->getUserTopic()->favorite)
 			{
 				echo $this->getIcon('kfavoritestar', JText::_('COM_KUNENA_FAVORITE'));
