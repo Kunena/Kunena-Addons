@@ -39,7 +39,7 @@ $bootstrap    = $pluginParams->get('bootstrap');
 								<?php endif; ?>
 								<textarea class="form-control counted" name="message" placeholder="<?php echo JText::_('PLG_KUNENADISCUSS_MESSAGE') ?>" rows="5" style="margin-bottom:10px;width:100%"></textarea>
 								<?php if ($this->hasCaptcha()) : ?>
-									<div id="dynamic_recaptcha_1"></div>
+									<?php echo plgContentKunenaDiscuss::displayCaptcha();?>
 								<?php endif; ?>
 								<button class="btn btn-info" type="submit"><?php echo JText::_('PLG_KUNENADISCUSS_SUBMIT') ?></button>
 								<input type="hidden" name="kdiscussContentId" value="<?php echo $row->id ?>" />
