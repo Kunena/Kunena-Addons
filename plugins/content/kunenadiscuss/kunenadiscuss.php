@@ -1035,7 +1035,7 @@ class plgContentKunenaDiscuss extends JPlugin
 	 *
 	 * @return string
 	 */
-	protected function displayCaptcha()
+	public function displayCaptcha()
 	{
 		if (JPluginHelper::isEnabled('captcha'))
 		{
