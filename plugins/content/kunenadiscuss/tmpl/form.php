@@ -18,12 +18,11 @@ $bootstrap    = $pluginParams->get('bootstrap');
 	<?php if (isset($this->msg)) : ?>
 		<?php echo $this->msg; ?>
 	<?php else: ?>
-		<div class="container">
-			<div class="row">
+		<div class="<?php echo $bootstrap; ?>12">
 				<div class="<?php echo $bootstrap; ?>6">
 					<div class="panel panel-default">
 						<div class="panel-body">
-                                                        <?php if (!$this->user->exists()) : ?>
+							<?php if (!$this->user->exists()) : ?>
 								<div class="alert alert-info"><?php echo JText::_('COM_KUNENA_GEN_GUEST'); ?></div>
 							<?php endif; ?>
 							<form accept-charset="UTF-8" action="" method="POST" name="postform">
@@ -34,24 +33,27 @@ $bootstrap    = $pluginParams->get('bootstrap');
 										echo 'disabled="disabled" ';
 									} ?>/>
 								</div>
+
 								<?php if (!$this->user->exists() && $this->config->askemail) : ?>
 									<div class="form-group">
 										<label for="email"><?php echo JText::_('PLG_KUNENADISCUSS_EMAIL') ?></label>
 										<input class="form-control" type="text" name="email" value="<?php echo $this->email ?>" required/>
 									</div>
 								<?php endif; ?>
+
 								<textarea class="form-control counted" name="message" placeholder="<?php echo JText::_('PLG_KUNENADISCUSS_MESSAGE') ?>" rows="5" style="margin-bottom:10px;width:100%"></textarea>
+
 								<?php if ($this->hasCaptcha()) : ?>
 									<?php echo $this->displayCaptcha();?>
 								<?php endif; ?>
-								<button class="btn btn-info" type="submit"><?php echo JText::_('PLG_KUNENADISCUSS_SUBMIT') ?></button>
+
+								<button class="btn btn-primary" type="submit"><?php echo JText::_('PLG_KUNENADISCUSS_SUBMIT') ?></button>
 								<input type="hidden" name="kdiscussContentId" value="<?php echo $row->id ?>" />
 								<?php echo JHTML::_('form.token'); ?>
 							</form>
 						</div>
 					</div>
 				</div>
-			</div>
 		</div>
 	<?php endif; ?>
 </div>

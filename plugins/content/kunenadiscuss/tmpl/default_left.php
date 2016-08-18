@@ -13,6 +13,7 @@ $config       = KunenaConfig::getInstance();
 $plugin       = JPluginHelper::getPlugin('content', 'kunenadiscuss');
 $pluginParams = new JRegistry($plugin->params);
 $bootstrap    = $pluginParams->get('bootstrap');
+
 if ($config->ordering_system == 'mesid')
 {
 	$this->numLink = $this->message->id;
@@ -27,6 +28,7 @@ if ($this->message->id == $this->topic->first_post_id)
 {
 	return;
 }
+
 if ($this->message->hold)
 {
 	return;
@@ -37,6 +39,7 @@ if ($this->message->hold)
 	<div class="row-fluid">
 		<div class="<?php echo $bootstrap; ?>1">
 			<?php $avatar = $this->message->getAuthor()->getAvatarImage('img-circle', 120);
+
 			if ($avatar) : ?>
 				<?php echo $this->message->getAuthor()->getLink($avatar) ?>
 			<?php endif; ?>
