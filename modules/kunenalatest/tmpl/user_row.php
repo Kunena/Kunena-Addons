@@ -22,9 +22,9 @@ $topic = $this->topic;
 		<?php elseif ($this->params->get('sh_topiciconoravatar') == 0) : ?>
 			<li class="klatest-topicicon">
 				<?php if ($this->topic->unread) : ?>
-					<?php echo $this->getTopicLink($topic, 'unread', $topic->getIcon($topic->getCategory()->iconset),null,'hasTooltip') ?>
+					<?php echo $this->getTopicLink($topic, 'unread', $topic->getIcon($topic->getCategory()->iconset), null, 'hasTooltip', $this->category, true, false) ?>
 				<?php else : ?>
-					<?php echo $this->getTopicLink($topic, null, $topic->getIcon($topic->getCategory()->iconset),null,'hasTooltip') ?>
+					<?php echo $this->getTopicLink($topic, null, $topic->getIcon($topic->getCategory()->iconset), null, 'hasTooltip', $this->category, true, false) ?>
 				<?php endif; ?>
 			</li>
 		<?php endif; ?>
@@ -33,13 +33,12 @@ $topic = $this->topic;
 			<?php
 			if ($topic->unread)
 			{
-				echo $this->getTopicLink(
-					$topic,  'unread',
-					$topic->subject . '<sup class="knewchar" dir="ltr">(' . (int) $topic->unread . ' ' . JText::_('COM_KUNENA_A_GEN_NEWCHAR') . ')</sup>', null, 'hasTooltip');
+				echo $this->getTopicLink($topic, 'unread', $topic->subject . '<sup class="knewchar" dir="ltr">(' . (int) $topic->unread .
+					' ' . JText::_('COM_KUNENA_A_GEN_NEWCHAR') . ')</sup>', null, 'hasTooltip', $this->category, true, true);
 			}
 			else
 			{
-				echo $this->getTopicLink($topic, null, null, null, 'hasTooltip topictitle');
+				echo $this->getTopicLink($topic, null, null, null, 'hasTooltip topictitle', $this->category, true, false);
 			}
 
 			if ($this->params->get('sh_sticky') && $this->topic->ordering)
