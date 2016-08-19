@@ -552,6 +552,16 @@ class plgContentKunenaDiscuss extends JPlugin
 		{
 			$doc = JFactory::getDocument();
 			$doc->addStyleSheet(JUri::root(true) . "/plugins/content/kunenadiscuss/css/discuss.css");
+
+			$plugin       = JPluginHelper::getPlugin('content', 'kunenadiscuss');
+			$pluginParams = new JRegistry($plugin->params);
+			$bootstrap    = $pluginParams->get('bootstrap');
+
+			if ($bootstrap != 'B3')
+			{
+				$doc->addStyleSheet(JUri::root(true) . "/plugins/content/kunenadiscuss/css/discussb2.css");
+			}
+
 			self::$includedCss = true;
 		}
 
@@ -1020,6 +1030,35 @@ class plgContentKunenaDiscuss extends JPlugin
 	}
 
 	/**
+	 * Display the captcha into the post form
+	 *
+	 * @return string
+	 */
+	public function displayCaptcha()
+	{
+		if (JPluginHelper::isEnabled('captcha'))
+		{
+			$plugin         = JPluginHelper::getPlugin('captcha');
+			$params         = new JRegistry($plugin[0]->params);
+			$captcha_pubkey = $params->get('public_key');
+			$catcha_privkey = $params->get('private_key');
+			$random         = mt_rand(99, 999);
+
+			if (!empty($captcha_pubkey) && !empty($catcha_privkey))
+			{
+				JPluginHelper::importPlugin('captcha');
+				$dispatcher = JEventDispatcher::getInstance();
+				$dispatcher->trigger('onInit', 'dynamic_recaptcha_' . $random);
+				$output = $dispatcher->trigger('onDisplay', array(null, 'dynamic_recaptcha_' . $random, 'class="controls g-recaptcha"'));
+
+				return $output[0];
+			}
+
+			return false;
+		}
+	}
+
+	/**
 	 * Check if hte captcha given is correct
 	 *
 	 * @return bool
@@ -1176,34 +1215,5 @@ class plgContentKunenaDiscuss extends JPlugin
 		}
 
 		return $result;
-	}
-
-	/**
-	 * Display the captcha into the post form
-	 *
-	 * @return string
-	 */
-	public function displayCaptcha()
-	{
-		if (JPluginHelper::isEnabled('captcha'))
-		{
-			$plugin         = JPluginHelper::getPlugin('captcha');
-			$params         = new JRegistry($plugin[0]->params);
-			$captcha_pubkey = $params->get('public_key');
-			$catcha_privkey = $params->get('private_key');
-			$random         = mt_rand(99, 999);
-
-			if (!empty($captcha_pubkey) && !empty($catcha_privkey))
-			{
-				JPluginHelper::importPlugin('captcha');
-				$dispatcher = JEventDispatcher::getInstance();
-				$dispatcher->trigger('onInit', 'dynamic_recaptcha_' . $random);
-				$output = $dispatcher->trigger('onDisplay', array(null, 'dynamic_recaptcha_' . $random, 'class="controls g-recaptcha"'));
-
-				return $output[0];
-			}
-
-			return false;
-		}
 	}
 }
