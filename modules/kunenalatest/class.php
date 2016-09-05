@@ -8,7 +8,7 @@
  * @license       http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link          http://www.kunena.org
  **/
-defined('_JEXEC') or die ();
+defined('_JEXEC') or die();
 
 /**
  * Class ModuleKunenaLatest
@@ -33,6 +33,7 @@ class ModuleKunenaLatest extends KunenaModule
 		$this->params->set('topics_catselection', $this->params->get('sh_category_id_in', 1));
 		$this->params->set('topics_time', $this->params->get('show_list_time', 168));
 		$userid = 0;
+
 		switch ($this->params->get('choosemodel'))
 		{
 			case 'latestposts' :
@@ -84,6 +85,7 @@ class ModuleKunenaLatest extends KunenaModule
 				$layout = 'default';
 				$mode   = 'recent';
 		}
+
 		$this->params->set('layout', $layout);
 		$this->params->set('mode', $mode);
 		$this->params->set('userid', $userid);
@@ -97,8 +99,8 @@ class ModuleKunenaLatest extends KunenaModule
 	}
 
 	/**
-	 * @param string $link
-	 * @param int    $len
+	 * @param   string $link
+	 * @param   int    $len
 	 *
 	 * @return string
 	 */
@@ -108,14 +110,15 @@ class ModuleKunenaLatest extends KunenaModule
 	}
 
 	/**
-	 * @param KunenaViewTopics $view
-	 * @param string           $message
+	 * @param   KunenaViewTopics $view
+	 * @param   string           $message
 	 *
 	 * @return string
 	 */
 	static public function setSubjectTitle($view, $message)
 	{
 		$title = '';
+
 		if ($view->params->get('subjecttitle') == 'subject_only')
 		{
 			$title = $view->escape($view->topic->subject);

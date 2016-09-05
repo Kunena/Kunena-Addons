@@ -8,7 +8,7 @@
  * @license       http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link          http://www.kunena.org
  **/
-defined('_JEXEC') or die ();
+defined('_JEXEC') or die();
 
 class PlgSearchKunenaInstallerScript
 {
@@ -17,10 +17,12 @@ class PlgSearchKunenaInstallerScript
 		// Delete useless manifest file
 		$path = $parent->getParent()->getPath('extension_root');
 		$name = preg_replace('/^plg_[^_]*_/', '', $parent->get('name'));
+
 		if (JFile::exists("{$path}/{$name}.j25.xml"))
 		{
 			JFile::delete("{$path}/{$name}.j25.xml");
 		}
+
 		// Uninstall old version of the plug-in.
 		$this->uninstallPlugin('search', 'kunenasearch');
 	}
@@ -32,9 +34,10 @@ class PlgSearchKunenaInstallerScript
 		$db    = JFactory::getDbo();
 		$db->setQuery($query);
 		$pluginid = $db->loadResult();
+
 		if ($pluginid)
 		{
-			$installer = new JInstaller ();
+			$installer = new JInstaller;
 			$installer->uninstall('plugin', $pluginid);
 		}
 	}

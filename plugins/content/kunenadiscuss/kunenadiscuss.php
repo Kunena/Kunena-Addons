@@ -8,7 +8,7 @@
  * @license       http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link          http://www.kunena.org
  **/
-defined('_JEXEC') or die ('');
+defined('_JEXEC') or die('');
 
 /**
  * Class plgContentKunenaDiscuss
@@ -23,12 +23,12 @@ class plgContentKunenaDiscuss extends JPlugin
 	protected static $plgDisplay = array();
 
 	/**
-	 * @var bool
+	 * @var boolean
 	 */
 	protected static $includedCss = false;
 
 	/**
-	 * @var bool
+	 * @var boolean
 	 */
 	protected static $inevent = false;
 
@@ -53,8 +53,8 @@ class plgContentKunenaDiscuss extends JPlugin
 	public $config = null;
 
 	/**
-	 * @param object $subject
-	 * @param array  $params
+	 * @param   object $subject
+	 * @param   array  $params
 	 */
 	public function __construct(&$subject, $params)
 	{
@@ -100,14 +100,15 @@ class plgContentKunenaDiscuss extends JPlugin
 		$this->debug("Constructor called in {$this->app->scope}");
 	}
 
-	/******************************************************************************
+	/**
+	 * ***************************************************************************
 	 * Debugging and error handling
-	 ****************************************************************************
+	 * ***************************************************************************
 	 * /
 
 	 /**
 	 * @param     $msg
-	 * @param int $fatal
+	 * @param   int $fatal
 	 */
 	protected function debug($msg, $fatal = 0)
 	{
@@ -226,6 +227,7 @@ class plgContentKunenaDiscuss extends JPlugin
 
 			return;
 		}
+
 		// Only proceed if this event is not originated by Kunena itself or we run the danger of an event recursion
 		$ksource = '';
 
@@ -238,7 +240,7 @@ class plgContentKunenaDiscuss extends JPlugin
 		{
 			$customTopics = $this->params->get('custom_topics', 1);
 
-			$articleCategory = (isset ($article->catid) ? $article->catid : 0);
+			$articleCategory = (isset($article->catid) ? $article->catid : 0);
 			$isStaticContent = !$articleCategory;
 
 			if ($isStaticContent)
@@ -248,6 +250,7 @@ class plgContentKunenaDiscuss extends JPlugin
 			else
 			{
 				$kunenaCategory = $this->getForumCategory($articleCategory);
+
 				if (!$kunenaCategory)
 				{
 					if (!$customTopics)
@@ -261,20 +264,23 @@ class plgContentKunenaDiscuss extends JPlugin
 			$regex = '/{kunena_discuss:(\d+?)}/s';
 
 			if (JRequest::getVar('tmpl', '') == 'component' || JRequest::getBool('print')
-				|| JRequest::getVar('format', 'html') != 'html' || (isset ($article->state) && !$article->state)
-				|| empty ($article->id) || $this->app->scope == 'com_kunena'
+				|| JRequest::getVar('format', 'html') != 'html' || (isset($article->state) && !$article->state)
+				|| empty($article->id) || $this->app->scope == 'com_kunena'
 			)
 			{
 				$this->debug("onPrepareContent: Not allowed - removing tags.");
-				if (isset ($article->text))
+
+				if (isset($article->text))
 				{
 					$article->text = preg_replace($regex, '', $article->text);
 				}
-				if (isset ($article->introtext))
+
+				if (isset($article->introtext))
 				{
 					$article->introtext = preg_replace($regex, '', $article->introtext);
 				}
-				if (isset ($article->fulltext))
+
+				if (isset($article->fulltext))
 				{
 					$article->fulltext = preg_replace($regex, '', $article->fulltext);
 				}
@@ -304,21 +310,21 @@ class plgContentKunenaDiscuss extends JPlugin
 				}
 			}
 
-			if (!$show || isset (self::$plgDisplay [$article->id]))
+			if (!$show || isset(self::$plgDisplay [$article->id]))
 			{
 				$this->debug("onPrepareContent: Configured to show nothing");
 
-				if (isset ($article->text))
+				if (isset($article->text))
 				{
 					$article->text = preg_replace($regex, '', $article->text);
 				}
 
-				if (isset ($article->introtext))
+				if (isset($article->introtext))
 				{
 					$article->introtext = preg_replace($regex, '', $article->introtext);
 				}
 
-				if (isset ($article->fulltext))
+				if (isset($article->fulltext))
 				{
 					$article->fulltext = preg_replace($regex, '', $article->fulltext);
 				}
@@ -349,7 +355,7 @@ class plgContentKunenaDiscuss extends JPlugin
 				}
 				else
 				{
-					if (isset ($article->text))
+					if (isset($article->text))
 					{
 						$text = $article->text;
 					}
@@ -401,7 +407,7 @@ class plgContentKunenaDiscuss extends JPlugin
 				}
 
 				$this->debug("onPrepareContent: Searched for {kunena_discuss:#}: Custom Topic "
-					. ($kunenaTopic ? "{$kunenaTopic} found." : "not found."));
+				. ($kunenaTopic ? "{$kunenaTopic} found." : "not found."));
 			}
 
 			if ($kunenaCategory || $kunenaTopic)
@@ -411,11 +417,13 @@ class plgContentKunenaDiscuss extends JPlugin
 		}
 	}
 
-	/******************************************************************************
+	/**
+	 * ***************************************************************************
 	 * Output
 	 *****************************************************************************/
 
-	/******************************************************************************
+	/**
+	 * ***************************************************************************
 	 * Permission checks
 	 *****************************************************************************/
 
@@ -431,8 +439,8 @@ class plgContentKunenaDiscuss extends JPlugin
 		foreach ($categoryPairs as $pair)
 		{
 			$pair  = explode(',', $pair);
-			$key   = isset ($pair [0]) ? intval($pair [0]) : 0;
-			$value = isset ($pair [1]) ? intval($pair [1]) : 0;
+			$key   = isset($pair [0]) ? intval($pair [0]) : 0;
+			$value = isset($pair [1]) ? intval($pair [1]) : 0;
 
 			if ($key > 0)
 			{
@@ -532,10 +540,10 @@ class plgContentKunenaDiscuss extends JPlugin
 	}
 
 	/**
-	 * @param  int    $catid
-	 * @param  int    $topic_id
-	 * @param  object $row
-	 * @param  bool   $linkOnly
+	 * @param   int    $catid
+	 * @param   int    $topic_id
+	 * @param   object $row
+	 * @param   bool   $linkOnly
 	 *
 	 * @return mixed|string
 	 */
@@ -778,7 +786,7 @@ class plgContentKunenaDiscuss extends JPlugin
 	}
 
 	/**
-	 * @param  object $row
+	 * @param   object $row
 	 */
 	protected function deleteReference($row)
 	{
@@ -792,8 +800,8 @@ class plgContentKunenaDiscuss extends JPlugin
 	}
 
 	/**
-	 * @param  object $row
-	 * @param  int    $topic_id
+	 * @param   object $row
+	 * @param   int    $topic_id
 	 */
 	protected function updateReference($row, $topic_id)
 	{
@@ -807,7 +815,8 @@ class plgContentKunenaDiscuss extends JPlugin
 		KunenaError::checkDatabaseError();
 	}
 
-	/******************************************************************************
+	/**
+	 * ***************************************************************************
 	 * Create and reply to topic
 	 *****************************************************************************/
 
@@ -825,10 +834,10 @@ class plgContentKunenaDiscuss extends JPlugin
 
 	/**
 	 * @param                     $row
-	 * @param KunenaForumCategory $category
+	 * @param   KunenaForumCategory $category
 	 * @param                     $subject
 	 *
-	 * @return bool|KunenaForumTopic
+	 * @return boolean|KunenaForumTopic
 	 */
 	protected function createTopic($row, KunenaForumCategory $category, $subject)
 	{
@@ -880,15 +889,15 @@ class plgContentKunenaDiscuss extends JPlugin
 					$contents = "[article]{$row->id}[/article]";
 				}
 			}
-		}
+			}
 
-		// Save the ID for later use
-		$topic_owner = $this->params->get('topic_owner', $row->created_by);
-		$user        = KunenaUserHelper::get($topic_owner);
+			// Save the ID for later use
+			$topic_owner = $this->params->get('topic_owner', $row->created_by);
+			$user        = KunenaUserHelper::get($topic_owner);
 
-		// Get real email, we need to pass email of the topic starter (robot) when 'Require E-mail' option is enabled
-		$email       = $user->email;
-		$params      = array(
+			// Get real email, we need to pass email of the topic starter (robot) when 'Require E-mail' option is enabled
+			$email       = $user->email;
+			$params      = array(
 			'email'   => $email,
 			'subject' => $subject,
 			'message' => $contents,
@@ -920,6 +929,7 @@ class plgContentKunenaDiscuss extends JPlugin
 		/** @var KunenaForumTopic $topic */
 		/** @var KunenaForumMessage $message */
 		$success = $message->save();
+
 		if (!$success)
 		{
 			$this->app->enqueueMessage($message->getError(), 'error');
@@ -934,10 +944,10 @@ class plgContentKunenaDiscuss extends JPlugin
 	}
 
 	/**
-	 * @param KunenaForumCategory $category
-	 * @param KunenaForumTopic    $topic
+	 * @param   KunenaForumCategory $category
+	 * @param   KunenaForumTopic    $topic
 	 *
-	 * @return bool
+	 * @return boolean
 	 */
 	protected function canPost(KunenaForumCategory $category, KunenaForumTopic $topic)
 	{
@@ -953,11 +963,11 @@ class plgContentKunenaDiscuss extends JPlugin
 
 	/**
 	 * @param                     $row
-	 * @param KunenaForumCategory $category
-	 * @param KunenaForumTopic    $topic
+	 * @param   KunenaForumCategory $category
+	 * @param   KunenaForumTopic    $topic
 	 * @param                     $subject
 	 *
-	 * @return bool|string
+	 * @return boolean|string
 	 */
 	protected function replyTopic($row, KunenaForumCategory $category, KunenaForumTopic $topic, $subject)
 	{
@@ -969,7 +979,9 @@ class plgContentKunenaDiscuss extends JPlugin
 
 			return false;
 		}
-		/*if ($this->hasCaptcha() && !$this->verifyCaptcha()) {
+
+		/*
+		if ($this->hasCaptcha() && !$this->verifyCaptcha()) {
 			return $this->showForm ( $row, $category, $topic, $subject );
 		}*/
 
@@ -1022,7 +1034,7 @@ class plgContentKunenaDiscuss extends JPlugin
 	/**
 	 * Check if the user will have captcha or not
 	 *
-	 * @return bool
+	 * @return boolean
 	 */
 	public function hasCaptcha()
 	{
@@ -1061,7 +1073,7 @@ class plgContentKunenaDiscuss extends JPlugin
 	/**
 	 * Check if hte captcha given is correct
 	 *
-	 * @return bool
+	 * @return boolean
 	 */
 	protected function verifyCaptcha()
 	{
@@ -1100,8 +1112,8 @@ class plgContentKunenaDiscuss extends JPlugin
 
 	/**
 	 * @param                     $row
-	 * @param KunenaForumCategory $category
-	 * @param KunenaForumTopic    $topic
+	 * @param   KunenaForumCategory $category
+	 * @param   KunenaForumTopic    $topic
 	 * @param                     $subject
 	 *
 	 * @return string
@@ -1110,6 +1122,7 @@ class plgContentKunenaDiscuss extends JPlugin
 	{
 
 		$canPost = $this->canPost($category, $topic);
+
 		if (!$canPost)
 		{
 			if (!$this->user->exists())
@@ -1126,6 +1139,7 @@ class plgContentKunenaDiscuss extends JPlugin
 				$this->msg = JText::_('PLG_KUNENADISCUSS_NO_PERMISSION_TO_POST');
 			}
 		}
+
 		$this->open    = $this->params->get('quickpost_open', false);
 		$this->name    = JRequest::getString('name', $this->user->getName(), 'POST');
 		$this->email   = JRequest::getString('email', null, 'POST');
@@ -1133,7 +1147,7 @@ class plgContentKunenaDiscuss extends JPlugin
 
 		ob_start();
 		$this->debug("showForm: Rendering form");
-		include(__DIR__ . "/tmpl/form.php");
+		include __DIR__ . "/tmpl/form.php";
 		$str = ob_get_contents();
 		ob_end_clean();
 
@@ -1141,9 +1155,9 @@ class plgContentKunenaDiscuss extends JPlugin
 	}
 
 	/**
-	 * @param KunenaForumCategory $category
-	 * @param KunenaForumTopic    $topic
-	 * @param string              $link_topic
+	 * @param   KunenaForumCategory $category
+	 * @param   KunenaForumTopic    $topic
+	 * @param   string              $link_topic
 	 *
 	 * @return string
 	 */

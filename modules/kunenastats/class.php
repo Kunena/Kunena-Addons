@@ -8,7 +8,7 @@
  * @license       http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link          http://www.kunena.org
  **/
-defined('_JEXEC') or die ();
+defined('_JEXEC') or die();
 
 /**
  * Class ModuleKunenaStats
@@ -18,11 +18,17 @@ class ModuleKunenaStats extends KunenaModule
 	static protected $css = '/modules/mod_kunenastats/tmpl/css/kunenastats.css';
 
 	protected $api = null;
+
 	protected $type = null;
+
 	protected $items = 0;
+
 	protected $stats = null;
+
 	protected $titleHeader = '';
+
 	protected $valueHeader = '';
+
 	protected $top = 0;
 
 	protected function _display()
@@ -89,14 +95,15 @@ class ModuleKunenaStats extends KunenaModule
 	 * in the language file. The significant digits are used to limit the
 	 * number of digits displayed when in 10k or 1m mode.
 	 *
-	 * @param int $number    Number to be formated
-	 * @param int $precision Significant digits for output
+	 * @param   int $number    Number to be formated
+	 * @param   int $precision Significant digits for output
 	 *
-	 * @return float|int|string
+	 * @return float|integer|string
 	 */
 	public function formatLargeNumber($number, $precision = 3)
 	{
 		$output = '';
+
 		// Do we need to reduce the number of significant digits?
 		if ($number >= 10000)
 		{

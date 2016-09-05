@@ -32,7 +32,7 @@
 	font-family: Arial, Helvetica, sans-serif;
 	margin-left: 3px;
 	font-size: .75em;
-	white-space:nowrap;
+	white-space: nowrap;
 }
 .klatest-itemdetails li {
 	margin-bottom: 0 !important;
@@ -43,7 +43,7 @@
 	font-size: 12px;
 }
 .klatest-avatar {
-	float:left;
+	float: left;
 	display: block;
 	margin-right: 5px;
 }
@@ -53,7 +53,7 @@
 	padding: 1px;
 }
 .klatest-topicicon {
-	float:left;
+	float: left;
 	display: block;
 	margin-right: 5px;
 }
@@ -74,10 +74,10 @@ p.klatest-more {
 	clear: both;
 }
 .klatest-itemdetails li.klatest-author {
-	display:inline;
+	display: inline;
 }
 .klatest-itemdetails li.klatest-posttime {
-	display:block;
+	display: block;
 }
 
 .klatest-preview-content li {

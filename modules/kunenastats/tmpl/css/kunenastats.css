@@ -27,7 +27,7 @@ div.kstats-module table {
 div.kstats-module table th {
 	background: #D4DEE3;
 	padding: 4px 8px;
-	text-align:left;
+	text-align: left;
 }
 div.kstats-module td.kcol-first {
 	width: 70%;
@@ -44,24 +44,24 @@ div.kstats-module div.kstats-all {
 	padding: 4px 8px;
 }
 div.kstats-module img.jr-forum-stat-bar {
-	min-width:15px;
+	min-width: 15px;
 	min-height: 12px;
 }
 div.kstats-module span.kstats-hits {
 	background: url("../images/bar.png") repeat-x left center;
 	color: #FFFFFF;
-	font-size:.9em;
-	display:block;
+	font-size: .9em;
+	display: block;
 	text-align: center;
-	min-width:15px;
-	padding:0 0 0 1px;
+	min-width: 15px;
+	padding: 0 0 0 1px;
 }
 div.kstats-module span.kstats-hits-bg {
 	background: url("../images/bar_bg.png") repeat-x left center;
 	color: #FFFFFF;
-	font-size:.9em;
-	display:block;
+	font-size: .9em;
+	display: block;
 	text-align: center;
-	width:100%;
-	padding:0 0 0 1px;
+	width: 100%;
+	padding: 0 0 0 1px;
 }
