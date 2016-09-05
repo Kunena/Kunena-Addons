@@ -8,7 +8,7 @@
  * @license       http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link          http://www.kunena.org
  **/
-defined('_JEXEC') or die ();
+defined('_JEXEC') or die();
 ?>
 
 <form action="<?php echo $this->url ?>" method="post" id="ksearch-form" name="ksearch-form">
@@ -28,6 +28,7 @@ defined('_JEXEC') or die ();
 				{
 					echo '<br />';
 				}
+
 				echo '<input type="submit" value="' . $this->ksearch_button_txt . '" class="kbutton' . $this->ksearch_moduleclass_sfx . '" />';
 			};
 			?>

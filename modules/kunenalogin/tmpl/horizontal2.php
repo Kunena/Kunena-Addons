@@ -11,7 +11,9 @@
 defined('_JEXEC') or die();
 ?>
 <div class="klogin-horiz">
-	<?php if ($this->type == 'logout') : ?>
+	<?php if ($this->type == 'logout')
+	:
+	?>
 		<form action="<?php echo JRoute::_('index.php', true); ?>" method="post" name="login">
 			<input type="hidden" name="option" value="com_kunena" />
 			<input type="hidden" name="view" value="user" />
@@ -20,40 +22,61 @@ defined('_JEXEC') or die();
 			<?php echo JHTML::_('form.token'); ?>
 
 			<div class="klogin-avatar">
-				<?php if ($this->params->get('showav')) echo $this->kunenaAvatar($this->me->userid) ?>
+				<?php if ($this->params->get('showav'))
+				{
+					echo $this->kunenaAvatar($this->me->userid);
+} ?>
 			</div>
 			<div class="klogin-middle">
 				<ul>
-					<?php if ($this->params->get('greeting') || $this->params->get('lastlog')) : ?>
+					<?php if ($this->params->get('greeting') || $this->params->get('lastlog'))
+					:
+	?>
 						<li>
-							<?php if ($this->params->get('greeting')) : ?>
+							<?php if ($this->params->get('greeting'))
+							:
+	?>
 								<span class="klogin-hiname">
 							<?php echo JText::sprintf('MOD_KUNENALOGIN_HINAME', '<strong>'
-								. $this->me->getLink($this->me->getName()) . '</strong>', $this->me->getName()); ?>
+							. $this->me->getLink($this->me->getName()) . '</strong>', $this->me->getName()); ?>
 						</span>
 							<?php endif; ?>
-							<?php if ($this->params->get('lastlog')) : ?>
+							<?php
+							if ($this->params->get('lastlog'))
+							:
+	?>
 								(
 								<span class="klogin-lasttext"><?php echo JText::_('MOD_KUNENALOGIN_LASTVISIT'); ?></span>
 								<?php echo $this->lastvisitDate->toSpan('date_today', 'ago', false, 'klogin-lastdate') ?>
 								)
-							<?php endif; ?>
+							<?php                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 endif; ?>
 						</li>
 					<?php endif; ?>
 					<li class="klogin-links">
 						<ul class="klogin-loginlink">
-							<?php if ($this->privateMessages) : ?>
+							<?php if ($this->privateMessages)
+							:
+	?>
 								<li class="klogin-mypm"><?php echo $this->privateMessages; ?></li>
 							<?php endif; ?>
-							<?php if ($this->params->get('showprofile')) : ?>
+							<?php
+							if ($this->params->get('showprofile'))
+							:
+	?>
 								<li class="klogin-myprofile"><?php echo $this->me->getLink(JText::_('MOD_KUNENALOGIN_MYPROFILE')); ?></li>
-							<?php endif; ?>
-							<?php if ($this->params->get('showmyposts')) : ?>
+							<?php                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 endif; ?>
+							<?php
+							if ($this->params->get('showmyposts'))
+							:
+	?>
 								<li class="klogin-mypost"><?php echo $this->myPosts ?></li>
-							<?php endif; ?>
-							<?php if ($this->params->get('showrecent')) : ?>
+							<?php                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 endif; ?>
+							<?php
+							if ($this->params->get('showrecent'))
+							:
+	?>
 								<li class="klogin-recent"><?php echo $this->recentPosts ?></li>
-							<?php endif; ?>
+							<?php                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 endif; ?>
 						</ul>
 					</li>
 					<li class="klogin-logout-button">
@@ -62,7 +85,10 @@ defined('_JEXEC') or die();
 				</ul>
 			</div>
 		</form>
-	<?php else : ?>
+	<?php else
+
+:
+	?>
 		<form action="<?php echo JRoute::_('index.php', true); ?>" method="post" name="login" class="klogin-form-login">
 			<input type="hidden" name="option" value="com_kunena" />
 			<input type="hidden" name="view" value="user" />
@@ -93,7 +119,9 @@ defined('_JEXEC') or die();
 				</li>
 				<li class="klogout-pwd">
 					<dl>
-						<?php if ($this->remember) : ?>
+						<?php if ($this->remember)
+						:
+	?>
 							<dd class="klogin-form-login-remember">
 								<label for="klogin-remember">
 									<input id="klogin-remember" class="klogin-remember" type="checkbox" name="remember" value="yes"
@@ -115,7 +143,9 @@ defined('_JEXEC') or die();
 						<dd class="klogin-forgotname">
 							<a href="<?php echo $this->lostUsernameUrl ?>" rel="nofollow"><?php echo JText::_('COM_KUNENA_PROFILEBOX_FORGOT_USERNAME') ?></a>
 						</dd>
-						<?php if ($this->registerUrl) : ?>
+						<?php if ($this->registerUrl)
+						:
+	?>
 							<dd class="klogin-register">
 								<a href="<?php echo $this->registerUrl ?>" rel="nofollow"><?php echo JText::_('COM_KUNENA_PROFILEBOX_CREATE_ACCOUNT') ?></a>
 							</dd>

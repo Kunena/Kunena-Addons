@@ -17,6 +17,7 @@ class Mod_KunenastatsInstallerScript
 		// Delete useless manifest file
 		$path = $parent->getParent()->getPath('extension_root');
 		$name = $parent->get('name');
+
 		if (JFile::exists("{$path}/{$name}.j25.xml"))
 		{
 			JFile::delete("{$path}/{$name}.j25.xml");

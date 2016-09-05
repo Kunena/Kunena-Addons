@@ -8,7 +8,7 @@
  * @license       http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link          http://www.kunena.org
  **/
-defined('_JEXEC') or die ();
+defined('_JEXEC') or die();
 
 /**
  * Class ModuleKunenaLogin
@@ -30,10 +30,12 @@ class ModuleKunenaLogin extends KunenaModule
 		$token          = JSession::getFormToken();
 
 		$login = KunenaLogin::getInstance();
+
 		if (!$this->me->exists())
 		{
 			$this->type  = 'login';
 			$this->login = null;
+
 			if ($login)
 			{
 				$this->lostPasswordUrl = $login->getResetURL();
@@ -47,6 +49,7 @@ class ModuleKunenaLogin extends KunenaModule
 			$this->type          = 'logout';
 			$this->logout        = null;
 			$this->lastvisitDate = KunenaDate::getInstance($this->me->lastvisitDate);
+
 			if ($login)
 			{
 				$this->logout      = $login->getLogoutURL();
@@ -57,12 +60,14 @@ class ModuleKunenaLogin extends KunenaModule
 			// Private messages
 			$private               = KunenaFactory::getPrivateMessaging();
 			$this->privateMessages = '';
+
 			if ($this->params->get('showmessage') && $private)
 			{
 				$count                 = $private->getUnreadCount($this->me->userid);
 				$this->privateMessages = $private->getInboxLink($count ? JText::sprintf('COM_KUNENA_PMS_INBOX_NEW', $count) : JText::_('COM_KUNENA_PMS_INBOX'));
 			}
 		}
+
 		$this->return = $this->getReturnURL();
 
 		require JModuleHelper::getLayoutPath('mod_kunenalogin');
@@ -75,18 +80,22 @@ class ModuleKunenaLogin extends KunenaModule
 	{
 		$item   = null;
 		$itemid = (int) $this->params->get($this->type);
+
 		if ($itemid)
 		{
 			$app  = JFactory::getApplication();
 			$menu = $app->getMenu();
 
 			$item = $menu->getItem($itemid);
+
 			if ($item && $item->type == 'alias' && isset($item->query['Itemid']))
 			{
 				$item = $menu->getItem($item->query['Itemid']);
 			}
 		}
+
 		$url = '';
+
 		if ($item && $item->type == 'component')
 		{
 			// Found existing menu item
