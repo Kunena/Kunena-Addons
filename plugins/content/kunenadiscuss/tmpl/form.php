@@ -23,7 +23,7 @@ $bootstrap    = $pluginParams->get('bootstrap');
 					<div>
 						<div>
 							<?php if (!$this->user->exists()) : ?>
-								<div class="alert alert-info"><?php echo JText::_('COM_KUNENA_GEN_GUEST'); ?></div>
+								<div class="alert alert-info"><?php echo JText::_('PLG_KUNENADISCUSS_GEN_GUEST'); ?></div>
 							<?php endif; ?>
 							<form accept-charset="UTF-8" action="" method="POST" name="postform">
 								<div class="form-group">
