@@ -62,7 +62,7 @@
 		</replacetokens>
 	</filterchain>
 
-	<target name="dist" depends="init,package,info,prepare,copy,build,postflight" />
+	<target name="dist" depends="init,package,old,info,prepare,copy,build,postflight" />
 
 	<target name="init">
 		<echo message="Hello, welcome to ${phing.project.name} build tool!" />
@@ -89,32 +89,43 @@
 
 	<target name="prepare">
 		<echo msg="Making directories" />
-		<mkdir dir="./temp" />
-		<mkdir dir="./package" />
+		<mkdir dir="../package" />
+		<mkdir dir="../package/temp" />
+	</target>
+
+	<target name="old">
+		<echo message="Moving old items to a new directory..." />
+		<mkdir dir="../package/archive" />
+
+		<move todir="../package/archive" preservelastmodified="false" includeemptydirs="false">
+			<fileset dir="../package">
+				<exclude name="**/archive/**" />
+			</fileset>
+		</move>
+
+		<echo message="Moving old items to a new directory...DONE!" />
 	</target>
 
 	<target name="copy">
 		<echo msg="Copying files to build directory..." />
-		<copy todir="./temp">
+		<copy todir="../package/temp">
 			<fileset dir=".">
-				<exclude name="package"/>
-				<exclude name="temp"/>
-				<exclude name="../../build"/>
+				<include name="**"/>
+				<exclude name="**/build/**"/>
 			</fileset>
 		</copy>
-		<delete dir="./temp/build" />
-		<copy file="./mod_kunenastats.xml" todir="./temp" overwrite="true">
+		<copy file="./mod_kunenastats.xml" todir="../package/temp" overwrite="true">
 			<filterchain refid="filter"/>
 		</copy>
 	</target>
 
 	<target name="build">
-		<zip destfile="package/${cfg.prefix}${cfg.name}${str.fileversion}.zip">
-			<fileset dir="temp">
+		<zip destfile="../package/${cfg.prefix}${cfg.name}${str.fileversion}.zip">
+			<fileset dir="../package/temp">
 				<exclude name="**/*.tar,**/*.gz,**/*.bz2" />
 			</fileset>
 		</zip>
-		<delete dir="./temp" />
+		<delete dir="../package/temp" />
 		<echo msg="Files copied and compressed in build directory OK!" />
 	</target>
 

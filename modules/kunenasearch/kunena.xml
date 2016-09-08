@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE extension>
+<extension version="2.5.0" type="plugin" group="search" method="upgrade">
+	<name>plg_search_kunena</name>
+	<version>5.0.0</version>
+	<creationDate>@kunenaversiondate@</creationDate>
+	<author>Kunena Team</author>
+	<authorEmail>admin@kunena.org</authorEmail>
+	<authorUrl>http://www.kunena.org</authorUrl>
+	<copyright>(C) 2008 - 2016 Kunena Team. All rights reserved.</copyright>
+	<license>GNU/GPL</license>
+	<description>PLG_SEARCH_KUNENA_DESCRIPTION</description>
+
+	<scriptfile>install.script.php</scriptfile>
+	<files>
+		<filename plugin="kunena">kunena.php</filename>
+	</files>
+
+	<languages folder="language">
+		<!-- Transifex alphabetical order -->
+		<language tag="en-GB">en-GB/en-GB.plg_search_kunena.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_search_kunena.sys.ini</language>
+		<language tag="bs-BA">bs-BA/bs-BA.plg_search_kunena.ini</language>
+		<language tag="bg-BG">bg-BG/bg-BG.plg_search_kunena.ini</language>
+		<language tag="ca-ES">ca-ES/ca-ES.plg_search_kunena.ini</language>
+		<language tag="zh-CN">zh-CN/zh-CN.plg_search_kunena.ini</language>
+		<language tag="zh-TW">zh-TW/zh-TW.plg_search_kunena.ini</language>
+		<language tag="da-DK">da-DK/da-DK.plg_search_kunena.ini</language>
+		<language tag="nl-NL">nl-NL/nl-NL.plg_search_kunena.ini</language>
+		<language tag="et-EE">et-EE/et-EE.plg_search_kunena.ini</language>
+		<language tag="fi-FI">fi-FI/fi-FI.plg_search_kunena.ini</language>
+		<language tag="fr-FR">fr-FR/fr-FR.plg_search_kunena.ini</language>
+		<language tag="de-DE">de-DE/de-DE.plg_search_kunena.ini</language>
+		<language tag="el-GR">el-GR/el-GR.plg_search_kunena.ini</language>
+		<language tag="he-IL">he-IL/he-IL.plg_search_kunena.ini</language>
+		<language tag="hu-HU">hu-HU/hu-HU.plg_search_kunena.ini</language>
+		<language tag="it-IT">it-IT/it-IT.plg_search_kunena.ini</language>
+		<language tag="kz-KZ">kz-KZ/kz-KZ.plg_search_kunena.ini</language>
+		<language tag="km_KH">km_KH/km_KH.plg_search_kunena.ini</language>
+		<language tag="lt-LT">lt-LT/lt-LT.plg_search_kunena.ini</language>
+		<language tag="fa-IR">fa-IR/fa-IR.plg_search_kunena.ini</language>
+		<language tag="nb-NO">nb-NO/nb-NO.plg_search_kunena.ini</language>
+		<language tag="pl-PL">pl-PL/pl-PL.plg_search_kunena.ini</language>
+		<language tag="pt-PT">pt-PT/pt-PT.plg_search_kunena.ini</language>
+		<language tag="ru-RU">ru-RU/ru-RU.plg_search_kunena.ini</language>
+		<language tag="es-ES">es-ES/es-ES.plg_search_kunena.ini</language>
+		<language tag="sv-SE">sv-SE/sv-SE.plg_search_kunena.ini</language>
+		<language tag="th-TH">th-TH/th-TH.plg_search_kunena.ini</language>
+		<language tag="tr-TR">tr-TR/tr-TR.plg_search_kunena.ini</language>
+		<language tag="ug-CN">ug-CN/ug-CN.plg_search_kunena.ini</language>
+		<language tag="vi-VN">vi-VN/vi-VN.plg_search_kunena.ini</language>
+	</languages>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="search_limit" type="text" size="5" default="50" label="PLG_SEARCH_KUNENA_PARAM_SEARCH_LIMIT" description="PLG_SEARCH_KUNENA_PARAM_SEARCH_LIMIT_DESC"/>
+				<field name="content_limit" type="text" size="5" default="40" label="PLG_SEARCH_KUNENA_PARAM_CONTENT_LIMIT" description="PLG_SEARCH_KUNENA_PARAM_CONTENT_LIMIT_DESC"/>
+				<field name="show_bbcode" type="radio" default="1" label="PLG_SEARCH_KUNENA_PARAM_SHOW_BBCODE" description="PLG_SEARCH_KUNENA_PARAM_SHOW_BBCODE_DESC">
+					<option value="0">PLG_SEARCH_KUNENA_OPTION_NO</option>
+					<option value="1">PLG_SEARCH_KUNENA_OPTION_YES</option>
+				</field>
+				<field name="open_new_page" type="radio" default="1" label="PLG_SEARCH_KUNENA_PARAM_OPEN_NEWPAGE" description="PLG_SEARCH_KUNENA_PARAM_OPEN_NEWPAGE_DESC">
+					<option value="0">PLG_SEARCH_KUNENA_OPTION_NO</option>
+					<option value="1">PLG_SEARCH_KUNENA_OPTION_YES</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>
