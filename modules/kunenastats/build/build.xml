@@ -40,7 +40,7 @@
 	<property name="kunena.directory" value="${project_dir}/" />
 	<property name="kunena.directory.list" value="" />
 
-	<target name="dist" depends="mkdir,archive,copy,init,package,tar,zip,gzip,bz2,info,cleanup" />
+	<target name="dist" depends="mkdir,archive,copy,init,package,tar,zip,gzip,bz2,info" />
 
 	<target name="mkdir">
 		<mkdir dir="${tmp_dir}" />
@@ -57,7 +57,7 @@
 	</target>
 
 	<target name="copy" depends="mkdir">
-		<copy todir="${tmp_dir}">
+		<copy todir="${tmp_dir}" encoding="UTF-8">
 			<fileset dir="${kunena.directory}">
 				<exclude name="build/" />
 			</fileset>
@@ -135,7 +135,4 @@
 		<echo message="Date:            ${TODAY}" />
 	</target>
 
-	<target name="cleanup" depends="info">
-		<delete dir="${tmp_dir}" />
-	</target>
 </project>

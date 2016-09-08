@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project>
+<!--
+	Kunena phing build file
+
+	@package	Kunena
+	@subpackage	com_kunena
+	@copyright	Copyright (C) 2008 - 2016 Kunena Team. All rights reserved.
+				portions (C) 2007 MjazTools. All rights reserved.
+	@license	GNU General Public License <http://www.gnu.org/copyleft/gpl.html>
+	@link		https://www.kunena.org
+
+	The following parameters can be defined inside the PHPSTORM build task as Arguments. They
+	allow the build file to be platform independent as not path information resides within
+	any of the build files.
+
+	Parameters: (with default values - adjust the directories in PHPSTORM to your individual setup)
+	-Dproject_dir=..				(= workspace/kunena)
+	-Dpackage_dir=../../packages	(= workspace/packages)
+	-Dtmp_dir=tmp					(= workspace/kunena/build/tmp)
+	-Dbuild_dir=package				(= workspace/kunena/build/package)
+-->
+<project name="kunena" basedir="../../" description="Phing Build Script for Kunena" default="dist">
+	<!-- Setup of any global settings that will apply to the entire build script -->
+	<property file="./build/phing/build.properties" />
+
+	<xmlproperty file="mod_kunenalogin.xml" collapseAttributes="true" prefix="xml" keepRoot="false" />
+	<tstamp>
+		<format property="str.datefmt" pattern="${cfg.datefmt}" locale="${cfg.dateloc}" />
+	</tstamp>
+
+	<condition property="str.version" value="_${cfg.versionprefix}${xml.version}">
+		<istrue value="${cfg.addversion}" />
+	</condition>
+	<property name="str.dategood" value="${str.datefmt}"/>
+	<condition property="str.date" value="_${str.datefmt}">
+		<istrue value="${cfg.adddate}" />
+	</condition>
+
+	<property name="str.fileversion" value="${str.version}${str.date}" />
+
+	<condition property="do.tar">
+		<istrue value="${cfg.tar}" />
+	</condition>
+	<condition property="do.zip">
+		<istrue value="${cfg.zip}" />
+	</condition>
+	<condition property="do.gzip">
+		<istrue value="${cfg.gzip}" />
+	</condition>
+	<condition property="do.bz2">
+		<istrue value="${cfg.bz2}" />
+	</condition>
+
+	<!-- Add version information to all xml files and forum.php -->
+	<filterchain id="filter">
+		<replacetokens>
+			<token key="kunenaversion" value="${xml.version}"/>
+			<token key="kunenaversiondate" value="${str.dategood}" />
+			<token key="kunenaversionname" value="${xml.versionname}" />
+			<token key="kunenaversionbuild" value="${xml.version}"/>
+		</replacetokens>
+	</filterchain>
+
+	<target name="dist" depends="init,package,old,info,prepare,copy,build,postflight" />
+
+	<target name="init">
+		<echo message="Hello, welcome to ${phing.project.name} build tool!" />
+	</target>
+
+	<target name="package">
+		<!-- Copy files that conatin version tags again and perform token replacement -->
+		<condition property="version.date" value="${str.datefmt}">
+			<istrue value="${cfg.adddate}" />
+		</condition>
+	</target>
+
+	<target name="info">
+		<echo message="Phing Version:   ${phing.version}" />
+		<echo message="Project:         ${cfg.name}" />
+		<echo message="XML Name:        ${xml.name}" />
+		<echo message="XML Version:     ${xml.version}" />
+		<echo message="XML Author:      ${xml.author}" />
+		<echo message="XML Copyright:   ${xml.copyright}" />
+		<echo message="XML License:     ${xml.license}" />
+		<echo message="XML Description: ${xml.description}" />
+		<echo message="Date:            ${TODAY}" />
+	</target>
+
+	<target name="prepare">
+		<echo msg="Making directories" />
+		<mkdir dir="../package" />
+		<mkdir dir="../package/temp" />
+	</target>
+
+	<target name="old">
+		<echo message="Moving old items to a new directory..." />
+		<mkdir dir="../package/archive" />
+
+		<move todir="../package/archive" preservelastmodified="false" includeemptydirs="false">
+			<fileset dir="../package">
+				<exclude name="**/archive/**" />
+			</fileset>
+		</move>
+
+		<echo message="Moving old items to a new directory...DONE!" />
+	</target>
+
+	<target name="copy">
+		<echo msg="Copying files to build directory..." />
+		<copy todir="../package/temp">
+			<fileset dir=".">
+				<include name="**"/>
+				<exclude name="**/build/**"/>
+			</fileset>
+		</copy>
+		<copy file="./mod_kunenalogin.xml" todir="../package/temp" overwrite="true">
+			<filterchain refid="filter"/>
+		</copy>
+	</target>
+
+	<target name="build">
+		<zip destfile="../package/${cfg.prefix}${cfg.name}${str.fileversion}.zip">
+			<fileset dir="../package/temp">
+				<exclude name="**/*.tar,**/*.gz,**/*.bz2" />
+			</fileset>
+		</zip>
+		<delete dir="../package/temp" />
+		<echo msg="Files copied and compressed in build directory OK!" />
+	</target>
+
+	<target name="postflight">
+		<echo message="Congratulations, build should of finished without error!" />
+	</target>
+
+</project>
