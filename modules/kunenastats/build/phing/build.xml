@@ -90,15 +90,16 @@
 	<target name="prepare">
 		<echo msg="Making directories" />
 		<mkdir dir="./temp" />
-		<mkdir dir="../package" />
+		<mkdir dir="./package" />
 	</target>
 
 	<target name="copy">
 		<echo msg="Copying files to build directory..." />
 		<copy todir="./temp">
 			<fileset dir=".">
+				<exclude name="package"/>
 				<exclude name="temp"/>
-				<exclude name="build"/>
+				<exclude name="../../build"/>
 			</fileset>
 		</copy>
 		<delete dir="./temp/build" />
@@ -108,7 +109,7 @@
 	</target>
 
 	<target name="build">
-		<zip destfile="../package/${cfg.prefix}${cfg.name}${str.fileversion}.zip">
+		<zip destfile="package/${cfg.prefix}${cfg.name}${str.fileversion}.zip">
 			<fileset dir="temp">
 				<exclude name="**/*.tar,**/*.gz,**/*.bz2" />
 			</fileset>
