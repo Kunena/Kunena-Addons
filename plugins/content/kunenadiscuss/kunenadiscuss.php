@@ -183,32 +183,53 @@ class plgContentKunenaDiscuss extends JPlugin
 		// Create plugin table if doesn't exist
 		$query = "SHOW TABLES LIKE '{$this->db->getPrefix()}kunenadiscuss'";
 		$this->db->setQuery($query);
-
-		if (!$this->db->loadResult())
+		
+		try
 		{
-			KunenaError::checkDatabaseError();
+			$this->db->loadResult();
+		}
+		catch (JDatabaseExceptionExecuting $e)
+		{
+			KunenaError::displayDatabaseError($e);
+			
 			$query = "CREATE TABLE IF NOT EXISTS `#__kunenadiscuss`
 					(`content_id` int(11) NOT NULL default '0',
 					 `thread_id` int(11) NOT NULL default '0',
 					 PRIMARY KEY  (`content_id`)
 					 )";
 			$this->db->setQuery($query);
-			$this->db->query();
-			KunenaError::checkDatabaseError();
+				
+			try
+			{
+				$this->db->execute();
+			}
+			catch (JDatabaseExceptionExecuting $e)
+			{
+				KunenaError::displayDatabaseError($e);
+			}
+				
 			$this->debug("Created #__kunenadiscuss cross reference table.");
-
+			
 			// Migrate data from old FireBoard discussbot if it exists
 			$query = "SHOW TABLES LIKE '{$this->db->getPrefix()}fb_discussbot'";
 			$this->db->setQuery($query);
-
+			
 			if ($this->db->loadResult())
 			{
 				$query = "REPLACE INTO `#__kunenadiscuss`
 					SELECT `content_id` , `thread_id`
 					FROM `#__fb_discussbot`";
 				$this->db->setQuery($query);
-				$this->db->query();
-				KunenaError::checkDatabaseError();
+			
+				try
+				{
+					$this->db->execute();
+				}
+				catch (JDatabaseExceptionExecuting $e)
+				{
+					KunenaError::displayDatabaseError($e);
+				}
+			
 				$this->debug("Migrated old data.");
 			}
 		}
@@ -349,8 +370,16 @@ class plgContentKunenaDiscuss extends JPlugin
 						->from('#__content')
 						->where("id={$db->quote($article->id)}");
 					$this->db->setQuery($query);
-					$fulltext = $this->db->loadResult();
-					KunenaError::checkDatabaseError();
+					
+					try
+					{
+						$fulltext = $this->db->loadResult();
+					}
+					catch (JDatabaseExceptionExecuting $e)
+					{
+						KunenaError::displayDatabaseError($e);
+					}
+					
 					$text = $article->introtext . ' ' . $fulltext;
 				}
 				else
@@ -580,8 +609,15 @@ class plgContentKunenaDiscuss extends JPlugin
 			->from('#__kunenadiscuss')
 			->where("content_id = {$db->quote($row->id)}");
 		$this->db->setQuery($query);
-		$result = $this->db->loadResult();
-		KunenaError::checkDatabaseError();
+		
+		try
+		{
+			$result = $this->db->loadResult();
+		}
+		catch (JDatabaseExceptionExecuting $e)
+		{
+			KunenaError::displayDatabaseError($e);
+		}
 
 		if ($topic_id)
 		{
@@ -795,8 +831,15 @@ class plgContentKunenaDiscuss extends JPlugin
 			->delete('#__kunenadiscuss')
 			->where("content_id={$db->quote($row->id)}");
 		$this->db->setQuery($query);
-		$this->db->query();
-		KunenaError::checkDatabaseError();
+		
+		try
+		{
+			$this->db->execute();
+		}
+		catch (JDatabaseExceptionExecuting $e)
+		{
+			KunenaError::displayDatabaseError($e);
+		}
 	}
 
 	/**
@@ -811,8 +854,15 @@ class plgContentKunenaDiscuss extends JPlugin
 			->set("thread_id={$db->quote($topic_id)}")
 			->where("content_id={$db->quote($row->id)}");
 		$this->db->setQuery($query);
-		$this->db->query();
-		KunenaError::checkDatabaseError();
+		
+		try
+		{
+			$this->db->execute();
+		}
+		catch (JDatabaseExceptionExecuting $e)
+		{
+			KunenaError::displayDatabaseError($e);
+		}
 	}
 
 	/**
@@ -828,8 +878,15 @@ class plgContentKunenaDiscuss extends JPlugin
 			->columns('content_id, thread_id')
 			->values("{$db->quote($row->id)}, {$db->quote($topic_id)}");
 		$this->db->setQuery($query);
-		$this->db->query();
-		KunenaError::checkDatabaseError();
+		
+		try
+		{
+			$this->db->execute();
+		}
+		catch (JDatabaseExceptionExecuting $e)
+		{
+			KunenaError::displayDatabaseError($e);
+		}
 	}
 
 	/**
