@@ -178,30 +178,17 @@ class plgContentKunenaDiscuss extends JPlugin
 		$query = "SHOW TABLES LIKE '{$this->db->getPrefix()}kunenadiscuss'";
 		$this->db->setQuery($query);
 
-		try
+		if (!$this->db->loadResult())
 		{
-			$this->db->loadResult();
-		}
-		catch (JDatabaseExceptionExecuting $e)
-		{
-			KunenaError::displayDatabaseError($e);
-
+			KunenaError::checkDatabaseError();
 			$query = "CREATE TABLE IF NOT EXISTS `#__kunenadiscuss`
 					(`content_id` int(11) NOT NULL default '0',
 					 `thread_id` int(11) NOT NULL default '0',
 					 PRIMARY KEY  (`content_id`)
 					 )";
 			$this->db->setQuery($query);
-
-			try
-			{
-				$this->db->execute();
-			}
-			catch (JDatabaseExceptionExecuting $e)
-			{
-				KunenaError::displayDatabaseError($e);
-			}
-
+			$this->db->query();
+			KunenaError::checkDatabaseError();
 			$this->debug("Created #__kunenadiscuss cross reference table.");
 
 			// Migrate data from old FireBoard discussbot if it exists
@@ -214,16 +201,8 @@ class plgContentKunenaDiscuss extends JPlugin
 					SELECT `content_id` , `thread_id`
 					FROM `#__fb_discussbot`";
 				$this->db->setQuery($query);
-
-				try
-				{
-					$this->db->execute();
-				}
-				catch (JDatabaseExceptionExecuting $e)
-				{
-					KunenaError::displayDatabaseError($e);
-				}
-
+				$this->db->query();
+				KunenaError::checkDatabaseError();
 				$this->debug("Migrated old data.");
 			}
 		}
