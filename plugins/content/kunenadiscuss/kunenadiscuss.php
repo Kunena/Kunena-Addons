@@ -101,13 +101,6 @@ class plgContentKunenaDiscuss extends JPlugin
 	}
 
 	/**
-	 * ***************************************************************************
-	 * Debugging and error handling
-	 * ***************************************************************************
-	 * /
-	 *
-	 * /**
-	 *
 	 * @param       $msg
 	 * @param   int $fatal
 	 */
@@ -264,7 +257,7 @@ class plgContentKunenaDiscuss extends JPlugin
 
 			$articleCategory = (isset($article->catid) ? $article->catid : 0);
 			$isStaticContent = !$articleCategory;
-			$articleCategory = (int)$articleCategory;
+			$articleCategory = (int) $articleCategory;
 
 			if ($isStaticContent)
 			{
