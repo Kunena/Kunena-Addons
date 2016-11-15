@@ -21,9 +21,9 @@ $topic = $this->topic;
 		<?php elseif ($this->params->get('sh_topiciconoravatar') == 0) : ?>
 			<li class="klatest-topicicon">
 				<?php if ($this->topic->unread) : ?>
-					<?php echo $this->getTopicLink($topic, 'unread', $topic->getIcon($topic->getCategory()->iconset), null, 'hasTooltip', $this->category, true, false) ?>
+					<?php echo $this->getTopicLink($topic, 'unread', $topic->getIcon($topic->getCategory()->iconset), '', null, $this->category, true, true); ?>
 				<?php else : ?>
-					<?php echo $this->getTopicLink($topic, null, $topic->getIcon($topic->getCategory()->iconset), null, 'hasTooltip', $this->category, true, false) ?>
+					<?php echo $this->getTopicLink($topic, null, $topic->getIcon($topic->getCategory()->iconset), '', null, $this->category, true, false); ?>
 				<?php endif; ?>
 			</li>
 		<?php endif; ?>
@@ -33,12 +33,12 @@ $topic = $this->topic;
 
 			if ($topic->unread)
 			{
-				echo $this->getTopicLink($topic, 'unread', $topic->subject . '<sup class="knewchar" dir="ltr">(' . (int) $topic->unread .
-					' ' . JText::_('COM_KUNENA_A_GEN_NEWCHAR') . ')</sup>', null, 'hasTooltip', $this->category, true, true);
+				echo $this->getTopicLink($topic, 'unread', $this->escape($topic->subject) . '<sup class="knewchar" dir="ltr">(' . (int) $topic->unread .
+					' ' . JText::_('COM_KUNENA_A_GEN_NEWCHAR') . ')</sup>', null, KunenaTemplate::getInstance()->tooltips(), $this->category, true, true);
 			}
 			else
 			{
-				echo $this->getTopicLink($topic, null, null, null, 'hasTooltip topictitle', $this->category, true, false);
+				echo $this->getTopicLink($topic, null, null, null, KunenaTemplate::getInstance()->tooltips() . ' topictitle', $this->category, true, false);
 			}
 
 			if ($this->params->get('sh_postcount'))
@@ -46,17 +46,14 @@ $topic = $this->topic;
 				echo ' (' . $this->topic->getTotal() . ' ' . JText::_('MOD_KUNENALATEST_MSG') . ')';
 			}
 
-			if ($this->params->get('sh_sticky') && $this->topic->ordering)
-			{
-				echo $this->getIcon('ktopicsticky', JText::_('MOD_KUNENALATEST_STICKY_TOPIC'));
-			}
 			if ($this->params->get('sh_locked') && $this->topic->locked)
 			{
-				echo $this->getIcon('ktopiclocked', JText::_('COM_KUNENA_GEN_LOCKED_TOPIC'));
+				echo '<span ' . KunenaTemplate::getInstance()->tooltips(true) . ' title="' . JText::_('COM_KUNENA_GEN_LOCKED_TOPIC') .'">' . KunenaIcons::lock() . '</span>';
 			}
+
 			if ($this->params->get('sh_favorite') && $this->topic->getUserTopic()->favorite)
 			{
-				echo $this->getIcon('kfavoritestar', JText::_('COM_KUNENA_FAVORITE'));
+				echo '<span ' . KunenaTemplate::getInstance()->tooltips(true) . ' title="' . JText::_('COM_KUNENA_FAVORITE') .'">' . KunenaIcons::star() . '</span>';
 			}
 			?>
 		</li>
@@ -67,7 +64,8 @@ $topic = $this->topic;
 			<li class="klatest-cat"><?php echo JText::_('MOD_KUNENALATEST_IN_CATEGORY') . ' ' . $this->categoryLink ?></li>
 		<?php endif; ?>
 		<?php if ($this->params->get('sh_author')) : ?>
-			<li class="klatest-author"><?php echo JText::_('MOD_KUNENALATEST_LAST_POST_BY') . ' ' . $this->lastPostAuthor->getLink($this->lastUserName); ?></li>
+			<li class="klatest-author"><?php echo JText::_('COM_KUNENA_BY') . ' ' . $this->topic->getLastPostAuthor()->getLink(null, JText::sprintf('COM_KUNENA_VIEW_USER_LINK_TITLE',
+				$this->topic->getLastPostAuthor()->getName()), '', '', KunenaTemplate::getInstance()->tooltips(), $this->category->id);?></li>
 		<?php endif; ?>
 		<?php if ($this->params->get('sh_time')) : ?>
 			<li class="klatest-posttime"><?php $override = $this->params->get('dateformat');
