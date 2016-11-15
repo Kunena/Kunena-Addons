@@ -202,6 +202,7 @@ class plgContentKunenaDiscuss extends JPlugin
 
 			$articleCategory = (isset ($article->catid) ? $article->catid : 0);
 			$isStaticContent = !$articleCategory;
+			$articleCategory=(int)$articleCategory;		//casting int to enable multiple category articles to work
 			if ($isStaticContent)
 			{
 				$kunenaCategory = false;
