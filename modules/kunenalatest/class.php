@@ -15,10 +15,10 @@ defined('_JEXEC') or die();
  */
 class ModuleKunenaLatest extends KunenaModule
 {
-	static protected $css = '/modules/mod_kunenalatest/tmpl/css/kunenalatest.css';
-
 	protected function _display()
 	{
+		JFactory::getDocument()->addStyleSheet(JUri::root(true) . '/modules/mod_kunenalatest/tmpl/css/kunenalatest.css');
+
 		// Load language files.
 		KunenaFactory::loadLanguage('com_kunena.sys', 'admin');
 		KunenaFactory::loadLanguage();
@@ -32,7 +32,7 @@ class ModuleKunenaLatest extends KunenaModule
 		$this->params->set('topics_categories', $categories);
 		$this->params->set('topics_catselection', $this->params->get('sh_category_id_in', 1));
 		$this->params->set('topics_time', $this->params->get('show_list_time', 168));
-		$userid = 0;
+		$userid = KunenaUserHelper::get()->userid;
 
 		switch ($this->params->get('choosemodel'))
 		{
