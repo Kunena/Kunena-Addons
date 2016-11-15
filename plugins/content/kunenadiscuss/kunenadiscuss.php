@@ -105,15 +105,16 @@ class plgContentKunenaDiscuss extends JPlugin
 	 * Debugging and error handling
 	 * ***************************************************************************
 	 * /
-
-	 /**
-	 * @param     $msg
+	 *
+	 * /**
+	 *
+	 * @param       $msg
 	 * @param   int $fatal
 	 */
 	protected function debug($msg, $fatal = 0)
 	{
 		// Print out debug info!
-		$debug      = $this->params->get('show_debug', false);
+		$debug = $this->params->get('show_debug', false);
 
 		// Joomla Id's of Users who can see debug info
 		$debugUsers = $this->params->get('show_debug_userids', '');
@@ -282,7 +283,7 @@ class plgContentKunenaDiscuss extends JPlugin
 			}
 
 			$kunenaTopic = false;
-			$regex = '/{kunena_discuss:(\d+?)}/s';
+			$regex       = '/{kunena_discuss:(\d+?)}/s';
 
 			if (JRequest::getVar('tmpl', '') == 'component' || JRequest::getBool('print')
 				|| JRequest::getVar('format', 'html') != 'html' || (isset($article->state) && !$article->state)
@@ -311,24 +312,27 @@ class plgContentKunenaDiscuss extends JPlugin
 			$layout      = JRequest::getVar('layout');
 			$isBlogPage  = ($view == 'section' || $view == 'category') && $layout == 'blog';
 			$isFrontPage = $view == 'frontpage' || $view == 'featured';
+			$isArticle   = $view == 'article';
 
 			if ($isBlogPage)
 			{
 				$this->debug("onPrepareContent: we are in blog page.");
 				$show = $this->params->get('show_blog_page', 2);
 			}
+			elseif ($isFrontPage)
+			{
+				$this->debug("onPrepareContent: we are in front page.");
+				$show = $this->params->get('show_front_page', 2);
+			}
+			elseif ($isArticle)
+			{
+				$this->debug("onPrepareContent: we are viewing an article.");
+				$show = $this->params->get('show_article_pages', 2);
+			}
 			else
 			{
-				if ($isFrontPage)
-				{
-					$this->debug("onPrepareContent: we are in front page.");
-					$show = $this->params->get('show_front_page', 2);
-				}
-				else
-				{
-					$this->debug("onPrepareContent: we are in {$view}/{$layout} page.");
-					$show = $this->params->get('show_other_pages', 2);
-				}
+				$this->debug("onPrepareContent: we are in {$view}/{$layout} page.");
+				$show = $this->params->get('show_other_pages', 2);
 			}
 
 			if (!$show || isset(self::$plgDisplay [$article->id]))
@@ -436,7 +440,7 @@ class plgContentKunenaDiscuss extends JPlugin
 				}
 
 				$this->debug("onPrepareContent: Searched for {kunena_discuss:#}: Custom Topic "
-				. ($kunenaTopic ? "{$kunenaTopic} found." : "not found."));
+					. ($kunenaTopic ? "{$kunenaTopic} found." : "not found."));
 			}
 
 			if ($kunenaCategory || $kunenaTopic)
@@ -708,7 +712,7 @@ class plgContentKunenaDiscuss extends JPlugin
 				return '';
 			}
 
-			$create     = $this->params->get('create', 0);
+			$create = $this->params->get('create', 0);
 
 			// Weeks in seconds
 			$createTime = $this->params->get('create_time', 0) * 604800;
@@ -890,9 +894,9 @@ class plgContentKunenaDiscuss extends JPlugin
 	}
 
 	/**
-	 * @param                     $row
+	 * @param                       $row
 	 * @param   KunenaForumCategory $category
-	 * @param                     $subject
+	 * @param                       $subject
 	 *
 	 * @return boolean|KunenaForumTopic
 	 */
@@ -946,20 +950,20 @@ class plgContentKunenaDiscuss extends JPlugin
 					$contents = "[article]{$row->id}[/article]";
 				}
 			}
-			}
+		}
 
-			// Save the ID for later use
-			$topic_owner = $this->params->get('topic_owner', $row->created_by);
-			$user        = KunenaUserHelper::get($topic_owner);
+		// Save the ID for later use
+		$topic_owner = $this->params->get('topic_owner', $row->created_by);
+		$user        = KunenaUserHelper::get($topic_owner);
 
-			// Get real email, we need to pass email of the topic starter (robot) when 'Require E-mail' option is enabled
-			$email       = $user->email;
-			$params      = array(
+		// Get real email, we need to pass email of the topic starter (robot) when 'Require E-mail' option is enabled
+		$email      = $user->email;
+		$params     = array(
 			'email'   => $email,
 			'subject' => $subject,
 			'message' => $contents,
 		);
-		$safefields  = array(
+		$safefields = array(
 			'category_id' => intval($category->id)
 		);
 		list($topic, $message) = $category->newTopic($params, $topic_owner, $safefields);
@@ -1019,10 +1023,10 @@ class plgContentKunenaDiscuss extends JPlugin
 	}
 
 	/**
-	 * @param                     $row
+	 * @param                       $row
 	 * @param   KunenaForumCategory $category
 	 * @param   KunenaForumTopic    $topic
-	 * @param                     $subject
+	 * @param                       $subject
 	 *
 	 * @return boolean|string
 	 */
@@ -1168,10 +1172,10 @@ class plgContentKunenaDiscuss extends JPlugin
 	}
 
 	/**
-	 * @param                     $row
+	 * @param                       $row
 	 * @param   KunenaForumCategory $category
 	 * @param   KunenaForumTopic    $topic
-	 * @param                     $subject
+	 * @param                       $subject
 	 *
 	 * @return string
 	 */
