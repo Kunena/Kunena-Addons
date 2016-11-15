@@ -11,7 +11,12 @@
 defined('_JEXEC') or die('');
 ?>
 <div class="panel-heading">
-	<?php echo JHtml::_('kunenaforum.link', $this->topic->getUri($this->category), JText::_('PLG_KUNENADISCUSS_POSTS')) ?>
+	<?php echo JHtml::_('kunenaforum.link', $this->topic->getUri($this->category), JText::_('PLG_KUNENADISCUSS_POSTS') . ':' . $this->topic->subject) ?>
+</div>
+
+<div>
+	<?php echo $this->subRequest('Topic/Item/Actions')->set('id', $this->topic->id); ?>
+	<br />
 </div>
 
 <?php $this->displayMessages() ?>
