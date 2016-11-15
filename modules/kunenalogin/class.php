@@ -15,10 +15,10 @@ defined('_JEXEC') or die();
  */
 class ModuleKunenaLogin extends KunenaModule
 {
-	static protected $css = '/modules/mod_kunenalogin/tmpl/css/kunenalogin.css';
-
 	protected function _display()
 	{
+		JFactory::getDocument()->addStyleSheet(JUri::root(true) . '/modules/mod_kunenalogin/tmpl/css/kunenalogin.css');
+
 		// Load language files.
 		KunenaFactory::loadLanguage();
 		KunenaFactory::loadLanguage('com_kunena.templates');
@@ -29,7 +29,15 @@ class ModuleKunenaLogin extends KunenaModule
 		$this->me       = KunenaFactory::getUser();
 		$token          = JSession::getFormToken();
 
-		$login = KunenaLogin::getInstance();
+		$login  = KunenaLogin::getInstance();
+		$access = KunenaConfig::getInstance()->access_component;
+
+		if (!$access)
+		{
+			JFactory::getApplication()->enqueueMessage('Please set <em><strong>Direct Component Access</strong></em> to <em><strong>No</strong></em> for using Kunena Login Module. On the Kunena Configurations.', 'error');
+
+			return false;
+		}
 
 		if (!$this->me->exists())
 		{
