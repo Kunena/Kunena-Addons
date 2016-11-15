@@ -73,7 +73,7 @@ class plgContentKunenaDiscuss extends JPlugin
 		}
 
 		// Kunena detection and version check
-		$minKunenaVersion = '3.0';
+		$minKunenaVersion = '5.0';
 
 		if (!class_exists('KunenaForum') || !KunenaForum::isCompatible($minKunenaVersion))
 		{
@@ -183,7 +183,7 @@ class plgContentKunenaDiscuss extends JPlugin
 		// Create plugin table if doesn't exist
 		$query = "SHOW TABLES LIKE '{$this->db->getPrefix()}kunenadiscuss'";
 		$this->db->setQuery($query);
-		
+
 		try
 		{
 			$this->db->loadResult();
@@ -191,14 +191,14 @@ class plgContentKunenaDiscuss extends JPlugin
 		catch (JDatabaseExceptionExecuting $e)
 		{
 			KunenaError::displayDatabaseError($e);
-			
+
 			$query = "CREATE TABLE IF NOT EXISTS `#__kunenadiscuss`
 					(`content_id` int(11) NOT NULL default '0',
 					 `thread_id` int(11) NOT NULL default '0',
 					 PRIMARY KEY  (`content_id`)
 					 )";
 			$this->db->setQuery($query);
-				
+
 			try
 			{
 				$this->db->execute();
@@ -207,20 +207,20 @@ class plgContentKunenaDiscuss extends JPlugin
 			{
 				KunenaError::displayDatabaseError($e);
 			}
-				
+
 			$this->debug("Created #__kunenadiscuss cross reference table.");
-			
+
 			// Migrate data from old FireBoard discussbot if it exists
 			$query = "SHOW TABLES LIKE '{$this->db->getPrefix()}fb_discussbot'";
 			$this->db->setQuery($query);
-			
+
 			if ($this->db->loadResult())
 			{
 				$query = "REPLACE INTO `#__kunenadiscuss`
 					SELECT `content_id` , `thread_id`
 					FROM `#__fb_discussbot`";
 				$this->db->setQuery($query);
-			
+
 				try
 				{
 					$this->db->execute();
@@ -229,7 +229,7 @@ class plgContentKunenaDiscuss extends JPlugin
 				{
 					KunenaError::displayDatabaseError($e);
 				}
-			
+
 				$this->debug("Migrated old data.");
 			}
 		}
@@ -370,7 +370,7 @@ class plgContentKunenaDiscuss extends JPlugin
 						->from('#__content')
 						->where("id={$db->quote($article->id)}");
 					$this->db->setQuery($query);
-					
+
 					try
 					{
 						$fulltext = $this->db->loadResult();
@@ -379,7 +379,7 @@ class plgContentKunenaDiscuss extends JPlugin
 					{
 						KunenaError::displayDatabaseError($e);
 					}
-					
+
 					$text = $article->introtext . ' ' . $fulltext;
 				}
 				else
@@ -609,7 +609,7 @@ class plgContentKunenaDiscuss extends JPlugin
 			->from('#__kunenadiscuss')
 			->where("content_id = {$db->quote($row->id)}");
 		$this->db->setQuery($query);
-		
+
 		try
 		{
 			$result = $this->db->loadResult();
@@ -831,7 +831,7 @@ class plgContentKunenaDiscuss extends JPlugin
 			->delete('#__kunenadiscuss')
 			->where("content_id={$db->quote($row->id)}");
 		$this->db->setQuery($query);
-		
+
 		try
 		{
 			$this->db->execute();
@@ -854,7 +854,7 @@ class plgContentKunenaDiscuss extends JPlugin
 			->set("thread_id={$db->quote($topic_id)}")
 			->where("content_id={$db->quote($row->id)}");
 		$this->db->setQuery($query);
-		
+
 		try
 		{
 			$this->db->execute();
@@ -878,7 +878,7 @@ class plgContentKunenaDiscuss extends JPlugin
 			->columns('content_id, thread_id')
 			->values("{$db->quote($row->id)}, {$db->quote($topic_id)}");
 		$this->db->setQuery($query);
-		
+
 		try
 		{
 			$this->db->execute();
