@@ -65,12 +65,17 @@
 					<option value="0">PLG_KUNENADISCUSS_OPTION_FIRST</option>
 					<option value="1">PLG_KUNENADISCUSS_OPTION_LAST</option>
 				</field>
-				<field name="show_front_page"  type="radio" default="2" label="PLG_KUNENADISCUSS_SHOW_FRONT_PAGE" description="PLG_KUNENADISCUSS_SHOW_FRONT_PAGE_DESC">
+				<field name="show_front_page"  type="radio" default="2" description="PLG_KUNENADISCUSS_SHOW_FRONT_PAGE_DESC" label="PLG_KUNENADISCUSS_SHOW_FRONT_PAGE">
 					<option value="0">PLG_KUNENADISCUSS_OPTION_NOTHING</option>
 					<option value="1">PLG_KUNENADISCUSS_OPTION_LINK</option>
 					<option value="2">PLG_KUNENADISCUSS_OPTION_REPLIES</option>
 				</field>
 				<field name="show_blog_page" type="radio" default="2" description="PLG_KUNENADISCUSS_SHOW_BLOG_PAGE_DESC" label="PLG_KUNENADISCUSS_SHOW_BLOG_PAGE">
+					<option value="0">PLG_KUNENADISCUSS_OPTION_NOTHING</option>
+					<option value="1">PLG_KUNENADISCUSS_OPTION_LINK</option>
+					<option value="2">PLG_KUNENADISCUSS_OPTION_REPLIES</option>
+				</field>
+				<field name="show_article_pages" type="radio" default="2" description="What to display on article view pages" label="PLG_KUNENADISCUSS_SHOW_ARTICLE_DESC">
 					<option value="0">PLG_KUNENADISCUSS_OPTION_NOTHING</option>
 					<option value="1">PLG_KUNENADISCUSS_OPTION_LINK</option>
 					<option value="2">PLG_KUNENADISCUSS_OPTION_REPLIES</option>
