@@ -142,6 +142,11 @@
 					<option value="1">MOD_KUNENALATEST_PARAM_VALUE_YES</option>
 					<option value="0">MOD_KUNENALATEST_PARAM_VALUE_NO</option>
 				</field>
+				<field name="sh_unread" type="radio" default="1" description="MOD_KUNENALATEST_PARAM_UNREAD_DESC"
+				       label="MOD_KUNENALATEST_PARAM_UNREAD">
+					<option value="1">MOD_KUNENALATEST_PARAM_VALUE_YES</option>
+					<option value="0">MOD_KUNENALATEST_PARAM_VALUE_NO</option>
+				</field>
 				<field name="subjecttitle" type="radio" default="none" description="MOD_KUNENALATEST_PARAM_SUBJECTTITLE_DESC" label="MOD_KUNENALATEST_PARAM_SUBJECTTITLE">
 					<option value="none">MOD_KUNENALATEST_PARAM_SUBJECTTITLE_NONE</option>
 					<option value="subject_only">MOD_KUNENALATEST_PARAM_SUBJECTTITLE_SUBJECTONLY</option>
