@@ -75,7 +75,7 @@
 					<option value="1">PLG_KUNENADISCUSS_OPTION_LINK</option>
 					<option value="2">PLG_KUNENADISCUSS_OPTION_REPLIES</option>
 				</field>
-				<field name="show_article_pages" type="radio" default="2" description="What to display on article view pages" label="PLG_KUNENADISCUSS_SHOW_ARTICLE_DESC">
+				<field name="show_article_pages" type="radio" default="2" description="PLG_KUNENADISCUSS_SHOW_ARTICLE_DESC" label="PLG_KUNENADISCUSS_SHOW_ARTICLE">
 					<option value="0">PLG_KUNENADISCUSS_OPTION_NOTHING</option>
 					<option value="1">PLG_KUNENADISCUSS_OPTION_LINK</option>
 					<option value="2">PLG_KUNENADISCUSS_OPTION_REPLIES</option>
