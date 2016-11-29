@@ -34,7 +34,7 @@ class ModuleKunenaLogin extends KunenaModule
 
 		if (!$access)
 		{
-			JFactory::getApplication()->enqueueMessage('Please set <em><strong>Direct Component Access</strong></em> to <em><strong>No</strong></em> for using Kunena Login Module. On the Kunena Configurations.', 'error');
+			JFactory::getApplication()->enqueueMessage(JText::_('MOD_KUNENALOGIN_DIRECT'), 'error');
 
 			return false;
 		}
