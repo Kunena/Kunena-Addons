@@ -24,3 +24,7 @@ fieldset.ksearch-fieldset .ksearch-label {
 	margin: 0 !important;
 	padding: 0 !important;
 }
+input,
+textarea, .uneditable-input {
+	width: auto;
+}

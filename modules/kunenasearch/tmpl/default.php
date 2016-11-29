@@ -29,7 +29,7 @@ defined('_JEXEC') or die();
 					echo '<br />';
 				}
 
-				echo '<input type="submit" value="' . $this->ksearch_button_txt . '" class="kbutton' . $this->ksearch_moduleclass_sfx . '" />';
+				echo '<input type="submit" value="' . $this->ksearch_button_txt . '" class="kbutton btn' . $this->ksearch_moduleclass_sfx . '" />';
 			};
 			?>
 		</fieldset>
