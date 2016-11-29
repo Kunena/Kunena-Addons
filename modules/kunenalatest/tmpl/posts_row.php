@@ -21,10 +21,10 @@ $topic = $this->topic;
 			</li>
 		<?php elseif ($this->params->get('sh_topiciconoravatar') == 0) : ?>
 			<li class="klatest-topicicon">
-				<?php if ($this->topic->unread) : ?>
-					<?php echo $this->getTopicLink($topic, 'unread', $topic->getIcon($topic->getCategory()->iconset), '', null, $this->category, true, true); ?>
+				<?php if ($this->topic->unread && $this->params->get('sh_unread') == 1) : ?>
+					<?php echo $this->getTopicLink($topic, 'unread', $topic->getIcon($topic), '', null, $this->category, true, true); ?>
 				<?php else : ?>
-					<?php echo $this->getTopicLink($topic, null, $topic->getIcon($topic->getCategory()->iconset), '', null, $this->category, true, false); ?>
+					<?php echo $this->getTopicLink($topic, null, $topic->getIcon($topic), '', null, $this->category, true, false); ?>
 				<?php endif; ?>
 			</li>
 		<?php endif; ?>
@@ -34,8 +34,17 @@ $topic = $this->topic;
 
 			if ($topic->unread)
 			{
-				echo $this->getTopicLink($topic, 'unread', $this->escape($topic->subject) . '<sup class="knewchar" dir="ltr">(' . (int) $topic->unread .
-					' ' . JText::_('COM_KUNENA_A_GEN_NEWCHAR') . ')</sup>', null, KunenaTemplate::getInstance()->tooltips(), $this->category, true, true);
+				if ($topic->unread && $this->params->get('sh_unread') == 1)
+				{
+					echo $this->getTopicLink($topic, 'unread', $this->escape($topic->subject) . '<sup class="knewchar" dir="ltr">(' . (int) $topic->unread .
+						' ' . JText::_('COM_KUNENA_A_GEN_NEWCHAR') . ')</sup>', null, KunenaTemplate::getInstance()->tooltips(), $this->category, true, true);
+				}
+				else
+				{
+					echo $this->getTopicLink($topic, null, $this->escape($topic->subject) . '<sup class="knewchar" dir="ltr">(' . (int)
+						$topic->unread .
+						' ' . JText::_('COM_KUNENA_A_GEN_NEWCHAR') . ')</sup>', null, KunenaTemplate::getInstance()->tooltips(), $this->category, true, true);
+				}
 			}
 			else
 			{
