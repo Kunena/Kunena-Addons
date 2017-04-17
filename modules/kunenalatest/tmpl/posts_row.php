@@ -24,7 +24,7 @@ $topic = $this->topic;
 				<?php if ($this->topic->unread && $this->params->get('sh_unread') == 1) : ?>
 					<?php echo $this->getTopicLink($topic, 'unread', $topic->getIcon($topic), '', null, $this->category, true, true); ?>
 				<?php else : ?>
-					<?php echo $this->getTopicLink($topic, null, $topic->getIcon($topic), '', null, $this->category, true, false); ?>
+					<?php echo $this->getTopicLink($topic, 'last', $topic->getIcon($topic), '', null, $this->category, true, false); ?>
 				<?php endif; ?>
 			</li>
 		<?php endif; ?>
@@ -41,14 +41,14 @@ $topic = $this->topic;
 				}
 				else
 				{
-					echo $this->getTopicLink($topic, null, $this->escape($topic->subject) . '<sup class="knewchar" dir="ltr">(' . (int)
+					echo $this->getTopicLink($topic, 'last', $this->escape($topic->subject) . '<sup class="knewchar" dir="ltr">(' . (int)
 						$topic->unread .
 						' ' . JText::_('COM_KUNENA_A_GEN_NEWCHAR') . ')</sup>', null, KunenaTemplate::getInstance()->tooltips(), $this->category, true, true);
 				}
 			}
 			else
 			{
-				echo $this->getTopicLink($topic, null, null, null, KunenaTemplate::getInstance()->tooltips() . ' topictitle', $this->category, true, false);
+				echo $this->getTopicLink($topic, 'last', null, null, KunenaTemplate::getInstance()->tooltips() . ' topictitle', $this->category, true, false);
 			}
 
 			if ($this->params->get('sh_postcount'))
