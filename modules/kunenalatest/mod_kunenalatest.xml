@@ -152,6 +152,11 @@
 					<option value="subject_only">MOD_KUNENALATEST_PARAM_SUBJECTTITLE_SUBJECTONLY</option>
 					<option value="body">MOD_KUNENALATEST_PARAM_SUBJECTTITLE_CONTENT</option>
 				</field>
+				<field name="sh_url_link" type="radio" default="null" description="MOD_KUNENALATEST_PARAM_URL_LINK_DESC"
+				       label="MOD_KUNENALATEST_PARAM_URL_LINK">
+					<option value="null">MOD_KUNENALATEST_PARAM_VALUE_FIRST</option>
+					<option value="last">MOD_KUNENALATEST_PARAM_VALUE_LAST</option>
+				</field>
 			</fieldset>
 			<fieldset name="advanced">
 				<field
