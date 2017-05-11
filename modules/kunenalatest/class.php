@@ -4,7 +4,7 @@
  *
  * @package       Kunena.mod_kunenalatest
  *
- * @copyright (C) 2008 - 2016 Kunena Team. All rights reserved.
+ * @copyright (C) 2008 - 2017 Kunena Team. All rights reserved.
  * @license       http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link          http://www.kunena.org
  **/
@@ -37,6 +37,7 @@ class ModuleKunenaLatest extends KunenaModule
 		switch ($this->params->get('choosemodel'))
 		{
 			case 'latestposts' :
+				$userid = 0;
 				$layout = 'posts';
 				$mode   = 'recent';
 				break;
