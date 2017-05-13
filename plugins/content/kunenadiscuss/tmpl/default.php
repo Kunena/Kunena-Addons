@@ -11,7 +11,7 @@
 defined('_JEXEC') or die('');
 ?>
 <div class="panel-heading">
-	<?php echo JHtml::_('kunenaforum.link', $this->topic->getUri($this->category), JText::_('PLG_KUNENADISCUSS_POSTS') . ':' . $this->topic->subject) ?>
+	<?php echo JHtml::_('kunenaforum.link', $this->topic->getUri($this->category), JText::_('PLG_KUNENADISCUSS_POSTS') . ': ' . $this->topic->subject, null, 'kdiscuss-topic') ?>
 </div>
 
 <div>
@@ -22,5 +22,5 @@ defined('_JEXEC') or die('');
 <?php $this->displayMessages() ?>
 
 <div class="panel-heading">
-	<?php echo JHtml::_('kunenaforum.link', $this->topic->getUri($this->category), JText::_('COM_KUNENA_READMORE')) ?>
+	<?php echo JHtml::_('kunenaforum.link', $this->topic->getUri($this->category), JText::_('COM_KUNENA_READMORE'), null, 'kdiscuss-readmore') ?>
 </div>
