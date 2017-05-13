@@ -1206,6 +1206,8 @@ class plgContentKunenaDiscuss extends JPlugin
 
 		$this->debug("showTopic: Rendering discussion");
 
+		$article_id = $this->app->input->get('id');
+
 		$ordering = $this->params->get('ordering', 1); // 0=ASC, 1=DESC
 		$params   = array(
 			'catid'            => $category->id,
@@ -1219,6 +1221,9 @@ class plgContentKunenaDiscuss extends JPlugin
 		KunenaForum::display('topic', 'default', null, $params);
 		$str = ob_get_contents();
 		ob_end_clean();
+
+		// Set the correct article id back on the content page
+		$this->app->input->set('id', $article_id);
 
 		return $link_topic . $str;
 	}
