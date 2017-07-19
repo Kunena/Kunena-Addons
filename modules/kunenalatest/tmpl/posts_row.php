@@ -36,19 +36,19 @@ $topic = $this->topic;
 			{
 				if ($topic->unread && $this->params->get('sh_unread') == 1)
 				{
-					echo $this->getTopicLink($topic, 'unread', $this->escape($topic->subject) . '<sup class="knewchar" dir="ltr">(' . (int) $topic->unread .
-						' ' . JText::_('COM_KUNENA_A_GEN_NEWCHAR') . ')</sup>', null, KunenaTemplate::getInstance()->tooltips(), $this->category, true, true);
+					echo ModuleKunenaLatest::shortenLink($this->getTopicLink($topic, 'unread', $this->escape($topic->subject), null, KunenaTemplate::getInstance()->tooltips(), $this->category, true, true), $this->params->get('titlelength'));
 				}
 				else
 				{
-					echo $this->getTopicLink($topic, $this->params->get('sh_url_link'), $this->escape($topic->subject) . '<sup class="knewchar" dir="ltr">(' . (int)
-						$topic->unread .
-						' ' . JText::_('COM_KUNENA_A_GEN_NEWCHAR') . ')</sup>', null, KunenaTemplate::getInstance()->tooltips(), $this->category, true, true);
+					echo ModuleKunenaLatest::shortenLink($this->getTopicLink($topic, $this->params->get('sh_url_link'), $this->escape($topic->subject), null, KunenaTemplate::getInstance()->tooltips(), $this->category, true, true), $this->params->get('titlelength'));
 				}
+
+				echo '<sup class="knewchar" dir="ltr">(' . (int) $topic->unread .
+					' ' . JText::_('COM_KUNENA_A_GEN_NEWCHAR') . ')</sup>';
 			}
 			else
 			{
-				echo $this->getTopicLink($topic, $this->params->get('sh_url_link'), null, null, KunenaTemplate::getInstance()->tooltips() . ' topictitle', $this->category, true, false);
+				echo ModuleKunenaLatest::shortenLink($this->getTopicLink($topic, $this->params->get('sh_url_link'), null, null, KunenaTemplate::getInstance()->tooltips() . ' topictitle', $this->category, true, false), $this->params->get('titlelength'));
 			}
 
 			if ($this->params->get('sh_postcount'))
