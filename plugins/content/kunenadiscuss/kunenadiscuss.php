@@ -662,7 +662,7 @@ class plgContentKunenaDiscuss extends JPlugin
 		if ($topic->exists())
 		{
 			// If current user doesn't have authorisation to read existing topic, we are done
-			if ($id && !$topic->authorise('read'))
+			if ($id && !$topic->isAuthorised('read'))
 			{
 				$this->debug("showPlugin: Topic said {$topic->getError()}");
 
@@ -901,28 +901,28 @@ class plgContentKunenaDiscuss extends JPlugin
 			case 'full':
 			case 'intro':
 			case 'link':
-			{
-				if ($add_snippet)
 				{
-					$contents = $snippet . "[article={$type}]{$row->id}[/article]";
+					if ($add_snippet)
+					{
+						$contents = $snippet . "[article={$type}]{$row->id}[/article]";
+					}
+					else
+					{
+						$contents = "[article={$type}]{$row->id}[/article]";
+					}
 				}
-				else
-				{
-					$contents = "[article={$type}]{$row->id}[/article]";
-				}
-			}
 				break;
 			default:
-			{
-				if ($add_snippet)
 				{
-					$contents = $snippet . "[article]{$row->id}[/article]";
+					if ($add_snippet)
+					{
+						$contents = $snippet . "[article]{$row->id}[/article]";
+					}
+					else
+					{
+						$contents = "[article]{$row->id}[/article]";
+					}
 				}
-				else
-				{
-					$contents = "[article]{$row->id}[/article]";
-				}
-			}
 		}
 
 		// Save the ID for later use
@@ -987,7 +987,7 @@ class plgContentKunenaDiscuss extends JPlugin
 	{
 		if ($topic->exists())
 		{
-			return $topic->authorise('reply');
+			return $topic->isAuthorised('reply');
 		}
 		else
 		{
