@@ -678,7 +678,7 @@ class plgContentKunenaDiscuss extends JPlugin
 			// If current user doesn't have authorisation to read category, we are done
 			$category = KunenaForumCategoryHelper::get($catid);
 
-			if (!$category->authorise('read'))
+			if (!$category->isAuthorised('read'))
 			{
 				$this->debug("showPlugin: Category {$catid} said {$category->getError()}");
 
