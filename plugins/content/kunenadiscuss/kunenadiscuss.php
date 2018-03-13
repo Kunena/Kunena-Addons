@@ -991,7 +991,7 @@ class plgContentKunenaDiscuss extends JPlugin
 		}
 		else
 		{
-			return $category->authorise('topic.reply');
+			return $category->isAuthorised('topic.reply');
 		}
 	}
 
