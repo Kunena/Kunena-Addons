@@ -1261,7 +1261,7 @@ class plgContentKunenaDiscuss extends JPlugin
 			{
 				$guestHtml = "<div class='kunenadiscuss kpublic'>";
 				$guestHtml = $guestHtml . "<div class='kdiscuss-title login-discuss'>" . JText::_('PLG_KUNENADISCUSS_DISCUSS_THIS_ARTICLE') . "</div>";
-				$guestHtml = $guestHtml . "<a class='klogin-to-discuss' href='" . JRoute::_('index.php?option=com_users&view=login&Itemid=1988') . "' >" . JText::_('PLG_KUNENADISCUSS_LOG_IN_TO_COMMENT') . "</a>";
+				$guestHtml = $guestHtml . "<a class='klogin-to-discuss' rel='nofollow' href='" .  KunenaLogin::getInstance()->getLoginURL() . "' >" . JText::_('PLG_KUNENADISCUSS_LOG_IN_TO_COMMENT') . "</a>";
 				$guestHtml = $guestHtml . "</div>";
 				$result    = $guestHtml . $result;
 			}
