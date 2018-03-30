@@ -186,3 +186,42 @@ div.kdiscuss-content-cover .code {
 .kpublic {
 	border-bottom: 0 none !important;
 }
+
+.img-circle {
+	margin-top: 0.5em;
+	position: relative;
+
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+
+	-webkit-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #ccc, 0 2px 5px 4px rgba(0, 0, 0, 0.1);;
+	-moz-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #ccc, 0 2px 5px 4px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 0 3px #fff, 0 0 0 4px #ccc, 0 2px 5px 4px rgba(0, 0, 0, 0.1);
+}
+
+.kwho-guest {
+	color: #666666;
+}
+
+.kwho-user {
+	color: #5388B4;
+}
+
+.kwho-moderator {
+	color: #0000FF;
+}
+
+.kwho-globalmod,
+.kwho-globalmoderator {
+	color: #800000;
+}
+
+.kwho-admin {
+	color: #FF0000;
+}
+
+.kwho-blocked,
+.kwho-banned {
+	color: #A39D49;
+}

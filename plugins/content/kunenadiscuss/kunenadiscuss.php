@@ -1248,6 +1248,13 @@ class plgContentKunenaDiscuss extends JPlugin
 			return '';
 		}
 
+		$this->ktemplate = KunenaFactory::getTemplate();
+		if ($this->ktemplate->params->get('fontawesome'))
+		{
+			$doc = \Joomla\CMS\Factory::getDocument();
+			$doc->addScript('https://use.fontawesome.com/releases/v5.0.9/js/all.js', array(), array('defer' => true));
+		}
+
 		$this->debug("onAfterDisplayContent: Returning content for article {$article->id}");
 
 		$result = self::$plgDisplay[$article->id];
