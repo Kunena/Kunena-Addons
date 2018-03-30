@@ -180,7 +180,6 @@ class plgContentKunenaDiscuss extends JPlugin
 
 		if (!$this->db->loadResult())
 		{
-			KunenaError::checkDatabaseError();
 			$query = "CREATE TABLE IF NOT EXISTS `#__kunenadiscuss`
 					(`content_id` int(11) NOT NULL default '0',
 					 `thread_id` int(11) NOT NULL default '0',
@@ -188,7 +187,6 @@ class plgContentKunenaDiscuss extends JPlugin
 					 )";
 			$this->db->setQuery($query);
 			$this->db->query();
-			KunenaError::checkDatabaseError();
 			$this->debug("Created #__kunenadiscuss cross reference table.");
 
 			// Migrate data from old FireBoard discussbot if it exists
@@ -202,7 +200,6 @@ class plgContentKunenaDiscuss extends JPlugin
 					FROM `#__fb_discussbot`";
 				$this->db->setQuery($query);
 				$this->db->query();
-				KunenaError::checkDatabaseError();
 				$this->debug("Migrated old data.");
 			}
 		}
