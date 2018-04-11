@@ -1,5 +1,5 @@
 
-[![Kunena Add-ons](http://www.kunena.org/images/logo.png)](http://www.kunena.org)
+[![Kunena Add-ons](https://www.kunena.org/images/logo.png)](https://www.kunena.org)
 
 
 
