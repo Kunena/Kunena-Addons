@@ -10,8 +10,11 @@
  **/
 defined('_JEXEC') or die('');
 
+use Joomla\CMS\Factory;
+
 /**
  * Class plgContentKunenaDiscuss
+ * @since Kunena
  */
 class plgContentKunenaDiscuss extends JPlugin
 {
@@ -19,46 +22,62 @@ class plgContentKunenaDiscuss extends JPlugin
 	 * Associative array to hold results of the plugin.
 	 *
 	 * @var array
+	 * @since Kunena
+	 *
 	 */
 	protected static $plgDisplay = array();
 
 	/**
 	 * @var boolean
+	 * @since Kunena
 	 */
 	protected static $includedCss = false;
 
 	/**
 	 * @var boolean
+	 * @since Kunena
+	 *
 	 */
 	protected static $inevent = false;
 
 	/**
 	 * @var JApplication
+	 * @since Kunena
+	 *
 	 */
 	public $app = null;
 
 	/**
 	 * @var JDatabaseDriver
+	 * @since Kunena
+	 *
 	 */
 	public $db = null;
 
 	/**
 	 * @var JUser
+	 * @since Kunena
+	 *
 	 */
 	public $user = null;
 
 	/**
 	 * @var KunenaConfig
+	 * @since Kunena
+	 *
 	 */
 	public $config = null;
 
 	/**
 	 * @param   object $subject
 	 * @param   array  $params
+	 *
+	 * @throws Exception
+	 * @since Kunena
 	 */
 	public function __construct(&$subject, $params)
 	{
-		$this->app = JFactory::getApplication();
+		$this->app = Factory::getApplication();
 
 		// Do not register plug-in in administration.
 		if ($this->app->isAdmin())
@@ -90,7 +109,6 @@ class plgContentKunenaDiscuss extends JPlugin
 		}
 
 		// Initialize variables
-		$this->db     = JFactory::getDbo();
 		$this->user   = KunenaFactory::getUser();
 		$this->config = KunenaFactory::getConfig();
 
@@ -103,6 +121,9 @@ class plgContentKunenaDiscuss extends JPlugin
 	/**
 	 * @param       $msg
 	 * @param   int $fatal
+	 *
+	 * @since Kunena
+	 *
 	 */
 	protected function debug($msg, $fatal = 0)
 	{
@@ -138,6 +159,8 @@ class plgContentKunenaDiscuss extends JPlugin
 	 * @param   integer $limitstart The 'page' number
 	 *
 	 * @return  string
+	 * @throws Exception
+	 * @since Kunena
 	 */
 	public function onContentBeforeDisplay($context, &$article, &$params, $limitstart = 0)
 	{
@@ -170,36 +193,61 @@ class plgContentKunenaDiscuss extends JPlugin
 		return '';
 	}
 
+	/**
+	 *
+	 *
+	 * @since version
+	 * @throws Exception
+	 */
 	protected function createTable()
 	{
 		$this->debug('createTable: Check if plugin table exists.');
 
 		// Create plugin table if doesn't exist
-		$query = "SHOW TABLES LIKE '{$this->db->getPrefix()}kunenadiscuss'";
-		$this->db->setQuery($query);
+		$db    = Factory::getDBO();
+		$query = "SHOW TABLES LIKE '{$db->getPrefix()}kunenadiscuss'";
+		$db->setQuery($query);
 
-		if (!$this->db->loadResult())
+		if (!$db->loadResult())
 		{
 			$query = "CREATE TABLE IF NOT EXISTS `#__kunenadiscuss`
 					(`content_id` int(11) NOT NULL default '0',
 					 `thread_id` int(11) NOT NULL default '0',
 					 PRIMARY KEY  (`content_id`)
 					 )";
-			$this->db->setQuery($query);
-			$this->db->query();
+			$db->setQuery($query);
+
+			try
+			{
+				$db->execute();
+			}
+			catch (JDatabaseExceptionExecuting $e)
+			{
+				KunenaError::displayDatabaseError($e);
+			}
+
 			$this->debug("Created #__kunenadiscuss cross reference table.");
 
 			// Migrate data from old FireBoard discussbot if it exists
-			$query = "SHOW TABLES LIKE '{$this->db->getPrefix()}fb_discussbot'";
-			$this->db->setQuery($query);
+			$query = "SHOW TABLES LIKE '{$db->getPrefix()}fb_discussbot'";
+			$db->setQuery($query);
 
-			if ($this->db->loadResult())
+			if ($db->loadResult())
 			{
 				$query = "REPLACE INTO `#__kunenadiscuss`
 					SELECT `content_id` , `thread_id`
 					FROM `#__fb_discussbot`";
-				$this->db->setQuery($query);
-				$this->db->query();
+				$db->setQuery($query);
+
+				try
+				{
+					$db->execute();
+				}
+				catch (JDatabaseExceptionExecuting $e)
+				{
+					KunenaError::displayDatabaseError($e);
+				}
+
 				$this->debug("Migrated old data.");
 			}
 		}
@@ -209,6 +257,9 @@ class plgContentKunenaDiscuss extends JPlugin
 	 * @param $context
 	 * @param $article
 	 * @param $params
+	 *
+	 * @throws Exception
+	 * @since Kunena
 	 */
 	protected function prepare($context, &$article, &$params)
 	{
@@ -255,8 +306,8 @@ class plgContentKunenaDiscuss extends JPlugin
 			$kunenaTopic = false;
 			$regex       = '/{kunena_discuss:(\d+?)}/s';
 
-			if (JRequest::getVar('tmpl', '') == 'component' || JRequest::getBool('print')
-				|| JRequest::getVar('format', 'html') != 'html' || (isset($article->state) && !$article->state)
+			if (Factory::getApplication()->input->getCmd('tmpl', '') == 'component' || Factory::getApplication()->input->getBool('print')
+				|| Factory::getApplication()->input->getCmd('format', 'html') != 'html' || (isset($article->state) && !$article->state)
 				|| empty($article->id) || $this->app->scope == 'com_kunena'
 			)
 			{
@@ -278,8 +329,8 @@ class plgContentKunenaDiscuss extends JPlugin
 				}
 			}
 
-			$view        = JRequest::getVar('view');
-			$layout      = JRequest::getVar('layout');
+			$view        = Factory::getApplication()->input->getCmd('view');
+			$layout      = Factory::getApplication()->input->getCmd('layout');
 			$isBlogPage  = ($view == 'section' || $view == 'category') && $layout == 'blog';
 			$isFrontPage = $view == 'frontpage' || $view == 'featured';
 			$isArticle   = $view == 'article';
@@ -338,16 +389,16 @@ class plgContentKunenaDiscuss extends JPlugin
 				// Get fulltext from frontpage articles (tag can be inside fulltext)
 				if ($isFrontPage)
 				{
-					$db    = $this->db;
-					$query = $db->getQuery(true)
-						->select($db->quoteName('fulltext'))
-						->from('#__content')
-						->where("id={$db->quote($article->id)}");
-					$this->db->setQuery($query);
+					$db    = Factory::getDBO();
+					$query = $db->getQuery(true);
+					$query->select($db->quoteName('fulltext'));
+					$query->from('#__content');
+					$query->where("id={$db->quote($article->id)}");
+					$db->setQuery($query);
 
 					try
 					{
-						$fulltext = $this->db->loadResult();
+						$fulltext = $db->loadResult();
 					}
 					catch (JDatabaseExceptionExecuting $e)
 					{
@@ -428,8 +479,13 @@ class plgContentKunenaDiscuss extends JPlugin
 	/**
 	 * ***************************************************************************
 	 * Permission checks
-	 *****************************************************************************/
-
+	 *****************************************************************************
+	 * @since Kunena
+	 *
+	 * @param $catid
+	 *
+	 * @return bool|int
+	 */
 	protected function getForumCategory($catid)
 	{
 		// Default Kunena category to put new topics into
@@ -451,7 +507,7 @@ class plgContentKunenaDiscuss extends JPlugin
 			}
 		}
 
-		// Limit plugin to the following content catgeories
+		// Limit plugin to the following content categories
 		$allowCategories = explode(',', $this->params->get('allow_categories', ''));
 
 		// Exclude the plugin from the following categories
@@ -464,12 +520,12 @@ class plgContentKunenaDiscuss extends JPlugin
 			return false;
 		}
 
-		$db    = $this->db;
+		$db    = Factory::getDBO();
 		$query = $db->getQuery(true);
 		$query->select($db->quoteName('parent_id'));
 		$query->from('#__categories');
 		$query->where("id = {$db->quote( $catid )}");
-		$this->db->setQuery($query);
+		$db->setQuery($query);
 
 		try
 		{
@@ -480,7 +536,7 @@ class plgContentKunenaDiscuss extends JPlugin
 			$this->debug("onPrepareContent.Parent IDs: Error executing query - " . $e);
 		}
 
-		// Parend ID of the article's category
+		// Parent ID of the article's category
 		$parent_catid = $db->loadResult();
 		$this->debug("onPrepareContent.Parent category ID is: " . $parent_catid);
 
@@ -549,6 +605,8 @@ class plgContentKunenaDiscuss extends JPlugin
 	 * @param   bool   $linkOnly
 	 *
 	 * @return mixed|string
+	 * @throws Exception
+	 * @since Kunena
 	 */
 	protected function showPlugin($catid, $topic_id, &$row, $linkOnly)
 	{
@@ -561,7 +619,7 @@ class plgContentKunenaDiscuss extends JPlugin
 		// Don't repeat the CSS for each instance of this plugin in a page!
 		if (!self::$includedCss)
 		{
-			$doc = JFactory::getDocument();
+			$doc = Factory::getDocument();
 			$doc->addStyleSheet(JUri::root(true) . "/plugins/content/kunenadiscuss/css/discuss.css");
 
 			$plugin       = JPluginHelper::getPlugin('content', 'kunenadiscuss');
@@ -576,17 +634,19 @@ class plgContentKunenaDiscuss extends JPlugin
 			self::$includedCss = true;
 		}
 
+		$result = false;
+
 		// Find cross reference and the real topic
-		$db    = $this->db;
-		$query = $db->getQuery(true)
-			->select($db->quoteName('thread_id'))
-			->from('#__kunenadiscuss')
-			->where("content_id = {$db->quote($row->id)}");
-		$this->db->setQuery($query);
+		$db    = Factory::getDBO();
+		$query = $db->getQuery(true);
+		$query->select($db->quoteName('thread_id'));
+		$query->from('#__kunenadiscuss');
+		$query->where("content_id = {$db->quote($row->id)}");
+		$db->setQuery($query);
 
 		try
 		{
-			$result = $this->db->loadResult();
+			$result = $db->loadResult();
 		}
 		catch (JDatabaseExceptionExecuting $e)
 		{
@@ -646,15 +706,15 @@ class plgContentKunenaDiscuss extends JPlugin
 		if (isset($row->publish_up) && $row->publish_up != '0000-00-00 00:00:00')
 		{
 			// Take start publishing date
-			$published = JFactory::getDate($row->publish_up)->toUnix();
+			$published = Factory::getDate($row->publish_up)->toUnix();
 		}
 		else
 		{
 			// Or created date if publish_up is empty
-			$published = JFactory::getDate($row->created)->toUnix();
+			$published = Factory::getDate($row->created)->toUnix();
 		}
 
-		$now = JFactory::getDate()->toUnix();
+		$now = Factory::getDate()->toUnix();
 
 		if ($topic->exists())
 		{
@@ -758,12 +818,12 @@ class plgContentKunenaDiscuss extends JPlugin
 
 		if ($canPost && $plgShowForm && (!$closeTime || $closeTime >= $now))
 		{
-			if (JFactory::getUser()->get('guest'))
+			if (Factory::getUser()->get('guest'))
 			{
 				$this->debug("showPlugin: Guest can post: this feature doesn't work well if Joomla caching or Cache Plugin is enabled!");
 			}
 
-			if (JRequest::getInt('kdiscussContentId', -1, 'POST') == $row->id)
+			if (Factory::getApplication()->input->getInt('kdiscussContentId', -1, 'POST') == $row->id)
 			{
 				$this->debug("showPlugin: Reply topic!");
 				$quickPost .= $this->replyTopic($row, $category, $topic, $subject);
@@ -797,18 +857,21 @@ class plgContentKunenaDiscuss extends JPlugin
 
 	/**
 	 * @param   object $row
+	 *
+	 * @throws Exception
+	 * @since Kunena
 	 */
 	protected function deleteReference($row)
 	{
-		$db    = $this->db;
-		$query = $db->getQuery(true)
-			->delete('#__kunenadiscuss')
-			->where("content_id={$db->quote($row->id)}");
-		$this->db->setQuery($query);
+		$db    = Factory::getDBO();
+		$query = $db->getQuery(true);
+		$query->delete('#__kunenadiscuss');
+		$query->where("content_id={$db->quote($row->id)}");
+		$db->setQuery($query);
 
 		try
 		{
-			$this->db->execute();
+			$db->execute();
 		}
 		catch (JDatabaseExceptionExecuting $e)
 		{
@@ -819,19 +882,22 @@ class plgContentKunenaDiscuss extends JPlugin
 	/**
 	 * @param   object $row
 	 * @param   int    $topic_id
+	 *
+	 * @throws Exception
+	 * @since Kunena
 	 */
 	protected function updateReference($row, $topic_id)
 	{
-		$db    = $this->db;
-		$query = $db->getQuery(true)
-			->update('#__kunenadiscuss')
-			->set("thread_id={$db->quote($topic_id)}")
-			->where("content_id={$db->quote($row->id)}");
-		$this->db->setQuery($query);
+		$db    = Factory::getDBO();
+		$query = $db->getQuery(true);
+		$query->update('#__kunenadiscuss');
+		$query->set("thread_id={$db->quote($topic_id)}");
+		$query->where("content_id={$db->quote($row->id)}");
+		$db->setQuery($query);
 
 		try
 		{
-			$this->db->execute();
+			$db->execute();
 		}
 		catch (JDatabaseExceptionExecuting $e)
 		{
@@ -842,20 +908,22 @@ class plgContentKunenaDiscuss extends JPlugin
 	/**
 	 * ***************************************************************************
 	 * Create and reply to topic
-	 *****************************************************************************/
-
+	 *****************************************************************************
+	 * @since Kunena
+	 *
+	 */
 	protected function createReference($row, $topic_id)
 	{
-		$db    = $this->db;
-		$query = $db->getQuery(true)
-			->insert('#__kunenadiscuss')
-			->columns('content_id, thread_id')
-			->values("{$db->quote($row->id)}, {$db->quote($topic_id)}");
-		$this->db->setQuery($query);
+		$db    = Factory::getDBO();
+		$query = $db->getQuery(true);
+		$query->insert('#__kunenadiscuss');
+		$query->columns('content_id, thread_id');
+		$query->values("{$db->quote($row->id)}, {$db->quote($topic_id)}");
+		$db->setQuery($query);
 
 		try
 		{
-			$this->db->execute();
+			$db->execute();
 		}
 		catch (JDatabaseExceptionExecuting $e)
 		{
@@ -869,6 +937,8 @@ class plgContentKunenaDiscuss extends JPlugin
 	 * @param                       $subject
 	 *
 	 * @return boolean|KunenaForumTopic
+	 * @throws Exception
+	 * @since Kunena
 	 */
 	protected function createTopic($row, KunenaForumCategory $category, $subject)
 	{
@@ -938,27 +1008,25 @@ class plgContentKunenaDiscuss extends JPlugin
 		);
 		list($topic, $message) = $category->newTopic($params, $topic_owner, $safefields);
 
-		// Set time of message published by the plugin in the Unix timestamp format, start puglishing date of the article
+		// Set time of message published by the plugin in the Unix timestamp format, start publishing date of the article
 		if (isset($row->publish_up) && $row->publish_up != '0000-00-00 00:00:00')
 		{
-			$message->time = JFactory::getDate($row->publish_up)->toUnix();
+			$message->time = Factory::getDate($row->publish_up)->toUnix();
 		}
 		else
 		{
 			if (isset($row->created) && $row->created != '0000-00-00 00:00:00')
 			{
 				// Created date of the article
-				$message->time = JFactory::getDate($row->created)->toUnix();
+				$message->time = Factory::getDate($row->created)->toUnix();
 			}
 			else
 			{
 				// Current date and time
-				$message->time = JFactory::getDate()->toUnix();
+				$message->time = Factory::getDate()->toUnix();
 			}
 		}
 
-		/** @var KunenaForumTopic $topic */
-		/** @var KunenaForumMessage $message */
 		$success = $message->save();
 
 		if (!$success)
@@ -979,6 +1047,8 @@ class plgContentKunenaDiscuss extends JPlugin
 	 * @param   KunenaForumTopic    $topic
 	 *
 	 * @return boolean
+	 * @throws Exception
+	 * @since Kunena
 	 */
 	protected function canPost(KunenaForumCategory $category, KunenaForumTopic $topic)
 	{
@@ -999,10 +1069,12 @@ class plgContentKunenaDiscuss extends JPlugin
 	 * @param                       $subject
 	 *
 	 * @return boolean|string
+	 * @throws Exception
+	 * @since Kunena
 	 */
 	protected function replyTopic($row, KunenaForumCategory $category, KunenaForumTopic $topic, $subject)
 	{
-		$uri = JFactory::getURI();
+		$uri = Factory::getURI();
 
 		if (JSession::checkToken() == false)
 		{
@@ -1011,11 +1083,6 @@ class plgContentKunenaDiscuss extends JPlugin
 			return false;
 		}
 
-		/*
-		if ($this->hasCaptcha() && !$this->verifyCaptcha()) {
-			return $this->showForm ( $row, $category, $topic, $subject );
-		}*/
-
 		// Create topic if it doesn't exist
 		if (!$topic->exists())
 		{
@@ -1023,15 +1090,15 @@ class plgContentKunenaDiscuss extends JPlugin
 		}
 
 		$params = array(
-			'name'    => JRequest::getString('name', $this->user->getName(), 'POST'),
-			'email'   => JRequest::getString('email', null, 'POST'),
+			'name'    => Factory::getApplication()->input->getString('name', $this->user->getName(), 'POST'),
+			'email'   => Factory::getApplication()->input->getString('email', null, 'POST'),
 			'subject' => $subject,
-			'message' => JRequest::getString('message', null, 'POST'),
+			'message' => Factory::getApplication()->input->getString('message', null, 'POST'),
 		);
 
 		if ($this->hasCaptcha() && !$this->verifyCaptcha())
 		{
-			$this->app->redirect($uri->toString(), $result);
+			$this->app->redirect($uri->toString());
 		}
 
 		$message = $topic->newReply($params);
@@ -1056,7 +1123,7 @@ class plgContentKunenaDiscuss extends JPlugin
 		}
 
 		// Redirect
-		$app = JFactory::getApplication('site');
+		$app = Factory::getApplication('site');
 		$app->redirect($uri->toString(), $result);
 
 		return '';
@@ -1066,6 +1133,8 @@ class plgContentKunenaDiscuss extends JPlugin
 	 * Check if the user will have captcha or not
 	 *
 	 * @return boolean
+	 * @throws Exception
+	 * @since Kunena
 	 */
 	public function hasCaptcha()
 	{
@@ -1073,68 +1142,48 @@ class plgContentKunenaDiscuss extends JPlugin
 	}
 
 	/**
-	 * Display the captcha into the post form
-	 *
-	 * @return string
-	 */
-	public function displayCaptcha()
-	{
-		if (JPluginHelper::isEnabled('captcha'))
-		{
-			$plugin         = JPluginHelper::getPlugin('captcha');
-			$params         = new JRegistry($plugin[0]->params);
-			$captcha_pubkey = $params->get('public_key');
-			$catcha_privkey = $params->get('private_key');
-			$random         = mt_rand(99, 999);
-
-			if (!empty($captcha_pubkey) && !empty($catcha_privkey))
-			{
-				JPluginHelper::importPlugin('captcha');
-				$dispatcher = JEventDispatcher::getInstance();
-				$dispatcher->trigger('onInit', 'dynamic_recaptcha_' . $random);
-				$output = $dispatcher->trigger('onDisplay', array(null, 'dynamic_recaptcha_' . $random, 'class="controls g-recaptcha"'));
-
-				return $output[0];
-			}
-
-			return false;
-		}
-	}
-
-	/**
-	 * Check if hte captcha given is correct
+	 * Check if the captcha given is correct
 	 *
 	 * @return boolean
+	 * @since Kunena
+	 *
 	 */
 	protected function verifyCaptcha()
 	{
-		if (JPluginHelper::isEnabled('captcha') && $this->config->captcha)
+		if (KunenaUserHelper::getMyself()->canDoCaptcha())
 		{
-			$plugin = JPluginHelper::getPlugin('captcha');
-			$params = new JRegistry($plugin[0]->params);
-
-			$captcha_pubkey = $params->get('public_key');
-			$catcha_privkey = $params->get('private_key');
-
-			if (!empty($captcha_pubkey) && !empty($catcha_privkey))
+			if (\Joomla\CMS\Plugin\PluginHelper::isEnabled('captcha'))
 			{
-				JPluginHelper::importPlugin('captcha');
-				$dispatcher = JDispatcher::getInstance();
+				$plugin = \Joomla\CMS\Plugin\PluginHelper::getPlugin('captcha');
+				$params = new \Joomla\Registry\Registry($plugin[0]->params);
 
-				$captcha_response = $this->app->input->getString('g-recaptcha-response');
+				$captcha_pubkey  = $params->get('public_key');
+				$captcha_privkey = $params->get('private_key');
 
-				if (!empty($captcha_response))
+				if (!empty($captcha_pubkey) && !empty($captcha_privkey))
 				{
-					// For ReCaptcha API 2.0
-					$res = $dispatcher->trigger('onCheckAnswer', $this->app->input->getString('g-recaptcha-response'));
-				}
-				else
-				{
-					// For ReCaptcha API 1.0
-					$res = $dispatcher->trigger('onCheckAnswer', $this->app->input->getString('recaptcha_response_field'));
-				}
+					\Joomla\CMS\Plugin\PluginHelper::importPlugin('captcha');
 
-				return $res[0];
+					$captcha_response = $this->app->input->getString('g-recaptcha-response');
+
+					if (!empty($captcha_response))
+					{
+						// For ReCaptcha API 2.0
+						$res = Factory::getApplication()->triggerEvent('onCheckAnswer', array($this->app->input->getString('g-recaptcha-response')));
+					}
+					else
+					{
+						// For ReCaptcha API 1.0
+						$res = Factory::getApplication()->triggerEvent('onCheckAnswer', array($this->app->input->getString('recaptcha_response_field')));
+					}
+
+					if (!$res[0])
+					{
+						$this->setRedirectBack();
+
+						return;
+					}
+				}
 			}
 		}
 
@@ -1148,10 +1197,11 @@ class plgContentKunenaDiscuss extends JPlugin
 	 * @param                       $subject
 	 *
 	 * @return string
+	 * @throws Exception
+	 * @since Kunena
 	 */
 	protected function showForm($row, KunenaForumCategory $category, KunenaForumTopic $topic, $subject)
 	{
-
 		$canPost = $this->canPost($category, $topic);
 
 		if (!$canPost)
@@ -1172,9 +1222,9 @@ class plgContentKunenaDiscuss extends JPlugin
 		}
 
 		$this->open    = $this->params->get('quickpost_open', false);
-		$this->name    = JRequest::getString('name', $this->user->getName(), 'POST');
-		$this->email   = JRequest::getString('email', null, 'POST');
-		$this->message = JRequest::getString('message', null, 'POST');
+		$this->name    = Factory::getApplication()->input->getString('name', $this->user->getName(), 'POST');
+		$this->email   = Factory::getApplication()->input->getString('email', null, 'POST');
+		$this->message = Factory::getApplication()->input->getString('message', null, 'POST');
 
 		ob_start();
 		$this->debug("showForm: Rendering form");
@@ -1191,6 +1241,8 @@ class plgContentKunenaDiscuss extends JPlugin
 	 * @param   string              $link_topic
 	 *
 	 * @return string
+	 * @throws Exception
+	 * @since Kunena
 	 */
 	protected function showTopic(KunenaForumCategory $category, KunenaForumTopic $topic, $link_topic)
 	{
@@ -1214,6 +1266,7 @@ class plgContentKunenaDiscuss extends JPlugin
 			'filter_order_Dir' => $ordering ? 'desc' : 'asc',
 			'templatepath'     => __DIR__ . '/tmpl'
 		);
+
 		ob_start();
 		KunenaForum::display('topic', 'default', null, $params);
 		$str = ob_get_contents();
@@ -1223,6 +1276,36 @@ class plgContentKunenaDiscuss extends JPlugin
 		$this->app->input->set('id', $article_id);
 
 		return $link_topic . $str;
+	}
+
+	/**
+	 * Display the captcha into the post form
+	 *
+	 * @since Kunena
+	 *
+	 */
+	public function displayCaptcha()
+	{
+		if (\Joomla\CMS\Plugin\PluginHelper::isEnabled('captcha'))
+		{
+			$plugin = \Joomla\CMS\Plugin\PluginHelper::getPlugin('captcha');
+			$params = new \Joomla\Registry\Registry($plugin[0]->params);
+
+			$captcha_pubkey = $params->get('public_key');
+			$catcha_privkey = $params->get('private_key');
+			$random         = mt_rand(99, 999);
+
+			if (!empty($captcha_pubkey) && !empty($catcha_privkey))
+			{
+				\Joomla\CMS\Plugin\PluginHelper::importPlugin('captcha');
+
+				$result                    = Factory::getApplication()->triggerEvent('onInit', array('dynamic_recaptcha_' . $random));
+				$output                    = Factory::getApplication()->triggerEvent('onDisplay', array(null, 'dynamic_recaptcha_' . $random,
+					'class="controls g-recaptcha" data-sitekey="' . $captcha_pubkey . '" data-theme="light"',));
+				$this->quickcaptchaDisplay = $output[0];
+				$this->quickcaptchaEnabled = $result[0];
+			}
+		}
 	}
 
 	/**
@@ -1236,6 +1319,8 @@ class plgContentKunenaDiscuss extends JPlugin
 	 * @param   integer $limitstart The 'page' number
 	 *
 	 * @return  string
+	 * @throws Exception
+	 * @since Kunena
 	 */
 	public function onContentAfterDisplay($context, &$article, &$params, $limitstart = 0)
 	{
@@ -1249,13 +1334,13 @@ class plgContentKunenaDiscuss extends JPlugin
 		if ($this->ktemplate->params->get('fontawesome'))
 		{
 			$doc = \Joomla\CMS\Factory::getDocument();
-			$doc->addScript('https://use.fontawesome.com/releases/v5.0.9/js/all.js', array(), array('defer' => true));
+			$doc->addScript('https://use.fontawesome.com/releases/v5.1.0/js/all.js', array(), array('defer' => true));
 		}
 
 		$this->debug("onAfterDisplayContent: Returning content for article {$article->id}");
 
 		$result = self::$plgDisplay[$article->id];
-		$user   = JFactory::getUser();
+		$user   = Factory::getUser();
 
 		if ($user->guest)
 		{
@@ -1265,7 +1350,7 @@ class plgContentKunenaDiscuss extends JPlugin
 			{
 				$guestHtml = "<div class='kunenadiscuss kpublic'>";
 				$guestHtml = $guestHtml . "<div class='kdiscuss-title login-discuss'>" . JText::_('PLG_KUNENADISCUSS_DISCUSS_THIS_ARTICLE') . "</div>";
-				$guestHtml = $guestHtml . "<a class='klogin-to-discuss' rel='nofollow' href='" .  KunenaLogin::getInstance()->getLoginURL() . "' >" . JText::_('PLG_KUNENADISCUSS_LOG_IN_TO_COMMENT') . "</a>";
+				$guestHtml = $guestHtml . "<a class='klogin-to-discuss' rel='nofollow' href='" . KunenaLogin::getInstance()->getLoginURL() . "' >" . JText::_('PLG_KUNENADISCUSS_LOG_IN_TO_COMMENT') . "</a>";
 				$guestHtml = $guestHtml . "</div>";
 				$result    = $guestHtml . $result;
 			}
