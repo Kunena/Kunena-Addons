@@ -1177,12 +1177,7 @@ class plgContentKunenaDiscuss extends JPlugin
 						$res = Factory::getApplication()->triggerEvent('onCheckAnswer', array($this->app->input->getString('recaptcha_response_field')));
 					}
 
-					if (!$res[0])
-					{
-						$this->setRedirectBack();
-
-						return;
-					}
+					return $res[0];
 				}
 			}
 		}
@@ -1298,13 +1293,14 @@ class plgContentKunenaDiscuss extends JPlugin
 			if (!empty($captcha_pubkey) && !empty($catcha_privkey))
 			{
 				\Joomla\CMS\Plugin\PluginHelper::importPlugin('captcha');
+				Factory::getApplication()->triggerEvent('onInit', array('dynamic_recaptcha_' . $random));
+				$output = Factory::getApplication()->triggerEvent('onDisplay', array(null, 'dynamic_recaptcha_' . $random,
+					'class="controls g-recaptcha" data-sitekey="' . $captcha_pubkey . '" data-theme="light"'));
 
-				$result                    = Factory::getApplication()->triggerEvent('onInit', array('dynamic_recaptcha_' . $random));
-				$output                    = Factory::getApplication()->triggerEvent('onDisplay', array(null, 'dynamic_recaptcha_' . $random,
-					'class="controls g-recaptcha" data-sitekey="' . $captcha_pubkey . '" data-theme="light"',));
-				$this->quickcaptchaDisplay = $output[0];
-				$this->quickcaptchaEnabled = $result[0];
+				return $output[0];
 			}
+
+			return false;
 		}
 	}
 
