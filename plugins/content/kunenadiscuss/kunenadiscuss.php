@@ -224,6 +224,8 @@ class plgContentKunenaDiscuss extends JPlugin
 			catch (JDatabaseExceptionExecuting $e)
 			{
 				KunenaError::displayDatabaseError($e);
+
+				return false;
 			}
 
 			$this->debug("Created #__kunenadiscuss cross reference table.");
@@ -246,6 +248,8 @@ class plgContentKunenaDiscuss extends JPlugin
 				catch (JDatabaseExceptionExecuting $e)
 				{
 					KunenaError::displayDatabaseError($e);
+
+					return false;
 				}
 
 				$this->debug("Migrated old data.");
@@ -403,6 +407,8 @@ class plgContentKunenaDiscuss extends JPlugin
 					catch (JDatabaseExceptionExecuting $e)
 					{
 						KunenaError::displayDatabaseError($e);
+
+						return false;
 					}
 
 					$text = $article->introtext . ' ' . $fulltext;
@@ -651,6 +657,8 @@ class plgContentKunenaDiscuss extends JPlugin
 		catch (JDatabaseExceptionExecuting $e)
 		{
 			KunenaError::displayDatabaseError($e);
+
+			return false;
 		}
 
 		if ($topic_id)
@@ -858,6 +866,7 @@ class plgContentKunenaDiscuss extends JPlugin
 	/**
 	 * @param   object $row
 	 *
+	 * @return bool
 	 * @throws Exception
 	 * @since Kunena
 	 */
@@ -876,13 +885,18 @@ class plgContentKunenaDiscuss extends JPlugin
 		catch (JDatabaseExceptionExecuting $e)
 		{
 			KunenaError::displayDatabaseError($e);
+
+			return false;
 		}
+
+		return true;
 	}
 
 	/**
 	 * @param   object $row
 	 * @param   int    $topic_id
 	 *
+	 * @return bool
 	 * @throws Exception
 	 * @since Kunena
 	 */
@@ -902,7 +916,11 @@ class plgContentKunenaDiscuss extends JPlugin
 		catch (JDatabaseExceptionExecuting $e)
 		{
 			KunenaError::displayDatabaseError($e);
+
+			return false;
 		}
+
+		return true;
 	}
 
 	/**
@@ -911,6 +929,11 @@ class plgContentKunenaDiscuss extends JPlugin
 	 *****************************************************************************
 	 * @since Kunena
 	 *
+	 * @param $row
+	 * @param $topic_id
+	 *
+	 * @return bool
+	 * @throws Exception
 	 */
 	protected function createReference($row, $topic_id)
 	{
@@ -927,8 +950,10 @@ class plgContentKunenaDiscuss extends JPlugin
 		}
 		catch (JDatabaseExceptionExecuting $e)
 		{
-			KunenaError::displayDatabaseError($e);
+			$this->deleteReference($row);
 		}
+
+		return true;
 	}
 
 	/**
@@ -1145,8 +1170,8 @@ class plgContentKunenaDiscuss extends JPlugin
 	 * Check if the captcha given is correct
 	 *
 	 * @return boolean
+	 * @throws Exception
 	 * @since Kunena
-	 *
 	 */
 	protected function verifyCaptcha()
 	{
