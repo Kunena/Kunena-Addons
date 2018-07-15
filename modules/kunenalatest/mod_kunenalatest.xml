@@ -2,7 +2,7 @@
 <!DOCTYPE extension>
 <extension type="module" version="3.6.0" client="site" method="upgrade">
 	<name>mod_kunenalatest</name>
-	<version>5.1.0</version>
+	<version>5.1.1</version>
 	<creationDate>@kunenaversiondate@</creationDate>
 	<author>Kunena Team</author>
 	<authorEmail>admin@kunena.org</authorEmail>
