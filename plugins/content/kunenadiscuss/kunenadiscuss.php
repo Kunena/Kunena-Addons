@@ -872,6 +872,8 @@ class plgContentKunenaDiscuss extends JPlugin
 	 */
 	protected function deleteReference($row)
 	{
+		$this->debug("deleteReference: Delete");
+
 		$db    = Factory::getDBO();
 		$query = $db->getQuery(true);
 		$query->delete('#__kunenadiscuss');
@@ -884,6 +886,8 @@ class plgContentKunenaDiscuss extends JPlugin
 		}
 		catch (JDatabaseExceptionExecuting $e)
 		{
+			$this->debug("deleteReference: Delete error " . $e);
+
 			KunenaError::displayDatabaseError($e);
 
 			return false;
@@ -902,6 +906,8 @@ class plgContentKunenaDiscuss extends JPlugin
 	 */
 	protected function updateReference($row, $topic_id)
 	{
+		$this->debug("updateReference: Update");
+
 		$db    = Factory::getDBO();
 		$query = $db->getQuery(true);
 		$query->update('#__kunenadiscuss');
@@ -915,6 +921,8 @@ class plgContentKunenaDiscuss extends JPlugin
 		}
 		catch (JDatabaseExceptionExecuting $e)
 		{
+			$this->debug("updateReference: Update error " . $e);
+
 			KunenaError::displayDatabaseError($e);
 
 			return false;
@@ -937,6 +945,8 @@ class plgContentKunenaDiscuss extends JPlugin
 	 */
 	protected function createReference($row, $topic_id)
 	{
+		$this->debug("createReference: create");
+
 		$db    = Factory::getDBO();
 		$query = $db->getQuery(true);
 		$query->insert('#__kunenadiscuss');
@@ -950,6 +960,7 @@ class plgContentKunenaDiscuss extends JPlugin
 		}
 		catch (JDatabaseExceptionExecuting $e)
 		{
+			$this->debug("createReference: Error:" . $e);
 			$this->deleteReference($row);
 		}
 
@@ -1056,6 +1067,8 @@ class plgContentKunenaDiscuss extends JPlugin
 
 		if (!$success)
 		{
+			$this->debug("showPlugin: Error:" . $message->getError());
+
 			$this->app->enqueueMessage($message->getError(), 'error');
 
 			return false;
@@ -1103,6 +1116,8 @@ class plgContentKunenaDiscuss extends JPlugin
 
 		if (JSession::checkToken() == false)
 		{
+			$this->debug("showPlugin: Token error");
+
 			$this->app->enqueueMessage(JText::_('COM_KUNENA_ERROR_TOKEN'), 'error');
 
 			return false;
@@ -1111,6 +1126,8 @@ class plgContentKunenaDiscuss extends JPlugin
 		// Create topic if it doesn't exist
 		if (!$topic->exists())
 		{
+			$this->debug("replyTopic: Create topic");
+
 			$topic = $this->createTopic($row, $category, $subject);
 		}
 
@@ -1131,6 +1148,8 @@ class plgContentKunenaDiscuss extends JPlugin
 
 		if (!$success)
 		{
+			$this->debug("replyTopic: can't save message: " . $message->getError());
+
 			$this->app->enqueueMessage($message->getError(), 'error');
 
 			return false;
