@@ -711,7 +711,7 @@ class plgContentKunenaDiscuss extends JPlugin
 		// Initialise some variables
 		$subject = $row->title;
 
-		if (isset($row->publish_up) && $row->publish_up != '0000-00-00 00:00:00')
+		if (isset($row->publish_up) && $row->publish_up != '1000-01-01 00:00:00')
 		{
 			// Take start publishing date
 			$published = Factory::getDate($row->publish_up)->toUnix();
@@ -1045,13 +1045,13 @@ class plgContentKunenaDiscuss extends JPlugin
 		list($topic, $message) = $category->newTopic($params, $topic_owner, $safefields);
 
 		// Set time of message published by the plugin in the Unix timestamp format, start publishing date of the article
-		if (isset($row->publish_up) && $row->publish_up != '0000-00-00 00:00:00')
+		if (isset($row->publish_up) && $row->publish_up != '1000-01-01 00:00:00')
 		{
 			$message->time = Factory::getDate($row->publish_up)->toUnix();
 		}
 		else
 		{
-			if (isset($row->created) && $row->created != '0000-00-00 00:00:00')
+			if (isset($row->created) && $row->created != '1000-01-01 00:00:00')
 			{
 				// Created date of the article
 				$message->time = Factory::getDate($row->created)->toUnix();
