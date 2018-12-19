@@ -4,13 +4,14 @@
  *
  * @package       Kunena.plg_content_kunenadiscuss
  *
- * @copyright (C) 2008 - 2018 Kunena Team. All rights reserved.
+ * @copyright (C) 2008 - 2019 Kunena Team. All rights reserved.
  * @license       http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link          https://www.kunena.org
  **/
 defined('_JEXEC') or die('');
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
 
 /**
  * Class plgContentKunenaDiscuss
@@ -626,7 +627,7 @@ class plgContentKunenaDiscuss extends JPlugin
 		if (!self::$includedCss)
 		{
 			$doc = Factory::getDocument();
-			$doc->addStyleSheet(JUri::root(true) . "/plugins/content/kunenadiscuss/css/discuss.css");
+			$doc->addStyleSheet(Uri::root(true) . "/plugins/content/kunenadiscuss/css/discuss.css");
 
 			$plugin       = JPluginHelper::getPlugin('content', 'kunenadiscuss');
 			$pluginParams = new JRegistry($plugin->params);
@@ -634,7 +635,7 @@ class plgContentKunenaDiscuss extends JPlugin
 
 			if ($bootstrap != 'B3')
 			{
-				$doc->addStyleSheet(JUri::root(true) . "/plugins/content/kunenadiscuss/css/discussb2.css");
+				$doc->addStyleSheet(Uri::root(true) . "/plugins/content/kunenadiscuss/css/discussb2.css");
 			}
 
 			self::$includedCss = true;
@@ -1213,12 +1214,34 @@ class plgContentKunenaDiscuss extends JPlugin
 					if (!empty($captcha_response))
 					{
 						// For ReCaptcha API 2.0
-						$res = Factory::getApplication()->triggerEvent('onCheckAnswer', array($this->app->input->getString('g-recaptcha-response')));
+						try
+						{
+							$res = Factory::getApplication()->triggerEvent('onCheckAnswer', array($this->app->input->getString('g-recaptcha-response')));
+						}
+						catch (Exception $e)
+						{
+							$this->debug("replyTopic: can't save message: " . $e->getMessage());
+
+							$this->app->enqueueMessage($e->getMessage(), 'error');
+
+							return false;
+						}
 					}
 					else
 					{
 						// For ReCaptcha API 1.0
-						$res = Factory::getApplication()->triggerEvent('onCheckAnswer', array($this->app->input->getString('recaptcha_response_field')));
+						try
+						{
+							$res = Factory::getApplication()->triggerEvent('onCheckAnswer', array($this->app->input->getString('recaptcha_response_field')));
+						}
+						catch (Exception $e)
+						{
+							$this->debug("replyTopic: can't save message: " . $e->getMessage());
+
+							$this->app->enqueueMessage($e->getMessage(), 'error');
+
+							return false;
+						}
 					}
 
 					return $res[0];
@@ -1226,7 +1249,7 @@ class plgContentKunenaDiscuss extends JPlugin
 			}
 		}
 
-		return false;
+		return true;
 	}
 
 	/**
