@@ -12,12 +12,18 @@ defined('_JEXEC') or die('');
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Plugin\CMSPlugin;
+use Joomla\CMS\Plugin\PluginHelper;
+use Joomla\Registry\Registry;
+use Joomla\CMS\Session\Session;
 
 /**
  * Class plgContentKunenaDiscuss
  * @since Kunena
  */
-class plgContentKunenaDiscuss extends JPlugin
+class plgContentKunenaDiscuss extends CMSPlugin
 {
 	/**
 	 * Associative array to hold results of the plugin.
@@ -98,7 +104,7 @@ class plgContentKunenaDiscuss extends JPlugin
 		if (!class_exists('KunenaForum') || !KunenaForum::isCompatible($minKunenaVersion))
 		{
 			$this->loadLanguage();
-			$this->app->enqueueMessage(JText::sprintf('PLG_KUNENADISCUSS_DEPENDENCY_FAIL', $minKunenaVersion));
+			$this->app->enqueueMessage(Text::sprintf('PLG_KUNENADISCUSS_DEPENDENCY_FAIL', $minKunenaVersion));
 
 			return;
 		}
@@ -278,7 +284,7 @@ class plgContentKunenaDiscuss extends JPlugin
 		// Only proceed if this event is not originated by Kunena itself or we run the danger of an event recursion
 		$ksource = '';
 
-		if ($params instanceof JRegistry)
+		if ($params instanceof Registry)
 		{
 			$ksource = $params->get('ksource', '');
 		}
@@ -629,8 +635,8 @@ class plgContentKunenaDiscuss extends JPlugin
 			$doc = Factory::getDocument();
 			$doc->addStyleSheet(Uri::root(true) . "/plugins/content/kunenadiscuss/css/discuss.css");
 
-			$plugin       = JPluginHelper::getPlugin('content', 'kunenadiscuss');
-			$pluginParams = new JRegistry($plugin->params);
+			$plugin       = PluginHelper::getPlugin('content', 'kunenadiscuss');
+			$pluginParams = new Registry($plugin->params);
 			$bootstrap    = $pluginParams->get('bootstrap');
 
 			if ($bootstrap != 'B3')
@@ -804,19 +810,19 @@ class plgContentKunenaDiscuss extends JPlugin
 		if ($topic->exists() && $linkOnly)
 		{
 			$this->debug("showPlugin: Displaying only link to the topic");
-			$linktitle = JText::sprintf('PLG_KUNENADISCUSS_DISCUSS_ON_FORUMS', $topic->getReplies());
+			$linktitle = Text::sprintf('PLG_KUNENADISCUSS_DISCUSS_ON_FORUMS', $topic->getReplies());
 
-			return JHtml::_('kunenaforum.link', $topic->getUri($category), $linktitle, $linktitle);
+			return HTMLHelper::_('kunenaforum.link', $topic->getUri($category), $linktitle, $linktitle);
 		}
 		elseif ($topic->exists() && !$plgShowForm)
 		{
 			$this->debug("showPlugin: Displaying link to the topic because the form is disabled");
-			$linktitle = JText::sprintf('PLG_KUNENADISCUSS_DISCUSS_ON_FORUMS', $topic->getReplies());
-			$linktopic = JHtml::_('kunenaforum.link', $topic->getUri($category), $linktitle, $linktitle);
+			$linktitle = Text::sprintf('PLG_KUNENADISCUSS_DISCUSS_ON_FORUMS', $topic->getReplies());
+			$linktopic = HTMLHelper::_('kunenaforum.link', $topic->getUri($category), $linktitle, $linktitle);
 		}
 		elseif (!$topic->exists() && !$plgShowForm)
 		{
-			$linktopic = JText::_('PLG_KUNENADISCUSS_NEW_TOPIC_NOT_CREATED');
+			$linktopic = Text::_('PLG_KUNENADISCUSS_NEW_TOPIC_NOT_CREATED');
 		}
 
 		// ************************************************************************
@@ -1115,11 +1121,11 @@ class plgContentKunenaDiscuss extends JPlugin
 	{
 		$uri = Factory::getURI();
 
-		if (JSession::checkToken() == false)
+		if (Session::checkToken() == false)
 		{
 			$this->debug("showPlugin: Token error");
 
-			$this->app->enqueueMessage(JText::_('COM_KUNENA_ERROR_TOKEN'), 'error');
+			$this->app->enqueueMessage(Text::_('COM_KUNENA_ERROR_TOKEN'), 'error');
 
 			return false;
 		}
@@ -1160,11 +1166,11 @@ class plgContentKunenaDiscuss extends JPlugin
 
 		if ($message->hold)
 		{
-			$result = JText::_('PLG_KUNENADISCUSS_PENDING_MODERATOR_APPROVAL');
+			$result = Text::_('PLG_KUNENADISCUSS_PENDING_MODERATOR_APPROVAL');
 		}
 		else
 		{
-			$result = JText::_('PLG_KUNENADISCUSS_MESSAGE_POSTED');
+			$result = Text::_('PLG_KUNENADISCUSS_MESSAGE_POSTED');
 		}
 
 		// Redirect
@@ -1197,17 +1203,17 @@ class plgContentKunenaDiscuss extends JPlugin
 	{
 		if (KunenaUserHelper::getMyself()->canDoCaptcha())
 		{
-			if (\Joomla\CMS\Plugin\PluginHelper::isEnabled('captcha'))
+			if (PluginHelper::isEnabled('captcha'))
 			{
-				$plugin = \Joomla\CMS\Plugin\PluginHelper::getPlugin('captcha');
-				$params = new \Joomla\Registry\Registry($plugin[0]->params);
+				$plugin = PluginHelper::getPlugin('captcha');
+				$params = new Registry($plugin[0]->params);
 
 				$captcha_pubkey  = $params->get('public_key');
 				$captcha_privkey = $params->get('private_key');
 
 				if (!empty($captcha_pubkey) && !empty($captcha_privkey))
 				{
-					\Joomla\CMS\Plugin\PluginHelper::importPlugin('captcha');
+					PluginHelper::importPlugin('captcha');
 
 					$captcha_response = $this->app->input->getString('g-recaptcha-response');
 
@@ -1274,12 +1280,12 @@ class plgContentKunenaDiscuss extends JPlugin
 				$login        = KunenaLogin::getInstance();
 				$loginlink    = $login->getLoginURL();
 				$registerlink = $login->getRegistrationURL();
-				$this->msg    = JText::sprintf('PLG_KUNENADISCUSS_LOGIN_OR_REGISTER', '"' . $loginlink . '"', '"' . $registerlink . '"');
+				$this->msg    = Text::sprintf('PLG_KUNENADISCUSS_LOGIN_OR_REGISTER', '"' . $loginlink . '"', '"' . $registerlink . '"');
 			}
 			else
 			{
 				$this->debug("showForm: Unfortunately you cannot discuss this item");
-				$this->msg = JText::_('PLG_KUNENADISCUSS_NO_PERMISSION_TO_POST');
+				$this->msg = Text::_('PLG_KUNENADISCUSS_NO_PERMISSION_TO_POST');
 			}
 		}
 
@@ -1348,10 +1354,10 @@ class plgContentKunenaDiscuss extends JPlugin
 	 */
 	public function displayCaptcha()
 	{
-		if (\Joomla\CMS\Plugin\PluginHelper::isEnabled('captcha'))
+		if (PluginHelper::isEnabled('captcha'))
 		{
-			$plugin = \Joomla\CMS\Plugin\PluginHelper::getPlugin('captcha');
-			$params = new \Joomla\Registry\Registry($plugin[0]->params);
+			$plugin = PluginHelper::getPlugin('captcha');
+			$params = new Registry($plugin[0]->params);
 
 			$captcha_pubkey = $params->get('public_key');
 			$catcha_privkey = $params->get('private_key');
@@ -1359,7 +1365,7 @@ class plgContentKunenaDiscuss extends JPlugin
 
 			if (!empty($captcha_pubkey) && !empty($catcha_privkey))
 			{
-				\Joomla\CMS\Plugin\PluginHelper::importPlugin('captcha');
+				PluginHelper::importPlugin('captcha');
 				Factory::getApplication()->triggerEvent('onInit', array('dynamic_recaptcha_' . $random));
 				$output = Factory::getApplication()->triggerEvent('onDisplay', array(null, 'dynamic_recaptcha_' . $random,
 					'class="controls g-recaptcha" data-sitekey="' . $captcha_pubkey . '" data-theme="light"'));
@@ -1396,8 +1402,8 @@ class plgContentKunenaDiscuss extends JPlugin
 		$this->ktemplate = KunenaFactory::getTemplate();
 		if ($this->ktemplate->params->get('fontawesome'))
 		{
-			$doc = \Joomla\CMS\Factory::getDocument();
-			$doc->addScript('https://use.fontawesome.com/releases/v5.1.0/js/all.js', array(), array('defer' => true));
+			$doc = Factory::getDocument();
+			$doc->addScript('https://use.fontawesome.com/releases/v5.6.1/js/all.js', array(), array('defer' => true));
 		}
 
 		$this->debug("onAfterDisplayContent: Returning content for article {$article->id}");
@@ -1412,8 +1418,8 @@ class plgContentKunenaDiscuss extends JPlugin
 			if ($login_public)
 			{
 				$guestHtml = "<div class='kunenadiscuss kpublic'>";
-				$guestHtml = $guestHtml . "<div class='kdiscuss-title login-discuss'>" . JText::_('PLG_KUNENADISCUSS_DISCUSS_THIS_ARTICLE') . "</div>";
-				$guestHtml = $guestHtml . "<a class='klogin-to-discuss' rel='nofollow' href='" . KunenaLogin::getInstance()->getLoginURL() . "' >" . JText::_('PLG_KUNENADISCUSS_LOG_IN_TO_COMMENT') . "</a>";
+				$guestHtml = $guestHtml . "<div class='kdiscuss-title login-discuss'>" . Text::_('PLG_KUNENADISCUSS_DISCUSS_THIS_ARTICLE') . "</div>";
+				$guestHtml = $guestHtml . "<a class='klogin-to-discuss' rel='nofollow' href='" . KunenaLogin::getInstance()->getLoginURL() . "' >" . Text::_('PLG_KUNENADISCUSS_LOG_IN_TO_COMMENT') . "</a>";
 				$guestHtml = $guestHtml . "</div>";
 				$result    = $guestHtml . $result;
 			}

@@ -9,6 +9,9 @@
  * @link          https://www.kunena.org
  **/
 defined('_JEXEC') or die ('');
+
+use Joomla\CMS\Language\Text;
+
 $config       = KunenaConfig::getInstance();
 $plugin       = JPluginHelper::getPlugin('content', 'kunenadiscuss');
 $pluginParams = new JRegistry($plugin->params);
@@ -48,7 +51,7 @@ if ($this->message->hold)
 		<div class="<?php echo $bootstrap; ?>11">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<span><?php echo $this->message->getAuthor()->getLink(null, null, '') . ' ' . JText::_('COM_KUNENA_MESSAGE_REPLIED'); ?></span>
+					<span><?php echo $this->message->getAuthor()->getLink(null, null, '') . ' ' . Text::_('COM_KUNENA_MESSAGE_REPLIED'); ?></span>
 					<span class="pull-right" style="padding-left: 5px;"><a href="<?php echo $this->topic->getUri($this->category) . '#' . $this->message->id; ?>" rel="canonical">#<?php echo $this->numLink; ?></a></span>
 					<span class="text-muted pull-right"><?php echo KunenaDate::getInstance($this->message->time)->toKunena('config_post_dateformat') ?></span>
 				</div>

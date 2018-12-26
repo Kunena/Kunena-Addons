@@ -9,9 +9,12 @@
  * @link          https://www.kunena.org
  **/
 defined('_JEXEC') or die('');
+
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\HTML\HTMLHelper;
 ?>
 <div class="panel-heading">
-	<?php echo JHtml::_('kunenaforum.link', $this->topic->getUri($this->category), JText::_('PLG_KUNENADISCUSS_POSTS') . ': ' . $this->topic->subject, null, 'kdiscuss-topic') ?>
+	<?php echo HTMLHelper::_('kunenaforum.link', $this->topic->getUri($this->category), Text::_('PLG_KUNENADISCUSS_POSTS') . ': ' . $this->topic->subject, null, 'kdiscuss-topic') ?>
 </div>
 
 <div>
@@ -22,5 +25,5 @@ defined('_JEXEC') or die('');
 <?php $this->displayMessages() ?>
 
 <div class="panel-heading">
-	<?php echo JHtml::_('kunenaforum.link', $this->topic->getUri($this->category), JText::_('COM_KUNENA_READMORE'), null, 'kdiscuss-readmore') ?>
+	<?php echo HTMLHelper::_('kunenaforum.link', $this->topic->getUri($this->category), Text::_('COM_KUNENA_READMORE'), null, 'kdiscuss-readmore') ?>
 </div>
