@@ -99,7 +99,7 @@ class plgContentKunenaDiscuss extends CMSPlugin
 		}
 
 		// Kunena detection and version check
-		$minKunenaVersion = '5.0';
+		$minKunenaVersion = '6.0';
 
 		if (!class_exists('KunenaForum') || !KunenaForum::isCompatible($minKunenaVersion))
 		{
