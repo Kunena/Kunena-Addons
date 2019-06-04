@@ -14,15 +14,6 @@ class PlgSearchKunenaInstallerScript
 {
 	function postflight($type, $parent)
 	{
-		// Delete useless manifest file
-		$path = $parent->getParent()->getPath('extension_root');
-		$name = preg_replace('/^plg_[^_]*_/', '', $parent->get('name'));
-
-		if (JFile::exists("{$path}/{$name}.j25.xml"))
-		{
-			JFile::delete("{$path}/{$name}.j25.xml");
-		}
-
 		// Uninstall old version of the plug-in.
 		$this->uninstallPlugin('search', 'kunenasearch');
 	}
