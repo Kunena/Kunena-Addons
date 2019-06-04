@@ -12,15 +12,5 @@ defined('_JEXEC') or die();
 
 class Mod_KunenalatestInstallerScript
 {
-	function postflight($type, $parent)
-	{
-		// Delete useless manifest file
-		$path = $parent->getParent()->getPath('extension_root');
-		$name = $parent->get('name');
 
-		if (JFile::exists("{$path}/{$name}.j25.xml"))
-		{
-			JFile::delete("{$path}/{$name}.j25.xml");
-		}
-	}
 }
