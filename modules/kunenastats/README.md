@@ -1,14 +1,10 @@
-
-Kunena Statistics Module README
+# Kunena Statistics Module README
 
 PLEASE READ THIS ENTIRE FILE BEFORE INSTALLING Kunena Statistics @kunenaversion@!
 
-INTRODUCTION
-============
+## INTRODUCTION
 
 Kunena Statistics enables your site visitors to see Statistics from forum in a Joomla! module.
 
-Requirements: Joomla 2.5, Kunena Forum 2.0
+Requirements: Joomla 4.0, Kunena Forum 4.0
 
-END OF README
-=============

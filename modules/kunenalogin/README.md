@@ -1,18 +1,8 @@
-/**
- * Kunena Login Module
- * @package Kunena.mod_kunenalogin
- *
- * @copyright (C) 2008 - 2018 Kunena Team. All rights reserved.
- * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @link https://www.kunena.org
- **/
-
-Kunena Login Module README
+# Kunena Login Module README
 
 PLEASE READ THIS ENTIRE FILE BEFORE INSTALLING Kunena Login Module @kunenaversion@!
 
-INTRODUCTION
-============
+## INTRODUCTION
 
 Kunena Login enables your site visitors to login your site. This Module displays
 a username and password login form. It also displays a link to retrieve a
@@ -21,7 +11,5 @@ Configuration settings), another link will be shown to enable self-registration
 for users. It also display Avatar from Kunena Forum and link to My Profile,
 My Discussions and Recent Discussions.
 
-Requirements: Joomla 2.5, Kunena Forum 2.0
+Requirements: Joomla 4.0, Kunena Forum 4.0
 
-END OF README
-=============

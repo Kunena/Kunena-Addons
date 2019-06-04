@@ -1,14 +1,12 @@
-
-Kunena Latest Module README
+# Kunena Latest Module README
 
 PLEASE READ THIS ENTIRE FILE BEFORE INSTALLING Kunena Latest @kunenaversion@!
 
-INTRODUCTION
-============
+## INTRODUCTION
+
 
 Kunena Latest Module enables your site visitors to see latest posts or messages from a forum.
 
-Requirements: Joomla 2.5, Kunena Forum 2.0
+Requirements: Joomla 4.0, Kunena Forum 6.0
 
-END OF README
-=============
+
