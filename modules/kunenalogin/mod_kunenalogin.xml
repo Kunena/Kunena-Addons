@@ -1,232 +1,235 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE extension>
 <extension type="module" version="3.6.0" client="site" method="upgrade">
-	<name>mod_kunenalogin</name>
-	<version>6.0.0</version>
-	<creationDate>@kunenaversiondate@</creationDate>
-	<author>Kunena Team</author>
-	<authorEmail>admin@kunena.org</authorEmail>
-	<authorUrl>https://www.kunena.org</authorUrl>
-	<copyright>(C) 2008 - 2018 Kunena Team. All rights reserved.</copyright>
-	<license>GNU/GPL</license>
-	<description>MOD_KUNENALOGIN_DESCRIPTION</description>
+    <name>mod_kunenalogin</name>
+    <version>6.0.0</version>
+    <creationDate>@kunenaversiondate@</creationDate>
+    <author>Kunena Team</author>
+    <authorEmail>admin@kunena.org</authorEmail>
+    <authorUrl>https://www.kunena.org</authorUrl>
+    <copyright>(C) 2008 - 2018 Kunena Team. All rights reserved.</copyright>
+    <license>GNU/GPL</license>
+    <description>MOD_KUNENALOGIN_DESCRIPTION</description>
 
-	<scriptfile>install.script.php</scriptfile>
-	<files>
-		<filename module="mod_kunenalogin">mod_kunenalogin.php</filename>
-		<filename>class.php</filename>
-		<filename>index.html</filename>
-		<folder>tmpl</folder>
-		<folder>language</folder>
-	</files>
+    <files>
+        <filename module="mod_kunenalogin">mod_kunenalogin.php</filename>
+        <filename>class.php</filename>
+        <filename>index.html</filename>
+        <folder>tmpl</folder>
+        <folder>language</folder>
+    </files>
 
-	<languages folder="language">
-		<!-- Transifex alphabetical order -->
-		<language tag="af-ZA">af-ZA/af-ZA.mod_kunenalogin.ini</language>
-		<language tag="af-ZA">af-ZA/af-ZA.mod_kunenalogin.sys.ini</language>
-		<language tag="ar-AA">ar-AA/ar-AA.mod_kunenalogin.ini</language>
-		<language tag="ar-AA">ar-AA/ar-AA.mod_kunenalogin.sys.ini</language>
-		<language tag="az-ZA">az-AZ/az-AZ.mod_kunenalogin.ini</language>
-		<language tag="az-ZA">az-AZ/az-AZ.mod_kunenalogin.sys.ini</language>
-		<language tag="bg-BG">bg-BG/bg-BG.mod_kunenalogin.ini</language>
-		<language tag="bg-BG">bg-BG/bg-BG.mod_kunenalogin.sys.ini</language>
-		<language tag="bs-BA">bs-BA/bs-BA.mod_kunenalogin.ini</language>
-		<language tag="bs-BA">bs-BA/bs-BA.mod_kunenalogin.sys.ini</language>
-		<language tag="ca-ES">ca-ES/ca-ES.mod_kunenalogin.ini</language>
-		<language tag="ca-ES">ca-ES/ca-ES.mod_kunenalogin.sys.ini</language>
-		<language tag="ckb-IQ">ckb-IQ/ckb-IQ.mod_kunenalogin.ini</language>
-		<language tag="ckb-IQ">ckb-IQ/ckb-IQ.mod_kunenalogin.sys.ini</language>
-		<language tag="cs-CZ">cs-CZ/cs-CZ.mod_kunenalogin.ini</language>
-		<language tag="cs-CZ">cs-CZ/cs-CZ.mod_kunenalogin.sys.ini</language>
-		<language tag="cy-GB">cy-GB/cy-GB.mod_kunenalogin.ini</language>
-		<language tag="cy-GB">cy-GB/cy-GB.mod_kunenalogin.sys.ini</language>
-		<language tag="da-DK">da-DK/da-DK.mod_kunenalogin.ini</language>
-		<language tag="da-DK">da-DK/da-DK.mod_kunenalogin.sys.ini</language>
-		<language tag="de-DE">de-DE/de-DE.mod_kunenalogin.ini</language>
-		<language tag="de-DE">de-DE/de-DE.mod_kunenalogin.sys.ini</language>
-		<language tag="el-GR">el-GR/el-GR.mod_kunenalogin.ini</language>
-		<language tag="el-GR">el-GR/el-GR.mod_kunenalogin.sys.ini</language>
-		<language tag="en-GB">en-GB/en-GB.mod_kunenalogin.ini</language>
-		<language tag="en-GB">en-GB/en-GB.mod_kunenalogin.sys.ini</language>
-		<language tag="eo-XX">eo-XX/eo-XX.mod_kunenalogin.ini</language>
-		<language tag="eo-XX">eo-XX/eo-XX.mod_kunenalogin.sys.ini</language>
-		<language tag="es_GT">es_GT/es_GT.mod_kunenalogin.ini</language>
-		<language tag="es_GT">es_GT/es_GT.mod_kunenalogin.sys.ini</language>
-		<language tag="es-ES">es-ES/es-ES.mod_kunenalogin.ini</language>
-		<language tag="es-ES">es-ES/es-ES.mod_kunenalogin.sys.ini</language>
-		<language tag="et-EE">et-EE/et-EE.mod_kunenalogin.ini</language>
-		<language tag="et-EE">et-EE/et-EE.mod_kunenalogin.sys.ini</language>
-		<language tag="eu-ES">eu-ES/eu-ES.mod_kunenalogin.ini</language>
-		<language tag="eu-ES">eu-ES/eu-ES.mod_kunenalogin.sys.ini</language>
-		<language tag="fa-IR">fa-IR/fa-IR.mod_kunenalogin.ini</language>
-		<language tag="fa-IR">fa-IR/fa-IR.mod_kunenalogin.sys.ini</language>
-		<language tag="fi-FI">fi-FI/fi-FI.mod_kunenalogin.ini</language>
-		<language tag="fi-FI">fi-FI/fi-FI.mod_kunenalogin.sys.ini</language>
-		<language tag="fr-FR">fr-FR/fr-FR.mod_kunenalogin.ini</language>
-		<language tag="fr-FR">fr-FR/fr-FR.mod_kunenalogin.sys.ini</language>
-		<language tag="gl_ES">gl_ES/gl_ES.mod_kunenalogin.ini</language>
-		<language tag="gl_ES">gl_ES/gl_ES.mod_kunenalogin.sys.ini</language>
-		<language tag="he-IL">he-IL/he-IL.mod_kunenalogin.ini</language>
-		<language tag="he-IL">he-IL/he-IL.mod_kunenalogin.sys.ini</language>
-		<language tag="hi-IN">hi_IN/hi-IN.mod_kunenalogin.ini</language>
-		<language tag="hi-IN">hi_IN/hi-IN.mod_kunenalogin.sys.ini</language>
-		<language tag="hr-HR">hr_HR/hr-HR.mod_kunenalogin.ini</language>
-		<language tag="hr-HR">hr_HR/hr-HR.mod_kunenalogin.sys.ini</language>
-		<language tag="hu-HU">hu-HU/hu-HU.mod_kunenalogin.ini</language>
-		<language tag="hu-HU">hu-HU/hu-HU.mod_kunenalogin.sys.ini</language>
-		<language tag="id-ID">id-ID/id-ID.mod_kunenalogin.ini</language>
-		<language tag="id-ID">id-ID/id-ID.mod_kunenalogin.sys.ini</language>
-		<language tag="it-IT">it-IT/it-IT.mod_kunenalogin.ini</language>
-		<language tag="it-IT">it-IT/it-IT.mod_kunenalogin.sys.ini</language>
-		<language tag="ja-JP">ja-JP/ja-JP.mod_kunenalogin.ini</language>
-		<language tag="ja-JP">ja-JP/ja-JP.mod_kunenalogin.sys.ini</language>
-		<language tag="km-KH">km-KH/km-KH.mod_kunenalogin.ini</language>
-		<language tag="km-KH">km-KH/km-KH.mod_kunenalogin.sys.ini</language>
-		<language tag="ko-KR">ko-KR/ko-KR.mod_kunenalogin.ini</language>
-		<language tag="ko-KR">ko-KR/ko-KR.mod_kunenalogin.sys.ini</language>
-		<language tag="kz-KZ">kz-KZ/kz-KZ.mod_kunenalogin.ini</language>
-		<language tag="kz-KZ">kz-KZ/kz-KZ.mod_kunenalogin.sys.ini</language>
-		<language tag="lt-LT">lt-LT/lt-LT.mod_kunenalogin.ini</language>
-		<language tag="lt-LT">lt-LT/lt-LT.mod_kunenalogin.sys.ini</language>
-		<language tag="lv-LV">lv-LV/lv-LV.mod_kunenalogin.ini</language>
-		<language tag="lv-LV">lv-LV/lv-LV.mod_kunenalogin.sys.ini</language>
-		<language tag="mk-MK">mk-MK/mk-MK.mod_kunenalogin.ini</language>
-		<language tag="mk-MK">mk-MK/mk-MK.mod_kunenalogin.sys.ini</language>
-		<language tag="nb-NO">nb-NO/nb-NO.mod_kunenalogin.ini</language>
-		<language tag="nb-NO">nb-NO/nb-NO.mod_kunenalogin.sys.ini</language>
-		<language tag="nl-BE">nl-BE/nl-BE.mod_kunenalogin.ini</language>
-		<language tag="nl-BE">nl-BE/nl-BE.mod_kunenalogin.sys.ini</language>
-		<language tag="nl-NL">nl-NL/nl-NL.mod_kunenalogin.ini</language>
-		<language tag="nl-NL">nl-NL/nl-NL.mod_kunenalogin.sys.ini</language>
-		<language tag="pl-PL">pl-PL/pl-PL.mod_kunenalogin.ini</language>
-		<language tag="pl-PL">pl-PL/pl-PL.mod_kunenalogin.sys.ini</language>
-		<language tag="pt-BR">pt-BR/pt-BR.mod_kunenalogin.ini</language>
-		<language tag="pt-BR">pt-BR/pt-BR.mod_kunenalogin.sys.ini</language>
-		<language tag="pt-PT">pt-PT/pt-PT.mod_kunenalogin.ini</language>
-		<language tag="pt-PT">pt-PT/pt-PT.mod_kunenalogin.sys.ini</language>
-		<language tag="ro-RO">ro-RO/ro-RO.mod_kunenalogin.ini</language>
-		<language tag="ro-RO">ro-RO/ro-RO.mod_kunenalogin.sys.ini</language>
-		<language tag="ru-RU">ru-RU/ru-RU.mod_kunenalogin.ini</language>
-		<language tag="ru-RU">ru-RU/ru-RU.mod_kunenalogin.sys.ini</language>
-		<language tag="sk-SK">sk-SK/sk-SK.mod_kunenalogin.ini</language>
-		<language tag="sk-SK">sk-SK/sk-SK.mod_kunenalogin.sys.ini</language>
-		<language tag="sl-SI">sl-SI/sl-SI.mod_kunenalogin.ini</language>
-		<language tag="sl-SI">sl-SI/sl-SI.mod_kunenalogin.sys.ini</language>
-		<language tag="sq-AL">sq-AL/sq-AL.mod_kunenalogin.ini</language>
-		<language tag="sq-AL">sq-AL/sq-AL.mod_kunenalogin.sys.ini</language>
-		<language tag="sr-RS">sr-RS/sr-RS.mod_kunenalogin.ini</language>
-		<language tag="sr-RS">sr-RS/sr-RS.mod_kunenalogin.sys.ini</language>
-		<language tag="sr-YU">sr-YU/sr-YU.mod_kunenalogin.ini</language>
-		<language tag="sr-YU">sr-YU/sr-YU.mod_kunenalogin.sys.ini</language>
-		<language tag="sv-SE">sv-SE/sv-SE.mod_kunenalogin.ini</language>
-		<language tag="sv-SE">sv-SE/sv-SE.mod_kunenalogin.sys.ini</language>
-		<language tag="th-TH">th-TH/th-TH.mod_kunenalogin.ini</language>
-		<language tag="th-TH">th-TH/th-TH.mod_kunenalogin.sys.ini</language>
-		<language tag="tr-TR">tr-TR/tr-TR.mod_kunenalogin.ini</language>
-		<language tag="tr-TR">tr-TR/tr-TR.mod_kunenalogin.sys.ini</language>
-		<language tag="ug-CN">ug-CN/ug-CN.mod_kunenalogin.ini</language>
-		<language tag="ug-CN">ug-CN/ug-CN.mod_kunenalogin.sys.ini</language>
-		<language tag="uk-UA">uk-UA/uk-UA.mod_kunenalogin.ini</language>
-		<language tag="uk-UA">uk-UA/uk-UA.mod_kunenalogin.sys.ini</language>
-		<language tag="ur-PK">ur-PK/ur-PK.mod_kunenalogin.ini</language>
-		<language tag="ur-PK">ur-PK/ur-PK.mod_kunenalogin.sys.ini</language>
-		<language tag="uz-UZ">uz-UZ/uz-UZ.mod_kunenalogin.ini</language>
-		<language tag="uz-UZ">uz-UZ/uz-UZ.mod_kunenalogin.sys.ini</language>
-		<language tag="vi-VN">vi-VN/vi-VN.mod_kunenalogin.ini</language>
-		<language tag="vi-VN">vi-VN/vi-VN.mod_kunenalogin.sys.ini</language>
-		<language tag="zh-CN">zh-CN/zh-CN.mod_kunenalogin.ini</language>
-		<language tag="zh-CN">zh-CN/zh-CN.mod_kunenalogin.sys.ini</language>
-		<language tag="zh-TW">zh-TW/zh-TW.mod_kunenalogin.ini</language>
-		<language tag="zh-TW">zh-TW/zh-TW.mod_kunenalogin.sys.ini</language>
-	</languages>
+    <languages folder="language">
+        <!-- Transifex alphabetical order -->
+        <language tag="af-ZA">af-ZA/af-ZA.mod_kunenalogin.ini</language>
+        <language tag="af-ZA">af-ZA/af-ZA.mod_kunenalogin.sys.ini</language>
+        <language tag="ar-AA">ar-AA/ar-AA.mod_kunenalogin.ini</language>
+        <language tag="ar-AA">ar-AA/ar-AA.mod_kunenalogin.sys.ini</language>
+        <language tag="az-ZA">az-AZ/az-AZ.mod_kunenalogin.ini</language>
+        <language tag="az-ZA">az-AZ/az-AZ.mod_kunenalogin.sys.ini</language>
+        <language tag="bg-BG">bg-BG/bg-BG.mod_kunenalogin.ini</language>
+        <language tag="bg-BG">bg-BG/bg-BG.mod_kunenalogin.sys.ini</language>
+        <language tag="bs-BA">bs-BA/bs-BA.mod_kunenalogin.ini</language>
+        <language tag="bs-BA">bs-BA/bs-BA.mod_kunenalogin.sys.ini</language>
+        <language tag="ca-ES">ca-ES/ca-ES.mod_kunenalogin.ini</language>
+        <language tag="ca-ES">ca-ES/ca-ES.mod_kunenalogin.sys.ini</language>
+        <language tag="ckb-IQ">ckb-IQ/ckb-IQ.mod_kunenalogin.ini</language>
+        <language tag="ckb-IQ">ckb-IQ/ckb-IQ.mod_kunenalogin.sys.ini</language>
+        <language tag="cs-CZ">cs-CZ/cs-CZ.mod_kunenalogin.ini</language>
+        <language tag="cs-CZ">cs-CZ/cs-CZ.mod_kunenalogin.sys.ini</language>
+        <language tag="cy-GB">cy-GB/cy-GB.mod_kunenalogin.ini</language>
+        <language tag="cy-GB">cy-GB/cy-GB.mod_kunenalogin.sys.ini</language>
+        <language tag="da-DK">da-DK/da-DK.mod_kunenalogin.ini</language>
+        <language tag="da-DK">da-DK/da-DK.mod_kunenalogin.sys.ini</language>
+        <language tag="de-DE">de-DE/de-DE.mod_kunenalogin.ini</language>
+        <language tag="de-DE">de-DE/de-DE.mod_kunenalogin.sys.ini</language>
+        <language tag="el-GR">el-GR/el-GR.mod_kunenalogin.ini</language>
+        <language tag="el-GR">el-GR/el-GR.mod_kunenalogin.sys.ini</language>
+        <language tag="en-GB">en-GB/en-GB.mod_kunenalogin.ini</language>
+        <language tag="en-GB">en-GB/en-GB.mod_kunenalogin.sys.ini</language>
+        <language tag="eo-XX">eo-XX/eo-XX.mod_kunenalogin.ini</language>
+        <language tag="eo-XX">eo-XX/eo-XX.mod_kunenalogin.sys.ini</language>
+        <language tag="es_GT">es_GT/es_GT.mod_kunenalogin.ini</language>
+        <language tag="es_GT">es_GT/es_GT.mod_kunenalogin.sys.ini</language>
+        <language tag="es-ES">es-ES/es-ES.mod_kunenalogin.ini</language>
+        <language tag="es-ES">es-ES/es-ES.mod_kunenalogin.sys.ini</language>
+        <language tag="et-EE">et-EE/et-EE.mod_kunenalogin.ini</language>
+        <language tag="et-EE">et-EE/et-EE.mod_kunenalogin.sys.ini</language>
+        <language tag="eu-ES">eu-ES/eu-ES.mod_kunenalogin.ini</language>
+        <language tag="eu-ES">eu-ES/eu-ES.mod_kunenalogin.sys.ini</language>
+        <language tag="fa-IR">fa-IR/fa-IR.mod_kunenalogin.ini</language>
+        <language tag="fa-IR">fa-IR/fa-IR.mod_kunenalogin.sys.ini</language>
+        <language tag="fi-FI">fi-FI/fi-FI.mod_kunenalogin.ini</language>
+        <language tag="fi-FI">fi-FI/fi-FI.mod_kunenalogin.sys.ini</language>
+        <language tag="fr-FR">fr-FR/fr-FR.mod_kunenalogin.ini</language>
+        <language tag="fr-FR">fr-FR/fr-FR.mod_kunenalogin.sys.ini</language>
+        <language tag="gl_ES">gl_ES/gl_ES.mod_kunenalogin.ini</language>
+        <language tag="gl_ES">gl_ES/gl_ES.mod_kunenalogin.sys.ini</language>
+        <language tag="he-IL">he-IL/he-IL.mod_kunenalogin.ini</language>
+        <language tag="he-IL">he-IL/he-IL.mod_kunenalogin.sys.ini</language>
+        <language tag="hi-IN">hi_IN/hi-IN.mod_kunenalogin.ini</language>
+        <language tag="hi-IN">hi_IN/hi-IN.mod_kunenalogin.sys.ini</language>
+        <language tag="hr-HR">hr_HR/hr-HR.mod_kunenalogin.ini</language>
+        <language tag="hr-HR">hr_HR/hr-HR.mod_kunenalogin.sys.ini</language>
+        <language tag="hu-HU">hu-HU/hu-HU.mod_kunenalogin.ini</language>
+        <language tag="hu-HU">hu-HU/hu-HU.mod_kunenalogin.sys.ini</language>
+        <language tag="id-ID">id-ID/id-ID.mod_kunenalogin.ini</language>
+        <language tag="id-ID">id-ID/id-ID.mod_kunenalogin.sys.ini</language>
+        <language tag="it-IT">it-IT/it-IT.mod_kunenalogin.ini</language>
+        <language tag="it-IT">it-IT/it-IT.mod_kunenalogin.sys.ini</language>
+        <language tag="ja-JP">ja-JP/ja-JP.mod_kunenalogin.ini</language>
+        <language tag="ja-JP">ja-JP/ja-JP.mod_kunenalogin.sys.ini</language>
+        <language tag="km-KH">km-KH/km-KH.mod_kunenalogin.ini</language>
+        <language tag="km-KH">km-KH/km-KH.mod_kunenalogin.sys.ini</language>
+        <language tag="ko-KR">ko-KR/ko-KR.mod_kunenalogin.ini</language>
+        <language tag="ko-KR">ko-KR/ko-KR.mod_kunenalogin.sys.ini</language>
+        <language tag="kz-KZ">kz-KZ/kz-KZ.mod_kunenalogin.ini</language>
+        <language tag="kz-KZ">kz-KZ/kz-KZ.mod_kunenalogin.sys.ini</language>
+        <language tag="lt-LT">lt-LT/lt-LT.mod_kunenalogin.ini</language>
+        <language tag="lt-LT">lt-LT/lt-LT.mod_kunenalogin.sys.ini</language>
+        <language tag="lv-LV">lv-LV/lv-LV.mod_kunenalogin.ini</language>
+        <language tag="lv-LV">lv-LV/lv-LV.mod_kunenalogin.sys.ini</language>
+        <language tag="mk-MK">mk-MK/mk-MK.mod_kunenalogin.ini</language>
+        <language tag="mk-MK">mk-MK/mk-MK.mod_kunenalogin.sys.ini</language>
+        <language tag="nb-NO">nb-NO/nb-NO.mod_kunenalogin.ini</language>
+        <language tag="nb-NO">nb-NO/nb-NO.mod_kunenalogin.sys.ini</language>
+        <language tag="nl-BE">nl-BE/nl-BE.mod_kunenalogin.ini</language>
+        <language tag="nl-BE">nl-BE/nl-BE.mod_kunenalogin.sys.ini</language>
+        <language tag="nl-NL">nl-NL/nl-NL.mod_kunenalogin.ini</language>
+        <language tag="nl-NL">nl-NL/nl-NL.mod_kunenalogin.sys.ini</language>
+        <language tag="pl-PL">pl-PL/pl-PL.mod_kunenalogin.ini</language>
+        <language tag="pl-PL">pl-PL/pl-PL.mod_kunenalogin.sys.ini</language>
+        <language tag="pt-BR">pt-BR/pt-BR.mod_kunenalogin.ini</language>
+        <language tag="pt-BR">pt-BR/pt-BR.mod_kunenalogin.sys.ini</language>
+        <language tag="pt-PT">pt-PT/pt-PT.mod_kunenalogin.ini</language>
+        <language tag="pt-PT">pt-PT/pt-PT.mod_kunenalogin.sys.ini</language>
+        <language tag="ro-RO">ro-RO/ro-RO.mod_kunenalogin.ini</language>
+        <language tag="ro-RO">ro-RO/ro-RO.mod_kunenalogin.sys.ini</language>
+        <language tag="ru-RU">ru-RU/ru-RU.mod_kunenalogin.ini</language>
+        <language tag="ru-RU">ru-RU/ru-RU.mod_kunenalogin.sys.ini</language>
+        <language tag="sk-SK">sk-SK/sk-SK.mod_kunenalogin.ini</language>
+        <language tag="sk-SK">sk-SK/sk-SK.mod_kunenalogin.sys.ini</language>
+        <language tag="sl-SI">sl-SI/sl-SI.mod_kunenalogin.ini</language>
+        <language tag="sl-SI">sl-SI/sl-SI.mod_kunenalogin.sys.ini</language>
+        <language tag="sq-AL">sq-AL/sq-AL.mod_kunenalogin.ini</language>
+        <language tag="sq-AL">sq-AL/sq-AL.mod_kunenalogin.sys.ini</language>
+        <language tag="sr-RS">sr-RS/sr-RS.mod_kunenalogin.ini</language>
+        <language tag="sr-RS">sr-RS/sr-RS.mod_kunenalogin.sys.ini</language>
+        <language tag="sr-YU">sr-YU/sr-YU.mod_kunenalogin.ini</language>
+        <language tag="sr-YU">sr-YU/sr-YU.mod_kunenalogin.sys.ini</language>
+        <language tag="sv-SE">sv-SE/sv-SE.mod_kunenalogin.ini</language>
+        <language tag="sv-SE">sv-SE/sv-SE.mod_kunenalogin.sys.ini</language>
+        <language tag="th-TH">th-TH/th-TH.mod_kunenalogin.ini</language>
+        <language tag="th-TH">th-TH/th-TH.mod_kunenalogin.sys.ini</language>
+        <language tag="tr-TR">tr-TR/tr-TR.mod_kunenalogin.ini</language>
+        <language tag="tr-TR">tr-TR/tr-TR.mod_kunenalogin.sys.ini</language>
+        <language tag="ug-CN">ug-CN/ug-CN.mod_kunenalogin.ini</language>
+        <language tag="ug-CN">ug-CN/ug-CN.mod_kunenalogin.sys.ini</language>
+        <language tag="uk-UA">uk-UA/uk-UA.mod_kunenalogin.ini</language>
+        <language tag="uk-UA">uk-UA/uk-UA.mod_kunenalogin.sys.ini</language>
+        <language tag="ur-PK">ur-PK/ur-PK.mod_kunenalogin.ini</language>
+        <language tag="ur-PK">ur-PK/ur-PK.mod_kunenalogin.sys.ini</language>
+        <language tag="uz-UZ">uz-UZ/uz-UZ.mod_kunenalogin.ini</language>
+        <language tag="uz-UZ">uz-UZ/uz-UZ.mod_kunenalogin.sys.ini</language>
+        <language tag="vi-VN">vi-VN/vi-VN.mod_kunenalogin.ini</language>
+        <language tag="vi-VN">vi-VN/vi-VN.mod_kunenalogin.sys.ini</language>
+        <language tag="zh-CN">zh-CN/zh-CN.mod_kunenalogin.ini</language>
+        <language tag="zh-CN">zh-CN/zh-CN.mod_kunenalogin.sys.ini</language>
+        <language tag="zh-TW">zh-TW/zh-TW.mod_kunenalogin.ini</language>
+        <language tag="zh-TW">zh-TW/zh-TW.mod_kunenalogin.sys.ini</language>
+    </languages>
 
-	<config>
-		<fields name="params">
-			<fieldset name="basic">
-				<field name="template" type="list" default="vertical"
-					label="MOD_KUNENALOGIN_STYLE" description="MOD_KUNENALOGIN_STYLE_DESC">
-					<option value="vertical">MOD_KUNENALOGIN_VERTICAL</option>
-					<option value="horizontal">MOD_KUNENALOGIN_HORIZONTAL</option>
-				</field>
-				<field name="pretext" type="textarea" cols="30" rows="3"
-					default="" label="MOD_KUNENALOGIN_PRE_TEXT" description="MOD_KUNENALOGIN_PRE_TEXT_DESC" />
-				<field name="posttext" type="textarea" cols="30" rows="3"
-					label="MOD_KUNENALOGIN_POST_TEXT" description="MOD_KUNENALOGIN_POST_TEXT_DESC" />
-				<field name="login" type="menuitem" default="" disable="separator"
-					label="MOD_KUNENALOGIN_LOGIN_REDIRECTION_URL" description="MOD_KUNENALOGIN_LOGIN_REDIRECTION_URL_DESC">
-				 	<option value="">JDEFAULT</option>
-				</field>
-				<field name="logout" type="menuitem" default="" disable="separator"
-					label="MOD_KUNENALOGIN_LOGOUT_REDIRECTION_URL" description="MOD_KUNENALOGIN_LOGOUT_REDIRECTION_URL_DESC">
-					<option value="">JDEFAULT</option>
-				</field>
-				<field name="greeting" type="radio" default="1"
-					label="MOD_KUNENALOGIN_GREETING" description="MOD_KUNENALOGIN_GREETING_DESC">
-					<option value="0">MOD_KUNENALOGIN_HIDE</option>
-					<option value="1">MOD_KUNENALOGIN_SHOW</option>
-				</field>
-				<field name="lastlog" type="radio" default="1"
-					label="MOD_KUNENALOGIN_LASTVISIT" description="MOD_KUNENALOGIN_LASTVISIT_DESC">
-					<option value="0">MOD_KUNENALOGIN_HIDE</option>
-					<option value="1">MOD_KUNENALOGIN_SHOW</option>
-				</field>
-				<field name="showav" type="radio" default="1"
-					label="MOD_KUNENALOGIN_SHOW_AVATAR" description="MOD_KUNENALOGIN_SHOW_AVATAR_DESC">
-					<option value="0">MOD_KUNENALOGIN_HIDE</option>
-					<option value="1">MOD_KUNENALOGIN_SHOW</option>
-				</field>
-				<field name="avatar_w" type="text" label="MOD_KUNENALOGIN_AVATAR_WIDTH"
-					default="128px" description="MOD_KUNENALOGIN_AVATAR_WIDTH_DESC" />
-				<field name="avatar_h" type="text" label="MOD_KUNENALOGIN_AVATAR_HEIGHT"
-					default="128px" description="MOD_KUNENALOGIN_AVATAR_HEIGHT_DESC" />
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="template" type="list" default="vertical"
+                       label="MOD_KUNENALOGIN_STYLE" description="MOD_KUNENALOGIN_STYLE_DESC">
+                    <option value="vertical">MOD_KUNENALOGIN_VERTICAL</option>
+                    <option value="horizontal">MOD_KUNENALOGIN_HORIZONTAL</option>
+                </field>
+                <field name="pretext" type="textarea" cols="30" rows="3"
+                       default="" label="MOD_KUNENALOGIN_PRE_TEXT" description="MOD_KUNENALOGIN_PRE_TEXT_DESC"/>
+                <field name="posttext" type="textarea" cols="30" rows="3"
+                       label="MOD_KUNENALOGIN_POST_TEXT" description="MOD_KUNENALOGIN_POST_TEXT_DESC"/>
+                <field name="login" type="menuitem" default="" disable="separator"
+                       label="MOD_KUNENALOGIN_LOGIN_REDIRECTION_URL"
+                       description="MOD_KUNENALOGIN_LOGIN_REDIRECTION_URL_DESC">
+                    <option value="">JDEFAULT</option>
+                </field>
+                <field name="logout" type="menuitem" default="" disable="separator"
+                       label="MOD_KUNENALOGIN_LOGOUT_REDIRECTION_URL"
+                       description="MOD_KUNENALOGIN_LOGOUT_REDIRECTION_URL_DESC">
+                    <option value="">JDEFAULT</option>
+                </field>
+                <field name="greeting" type="radio" default="1"
+                       label="MOD_KUNENALOGIN_GREETING" description="MOD_KUNENALOGIN_GREETING_DESC">
+                    <option value="0">MOD_KUNENALOGIN_HIDE</option>
+                    <option value="1">MOD_KUNENALOGIN_SHOW</option>
+                </field>
+                <field name="lastlog" type="radio" default="1"
+                       label="MOD_KUNENALOGIN_LASTVISIT" description="MOD_KUNENALOGIN_LASTVISIT_DESC">
+                    <option value="0">MOD_KUNENALOGIN_HIDE</option>
+                    <option value="1">MOD_KUNENALOGIN_SHOW</option>
+                </field>
+                <field name="showav" type="radio" default="1"
+                       label="MOD_KUNENALOGIN_SHOW_AVATAR" description="MOD_KUNENALOGIN_SHOW_AVATAR_DESC">
+                    <option value="0">MOD_KUNENALOGIN_HIDE</option>
+                    <option value="1">MOD_KUNENALOGIN_SHOW</option>
+                </field>
+                <field name="avatar_w" type="text" label="MOD_KUNENALOGIN_AVATAR_WIDTH"
+                       default="128px" description="MOD_KUNENALOGIN_AVATAR_WIDTH_DESC"/>
+                <field name="avatar_h" type="text" label="MOD_KUNENALOGIN_AVATAR_HEIGHT"
+                       default="128px" description="MOD_KUNENALOGIN_AVATAR_HEIGHT_DESC"/>
 
-				<field name="showprofile" type="radio" default="1"
-					label="MOD_KUNENALOGIN_MYPROFILE" description="MOD_KUNENALOGIN_MYPROFILE_DESC">
-					<option value="0">MOD_KUNENALOGIN_HIDE</option>
-					<option value="1">MOD_KUNENALOGIN_SHOW</option>
-				</field>
-				<field name="showmyposts" type="radio" default="1"
-					label="MOD_KUNENALOGIN_MYPOSTS" description="MOD_KUNENALOGIN_MYPOSTS_DESC">
-					<option value="0">MOD_KUNENALOGIN_HIDE</option>
-					<option value="1">MOD_KUNENALOGIN_SHOW</option>
-				</field>
-				<field name="showrecent" type="radio" default="1"
-					label="MOD_KUNENALOGIN_RECENT" description="MOD_KUNENALOGIN_RECENT_DESC">
-					<option value="0">MOD_KUNENALOGIN_HIDE</option>
-					<option value="1">MOD_KUNENALOGIN_SHOW</option>
-				</field>
-				<field name="showmessage" type="radio" default="0"
-					label="MOD_KUNENALOGIN_MYMESSAGES" description="MOD_KUNENALOGIN_MYMESSAGES_DESC">
-					<option value="0">MOD_KUNENALOGIN_HIDE</option>
-					<option value="1">MOD_KUNENALOGIN_SHOW</option>
-				</field>
-			</fieldset>
-			<fieldset name="advanced">
-				<field
-						name="moduleclass_sfx"
-						type="text"
-						label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
-						description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+                <field name="showprofile" type="radio" default="1"
+                       label="MOD_KUNENALOGIN_MYPROFILE" description="MOD_KUNENALOGIN_MYPROFILE_DESC">
+                    <option value="0">MOD_KUNENALOGIN_HIDE</option>
+                    <option value="1">MOD_KUNENALOGIN_SHOW</option>
+                </field>
+                <field name="showmyposts" type="radio" default="1"
+                       label="MOD_KUNENALOGIN_MYPOSTS" description="MOD_KUNENALOGIN_MYPOSTS_DESC">
+                    <option value="0">MOD_KUNENALOGIN_HIDE</option>
+                    <option value="1">MOD_KUNENALOGIN_SHOW</option>
+                </field>
+                <field name="showrecent" type="radio" default="1"
+                       label="MOD_KUNENALOGIN_RECENT" description="MOD_KUNENALOGIN_RECENT_DESC">
+                    <option value="0">MOD_KUNENALOGIN_HIDE</option>
+                    <option value="1">MOD_KUNENALOGIN_SHOW</option>
+                </field>
+                <field name="showmessage" type="radio" default="0"
+                       label="MOD_KUNENALOGIN_MYMESSAGES" description="MOD_KUNENALOGIN_MYMESSAGES_DESC">
+                    <option value="0">MOD_KUNENALOGIN_HIDE</option>
+                    <option value="1">MOD_KUNENALOGIN_SHOW</option>
+                </field>
+            </fieldset>
+            <fieldset name="advanced">
+                <field
+                        name="moduleclass_sfx"
+                        type="text"
+                        label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+                        description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"/>
 
-				<field
-						name="owncache"
-						type="list"
-						default="1"
-						label="COM_MODULES_FIELD_CACHING_LABEL"
-						description="COM_MODULES_FIELD_CACHING_DESC">
-					<option
-							value="1">JGLOBAL_USE_GLOBAL</option>
-					<option
-							value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
-				</field>
+                <field
+                        name="owncache"
+                        type="list"
+                        default="1"
+                        label="COM_MODULES_FIELD_CACHING_LABEL"
+                        description="COM_MODULES_FIELD_CACHING_DESC">
+                    <option
+                            value="1">JGLOBAL_USE_GLOBAL
+                    </option>
+                    <option
+                            value="0">COM_MODULES_FIELD_VALUE_NOCACHING
+                    </option>
+                </field>
 
-				<field
-						name="cache_time"
-						type="text"
-						default="180"
-						label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
-						description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
-			</fieldset>
-		</fields>
-	</config>
+                <field
+                        name="cache_time"
+                        type="text"
+                        default="180"
+                        label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+                        description="COM_MODULES_FIELD_CACHE_TIME_DESC"/>
+            </fieldset>
+        </fields>
+    </config>
 </extension>

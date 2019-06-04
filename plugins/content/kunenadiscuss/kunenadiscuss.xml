@@ -1,242 +1,270 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE extension>
 <extension version="3.6.0" type="plugin" group="content" method="upgrade">
-	<name>plg_content_kunenadiscuss</name>
-	<version>6.0.0</version>
-	<creationDate>@kunenaversiondate@</creationDate>
-	<build>@kunenaversionbuild@</build>
-	<author>Kunena Team</author>
-	<authorEmail>admin@kunena.org</authorEmail>
-	<authorUrl>https://www.kunena.org</authorUrl>
-	<copyright>(C) 2008 - 2018 Kunena Team. All rights reserved.</copyright>
-	<license>GNU/GPL</license>
-	<description>PLG_KUNENADISCUSS_DESCRIPTION</description>
+    <name>plg_content_kunenadiscuss</name>
+    <version>6.0.0</version>
+    <creationDate>@kunenaversiondate@</creationDate>
+    <build>@kunenaversionbuild@</build>
+    <author>Kunena Team</author>
+    <authorEmail>admin@kunena.org</authorEmail>
+    <authorUrl>https://www.kunena.org</authorUrl>
+    <copyright>(C) 2008 - 2018 Kunena Team. All rights reserved.</copyright>
+    <license>GNU/GPL</license>
+    <description>PLG_KUNENADISCUSS_DESCRIPTION</description>
 
-	<scriptfile>install.script.php</scriptfile>
-	<files>
-		<filename plugin="kunenadiscuss">kunenadiscuss.php</filename>
-		<folder>css</folder>
-		<folder>language</folder>
-		<folder>tmpl</folder>
-	</files>
+    <files>
+        <filename plugin="kunenadiscuss">kunenadiscuss.php</filename>
+        <folder>css</folder>
+        <folder>language</folder>
+        <folder>tmpl</folder>
+    </files>
 
-	<languages folder="language">
-		<!-- Transifex alphabetical order -->
-		<language tag="af-ZA">af-ZA/af-ZA.plg_content_kunenadiscuss.ini</language>
-		<language tag="af-ZA">af-ZA/af-ZA.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="ar-AA">ar-AA/ar-AA.plg_content_kunenadiscuss.ini</language>
-		<language tag="ar-AA">ar-AA/ar-AA.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="az-ZA">az-AZ/az-AZ.plg_content_kunenadiscuss.ini</language>
-		<language tag="az-ZA">az-AZ/az-AZ.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="bg-BG">bg-BG/bg-BG.plg_content_kunenadiscuss.ini</language>
-		<language tag="bg-BG">bg-BG/bg-BG.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="bs-BA">bs-BA/bs-BA.plg_content_kunenadiscuss.ini</language>
-		<language tag="bs-BA">bs-BA/bs-BA.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="ca-ES">ca-ES/ca-ES.plg_content_kunenadiscuss.ini</language>
-		<language tag="ca-ES">ca-ES/ca-ES.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="ckb-IQ">ckb-IQ/ckb-IQ.plg_content_kunenadiscuss.ini</language>
-		<language tag="ckb-IQ">ckb-IQ/ckb-IQ.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="cs-CZ">cs-CZ/cs-CZ.plg_content_kunenadiscuss.ini</language>
-		<language tag="cs-CZ">cs-CZ/cs-CZ.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="cy-GB">cy-GB/cy-GB.plg_content_kunenadiscuss.ini</language>
-		<language tag="cy-GB">cy-GB/cy-GB.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="da-DK">da-DK/da-DK.plg_content_kunenadiscuss.ini</language>
-		<language tag="da-DK">da-DK/da-DK.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="de-DE">de-DE/de-DE.plg_content_kunenadiscuss.ini</language>
-		<language tag="de-DE">de-DE/de-DE.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="el-GR">el-GR/el-GR.plg_content_kunenadiscuss.ini</language>
-		<language tag="el-GR">el-GR/el-GR.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="en-GB">en-GB/en-GB.plg_content_kunenadiscuss.ini</language>
-		<language tag="en-GB">en-GB/en-GB.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="eo-XX">eo-XX/eo-XX.plg_content_kunenadiscuss.ini</language>
-		<language tag="eo-XX">eo-XX/eo-XX.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="es_GT">es_GT/es_GT.plg_content_kunenadiscuss.ini</language>
-		<language tag="es_GT">es_GT/es_GT.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="es-ES">es-ES/es-ES.plg_content_kunenadiscuss.ini</language>
-		<language tag="es-ES">es-ES/es-ES.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="et-EE">et-EE/et-EE.plg_content_kunenadiscuss.ini</language>
-		<language tag="et-EE">et-EE/et-EE.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="eu-ES">eu-ES/eu-ES.plg_content_kunenadiscuss.ini</language>
-		<language tag="eu-ES">eu-ES/eu-ES.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="fa-IR">fa-IR/fa-IR.plg_content_kunenadiscuss.ini</language>
-		<language tag="fa-IR">fa-IR/fa-IR.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="fi-FI">fi-FI/fi-FI.plg_content_kunenadiscuss.ini</language>
-		<language tag="fi-FI">fi-FI/fi-FI.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="fr-FR">fr-FR/fr-FR.plg_content_kunenadiscuss.ini</language>
-		<language tag="fr-FR">fr-FR/fr-FR.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="gl_ES">gl_ES/gl_ES.plg_content_kunenadiscuss.ini</language>
-		<language tag="gl_ES">gl_ES/gl_ES.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="he-IL">he-IL/he-IL.plg_content_kunenadiscuss.ini</language>
-		<language tag="he-IL">he-IL/he-IL.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="hi-IN">hi_IN/hi-IN.plg_content_kunenadiscuss.ini</language>
-		<language tag="hi-IN">hi_IN/hi-IN.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="hr-HR">hr_HR/hr-HR.plg_content_kunenadiscuss.ini</language>
-		<language tag="hr-HR">hr_HR/hr-HR.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="hu-HU">hu-HU/hu-HU.plg_content_kunenadiscuss.ini</language>
-		<language tag="hu-HU">hu-HU/hu-HU.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="id-ID">id-ID/id-ID.plg_content_kunenadiscuss.ini</language>
-		<language tag="id-ID">id-ID/id-ID.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="it-IT">it-IT/it-IT.plg_content_kunenadiscuss.ini</language>
-		<language tag="it-IT">it-IT/it-IT.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="ja-JP">ja-JP/ja-JP.plg_content_kunenadiscuss.ini</language>
-		<language tag="ja-JP">ja-JP/ja-JP.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="km-KH">km-KH/km-KH.plg_content_kunenadiscuss.ini</language>
-		<language tag="km-KH">km-KH/km-KH.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="ko-KR">ko-KR/ko-KR.plg_content_kunenadiscuss.ini</language>
-		<language tag="ko-KR">ko-KR/ko-KR.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="kz-KZ">kz-KZ/kz-KZ.plg_content_kunenadiscuss.ini</language>
-		<language tag="kz-KZ">kz-KZ/kz-KZ.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="lt-LT">lt-LT/lt-LT.plg_content_kunenadiscuss.ini</language>
-		<language tag="lt-LT">lt-LT/lt-LT.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="lv-LV">lv-LV/lv-LV.plg_content_kunenadiscuss.ini</language>
-		<language tag="lv-LV">lv-LV/lv-LV.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="mk-MK">mk-MK/mk-MK.plg_content_kunenadiscuss.ini</language>
-		<language tag="mk-MK">mk-MK/mk-MK.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="nb-NO">nb-NO/nb-NO.plg_content_kunenadiscuss.ini</language>
-		<language tag="nb-NO">nb-NO/nb-NO.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="nl-BE">nl-BE/nl-BE.plg_content_kunenadiscuss.ini</language>
-		<language tag="nl-BE">nl-BE/nl-BE.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="nl-NL">nl-NL/nl-NL.plg_content_kunenadiscuss.ini</language>
-		<language tag="nl-NL">nl-NL/nl-NL.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="pl-PL">pl-PL/pl-PL.plg_content_kunenadiscuss.ini</language>
-		<language tag="pl-PL">pl-PL/pl-PL.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="pt-BR">pt-BR/pt-BR.plg_content_kunenadiscuss.ini</language>
-		<language tag="pt-BR">pt-BR/pt-BR.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="pt-PT">pt-PT/pt-PT.plg_content_kunenadiscuss.ini</language>
-		<language tag="pt-PT">pt-PT/pt-PT.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="ro-RO">ro-RO/ro-RO.plg_content_kunenadiscuss.ini</language>
-		<language tag="ro-RO">ro-RO/ro-RO.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="ru-RU">ru-RU/ru-RU.plg_content_kunenadiscuss.ini</language>
-		<language tag="ru-RU">ru-RU/ru-RU.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="sk-SK">sk-SK/sk-SK.plg_content_kunenadiscuss.ini</language>
-		<language tag="sk-SK">sk-SK/sk-SK.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="sl-SI">sl-SI/sl-SI.plg_content_kunenadiscuss.ini</language>
-		<language tag="sl-SI">sl-SI/sl-SI.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="sq-AL">sq-AL/sq-AL.plg_content_kunenadiscuss.ini</language>
-		<language tag="sq-AL">sq-AL/sq-AL.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="sr-RS">sr-RS/sr-RS.plg_content_kunenadiscuss.ini</language>
-		<language tag="sr-RS">sr-RS/sr-RS.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="sr-YU">sr-YU/sr-YU.plg_content_kunenadiscuss.ini</language>
-		<language tag="sr-YU">sr-YU/sr-YU.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="sv-SE">sv-SE/sv-SE.plg_content_kunenadiscuss.ini</language>
-		<language tag="sv-SE">sv-SE/sv-SE.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="th-TH">th-TH/th-TH.plg_content_kunenadiscuss.ini</language>
-		<language tag="th-TH">th-TH/th-TH.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="tr-TR">tr-TR/tr-TR.plg_content_kunenadiscuss.ini</language>
-		<language tag="tr-TR">tr-TR/tr-TR.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="ug-CN">ug-CN/ug-CN.plg_content_kunenadiscuss.ini</language>
-		<language tag="ug-CN">ug-CN/ug-CN.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="uk-UA">uk-UA/uk-UA.plg_content_kunenadiscuss.ini</language>
-		<language tag="uk-UA">uk-UA/uk-UA.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="ur-PK">ur-PK/ur-PK.plg_content_kunenadiscuss.ini</language>
-		<language tag="ur-PK">ur-PK/ur-PK.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="uz-UZ">uz-UZ/uz-UZ.plg_content_kunenadiscuss.ini</language>
-		<language tag="uz-UZ">uz-UZ/uz-UZ.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="vi-VN">vi-VN/vi-VN.plg_content_kunenadiscuss.ini</language>
-		<language tag="vi-VN">vi-VN/vi-VN.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="zh-CN">zh-CN/zh-CN.plg_content_kunenadiscuss.ini</language>
-		<language tag="zh-CN">zh-CN/zh-CN.plg_content_kunenadiscuss.sys.ini</language>
-		<language tag="zh-TW">zh-TW/zh-TW.plg_content_kunenadiscuss.ini</language>
-		<language tag="zh-TW">zh-TW/zh-TW.plg_content_kunenadiscuss.sys.ini</language>
-	</languages>
+    <languages folder="language">
+        <!-- Transifex alphabetical order -->
+        <language tag="af-ZA">af-ZA/af-ZA.plg_content_kunenadiscuss.ini</language>
+        <language tag="af-ZA">af-ZA/af-ZA.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="ar-AA">ar-AA/ar-AA.plg_content_kunenadiscuss.ini</language>
+        <language tag="ar-AA">ar-AA/ar-AA.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="az-ZA">az-AZ/az-AZ.plg_content_kunenadiscuss.ini</language>
+        <language tag="az-ZA">az-AZ/az-AZ.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="bg-BG">bg-BG/bg-BG.plg_content_kunenadiscuss.ini</language>
+        <language tag="bg-BG">bg-BG/bg-BG.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="bs-BA">bs-BA/bs-BA.plg_content_kunenadiscuss.ini</language>
+        <language tag="bs-BA">bs-BA/bs-BA.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="ca-ES">ca-ES/ca-ES.plg_content_kunenadiscuss.ini</language>
+        <language tag="ca-ES">ca-ES/ca-ES.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="ckb-IQ">ckb-IQ/ckb-IQ.plg_content_kunenadiscuss.ini</language>
+        <language tag="ckb-IQ">ckb-IQ/ckb-IQ.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="cs-CZ">cs-CZ/cs-CZ.plg_content_kunenadiscuss.ini</language>
+        <language tag="cs-CZ">cs-CZ/cs-CZ.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="cy-GB">cy-GB/cy-GB.plg_content_kunenadiscuss.ini</language>
+        <language tag="cy-GB">cy-GB/cy-GB.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="da-DK">da-DK/da-DK.plg_content_kunenadiscuss.ini</language>
+        <language tag="da-DK">da-DK/da-DK.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="de-DE">de-DE/de-DE.plg_content_kunenadiscuss.ini</language>
+        <language tag="de-DE">de-DE/de-DE.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="el-GR">el-GR/el-GR.plg_content_kunenadiscuss.ini</language>
+        <language tag="el-GR">el-GR/el-GR.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_content_kunenadiscuss.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="eo-XX">eo-XX/eo-XX.plg_content_kunenadiscuss.ini</language>
+        <language tag="eo-XX">eo-XX/eo-XX.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="es_GT">es_GT/es_GT.plg_content_kunenadiscuss.ini</language>
+        <language tag="es_GT">es_GT/es_GT.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="es-ES">es-ES/es-ES.plg_content_kunenadiscuss.ini</language>
+        <language tag="es-ES">es-ES/es-ES.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="et-EE">et-EE/et-EE.plg_content_kunenadiscuss.ini</language>
+        <language tag="et-EE">et-EE/et-EE.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="eu-ES">eu-ES/eu-ES.plg_content_kunenadiscuss.ini</language>
+        <language tag="eu-ES">eu-ES/eu-ES.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="fa-IR">fa-IR/fa-IR.plg_content_kunenadiscuss.ini</language>
+        <language tag="fa-IR">fa-IR/fa-IR.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="fi-FI">fi-FI/fi-FI.plg_content_kunenadiscuss.ini</language>
+        <language tag="fi-FI">fi-FI/fi-FI.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="fr-FR">fr-FR/fr-FR.plg_content_kunenadiscuss.ini</language>
+        <language tag="fr-FR">fr-FR/fr-FR.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="gl_ES">gl_ES/gl_ES.plg_content_kunenadiscuss.ini</language>
+        <language tag="gl_ES">gl_ES/gl_ES.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="he-IL">he-IL/he-IL.plg_content_kunenadiscuss.ini</language>
+        <language tag="he-IL">he-IL/he-IL.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="hi-IN">hi_IN/hi-IN.plg_content_kunenadiscuss.ini</language>
+        <language tag="hi-IN">hi_IN/hi-IN.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="hr-HR">hr_HR/hr-HR.plg_content_kunenadiscuss.ini</language>
+        <language tag="hr-HR">hr_HR/hr-HR.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="hu-HU">hu-HU/hu-HU.plg_content_kunenadiscuss.ini</language>
+        <language tag="hu-HU">hu-HU/hu-HU.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="id-ID">id-ID/id-ID.plg_content_kunenadiscuss.ini</language>
+        <language tag="id-ID">id-ID/id-ID.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="it-IT">it-IT/it-IT.plg_content_kunenadiscuss.ini</language>
+        <language tag="it-IT">it-IT/it-IT.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="ja-JP">ja-JP/ja-JP.plg_content_kunenadiscuss.ini</language>
+        <language tag="ja-JP">ja-JP/ja-JP.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="km-KH">km-KH/km-KH.plg_content_kunenadiscuss.ini</language>
+        <language tag="km-KH">km-KH/km-KH.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="ko-KR">ko-KR/ko-KR.plg_content_kunenadiscuss.ini</language>
+        <language tag="ko-KR">ko-KR/ko-KR.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="kz-KZ">kz-KZ/kz-KZ.plg_content_kunenadiscuss.ini</language>
+        <language tag="kz-KZ">kz-KZ/kz-KZ.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="lt-LT">lt-LT/lt-LT.plg_content_kunenadiscuss.ini</language>
+        <language tag="lt-LT">lt-LT/lt-LT.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="lv-LV">lv-LV/lv-LV.plg_content_kunenadiscuss.ini</language>
+        <language tag="lv-LV">lv-LV/lv-LV.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="mk-MK">mk-MK/mk-MK.plg_content_kunenadiscuss.ini</language>
+        <language tag="mk-MK">mk-MK/mk-MK.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="nb-NO">nb-NO/nb-NO.plg_content_kunenadiscuss.ini</language>
+        <language tag="nb-NO">nb-NO/nb-NO.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="nl-BE">nl-BE/nl-BE.plg_content_kunenadiscuss.ini</language>
+        <language tag="nl-BE">nl-BE/nl-BE.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="nl-NL">nl-NL/nl-NL.plg_content_kunenadiscuss.ini</language>
+        <language tag="nl-NL">nl-NL/nl-NL.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="pl-PL">pl-PL/pl-PL.plg_content_kunenadiscuss.ini</language>
+        <language tag="pl-PL">pl-PL/pl-PL.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="pt-BR">pt-BR/pt-BR.plg_content_kunenadiscuss.ini</language>
+        <language tag="pt-BR">pt-BR/pt-BR.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="pt-PT">pt-PT/pt-PT.plg_content_kunenadiscuss.ini</language>
+        <language tag="pt-PT">pt-PT/pt-PT.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="ro-RO">ro-RO/ro-RO.plg_content_kunenadiscuss.ini</language>
+        <language tag="ro-RO">ro-RO/ro-RO.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="ru-RU">ru-RU/ru-RU.plg_content_kunenadiscuss.ini</language>
+        <language tag="ru-RU">ru-RU/ru-RU.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="sk-SK">sk-SK/sk-SK.plg_content_kunenadiscuss.ini</language>
+        <language tag="sk-SK">sk-SK/sk-SK.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="sl-SI">sl-SI/sl-SI.plg_content_kunenadiscuss.ini</language>
+        <language tag="sl-SI">sl-SI/sl-SI.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="sq-AL">sq-AL/sq-AL.plg_content_kunenadiscuss.ini</language>
+        <language tag="sq-AL">sq-AL/sq-AL.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="sr-RS">sr-RS/sr-RS.plg_content_kunenadiscuss.ini</language>
+        <language tag="sr-RS">sr-RS/sr-RS.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="sr-YU">sr-YU/sr-YU.plg_content_kunenadiscuss.ini</language>
+        <language tag="sr-YU">sr-YU/sr-YU.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="sv-SE">sv-SE/sv-SE.plg_content_kunenadiscuss.ini</language>
+        <language tag="sv-SE">sv-SE/sv-SE.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="th-TH">th-TH/th-TH.plg_content_kunenadiscuss.ini</language>
+        <language tag="th-TH">th-TH/th-TH.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="tr-TR">tr-TR/tr-TR.plg_content_kunenadiscuss.ini</language>
+        <language tag="tr-TR">tr-TR/tr-TR.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="ug-CN">ug-CN/ug-CN.plg_content_kunenadiscuss.ini</language>
+        <language tag="ug-CN">ug-CN/ug-CN.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="uk-UA">uk-UA/uk-UA.plg_content_kunenadiscuss.ini</language>
+        <language tag="uk-UA">uk-UA/uk-UA.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="ur-PK">ur-PK/ur-PK.plg_content_kunenadiscuss.ini</language>
+        <language tag="ur-PK">ur-PK/ur-PK.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="uz-UZ">uz-UZ/uz-UZ.plg_content_kunenadiscuss.ini</language>
+        <language tag="uz-UZ">uz-UZ/uz-UZ.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="vi-VN">vi-VN/vi-VN.plg_content_kunenadiscuss.ini</language>
+        <language tag="vi-VN">vi-VN/vi-VN.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="zh-CN">zh-CN/zh-CN.plg_content_kunenadiscuss.ini</language>
+        <language tag="zh-CN">zh-CN/zh-CN.plg_content_kunenadiscuss.sys.ini</language>
+        <language tag="zh-TW">zh-TW/zh-TW.plg_content_kunenadiscuss.ini</language>
+        <language tag="zh-TW">zh-TW/zh-TW.plg_content_kunenadiscuss.sys.ini</language>
+    </languages>
 
-	<config>
-		<fields name="params">
-			<fieldset name="basic">
-				<field name="limit" type="text" default="25" description="PLG_KUNENADISCUSS_LIMIT_DESC" label="PLG_KUNENADISCUSS_LIMIT" />
-				<field name="bootstrap" type="radio" default="span" description="PLG_KUNENADISCUSS_BOOTSTRAP_DESC" label="PLG_KUNENADISCUSS_BOOTSTRAP">
-					<option value="span">PLG_KUNENADISCUSS_OPTION_BOOTSTRAP2</option>
-					<option value="col-md-">PLG_KUNENADISCUSS_OPTION_BOOTSTRAP3</option>
-				</field>
-				<field name="ordering" type="radio" default="1" description="PLG_KUNENADISCUSS_ORDERING_DESC" label="PLG_KUNENADISCUSS_ORDERING">
-					<option value="0">PLG_KUNENADISCUSS_OPTION_FIRST</option>
-					<option value="1">PLG_KUNENADISCUSS_OPTION_LAST</option>
-				</field>
-				<field name="show_front_page"  type="radio" default="2" description="PLG_KUNENADISCUSS_SHOW_FRONT_PAGE_DESC" label="PLG_KUNENADISCUSS_SHOW_FRONT_PAGE">
-					<option value="0">PLG_KUNENADISCUSS_OPTION_NOTHING</option>
-					<option value="1">PLG_KUNENADISCUSS_OPTION_LINK</option>
-					<option value="2">PLG_KUNENADISCUSS_OPTION_REPLIES</option>
-				</field>
-				<field name="show_blog_page" type="radio" default="2" description="PLG_KUNENADISCUSS_SHOW_BLOG_PAGE_DESC" label="PLG_KUNENADISCUSS_SHOW_BLOG_PAGE">
-					<option value="0">PLG_KUNENADISCUSS_OPTION_NOTHING</option>
-					<option value="1">PLG_KUNENADISCUSS_OPTION_LINK</option>
-					<option value="2">PLG_KUNENADISCUSS_OPTION_REPLIES</option>
-				</field>
-				<field name="show_article_pages" type="radio" default="2" description="PLG_KUNENADISCUSS_SHOW_ARTICLE_DESC" label="PLG_KUNENADISCUSS_SHOW_ARTICLE">
-					<option value="0">PLG_KUNENADISCUSS_OPTION_NOTHING</option>
-					<option value="1">PLG_KUNENADISCUSS_OPTION_LINK</option>
-					<option value="2">PLG_KUNENADISCUSS_OPTION_REPLIES</option>
-				</field>
-				<field name="show_other_pages" type="radio" default="2" description="PLG_KUNENADISCUSS_SHOW_OTHER_PAGES_DESC" label="PLG_KUNENADISCUSS_SHOW_OTHER_PAGES">
-					<option value="0">PLG_KUNENADISCUSS_OPTION_NOTHING</option>
-					<option value="1">PLG_KUNENADISCUSS_OPTION_LINK</option>
-					<option value="2">PLG_KUNENADISCUSS_OPTION_REPLIES</option>
-				</field>
-				<field name="form" type="radio" default="1" description="PLG_KUNENADISCUSS_FORM_DESC" label="PLG_KUNENADISCUSS_FORM">
-					<option value="0">PLG_KUNENADISCUSS_OPTION_NO</option>
-					<option value="1">PLG_KUNENADISCUSS_OPTION_YES</option>
-				</field>
-				<field name="form_location" type="radio" default="0" description="PLG_KUNENADISCUSS_FORM_LOCATION_DESC" label="PLG_KUNENADISCUSS_FORM_LOCATION">
-					<option value="0">PLG_KUNENADISCUSS_OPTION_BEFORE</option>
-					<option value="1">PLG_KUNENADISCUSS_OPTION_AFTER</option>
-				</field>
-				<field name="custom_topics" type="radio" default="1" description="PLG_KUNENADISCUSS_CUSTOM_TOPICS_DESC" label="PLG_KUNENADISCUSS_CUSTOM_TOPICS">
-					<option value="0">PLG_KUNENADISCUSS_OPTION_NO</option>
-					<option value="1">PLG_KUNENADISCUSS_OPTION_YES</option>
-				</field>
-				<field name="create" type="radio" default="0" description="PLG_KUNENADISCUSS_CREATE_DESC" label="PLG_KUNENADISCUSS_CREATE">
-					<option value="1">PLG_KUNENADISCUSS_OPTION_CREATE_VISIT</option>
-					<option value="0">PLG_KUNENADISCUSS_OPTION_CREATE_REPLY</option>
-				</field>
-				<field name="create_time" type="list" default="1" description="PLG_KUNENADISCUSS_CREATE_TIME_DESC" label="PLG_KUNENADISCUSS_CREATE_TIME">
-					<option value="1">PLG_KUNENADISCUSS_OPTION_1WEEKS</option>
-					<option value="2">PLG_KUNENADISCUSS_OPTION_2WEEKS</option>
-					<option value="4">PLG_KUNENADISCUSS_OPTION_4WEEKS</option>
-					<option value="8">PLG_KUNENADISCUSS_OPTION_8WEEKS</option>
-					<option value="13">PLG_KUNENADISCUSS_OPTION_13WEEKS</option>
-					<option value="26">PLG_KUNENADISCUSS_OPTION_26WEEKS</option>
-					<option value="52">PLG_KUNENADISCUSS_OPTION_52WEEKS</option>
-					<option value="0">PLG_KUNENADISCUSS_OPTION_UNLIMITED</option>
-				</field>
-				<field name="close_time" type="list" default="0" description="PLG_KUNENADISCUSS_CLOSE_TIME_DESC" label="PLG_KUNENADISCUSS_CLOSE_TIME">
-					<option value="1">PLG_KUNENADISCUSS_OPTION_1WEEKS</option>
-					<option value="2">PLG_KUNENADISCUSS_OPTION_2WEEKS</option>
-					<option value="4">PLG_KUNENADISCUSS_OPTION_4WEEKS</option>
-					<option value="8">PLG_KUNENADISCUSS_OPTION_8WEEKS</option>
-					<option value="13">PLG_KUNENADISCUSS_OPTION_13WEEKS</option>
-					<option value="26">PLG_KUNENADISCUSS_OPTION_26WEEKS</option>
-					<option value="52">PLG_KUNENADISCUSS_OPTION_52WEEKS</option>
-					<option value="0">PLG_KUNENADISCUSS_OPTION_UNLIMITED</option>
-				</field>
-				<field name="close_reason" type="radio" default="0" description="PLG_KUNENADISCUSS_CLOSE_REASON_DESC" label="PLG_KUNENADISCUSS_CLOSE_REASON">
-					<option value="0">PLG_KUNENADISCUSS_OPTION_TOPIC_CREATION</option>
-					<option value="1">PLG_KUNENADISCUSS_OPTION_LAST_POST</option>
-				</field>
-				<field name="bbcode" type="radio" default="default" description="PLG_KUNENADISCUSS_BBCODE_DESC" label="PLG_KUNENADISCUSS_BBCODE">
-					<option value="default">PLG_KUNENADISCUSS_OPTION_BBCODE_DEFAULT</option>
-					<option value="full">PLG_KUNENADISCUSS_OPTION_BBCODE_FULL</option>
-					<option value="intro">PLG_KUNENADISCUSS_OPTION_BBCODE_INTRO</option>
-					<option value="link">PLG_KUNENADISCUSS_OPTION_BBCODE_LINK</option>
-				</field>
-				<field name="topic_owner" type="text" default="" description="PLG_KUNENADISCUSS_TOPIC_OWNER_DESC" label="PLG_KUNENADISCUSS_TOPIC_OWNER" />
-				<field name="category_mapping" type="text" default="" description="PLG_KUNENADISCUSS_CATEGORY_MAPPING_DESC" label="PLG_KUNENADISCUSS_CATEGORY_MAPPING" />
-				<field name="default_category" type="text" default="" description="PLG_KUNENADISCUSS_DEFAULT_CATEGORY_DESC" label="PLG_KUNENADISCUSS_DEFAULT_CATEGORY" />
-				<field name="allow_categories" type="text" default="" description="PLG_KUNENADISCUSS_ALLOW_CATEGORIES_DESC" label="PLG_KUNENADISCUSS_ALLOW_CATEGORIES" />
-				<field name="deny_categories" type="text" default="" description="PLG_KUNENADISCUSS_DENY_CATEGORIES_DESC" label="PLG_KUNENADISCUSS_DENY_CATEGORIES" />
-				<field name="show_debug" type="radio" default="0" description="PLG_KUNENADISCUSS_SHOW_DEBUG_DESC" label="PLG_KUNENADISCUSS_SHOW_DEBUG">
-					<option value="0">PLG_KUNENADISCUSS_OPTION_NO</option>
-					<option value="1">PLG_KUNENADISCUSS_OPTION_YES</option>
-				</field>
-				<field name="show_debug_userids" type="text" default="" description="PLG_KUNENADISCUSS_SHOW_DEBUG_USERIDS_DESC" label="PLG_KUNENADISCUSS_SHOW_DEBUG_USERIDS" />
-				<field name="login_public" type="radio" class="btn-group" default="1" label="PLG_KUNENADISCUSS_SHOW_LOGIN_PUBLIC_USERS" description="PLG_KUNENADISCUSS_SHOW_LOGIN_PUBLIC_USERS_DESC" >
-					<option value="0">PLG_KUNENADISCUSS_OPTION_NO</option>
-					<option value="1">PLG_KUNENADISCUSS_OPTION_YES</option>
-				</field>
-                 <field name="add_article_snippet" type="radio" default="1" description="PLG_KUNENADISCUSS_ADD_SNIPPET_DESC" label="PLG_KUNENADISCUSS_ADD_SNIPPET">
-					<option value="0">PLG_KUNENADISCUSS_OPTION_NO</option>
-					<option value="1">PLG_KUNENADISCUSS_OPTION_YES</option>
-				</field>
-			</fieldset>
-		</fields>
-	</config>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="limit" type="text" default="25" description="PLG_KUNENADISCUSS_LIMIT_DESC"
+                       label="PLG_KUNENADISCUSS_LIMIT"/>
+                <field name="bootstrap" type="radio" default="span" description="PLG_KUNENADISCUSS_BOOTSTRAP_DESC"
+                       label="PLG_KUNENADISCUSS_BOOTSTRAP">
+                    <option value="span">PLG_KUNENADISCUSS_OPTION_BOOTSTRAP2</option>
+                    <option value="col-md-">PLG_KUNENADISCUSS_OPTION_BOOTSTRAP3</option>
+                </field>
+                <field name="ordering" type="radio" default="1" description="PLG_KUNENADISCUSS_ORDERING_DESC"
+                       label="PLG_KUNENADISCUSS_ORDERING">
+                    <option value="0">PLG_KUNENADISCUSS_OPTION_FIRST</option>
+                    <option value="1">PLG_KUNENADISCUSS_OPTION_LAST</option>
+                </field>
+                <field name="show_front_page" type="radio" default="2"
+                       description="PLG_KUNENADISCUSS_SHOW_FRONT_PAGE_DESC" label="PLG_KUNENADISCUSS_SHOW_FRONT_PAGE">
+                    <option value="0">PLG_KUNENADISCUSS_OPTION_NOTHING</option>
+                    <option value="1">PLG_KUNENADISCUSS_OPTION_LINK</option>
+                    <option value="2">PLG_KUNENADISCUSS_OPTION_REPLIES</option>
+                </field>
+                <field name="show_blog_page" type="radio" default="2"
+                       description="PLG_KUNENADISCUSS_SHOW_BLOG_PAGE_DESC" label="PLG_KUNENADISCUSS_SHOW_BLOG_PAGE">
+                    <option value="0">PLG_KUNENADISCUSS_OPTION_NOTHING</option>
+                    <option value="1">PLG_KUNENADISCUSS_OPTION_LINK</option>
+                    <option value="2">PLG_KUNENADISCUSS_OPTION_REPLIES</option>
+                </field>
+                <field name="show_article_pages" type="radio" default="2"
+                       description="PLG_KUNENADISCUSS_SHOW_ARTICLE_DESC" label="PLG_KUNENADISCUSS_SHOW_ARTICLE">
+                    <option value="0">PLG_KUNENADISCUSS_OPTION_NOTHING</option>
+                    <option value="1">PLG_KUNENADISCUSS_OPTION_LINK</option>
+                    <option value="2">PLG_KUNENADISCUSS_OPTION_REPLIES</option>
+                </field>
+                <field name="show_other_pages" type="radio" default="2"
+                       description="PLG_KUNENADISCUSS_SHOW_OTHER_PAGES_DESC" label="PLG_KUNENADISCUSS_SHOW_OTHER_PAGES">
+                    <option value="0">PLG_KUNENADISCUSS_OPTION_NOTHING</option>
+                    <option value="1">PLG_KUNENADISCUSS_OPTION_LINK</option>
+                    <option value="2">PLG_KUNENADISCUSS_OPTION_REPLIES</option>
+                </field>
+                <field name="form" type="radio" default="1" description="PLG_KUNENADISCUSS_FORM_DESC"
+                       label="PLG_KUNENADISCUSS_FORM">
+                    <option value="0">PLG_KUNENADISCUSS_OPTION_NO</option>
+                    <option value="1">PLG_KUNENADISCUSS_OPTION_YES</option>
+                </field>
+                <field name="form_location" type="radio" default="0" description="PLG_KUNENADISCUSS_FORM_LOCATION_DESC"
+                       label="PLG_KUNENADISCUSS_FORM_LOCATION">
+                    <option value="0">PLG_KUNENADISCUSS_OPTION_BEFORE</option>
+                    <option value="1">PLG_KUNENADISCUSS_OPTION_AFTER</option>
+                </field>
+                <field name="custom_topics" type="radio" default="1" description="PLG_KUNENADISCUSS_CUSTOM_TOPICS_DESC"
+                       label="PLG_KUNENADISCUSS_CUSTOM_TOPICS">
+                    <option value="0">PLG_KUNENADISCUSS_OPTION_NO</option>
+                    <option value="1">PLG_KUNENADISCUSS_OPTION_YES</option>
+                </field>
+                <field name="create" type="radio" default="0" description="PLG_KUNENADISCUSS_CREATE_DESC"
+                       label="PLG_KUNENADISCUSS_CREATE">
+                    <option value="1">PLG_KUNENADISCUSS_OPTION_CREATE_VISIT</option>
+                    <option value="0">PLG_KUNENADISCUSS_OPTION_CREATE_REPLY</option>
+                </field>
+                <field name="create_time" type="list" default="1" description="PLG_KUNENADISCUSS_CREATE_TIME_DESC"
+                       label="PLG_KUNENADISCUSS_CREATE_TIME">
+                    <option value="1">PLG_KUNENADISCUSS_OPTION_1WEEKS</option>
+                    <option value="2">PLG_KUNENADISCUSS_OPTION_2WEEKS</option>
+                    <option value="4">PLG_KUNENADISCUSS_OPTION_4WEEKS</option>
+                    <option value="8">PLG_KUNENADISCUSS_OPTION_8WEEKS</option>
+                    <option value="13">PLG_KUNENADISCUSS_OPTION_13WEEKS</option>
+                    <option value="26">PLG_KUNENADISCUSS_OPTION_26WEEKS</option>
+                    <option value="52">PLG_KUNENADISCUSS_OPTION_52WEEKS</option>
+                    <option value="0">PLG_KUNENADISCUSS_OPTION_UNLIMITED</option>
+                </field>
+                <field name="close_time" type="list" default="0" description="PLG_KUNENADISCUSS_CLOSE_TIME_DESC"
+                       label="PLG_KUNENADISCUSS_CLOSE_TIME">
+                    <option value="1">PLG_KUNENADISCUSS_OPTION_1WEEKS</option>
+                    <option value="2">PLG_KUNENADISCUSS_OPTION_2WEEKS</option>
+                    <option value="4">PLG_KUNENADISCUSS_OPTION_4WEEKS</option>
+                    <option value="8">PLG_KUNENADISCUSS_OPTION_8WEEKS</option>
+                    <option value="13">PLG_KUNENADISCUSS_OPTION_13WEEKS</option>
+                    <option value="26">PLG_KUNENADISCUSS_OPTION_26WEEKS</option>
+                    <option value="52">PLG_KUNENADISCUSS_OPTION_52WEEKS</option>
+                    <option value="0">PLG_KUNENADISCUSS_OPTION_UNLIMITED</option>
+                </field>
+                <field name="close_reason" type="radio" default="0" description="PLG_KUNENADISCUSS_CLOSE_REASON_DESC"
+                       label="PLG_KUNENADISCUSS_CLOSE_REASON">
+                    <option value="0">PLG_KUNENADISCUSS_OPTION_TOPIC_CREATION</option>
+                    <option value="1">PLG_KUNENADISCUSS_OPTION_LAST_POST</option>
+                </field>
+                <field name="bbcode" type="radio" default="default" description="PLG_KUNENADISCUSS_BBCODE_DESC"
+                       label="PLG_KUNENADISCUSS_BBCODE">
+                    <option value="default">PLG_KUNENADISCUSS_OPTION_BBCODE_DEFAULT</option>
+                    <option value="full">PLG_KUNENADISCUSS_OPTION_BBCODE_FULL</option>
+                    <option value="intro">PLG_KUNENADISCUSS_OPTION_BBCODE_INTRO</option>
+                    <option value="link">PLG_KUNENADISCUSS_OPTION_BBCODE_LINK</option>
+                </field>
+                <field name="topic_owner" type="text" default="" description="PLG_KUNENADISCUSS_TOPIC_OWNER_DESC"
+                       label="PLG_KUNENADISCUSS_TOPIC_OWNER"/>
+                <field name="category_mapping" type="text" default=""
+                       description="PLG_KUNENADISCUSS_CATEGORY_MAPPING_DESC"
+                       label="PLG_KUNENADISCUSS_CATEGORY_MAPPING"/>
+                <field name="default_category" type="text" default=""
+                       description="PLG_KUNENADISCUSS_DEFAULT_CATEGORY_DESC"
+                       label="PLG_KUNENADISCUSS_DEFAULT_CATEGORY"/>
+                <field name="allow_categories" type="text" default=""
+                       description="PLG_KUNENADISCUSS_ALLOW_CATEGORIES_DESC"
+                       label="PLG_KUNENADISCUSS_ALLOW_CATEGORIES"/>
+                <field name="deny_categories" type="text" default=""
+                       description="PLG_KUNENADISCUSS_DENY_CATEGORIES_DESC" label="PLG_KUNENADISCUSS_DENY_CATEGORIES"/>
+                <field name="show_debug" type="radio" default="0" description="PLG_KUNENADISCUSS_SHOW_DEBUG_DESC"
+                       label="PLG_KUNENADISCUSS_SHOW_DEBUG">
+                    <option value="0">PLG_KUNENADISCUSS_OPTION_NO</option>
+                    <option value="1">PLG_KUNENADISCUSS_OPTION_YES</option>
+                </field>
+                <field name="show_debug_userids" type="text" default=""
+                       description="PLG_KUNENADISCUSS_SHOW_DEBUG_USERIDS_DESC"
+                       label="PLG_KUNENADISCUSS_SHOW_DEBUG_USERIDS"/>
+                <field name="login_public" type="radio" class="btn-group" default="1"
+                       label="PLG_KUNENADISCUSS_SHOW_LOGIN_PUBLIC_USERS"
+                       description="PLG_KUNENADISCUSS_SHOW_LOGIN_PUBLIC_USERS_DESC">
+                    <option value="0">PLG_KUNENADISCUSS_OPTION_NO</option>
+                    <option value="1">PLG_KUNENADISCUSS_OPTION_YES</option>
+                </field>
+                <field name="add_article_snippet" type="radio" default="1"
+                       description="PLG_KUNENADISCUSS_ADD_SNIPPET_DESC" label="PLG_KUNENADISCUSS_ADD_SNIPPET">
+                    <option value="0">PLG_KUNENADISCUSS_OPTION_NO</option>
+                    <option value="1">PLG_KUNENADISCUSS_OPTION_YES</option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
 </extension>
