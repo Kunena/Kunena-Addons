@@ -76,18 +76,18 @@ class plgContentKunenaDiscuss extends CMSPlugin
 	public $config = null;
 
 	/**
-	 * @param   object $subject
-	 * @param   array  $params
+	 * @param   object  $subject
+	 * @param   array   $params
 	 *
-	 * @throws Exception
 	 * @since Kunena
+	 * @throws Exception
 	 */
 	public function __construct(&$subject, $params)
 	{
 		$this->app = Factory::getApplication();
 
 		// Do not register plug-in in administration.
-		if ($this->app->isAdmin())
+		if ($this->app->isClient('administrator'))
 		{
 			return;
 		}
@@ -126,8 +126,8 @@ class plgContentKunenaDiscuss extends CMSPlugin
 	}
 
 	/**
-	 * @param       $msg
-	 * @param   int $fatal
+	 * @param        $msg
+	 * @param   int  $fatal
 	 *
 	 * @since Kunena
 	 *
@@ -160,14 +160,14 @@ class plgContentKunenaDiscuss extends CMSPlugin
 	 *
 	 * Method is called by the view and the results are imploded and displayed in a placeholder.
 	 *
-	 * @param   string  $context    The context for the content passed to the plugin.
-	 * @param   object  $article    The content object.  Note $article->text is also available
-	 * @param   object  $params     The content params
-	 * @param   integer $limitstart The 'page' number
+	 * @param   string   $context     The context for the content passed to the plugin.
+	 * @param   object   $article     The content object.  Note $article->text is also available
+	 * @param   object   $params      The content params
+	 * @param   integer  $limitstart  The 'page' number
 	 *
 	 * @return  string
-	 * @throws Exception
 	 * @since Kunena
+	 * @throws Exception
 	 */
 	public function onContentBeforeDisplay($context, &$article, &$params, $limitstart = 0)
 	{
@@ -269,8 +269,8 @@ class plgContentKunenaDiscuss extends CMSPlugin
 	 * @param $article
 	 * @param $params
 	 *
-	 * @throws Exception
 	 * @since Kunena
+	 * @throws Exception
 	 */
 	protected function prepare($context, &$article, &$params)
 	{
@@ -493,11 +493,12 @@ class plgContentKunenaDiscuss extends CMSPlugin
 	 * ***************************************************************************
 	 * Permission checks
 	 *****************************************************************************
-	 * @since Kunena
 	 *
 	 * @param $catid
 	 *
 	 * @return bool|int
+	 * @since Kunena
+	 *
 	 */
 	protected function getForumCategory($catid)
 	{
@@ -612,14 +613,14 @@ class plgContentKunenaDiscuss extends CMSPlugin
 	}
 
 	/**
-	 * @param   int    $catid
-	 * @param   int    $topic_id
-	 * @param   object $row
-	 * @param   bool   $linkOnly
+	 * @param   int     $catid
+	 * @param   int     $topic_id
+	 * @param   object  $row
+	 * @param   bool    $linkOnly
 	 *
 	 * @return mixed|string
-	 * @throws Exception
 	 * @since Kunena
+	 * @throws Exception
 	 */
 	protected function showPlugin($catid, $topic_id, &$row, $linkOnly)
 	{
@@ -871,11 +872,11 @@ class plgContentKunenaDiscuss extends CMSPlugin
 	}
 
 	/**
-	 * @param   object $row
+	 * @param   object  $row
 	 *
 	 * @return bool
-	 * @throws Exception
 	 * @since Kunena
+	 * @throws Exception
 	 */
 	protected function deleteReference($row)
 	{
@@ -904,12 +905,12 @@ class plgContentKunenaDiscuss extends CMSPlugin
 	}
 
 	/**
-	 * @param   object $row
-	 * @param   int    $topic_id
+	 * @param   object  $row
+	 * @param   int     $topic_id
 	 *
 	 * @return bool
-	 * @throws Exception
 	 * @since Kunena
+	 * @throws Exception
 	 */
 	protected function updateReference($row, $topic_id)
 	{
@@ -942,12 +943,13 @@ class plgContentKunenaDiscuss extends CMSPlugin
 	 * ***************************************************************************
 	 * Create and reply to topic
 	 *****************************************************************************
-	 * @since Kunena
 	 *
 	 * @param $row
 	 * @param $topic_id
 	 *
 	 * @return bool
+	 * @since Kunena
+	 *
 	 * @throws Exception
 	 */
 	protected function createReference($row, $topic_id)
@@ -975,13 +977,13 @@ class plgContentKunenaDiscuss extends CMSPlugin
 	}
 
 	/**
-	 * @param                       $row
-	 * @param   KunenaForumCategory $category
-	 * @param                       $subject
+	 * @param                        $row
+	 * @param   KunenaForumCategory  $category
+	 * @param                        $subject
 	 *
 	 * @return boolean|KunenaForumTopic
-	 * @throws Exception
 	 * @since Kunena
+	 * @throws Exception
 	 */
 	protected function createTopic($row, KunenaForumCategory $category, $subject)
 	{
@@ -1023,16 +1025,16 @@ class plgContentKunenaDiscuss extends CMSPlugin
 				}
 				break;
 			default:
+			{
+				if ($add_snippet)
 				{
-					if ($add_snippet)
-					{
-						$contents = $snippet . "[article]{$row->id}[/article]";
-					}
-					else
-					{
-						$contents = "[article]{$row->id}[/article]";
-					}
+					$contents = $snippet . "[article]{$row->id}[/article]";
 				}
+				else
+				{
+					$contents = "[article]{$row->id}[/article]";
+				}
+			}
 		}
 
 		// Save the ID for later use
@@ -1088,12 +1090,12 @@ class plgContentKunenaDiscuss extends CMSPlugin
 	}
 
 	/**
-	 * @param   KunenaForumCategory $category
-	 * @param   KunenaForumTopic    $topic
+	 * @param   KunenaForumCategory  $category
+	 * @param   KunenaForumTopic     $topic
 	 *
 	 * @return boolean
-	 * @throws Exception
 	 * @since Kunena
+	 * @throws Exception
 	 */
 	protected function canPost(KunenaForumCategory $category, KunenaForumTopic $topic)
 	{
@@ -1108,18 +1110,18 @@ class plgContentKunenaDiscuss extends CMSPlugin
 	}
 
 	/**
-	 * @param                       $row
-	 * @param   KunenaForumCategory $category
-	 * @param   KunenaForumTopic    $topic
-	 * @param                       $subject
+	 * @param                        $row
+	 * @param   KunenaForumCategory  $category
+	 * @param   KunenaForumTopic     $topic
+	 * @param                        $subject
 	 *
 	 * @return boolean|string
-	 * @throws Exception
 	 * @since Kunena
+	 * @throws Exception
 	 */
 	protected function replyTopic($row, KunenaForumCategory $category, KunenaForumTopic $topic, $subject)
 	{
-		$uri = Factory::getURI();
+		$uri = Joomla\CMS\Uri\Uri::getInstance();
 
 		if (Session::checkToken() == false)
 		{
@@ -1164,28 +1166,16 @@ class plgContentKunenaDiscuss extends CMSPlugin
 
 		$message->sendNotification();
 
-		if ($message->hold)
-		{
-			$result = Text::_('PLG_KUNENADISCUSS_PENDING_MODERATOR_APPROVAL');
-		}
-		else
-		{
-			$result = Text::_('PLG_KUNENADISCUSS_MESSAGE_POSTED');
-		}
-
 		// Redirect
-		$app = Factory::getApplication('site');
-		$app->redirect($uri->toString(), $result);
-
-		return '';
+		Factory::getApplication()->redirect($uri->toString());
 	}
 
 	/**
 	 * Check if the user will have captcha or not
 	 *
 	 * @return boolean
-	 * @throws Exception
 	 * @since Kunena
+	 * @throws Exception
 	 */
 	public function hasCaptcha()
 	{
@@ -1196,8 +1186,8 @@ class plgContentKunenaDiscuss extends CMSPlugin
 	 * Check if the captcha given is correct
 	 *
 	 * @return boolean
-	 * @throws Exception
 	 * @since Kunena
+	 * @throws Exception
 	 */
 	protected function verifyCaptcha()
 	{
@@ -1259,14 +1249,14 @@ class plgContentKunenaDiscuss extends CMSPlugin
 	}
 
 	/**
-	 * @param                       $row
-	 * @param   KunenaForumCategory $category
-	 * @param   KunenaForumTopic    $topic
-	 * @param                       $subject
+	 * @param                        $row
+	 * @param   KunenaForumCategory  $category
+	 * @param   KunenaForumTopic     $topic
+	 * @param                        $subject
 	 *
 	 * @return string
-	 * @throws Exception
 	 * @since Kunena
+	 * @throws Exception
 	 */
 	protected function showForm($row, KunenaForumCategory $category, KunenaForumTopic $topic, $subject)
 	{
@@ -1304,13 +1294,13 @@ class plgContentKunenaDiscuss extends CMSPlugin
 	}
 
 	/**
-	 * @param   KunenaForumCategory $category
-	 * @param   KunenaForumTopic    $topic
-	 * @param   string              $link_topic
+	 * @param   KunenaForumCategory  $category
+	 * @param   KunenaForumTopic     $topic
+	 * @param   string               $link_topic
 	 *
 	 * @return string
-	 * @throws Exception
 	 * @since Kunena
+	 * @throws Exception
 	 */
 	protected function showTopic(KunenaForumCategory $category, KunenaForumTopic $topic, $link_topic)
 	{
@@ -1382,14 +1372,14 @@ class plgContentKunenaDiscuss extends CMSPlugin
 	 *
 	 * Method is called by the view and the results are imploded and displayed in a placeholder.
 	 *
-	 * @param   string  $context    The context for the content passed to the plugin.
-	 * @param   object  $article    The content object.  Note $article->text is also available
-	 * @param   object  $params     The content params
-	 * @param   integer $limitstart The 'page' number
+	 * @param   string   $context     The context for the content passed to the plugin.
+	 * @param   object   $article     The content object.  Note $article->text is also available
+	 * @param   object   $params      The content params
+	 * @param   integer  $limitstart  The 'page' number
 	 *
 	 * @return  string
-	 * @throws Exception
 	 * @since Kunena
+	 * @throws Exception
 	 */
 	public function onContentAfterDisplay($context, &$article, &$params, $limitstart = 0)
 	{
