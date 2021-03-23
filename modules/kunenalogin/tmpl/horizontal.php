@@ -33,7 +33,7 @@ defined('_JEXEC') or die();
 					:
 	?>
 						<li class="klogin-hiname">
-							<?php echo JText::sprintf('MOD_KUNENALOGIN_HINAME', '<strong>' . $this->me->getLink(KunenaFactory::getProfile()->getProfileName($this->me)) . '</strong>', KunenaFactory::getProfile()->getProfileName($this->me)); ?>
+							<?php echo JText::sprintf('MOD_KUNENALOGIN_HINAME', '<strong>' . $this->me->getLink($this->me->getName()) . '</strong>', $this->me->getName()); ?>
 						</li>
 					<?php endif; ?>
 					<?php

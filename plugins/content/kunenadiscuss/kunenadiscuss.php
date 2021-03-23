@@ -1139,7 +1139,7 @@ class plgContentKunenaDiscuss extends CMSPlugin
 		}
 
 		$params = array(
-			'name'    => Factory::getApplication()->input->getString('name', KunenaFactory::getProfile()->getProfileName($this->user), 'POST'),
+			'name'    => Factory::getApplication()->input->getString('name', $this->user->getName(), 'POST'),
 			'email'   => Factory::getApplication()->input->getString('email', null, 'POST'),
 			'subject' => $subject,
 			'message' => Factory::getApplication()->input->getString('message', null, 'POST'),
@@ -1290,7 +1290,7 @@ class plgContentKunenaDiscuss extends CMSPlugin
 		}
 
 		$this->open    = $this->params->get('quickpost_open', false);
-		$this->name    = Factory::getApplication()->input->getString('name', KunenaFactory::getProfile()->getProfileName($this->user)
+		$this->name    = Factory::getApplication()->input->getString('name', $this->user->getName()
 		    , 'POST');
 		$this->email   = Factory::getApplication()->input->getString('email', null, 'POST');
 		$this->message = Factory::getApplication()->input->getString('message', null, 'POST');

@@ -74,7 +74,7 @@ $topic = $this->topic;
 		<?php endif; ?>
 		<?php if ($this->params->get('sh_author')) : ?>
 			<li class="klatest-author"><?php echo JText::_('COM_KUNENA_BY') . ' ' . $this->topic->getLastPostAuthor()->getLink(null, JText::sprintf('COM_KUNENA_VIEW_USER_LINK_TITLE',
-				KunenaFactory::getProfile()->getProfileName($this->topic->getLastPostAuthor())), '', '', KunenaTemplate::getInstance()->tooltips(), $this->category->id);?></li>
+				$this->topic->getLastPostAuthor()->getName()), '', '', KunenaTemplate::getInstance()->tooltips(), $this->category->id);?></li>
 		<?php endif; ?>
 		<?php if ($this->params->get('sh_time')) : ?>
 			<li class="klatest-posttime"><?php $override = $this->params->get('dateformat');
