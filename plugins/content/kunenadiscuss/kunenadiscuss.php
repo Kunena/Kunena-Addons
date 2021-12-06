@@ -18,6 +18,16 @@ use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\Plugin\PluginHelper;
 use Joomla\Registry\Registry;
 use Joomla\CMS\Session\Session;
+use Kunena\Forum\Libraries\Error\KunenaError;
+use Kunena\Forum\Libraries\Factory\KunenaFactory;
+use Kunena\Forum\Libraries\Folder\KunenaFolder;
+use Kunena\Forum\Libraries\Forum\KunenaForum;
+use Kunena\Forum\Libraries\Forum\Category\KunenaCategory;
+use Kunena\Forum\Libraries\Forum\Category\KunenaCategoryHelper;
+use Kunena\Forum\Libraries\Forum\Topic\KunenaTopic;
+use Kunena\Forum\Libraries\Forum\Topic\KunenaTopicHelper;
+use Kunena\Forum\Libraries\Login\KunenaLogin;
+use Kunena\Forum\Libraries\User\KunenaUserHelper;
 
 /**
  * Class plgContentKunenaDiscuss
@@ -101,7 +111,7 @@ class plgContentKunenaDiscuss extends CMSPlugin
 		// Kunena detection and version check
 		$minKunenaVersion = '6.0';
 
-		if (!class_exists('KunenaForum') || !KunenaForum::isCompatible($minKunenaVersion))
+		if (!class_exists('Kunena\Forum\Libraries\Forum\KunenaForum') || !KunenaForum::isCompatible($minKunenaVersion))
 		{
 			$this->loadLanguage();
 			$this->app->enqueueMessage(Text::sprintf('PLG_KUNENADISCUSS_DEPENDENCY_FAIL', $minKunenaVersion));
@@ -688,13 +698,13 @@ class plgContentKunenaDiscuss extends CMSPlugin
 			$id = 0;
 		}
 
-		$topic = KunenaForumTopicHelper::get($id);
+		$topic = KunenaTopicHelper::get($id);
 
 		// If topic has been moved, find the real topic
 		while ($topic->moved_id)
 		{
 			$this->debug("showPlugin: Topic {$topic->id} has been moved to {$topic->moved_id}");
-			$topic = KunenaForumTopicHelper::get($topic->moved_id);
+			$topic = KunenaTopicHelper::get($topic->moved_id);
 		}
 
 		if ($result)
@@ -749,7 +759,7 @@ class plgContentKunenaDiscuss extends CMSPlugin
 			$this->debug("showPlugin: Let's see what we can do..");
 
 			// If current user doesn't have authorisation to read category, we are done
-			$category = KunenaForumCategoryHelper::get($catid);
+			$category = KunenaCategoryHelper::get($catid);
 
 			if (!$category->isAuthorised('read'))
 			{
@@ -978,14 +988,14 @@ class plgContentKunenaDiscuss extends CMSPlugin
 
 	/**
 	 * @param                        $row
-	 * @param   KunenaForumCategory  $category
+	 * @param   KunenaCategory  $category
 	 * @param                        $subject
 	 *
-	 * @return boolean|KunenaForumTopic
+	 * @return boolean|KunenaTopic
 	 * @since Kunena
 	 * @throws Exception
 	 */
-	protected function createTopic($row, KunenaForumCategory $category, $subject)
+	protected function createTopic($row, KunenaCategory $category, $subject)
 	{
 		if (!$category->exists())
 		{
@@ -1090,14 +1100,14 @@ class plgContentKunenaDiscuss extends CMSPlugin
 	}
 
 	/**
-	 * @param   KunenaForumCategory  $category
-	 * @param   KunenaForumTopic     $topic
+	 * @param   KunenaCategory  $category
+	 * @param   KunenaTopic     $topic
 	 *
 	 * @return boolean
 	 * @since Kunena
 	 * @throws Exception
 	 */
-	protected function canPost(KunenaForumCategory $category, KunenaForumTopic $topic)
+	protected function canPost(KunenaCategory $category, KunenaTopic $topic)
 	{
 		if ($topic->exists())
 		{
@@ -1111,15 +1121,15 @@ class plgContentKunenaDiscuss extends CMSPlugin
 
 	/**
 	 * @param                        $row
-	 * @param   KunenaForumCategory  $category
-	 * @param   KunenaForumTopic     $topic
+	 * @param   KunenaCategory  $category
+	 * @param   KunenaTopic     $topic
 	 * @param                        $subject
 	 *
 	 * @return boolean|string
 	 * @since Kunena
 	 * @throws Exception
 	 */
-	protected function replyTopic($row, KunenaForumCategory $category, KunenaForumTopic $topic, $subject)
+	protected function replyTopic($row, KunenaCategory $category, KunenaTopic $topic, $subject)
 	{
 		$uri = Joomla\CMS\Uri\Uri::getInstance();
 
@@ -1250,15 +1260,15 @@ class plgContentKunenaDiscuss extends CMSPlugin
 
 	/**
 	 * @param                        $row
-	 * @param   KunenaForumCategory  $category
-	 * @param   KunenaForumTopic     $topic
+	 * @param   KunenaCategory  $category
+	 * @param   KunenaTopic     $topic
 	 * @param                        $subject
 	 *
 	 * @return string
 	 * @since Kunena
 	 * @throws Exception
 	 */
-	protected function showForm($row, KunenaForumCategory $category, KunenaForumTopic $topic, $subject)
+	protected function showForm($row, KunenaCategory $category, KunenaTopic $topic, $subject)
 	{
 		$canPost = $this->canPost($category, $topic);
 
@@ -1294,15 +1304,15 @@ class plgContentKunenaDiscuss extends CMSPlugin
 	}
 
 	/**
-	 * @param   KunenaForumCategory  $category
-	 * @param   KunenaForumTopic     $topic
+	 * @param   KunenaCategory  $category
+	 * @param   KunenaTopic     $topic
 	 * @param   string               $link_topic
 	 *
 	 * @return string
 	 * @since Kunena
 	 * @throws Exception
 	 */
-	protected function showTopic(KunenaForumCategory $category, KunenaForumTopic $topic, $link_topic)
+	protected function showTopic(KunenaCategory $category, KunenaTopic $topic, $link_topic)
 	{
 		if (!$topic->exists())
 		{
