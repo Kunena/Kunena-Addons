@@ -101,7 +101,7 @@
 		<filter token="kunenaversiondate" value="${version.date}" />
 		<filter token="kunenaversionname" value="${xml.versionname}" />
 		<copy file="${project_dir}/mod_kunenalatest.xml" todir="${tmp_dir}" overwrite="true" filtering="true" />
-		<copy file="${project_dir}/README.txt" todir="${tmp_dir}" overwrite="true" filtering="true" />
+		<copy file="${project_dir}/README.md" todir="${tmp_dir}" overwrite="true" filtering="true" />
 	</target>
 
 	<target name="tar" depends="package" if="do.tar">
