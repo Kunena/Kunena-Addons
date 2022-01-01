@@ -639,7 +639,7 @@ class plgContentKunenaDiscuss extends CMSPlugin
 			$pluginParams = new Registry($plugin->params);
 			$bootstrap    = $pluginParams->get('bootstrap');
 
-			if ($bootstrap != 'B3')
+			if ($bootstrap == 'B2')
 			{
 				$doc->addStyleSheet(Uri::root(true) . "/plugins/content/kunenadiscuss/css/discussb2.css");
 			}

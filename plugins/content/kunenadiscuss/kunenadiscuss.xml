@@ -146,7 +146,7 @@
 				<field name="limit" type="text" default="25" description="PLG_KUNENADISCUSS_LIMIT_DESC" label="PLG_KUNENADISCUSS_LIMIT" />
 				<field name="bootstrap" type="radio" default="span" description="PLG_KUNENADISCUSS_BOOTSTRAP_DESC" label="PLG_KUNENADISCUSS_BOOTSTRAP">
 					<option value="span">PLG_KUNENADISCUSS_OPTION_BOOTSTRAP2</option>
-					<option value="col-md-">PLG_KUNENADISCUSS_OPTION_BOOTSTRAP3</option>
+					<option value="col-md-">PLG_KUNENADISCUSS_OPTION_BOOTSTRAP3_BOOTSTRAP4</option>
 				</field>
 				<field name="ordering" type="radio" default="1" description="PLG_KUNENADISCUSS_ORDERING_DESC" label="PLG_KUNENADISCUSS_ORDERING">
 					<option value="0">PLG_KUNENADISCUSS_OPTION_FIRST</option>
