@@ -8,6 +8,11 @@
  * @license       http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link          https://www.kunena.org
  **/
+use Joomla\CMS\Language\Text;
+use Kunena\Forum\Libraries\Html\KunenaParser;
+use Kunena\Forum\Libraries\Icons\KunenaIcons;
+use Kunena\Forum\Libraries\Template\KunenaTemplate;
+
 defined('_JEXEC') or die ();
 $topic = $this->topic;
 ?>
@@ -52,28 +57,28 @@ $topic = $this->topic;
 
 			if ($this->params->get('sh_postcount'))
 			{
-				echo ' (' . $this->topic->getTotal() . ' ' . JText::_('MOD_KUNENALATEST_MSG') . ')';
+				echo ' (' . $this->topic->getTotal() . ' ' . Text::_('MOD_KUNENALATEST_MSG') . ')';
 			}
 
 			if ($this->params->get('sh_locked') && $this->topic->locked)
 			{
-				echo '<span ' . KunenaTemplate::getInstance()->tooltips(true) . ' title="' . JText::_('COM_KUNENA_GEN_LOCKED_TOPIC') .'">' . KunenaIcons::lock() . '</span>';
+				echo '<span ' . KunenaTemplate::getInstance()->tooltips(true) . ' title="' . Text::_('COM_KUNENA_GEN_LOCKED_TOPIC') .'">' . KunenaIcons::lock() . '</span>';
 			}
 
 			if ($this->params->get('sh_favorite') && $this->topic->getUserTopic()->favorite)
 			{
-				echo '<span ' . KunenaTemplate::getInstance()->tooltips(true) . ' title="' . JText::_('COM_KUNENA_FAVORITE') .'">' . KunenaIcons::star() . '</span>';
+				echo '<span ' . KunenaTemplate::getInstance()->tooltips(true) . ' title="' . Text::_('COM_KUNENA_FAVORITE') .'">' . KunenaIcons::star() . '</span>';
 			}
 			?>
 		</li>
 		<?php if ($this->params->get('sh_firstcontentcharacter')) : ?>
-			<li class="klatest-preview-content"><?php echo KunenaHtmlParser::stripBBCode($this->topic->last_post_message, $this->params->get('lengthcontentcharacters')); ?></li>
+			<li class="klatest-preview-content"><?php echo KunenaParser::stripBBCode($this->topic->last_post_message, $this->params->get('lengthcontentcharacters')); ?></li>
 		<?php endif; ?>
 		<?php if ($this->params->get('sh_category')) : ?>
-			<li class="klatest-cat"><?php echo JText::_('MOD_KUNENALATEST_IN_CATEGORY') . ' ' . $this->categoryLink ?></li>
+			<li class="klatest-cat"><?php echo Text::_('MOD_KUNENALATEST_IN_CATEGORY') . ' ' . $this->categoryLink ?></li>
 		<?php endif; ?>
 		<?php if ($this->params->get('sh_author')) : ?>
-			<li class="klatest-author"><?php echo JText::_('COM_KUNENA_BY') . ' ' . $this->topic->getLastPostAuthor()->getLink(null, JText::sprintf('COM_KUNENA_VIEW_USER_LINK_TITLE',
+			<li class="klatest-author"><?php echo Text::_('COM_KUNENA_BY') . ' ' . $this->topic->getLastPostAuthor()->getLink(null, Text::sprintf('COM_KUNENA_VIEW_USER_LINK_TITLE',
 				$this->topic->getLastPostAuthor()->getName()), '', '', KunenaTemplate::getInstance()->tooltips(), $this->category->id);?></li>
 		<?php endif; ?>
 		<?php if ($this->params->get('sh_time')) : ?>

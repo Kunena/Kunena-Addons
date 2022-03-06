@@ -8,6 +8,15 @@
  * @license       http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link          https://www.kunena.org
  **/
+use Joomla\CMS\Factory;
+use Joomla\CMS\Helper\ModuleHelper;
+use Joomla\CMS\Uri\Uri;
+use Kunena\Forum\Libraries\Factory\KunenaFactory;
+use Kunena\Forum\Libraries\Forum\KunenaForum;
+use Kunena\Forum\Libraries\Html\KunenaParser;
+use Kunena\Forum\Libraries\Module\KunenaModule;
+use Kunena\Forum\Libraries\User\KunenaUserHelper;
+
 defined('_JEXEC') or die();
 
 /**
@@ -15,9 +24,9 @@ defined('_JEXEC') or die();
  */
 class ModuleKunenaLatest extends KunenaModule
 {
-	protected function _display()
+	protected function _display(): void
 	{
-		JFactory::getDocument()->addStyleSheet(JUri::root(true) . '/modules/mod_kunenalatest/tmpl/css/kunenalatest.css');
+		Factory::getDocument()->addStyleSheet(Uri::root(true) . '/modules/mod_kunenalatest/tmpl/css/kunenalatest.css');
 
 		// Load language files.
 		KunenaFactory::loadLanguage('com_kunena.sys', 'admin');
@@ -93,7 +102,7 @@ class ModuleKunenaLatest extends KunenaModule
 		$this->params->set('moreuri', "index.php?option=com_kunena&view=topics&layout={$layout}&mode={$mode}" . ($userid ? "&userid={$userid}" : ''));
 
 		// Set template path to module
-		$this->params->set('templatepath', dirname(JModuleHelper::getLayoutPath('mod_kunenalatest')));
+		$this->params->set('templatepath', dirname(ModuleHelper::getLayoutPath('mod_kunenalatest')));
 
 		// Display topics view
 		KunenaForum::display('topics', $layout, null, $this->params);
@@ -126,7 +135,7 @@ class ModuleKunenaLatest extends KunenaModule
 		}
 		elseif ($view->params->get('subjecttitle') == 'body')
 		{
-			$title = KunenaHtmlParser::stripBBCode($message, $view->params->get('titlelength'));
+			$title = KunenaParser::stripBBCode($message, $view->params->get('titlelength'));
 		}
 
 		return $title;
