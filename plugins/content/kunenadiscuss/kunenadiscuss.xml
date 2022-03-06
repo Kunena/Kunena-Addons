@@ -2,7 +2,7 @@
 <!DOCTYPE extension>
 <extension version="3.6.0" type="plugin" group="content" method="upgrade">
     <name>plg_content_kunenadiscuss</name>
-    <version>6.0.0</version>
+    <version>6.0.0-BETA-DEV</version>
     <creationDate>@kunenaversiondate@</creationDate>
     <build>@kunenaversionbuild@</build>
     <author>Kunena Team</author>
