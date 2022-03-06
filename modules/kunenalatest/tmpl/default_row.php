@@ -9,6 +9,7 @@
  * @link          https://www.kunena.org
  **/
 use Joomla\CMS\Language\Text;
+use Kunena\Forum\Libraries\Date\KunenaDate;
 use Kunena\Forum\Libraries\Html\KunenaParser;
 use Kunena\Forum\Libraries\Icons\KunenaIcons;
 use Kunena\Forum\Libraries\Template\KunenaTemplate;
@@ -83,7 +84,7 @@ $topic = $this->topic;
 		<?php endif; ?>
 		<?php if ($this->params->get('sh_time')) : ?>
 			<li class="klatest-posttime"><?php $override = $this->params->get('dateformat');
-				echo KunenaDate::getInstance($this->topic->last_post_time)->toKunena($override ? $override : 'config_post_dateformat'); ?></li>
+				echo KunenaDate::getInstance($this->topic->last_post_time)->toKunena($override ? $override : 'config_postDateFormat'); ?></li>
 		<?php endif; ?>
 	</ul>
 </li>
