@@ -105,7 +105,7 @@ class ModuleKunenaLatest extends KunenaModule
 		$this->params->set('templatepath', dirname(ModuleHelper::getLayoutPath('mod_kunenalatest')));
 
 		// Display topics view
-		KunenaForum::display('topics', $layout, null, $this->params);
+		KunenaForum::display('Topics', $layout, null, $this->params);
 	}
 
 	/**
