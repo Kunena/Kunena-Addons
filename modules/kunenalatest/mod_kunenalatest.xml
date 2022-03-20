@@ -140,9 +140,9 @@
     </languages>
 
     <config>
-        <fields name="params" addfieldpath="/libraries/kunena/src/Form/Fields">
-            <fieldset name="basic">
-                <field name="KunenaCategoryList" default="0"
+        <fields name="params">
+            <fieldset name="basic" addfieldprefix="Kunena\Forum\Administrator\Field">
+                <field name="category_id" type="kunenacategorylist" default="0"
                        none="MOD_KUNENALATEST_PARAM_CATEGORYLIST_NONE"
                        description="MOD_KUNENALATEST_PARAM_CATEGORYLIST_NONE_DESC"
                        label="MOD_KUNENALATEST_PARAM_CATEGORYLIST_NONE" multiple="true" size="5">
