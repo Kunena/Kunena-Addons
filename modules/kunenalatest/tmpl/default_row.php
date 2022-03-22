@@ -49,7 +49,7 @@ $topic = $this->topic;
 				}
 
 				echo '<sup class="knewchar" dir="ltr">(' . (int) $topic->unread .
-					' ' . JText::_('COM_KUNENA_A_GEN_NEWCHAR') . ')</sup>';
+					' ' . Text::_('COM_KUNENA_A_GEN_NEWCHAR') . ')</sup>';
 			}
 			else
 			{

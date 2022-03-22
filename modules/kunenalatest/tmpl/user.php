@@ -28,6 +28,6 @@ defined('_JEXEC') or die();
 	<?php if ($this->topics && $this->params->get('sh_morelink'))
 	:
 	?>
-		<p class="klatest-more"><?php echo JHtml::_('kunenaforum.link', $this->params->get('moreuri'), Text::_('MOD_KUNENALATEST_MORE_LINK')); ?></p>
+		<p class="klatest-more"><?php echo Html::_('kunenaforum.link', $this->params->get('moreuri'), Text::_('MOD_KUNENALATEST_MORE_LINK')); ?></p>
 	<?php endif; ?>
 </div>

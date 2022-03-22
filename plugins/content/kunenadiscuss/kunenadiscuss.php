@@ -18,9 +18,9 @@ use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\Plugin\PluginHelper;
 use Joomla\Registry\Registry;
 use Joomla\CMS\Session\Session;
+use Joomla\Database\Exception\ExecutionFailureException;
 use Kunena\Forum\Libraries\Error\KunenaError;
 use Kunena\Forum\Libraries\Factory\KunenaFactory;
-use Kunena\Forum\Libraries\Folder\KunenaFolder;
 use Kunena\Forum\Libraries\Forum\KunenaForum;
 use Kunena\Forum\Libraries\Forum\Category\KunenaCategory;
 use Kunena\Forum\Libraries\Forum\Category\KunenaCategoryHelper;
@@ -238,7 +238,7 @@ class plgContentKunenaDiscuss extends CMSPlugin
 			{
 				$db->execute();
 			}
-			catch (JDatabaseExceptionExecuting $e)
+			catch (ExecutionFailureException $e)
 			{
 				KunenaError::displayDatabaseError($e);
 
@@ -262,7 +262,7 @@ class plgContentKunenaDiscuss extends CMSPlugin
 				{
 					$db->execute();
 				}
-				catch (JDatabaseExceptionExecuting $e)
+				catch (ExecutionFailureException $e)
 				{
 					KunenaError::displayDatabaseError($e);
 
@@ -672,7 +672,7 @@ class plgContentKunenaDiscuss extends CMSPlugin
 		{
 			$result = $db->loadResult();
 		}
-		catch (JDatabaseExceptionExecuting $e)
+		catch (ExecutionFailureException $e)
 		{
 			KunenaError::displayDatabaseError($e);
 
@@ -902,7 +902,7 @@ class plgContentKunenaDiscuss extends CMSPlugin
 		{
 			$db->execute();
 		}
-		catch (JDatabaseExceptionExecuting $e)
+		catch (ExecutionFailureException $e)
 		{
 			$this->debug("deleteReference: Delete error " . $e);
 
@@ -937,7 +937,7 @@ class plgContentKunenaDiscuss extends CMSPlugin
 		{
 			$db->execute();
 		}
-		catch (JDatabaseExceptionExecuting $e)
+		catch (ExecutionFailureException $e)
 		{
 			$this->debug("updateReference: Update error " . $e);
 
@@ -977,7 +977,7 @@ class plgContentKunenaDiscuss extends CMSPlugin
 		{
 			$db->execute();
 		}
-		catch (JDatabaseExceptionExecuting $e)
+		catch (ExecutionFailureException $e)
 		{
 			$this->debug("createReference: Error:" . $e);
 			$this->deleteReference($row);

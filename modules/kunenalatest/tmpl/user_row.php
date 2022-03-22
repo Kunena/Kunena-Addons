@@ -9,6 +9,7 @@
  * @link          https://www.kunena.org
  **/
 use Joomla\CMS\Language\Text;
+use Kunena\Forum\Libraries\Date\KunenaDate;
 use Kunena\Forum\Libraries\Html\KunenaParser;
 use Kunena\Forum\Libraries\Icons\KunenaIcons;
 use Kunena\Forum\Libraries\Template\KunenaTemplate;

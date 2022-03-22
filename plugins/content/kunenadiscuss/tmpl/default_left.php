@@ -11,10 +11,15 @@
 defined('_JEXEC') or die ('');
 
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Plugin\PluginHelper;
+use Kunena\Forum\Libraries\Config\KunenaConfig;
+use Kunena\Forum\Libraries\Date\KunenaDate;
+use Kunena\Forum\Libraries\Factory\KunenaFactory;
+use Joomla\Registry\Registry;
 
 $config       = KunenaConfig::getInstance();
-$plugin       = JPluginHelper::getPlugin('content', 'kunenadiscuss');
-$pluginParams = new JRegistry($plugin->params);
+$plugin       = PluginHelper::getPlugin('content', 'kunenadiscuss');
+$pluginParams = new Registry($plugin->params);
 $bootstrap    = $pluginParams->get('bootstrap');
 $avatarType   = KunenaFactory::getTemplate()->params->get('avatarType');
 

@@ -34,6 +34,6 @@ if (!KunenaForum::enabled())
 require_once __DIR__ . '/class.php';
 
 /** @var stdClass $module */
-/** @var JRegistry $params */
+/** @var Registry $params */
 $instance = new ModuleKunenaLatest($module, $params);
 $instance->display();
