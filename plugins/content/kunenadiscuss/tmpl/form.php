@@ -40,7 +40,7 @@ $bootstrap    = $pluginParams->get('bootstrap');
 									} ?>  placeholder="<?php echo Text::_('PLG_KUNENADISCUSS_NAME') ?>"/>
 								</div>
 
-								<?php if (!$this->user->exists() && $this->config->askemail) : ?>
+								<?php if (!$this->user->exists() && $this->config->askEmail) : ?>
 									<div class="form-group">
 										<label for="email"><?php echo Text::_('PLG_KUNENADISCUSS_EMAIL') ?></label>
 										<input class="form-control" type="text" name="email" value="<?php echo $this->email ?>" required/>

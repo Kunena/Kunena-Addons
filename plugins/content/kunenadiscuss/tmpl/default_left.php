@@ -23,7 +23,7 @@ $pluginParams = new Registry($plugin->params);
 $bootstrap    = $pluginParams->get('bootstrap');
 $avatarType   = KunenaFactory::getTemplate()->params->get('avatarType');
 
-if ($config->ordering_system == 'mesid')
+if ($config->orderingSystem == 'mesid')
 {
 	$this->numLink = $this->message->id;
 }
