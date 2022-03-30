@@ -1336,7 +1336,7 @@ class plgContentKunenaDiscuss extends CMSPlugin
 		);
 
 		ob_start();
-		KunenaForum::display('topic', 'default', null, $params);
+		KunenaForum::display('Topic', 'default', null, $params);
 		$str = ob_get_contents();
 		ob_end_clean();
 
