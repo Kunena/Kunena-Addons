@@ -86,6 +86,13 @@ class plgContentKunenaDiscuss extends CMSPlugin
 	public $config = null;
 
 	/**
+	 * @var boolean
+	 * @since Kunena
+	 *
+	 */
+	public $allowed = false;
+
+	/**
 	 * @param   object  $subject
 	 * @param   array   $params
 	 *
@@ -182,6 +189,11 @@ class plgContentKunenaDiscuss extends CMSPlugin
 	public function onContentBeforeDisplay($context, &$article, &$params, $limitstart = 0)
 	{
 		static $loaded = false;
+
+		if (!$this->allowed)
+		{
+			return;
+		}
 
 		// Initialize plug-in during the first run.
 		if (!$loaded)
