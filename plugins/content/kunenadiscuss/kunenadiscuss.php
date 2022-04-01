@@ -139,6 +139,8 @@ class plgContentKunenaDiscuss extends CMSPlugin
 		// Initialize plugin
 		parent::__construct($subject, $params);
 
+		$this->allowed = true;
+
 		$this->debug("Constructor called in {$this->app->scope}");
 	}
 
