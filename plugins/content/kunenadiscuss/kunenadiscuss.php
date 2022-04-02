@@ -1414,11 +1414,7 @@ class plgContentKunenaDiscuss extends CMSPlugin
 		}
 
 		$this->ktemplate = KunenaFactory::getTemplate();
-		if ($this->ktemplate->params->get('fontawesome'))
-		{
-			$doc = Factory::getDocument();
-			$doc->addScript('https://use.fontawesome.com/releases/v5.6.1/js/all.js', array(), array('defer' => true));
-		}
+		$this->ktemplate->loadFontawesome();
 
 		$this->debug("onAfterDisplayContent: Returning content for article {$article->id}");
 
