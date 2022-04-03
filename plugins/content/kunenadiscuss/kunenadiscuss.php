@@ -660,15 +660,6 @@ class plgContentKunenaDiscuss extends CMSPlugin
 			$doc = Factory::getDocument();
 			$doc->addStyleSheet(Uri::root(true) . "/plugins/content/kunenadiscuss/css/discuss.css");
 
-			$plugin       = PluginHelper::getPlugin('content', 'kunenadiscuss');
-			$pluginParams = new Registry($plugin->params);
-			$bootstrap    = $pluginParams->get('bootstrap');
-
-			if ($bootstrap != 'B3')
-			{
-				$doc->addStyleSheet(Uri::root(true) . "/plugins/content/kunenadiscuss/css/discussb2.css");
-			}
-
 			self::$includedCss = true;
 		}
 

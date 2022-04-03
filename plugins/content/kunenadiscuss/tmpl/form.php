@@ -16,16 +16,14 @@ use Joomla\CMS\Plugin\PluginHelper;
 use Joomla\Registry\Registry;
 
 $plugin       = PluginHelper::getPlugin('content', 'kunenadiscuss');
-$pluginParams = new Registry($plugin->params);
-$bootstrap    = $pluginParams->get('bootstrap');
 ?>
 <div id="kdiscuss-quick-post<?php echo $row->id ?>" class="kdiscuss-form">
 	<div><h3><?php echo Text::_('PLG_KUNENADISCUSS_DISCUSS') ?></h3></div>
 	<?php if (isset($this->msg)) : ?>
 		<?php echo $this->msg; ?>
 	<?php else: ?>
-		<div class="<?php echo $bootstrap; ?>12">
-				<div class="<?php echo $bootstrap; ?>6">
+		<div class="col-md-12">
+				<div class="col-md-6">
 					<div>
 						<div>
 							<?php if (!$this->user->exists()) : ?>

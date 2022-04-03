@@ -19,8 +19,6 @@ use Joomla\Registry\Registry;
 
 $config       = KunenaConfig::getInstance();
 $plugin       = PluginHelper::getPlugin('content', 'kunenadiscuss');
-$pluginParams = new Registry($plugin->params);
-$bootstrap    = $pluginParams->get('bootstrap');
 $avatarType   = KunenaFactory::getTemplate()->params->get('avatarType');
 
 if ($config->orderingSystem == 'mesid')
@@ -46,14 +44,14 @@ if ($this->message->hold)
 
 <div class="container-fluid">
 	<div class="row-fluid">
-		<div class="<?php echo $bootstrap; ?>1">
+		<div class="col-md-1">
 			<?php $avatar = $this->message->getAuthor()->getAvatarImage($avatarType, 120);
 
 			if ($avatar) : ?>
 				<?php echo $this->message->getAuthor()->getLink($avatar, null, '') ?>
 			<?php endif; ?>
 		</div>
-		<div class="<?php echo $bootstrap; ?>11">
+		<div class="col-md-11">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<span><?php echo $this->message->getAuthor()->getLink(null, null, '') . ' ' . Text::_('COM_KUNENA_MESSAGE_REPLIED'); ?></span>
