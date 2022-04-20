@@ -708,14 +708,15 @@ class KunenaDiscussHelper
 		{
 			$this->debug("showPlugin: Displaying only link to the topic");
 			$linktitle = Text::sprintf('PLG_KUNENADISCUSS_DISCUSS_ON_FORUMS', $topic->getReplies());
+			$linktopic = $this->getKunenaForumLink($topic->getUri($category), $linktitle);
 
-			return HTMLHelper::_('kunenaforum.link', $topic->getUri($category), $linktitle, $linktitle);
+			return $linktopic;
 		}
 		elseif ($topic->exists() && !$plgShowForm)
 		{
 			$this->debug("showPlugin: Displaying link to the topic because the form is disabled");
 			$linktitle = Text::sprintf('PLG_KUNENADISCUSS_DISCUSS_ON_FORUMS', $topic->getReplies());
-			$linktopic = HTMLHelper::_('kunenaforum.link', $topic->getUri($category), $linktitle, $linktitle);
+			$linktopic = $this->getKunenaForumLink($topic->getUri($category), $linktitle);
 		}
 		elseif (!$topic->exists() && !$plgShowForm)
 		{
@@ -1221,9 +1222,8 @@ class KunenaDiscussHelper
 			'filter_order_Dir' => $ordering ? 'desc' : 'asc',
 			'templatepath'     => dirname($layoutPath)
 		];
-		// public static function getMessagesByTopic($topic, $start = 0, $limit = 0, $ordering = 'ASC', $hold = 0, $orderbyid = false)
-		$messages = KunenaMessageHelper::getMessagesByTopic($topic->id, (int) !$ordering, $pluginParams->get('limit', 25), $ordering ? 'desc' : 'asc');
 
+		$messages          = KunenaMessageHelper::getMessagesByTopic($topic->id, (int) !$ordering, $pluginParams->get('limit', 25), $ordering ? 'desc' : 'asc');
 		$messageLayoutPath = PluginHelper::getLayoutPath('content', 'kunenadiscuss', $layout);
 
 		ob_start();
@@ -1234,5 +1234,24 @@ class KunenaDiscussHelper
 		$app->input->set('id', $article_id);
 
 		return $link_topic . $messagesHtml;
+	}
+
+	/**
+	 * Function to get a tmpl overrideable link
+	 *
+	 * @param   string  $url    The url to use on the link
+	 * @param   string  $title  The Title to use on the link
+	 * @param   string  $class  The class to set on the link
+	 *
+	 * @return string  html link
+	 */
+	private function getKunenaForumLink($url, $title, $class = '')
+	{
+		$layout         = $this->plugin->params->get('layout', 'default');
+		$linkLayoutPath = PluginHelper::getLayoutPath('content', 'kunenadiscuss', $layout . '_link');
+
+		ob_start();
+		include $linkLayoutPath;
+		return ob_get_clean();
 	}
 }
