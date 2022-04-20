@@ -13,14 +13,19 @@ defined('_JEXEC') or die('');
 
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Plugin\PluginHelper;
+
+$messageLayoutPath = PluginHelper::getLayoutPath('content', 'kunenadiscuss', $layout . '_message');
 ?>
 <div class="panel-heading">
-	<?php echo HTMLHelper::_('kunenaforum.link', $this->topic->getUri($this->category), Text::_('PLG_KUNENADISCUSS_POSTS') . ': ' . $this->topic->subject, null, 'kdiscuss-topic btn btn-outline-primary') ?>
+	<?php echo HTMLHelper::_('kunenaforum.link', $topic->getUri($category), Text::_('PLG_KUNENADISCUSS_POSTS') . ': ' . $topic->subject, null, 'kdiscuss-topic btn btn-outline-primary mb-3') ?>
 </div>
-<div class="panel-action-buttons pt-3 pb-3">
-	<?php echo $this->subRequest('Topic/Item/Actions')->set('id', $this->topic->id); ?>
-</div>
-<?php $this->displayMessages() ?>
-<div class=" panel-heading">
-	<?php echo HTMLHelper::_('kunenaforum.link', $this->topic->getUri($this->category), Text::_('COM_KUNENA_READMORE'), null, 'kdiscuss-readmore btn btn-outline-primary') ?>
+<?php foreach ($messages as $message)
+{
+	ob_start();
+	include $messageLayoutPath;
+	echo ob_get_clean();
+} ?>
+<div class="panel-heading">
+	<?php echo HTMLHelper::_('kunenaforum.link', $topic->getUri($category), Text::_('COM_KUNENA_READMORE'), null, 'kdiscuss-readmore btn btn-outline-primary') ?>
 </div>

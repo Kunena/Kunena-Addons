@@ -25,6 +25,7 @@ use Joomla\Registry\Registry;
 use Kunena\Forum\Libraries\Error\KunenaError;
 use Kunena\Forum\Libraries\Forum\Category\KunenaCategory;
 use Kunena\Forum\Libraries\Forum\Category\KunenaCategoryHelper;
+use Kunena\Forum\Libraries\Forum\Message\KunenaMessageHelper;
 use Kunena\Forum\Libraries\Forum\KunenaForum;
 use Kunena\Forum\Libraries\Forum\Topic\KunenaTopic;
 use Kunena\Forum\Libraries\Forum\Topic\KunenaTopicHelper;
@@ -1210,7 +1211,7 @@ class KunenaDiscussHelper
 		$article_id   = $app->input->get('id');
 		$layout       = $pluginParams->get('layout', 'default');
 		$layoutPath   = PluginHelper::getLayoutPath('content', 'kunenadiscuss', $layout);
-		// dd($layoutPath, dirname($layoutPath));
+
 		$ordering = $pluginParams->get('ordering', 1);        // 0=ASC, 1=DESC
 		$params   = [
 			'catid'            => $category->id,
@@ -1220,15 +1221,18 @@ class KunenaDiscussHelper
 			'filter_order_Dir' => $ordering ? 'desc' : 'asc',
 			'templatepath'     => dirname($layoutPath)
 		];
+		// public static function getMessagesByTopic($topic, $start = 0, $limit = 0, $ordering = 'ASC', $hold = 0, $orderbyid = false)
+		$messages = KunenaMessageHelper::getMessagesByTopic($topic->id, (int) !$ordering, $pluginParams->get('limit', 25), $ordering ? 'desc' : 'asc');
+
+		$messageLayoutPath = PluginHelper::getLayoutPath('content', 'kunenadiscuss', $layout);
 
 		ob_start();
-		KunenaForum::display('Topic', 'default', null, $params);
-		$str = ob_get_contents();
-		ob_end_clean();
+		include $messageLayoutPath;
+		$messagesHtml = ob_get_clean();
 
 		// Set the correct article id back on the content page
 		$app->input->set('id', $article_id);
 
-		return $link_topic . $str;
+		return $link_topic . $messagesHtml;
 	}
 }
