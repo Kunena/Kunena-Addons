@@ -654,10 +654,10 @@ class KunenaDiscussHelper
 				return '';
 			}
 
-			$create = $this->params->get('create', 0);
+			$create = $pluginParams->get('create', 0);
 
 			// Weeks in seconds
-			$createTime = $this->params->get('create_time', 0) * 604800;
+			$createTime = $pluginParams->get('create_time', 0) * 604800;
 
 			if ($createTime && $published + $createTime < $now)
 			{
