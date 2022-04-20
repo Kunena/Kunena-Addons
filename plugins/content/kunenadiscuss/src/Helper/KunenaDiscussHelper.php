@@ -1038,6 +1038,19 @@ class KunenaDiscussHelper
 		$form = (new FormFactory)->createForm('kunenadiscuss', ['control' => 'jform', 'load_data' => false]);
 		$form->loadFile(JPATH_SITE . '/plugins/content/kunenadiscuss/forms/kunenadiscuss.xml');
 
+		// When user is logged in disable name field and fill in user name
+		if ($this->plugin->user->exists())
+		{
+			$form->setFieldAttribute('name', 'disabled', 'true');
+			$form->setFieldAttribute('name', 'default', $this->plugin->user->getName());
+		}
+
+		// Remove Email field when not needed / required
+		if (!$this->plugin->config->askEmail || $this->plugin->user->exists())
+		{
+			$form->removeField('email');
+		}
+
 		$captcha = $app->get('captcha', '0');
 
 		// Set or remove captcha depending on settings
@@ -1049,6 +1062,7 @@ class KunenaDiscussHelper
 		{
 			$form->removeField('captcha');
 		}
+
 		if (!$form->process($data))
 		{
 			foreach ($form->getErrors() as $error)
