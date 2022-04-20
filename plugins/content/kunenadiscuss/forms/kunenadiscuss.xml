@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset name="kunenadiscuss">
+		<field name="name" type="text" label="PLG_KUNENADISCUSS_NAME" size="30" filter="string" default="" />
+		<field name="email" type="email" label="PLG_KUNENADISCUSS_EMAIL" size="30" filter="string" autocomplete="email"  required="true" default="" />
+		<field name="message" type="textarea" label="PLG_KUNENADISCUSS_MESSAGE" cols="50" rows="10" filter="string" required="true" default="" />
+	</fieldset>
+	<fieldset name="captcha">
+		<field name="captcha" type="captcha" label="PLG_KUNENADISCUSS_CAPTCHA" validate="captcha" required="true"/>
+	</fieldset>
+</form>
