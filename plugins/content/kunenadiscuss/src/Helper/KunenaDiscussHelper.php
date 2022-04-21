@@ -1051,11 +1051,17 @@ class KunenaDiscussHelper
 			$form->removeField('email');
 		}
 
-		$captcha = $app->get('captcha', '0');
-
 		// Set or remove captcha depending on settings
-		if ($captcha && $this->hasCaptcha())
+		if ($this->hasCaptcha())
 		{
+			$captcha = $app->get('captcha', '0');
+
+			// Check if the current page we are on has a captcha enabled / disabled
+			if ($app->getParams()->get('captcha', '0') == '0')
+			{
+				$app->getParams()->set('captcha', $captcha);
+			}
+
 			$form->setFieldAttribute('captcha', 'plugin', $captcha);
 		}
 		else
@@ -1068,7 +1074,6 @@ class KunenaDiscussHelper
 			foreach ($form->getErrors() as $error)
 			{
 				$this->debug("replyTopic: form data validation failed!: " . $error->getMessage());
-				$app->enqueueMessage($error->getMessage(), 'warning');
 			}
 
 			$app->setUserState('plg_content_kunenadiscuss.form.data', $data);
@@ -1108,6 +1113,7 @@ class KunenaDiscussHelper
 		$message->sendNotification();
 
 		$app->setUserState('plg_content_kunenadiscuss.form.data', null);
+		$app->enqueueMessage(Text::_('PLG_KUNENADISCUSS_POST_SUCCESS'), 'success');
 
 		// Redirect
 		$app->redirect($return);
@@ -1122,7 +1128,9 @@ class KunenaDiscussHelper
 	 */
 	protected function hasCaptcha()
 	{
-		return $this->plugin->user->canDoCaptcha();
+		$captcha = $this->plugin->app->get('captcha', '0');
+
+		return ($captcha && $this->plugin->user->canDoCaptcha());
 	}
 
 	/**
@@ -1179,18 +1187,19 @@ class KunenaDiscussHelper
 			$form->removeField('email');
 		}
 
-		$captcha = $app->get('captcha', '0');
-
 		// Set or remove captcha depending on settings
-		if ($captcha && $this->hasCaptcha())
+		if ($this->hasCaptcha())
 		{
+			$captcha = $app->get('captcha', '0');
 			$form->setFieldAttribute('captcha', 'plugin', $captcha);
+			// $form->setFieldAttribute('captcha', 'required', 'true');
 		}
 		else
 		{
 			$form->removeField('captcha');
 		}
 
+		$queuedMessages = $app->getMessageQueue();
 		$layout         = $this->plugin->params->get('layout', 'default');
 		$formLayoutPath = PluginHelper::getLayoutPath('content', 'kunenadiscuss', $layout . '_form');
 
