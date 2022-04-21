@@ -33,10 +33,10 @@ $returnPage = base64_encode(Uri::getInstance()->toString() . '#kdiscuss');
 				<div class="accordion-body">
 					<?php if (!$this->plugin->user->exists()) : ?>
 						<div class="alert alert-info"><?php echo Text::_('PLG_KUNENADISCUSS_GEN_GUEST'); ?></div>
-						<?php foreach ($queuedMessages as $msg) : ?>
-							<div class="alert alert-<?php echo $msg['type'] == 'error' ? 'danger' : $msg['type']; ?>"><?php echo $msg['message']; ?></div>
-						<?php endforeach; ?>
 					<?php endif; ?>
+					<?php foreach ($queuedMessages as $msg) : ?>
+						<div class="alert alert-<?php echo $msg['type'] == 'error' ? 'danger' : $msg['type']; ?>"><?php echo $msg['message']; ?></div>
+					<?php endforeach; ?>
 					<form action="<?php echo Route::_('index.php'); ?>" method="post" class="form-validate">
 						<?php foreach ($form->getFieldsets() as $fieldset) : ?>
 							<?php $fields = $form->getFieldset($fieldset->name); ?>
