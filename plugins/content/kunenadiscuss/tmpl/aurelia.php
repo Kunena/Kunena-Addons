@@ -18,7 +18,7 @@ use Joomla\CMS\Plugin\PluginHelper;
 $messageLayoutPath = PluginHelper::getLayoutPath('content', 'kunenadiscuss', $layout . '_message');
 ?>
 <div class="panel-heading">
-	<?php echo HTMLHelper::_('kunenaforum.link', $topic->getUri($category), Text::_('PLG_KUNENADISCUSS_POSTS') . ': ' . $topic->subject, null, 'kdiscuss-topic btn btn-outline-primary mb-3') ?>
+	<?php echo HTMLHelper::_('kunenaforum.link', $topic->getUri($category), Text::_('PLG_KUNENADISCUSS_POSTS') . ': ' . $topic->subject, null, 'kdiscuss-topic btn btn-outline-primary mt-1 mb-3') ?>
 </div>
 <?php foreach ($messages as $message)
 {
