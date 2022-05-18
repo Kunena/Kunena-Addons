@@ -23,7 +23,7 @@ $topic = $this->topic;
 		<?php
 		if ($this->params->get('sh_topiciconoravatar') == 1) : ?>
 			<li class="klatest-avatar">
-				<?php echo $this->lastPostAuthor->getLink($this->lastPostAuthor->getAvatarImage('', $this->params->get('avatarwidth'), $this->params->get('avatarheight'))) ?>
+				<?php echo $this->topic->getLastPostAuthor()->getLink($this->topic->getLastPostAuthor()->getAvatarImage('', $this->params->get('avatarwidth'), $this->params->get('avatarheight'))) ?>
 			</li>
 		<?php elseif ($this->params->get('sh_topiciconoravatar') == 0) : ?>
 			<li class="klatest-topicicon">
