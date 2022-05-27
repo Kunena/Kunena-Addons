@@ -8,6 +8,7 @@
  * @license       http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link          https://www.kunena.org
  **/
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die();
@@ -28,6 +29,6 @@ defined('_JEXEC') or die();
 	<?php if ($this->topics && $this->params->get('sh_morelink'))
 	:
 	?>
-		<p class="klatest-more"><?php echo Html::_('kunenaforum.link', $this->params->get('moreuri'), Text::_('MOD_KUNENALATEST_MORE_LINK')); ?></p>
+		<p class="klatest-more"><?php echo HTMLHelper::_('kunenaforum.link', $this->params->get('moreuri'), Text::_('MOD_KUNENALATEST_MORE_LINK')); ?></p>
 	<?php endif; ?>
 </div>
