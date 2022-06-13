@@ -35,7 +35,7 @@ if ($message->hold)
 {
 	return;
 }
-// dd($message);
+
 ?>
 
 <div class="container-fluid">
