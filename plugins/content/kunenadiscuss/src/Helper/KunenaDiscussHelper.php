@@ -14,7 +14,6 @@ namespace Kunena\Plugin\Content\Kunenadiscuss\Helper;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormFactory;
-use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\Plugin\PluginHelper;
@@ -26,7 +25,6 @@ use Kunena\Forum\Libraries\Error\KunenaError;
 use Kunena\Forum\Libraries\Forum\Category\KunenaCategory;
 use Kunena\Forum\Libraries\Forum\Category\KunenaCategoryHelper;
 use Kunena\Forum\Libraries\Forum\Message\KunenaMessageHelper;
-use Kunena\Forum\Libraries\Forum\KunenaForum;
 use Kunena\Forum\Libraries\Forum\Topic\KunenaTopic;
 use Kunena\Forum\Libraries\Forum\Topic\KunenaTopicHelper;
 use Kunena\Forum\Libraries\Login\KunenaLogin;
@@ -76,17 +74,13 @@ class KunenaDiscussHelper
 		// Joomla Id's of Users who can see debug info
 		$debugUsers = $pluginParams->get('show_debug_userids', '');
 
-		if (!$debug || ($debugUsers && !in_array($this->plugin->user->userid, explode(',', $debugUsers))))
-		{
+		if (!$debug || ($debugUsers && !in_array($this->plugin->user->userid, explode(',', $debugUsers)))) {
 			return;
 		}
 
-		if ($fatal)
-		{
+		if ($fatal) {
 			echo "<br /><span class=\"kdb-fatal\">[KunenaDiscuss FATAL: $msg ]</span>";
-		}
-		else
-		{
+		} else {
 			echo "<br />[KunenaDiscuss debug: $msg ]";
 		}
 	}
@@ -108,8 +102,7 @@ class KunenaDiscussHelper
 		$query = "SHOW TABLES LIKE '{$db->getPrefix()}kunenadiscuss'";
 		$db->setQuery($query);
 
-		if (!$db->loadResult())
-		{
+		if (!$db->loadResult()) {
 			$query = "CREATE TABLE IF NOT EXISTS `#__kunenadiscuss`
 					(`content_id` int(11) NOT NULL default '0',
 					 `thread_id` int(11) NOT NULL default '0',
@@ -117,12 +110,9 @@ class KunenaDiscussHelper
 					 )";
 			$db->setQuery($query);
 
-			try
-			{
+			try {
 				$db->execute();
-			}
-			catch (ExecutionFailureException $e)
-			{
+			} catch (ExecutionFailureException $e) {
 				KunenaError::displayDatabaseError($e);
 
 				return false;
@@ -134,19 +124,15 @@ class KunenaDiscussHelper
 			$query = "SHOW TABLES LIKE '{$db->getPrefix()}fb_discussbot'";
 			$db->setQuery($query);
 
-			if ($db->loadResult())
-			{
+			if ($db->loadResult()) {
 				$query = "REPLACE INTO `#__kunenadiscuss`
 					SELECT `content_id` , `thread_id`
 					FROM `#__fb_discussbot`";
 				$db->setQuery($query);
 
-				try
-				{
+				try {
 					$db->execute();
-				}
-				catch (ExecutionFailureException $e)
-				{
+				} catch (ExecutionFailureException $e) {
 					KunenaError::displayDatabaseError($e);
 
 					return false;
@@ -169,8 +155,7 @@ class KunenaDiscussHelper
 	 */
 	public function prepareContent($context, &$article, &$params)
 	{
-		if (!isset($article->state) || $article->state != 1)
-		{
+		if (!isset($article->state) || $article->state != 1) {
 			$this->debug("onPrepareContent: Article not published");
 
 			return;
@@ -179,13 +164,11 @@ class KunenaDiscussHelper
 		// Only proceed if this event is not originated by Kunena itself or we run the danger of an event recursion
 		$ksource = '';
 
-		if ($params instanceof Registry)
-		{
+		if ($params instanceof Registry) {
 			$ksource = $params->get('ksource', '');
 		}
 
-		if ($ksource != 'kunena')
-		{
+		if ($ksource != 'kunena') {
 			$app          = $this->plugin->app;
 			$pluginParams = $this->plugin->params;
 			$customTopics = $pluginParams->get('custom_topics', 1);
@@ -194,18 +177,13 @@ class KunenaDiscussHelper
 			$isStaticContent = !$articleCategory;
 			$articleCategory = (int) $articleCategory;
 
-			if ($isStaticContent)
-			{
+			if ($isStaticContent) {
 				$kunenaCategory = false;
-			}
-			else
-			{
+			} else {
 				$kunenaCategory = $this->getForumCategory($articleCategory);
 
-				if (!$kunenaCategory)
-				{
-					if (!$customTopics)
-					{
+				if (!$kunenaCategory) {
+					if (!$customTopics) {
 						$this->debug("onPrepareContent: Allowing only Custom Topics");
 					}
 				}
@@ -221,22 +199,18 @@ class KunenaDiscussHelper
 				|| (isset($article->state) && !$article->state)
 				|| empty($article->id)
 				|| $app->scope == 'com_kunena'
-			)
-			{
+			) {
 				$this->debug("onPrepareContent: Not allowed - removing tags.");
 
-				if (isset($article->text))
-				{
+				if (isset($article->text)) {
 					$article->text = preg_replace($regex, '', $article->text);
 				}
 
-				if (isset($article->introtext))
-				{
+				if (isset($article->introtext)) {
 					$article->introtext = preg_replace($regex, '', $article->introtext);
 				}
 
-				if (isset($article->fulltext))
-				{
+				if (isset($article->fulltext)) {
 					$article->fulltext = preg_replace($regex, '', $article->fulltext);
 				}
 			}
@@ -247,43 +221,32 @@ class KunenaDiscussHelper
 			$isFrontPage = $view == 'frontpage' || $view == 'featured';
 			$isArticle   = $view == 'article';
 
-			if ($isBlogPage)
-			{
+			if ($isBlogPage) {
 				$this->debug("onPrepareContent: we are in blog page.");
 				$show = $pluginParams->get('show_blog_page', 2);
-			}
-			elseif ($isFrontPage)
-			{
+			} elseif ($isFrontPage) {
 				$this->debug("onPrepareContent: we are in front page.");
 				$show = $pluginParams->get('show_front_page', 2);
-			}
-			elseif ($isArticle)
-			{
+			} elseif ($isArticle) {
 				$this->debug("onPrepareContent: we are viewing an article.");
 				$show = $pluginParams->get('show_article_pages', 2);
-			}
-			else
-			{
+			} else {
 				$this->debug("onPrepareContent: we are in {$view}/{$layout} page.");
 				$show = $pluginParams->get('show_other_pages', 2);
 			}
 
-			if (!$show || isset($this->plugin::$plgDisplay[$article->id]))
-			{
+			if (!$show || isset($this->plugin::$plgDisplay[$article->id])) {
 				$this->debug("onPrepareContent: Configured to show nothing");
 
-				if (isset($article->text))
-				{
+				if (isset($article->text)) {
 					$article->text = preg_replace($regex, '', $article->text);
 				}
 
-				if (isset($article->introtext))
-				{
+				if (isset($article->introtext)) {
 					$article->introtext = preg_replace($regex, '', $article->introtext);
 				}
 
-				if (isset($article->fulltext))
-				{
+				if (isset($article->fulltext)) {
 					$article->fulltext = preg_replace($regex, '', $article->fulltext);
 				}
 
@@ -292,15 +255,11 @@ class KunenaDiscussHelper
 
 			$this->debug("onPrepareContent: Article {$article->id}");
 
-			if (!$customTopics)
-			{
+			if (!$customTopics) {
 				$this->debug("onPrepareContent: Custom Topics disabled");
-			}
-			else
-			{
+			} else {
 				// Get fulltext from frontpage articles (tag can be inside fulltext)
-				if ($isFrontPage)
-				{
+				if ($isFrontPage) {
 					$db    = $this->plugin->db;
 					$query = $db->getQuery(true);
 					$query->select($db->quoteName('fulltext'))
@@ -308,36 +267,26 @@ class KunenaDiscussHelper
 						->where("id={$db->quote($article->id)}");
 					$db->setQuery($query);
 
-					try
-					{
+					try {
 						$fulltext = $db->loadResult();
-					}
-					catch (\DatabaseExceptionExecuting $e)
-					{
+					} catch (\DatabaseExceptionExecuting $e) {
 						KunenaError::displayDatabaseError($e);
 
 						return false;
 					}
 
 					$text = $article->introtext . ' ' . $fulltext;
-				}
-				else
-				{
-					if (isset($article->text))
-					{
+				} else {
+					if (isset($article->text)) {
 						$text = $article->text;
-					}
-					else
-					{
+					} else {
 						$text = array();
 
-						if (isset($article->introtext))
-						{
+						if (isset($article->introtext)) {
 							$text[] = $article->introtext;
 						}
 
-						if (isset($article->fulltext))
-						{
+						if (isset($article->fulltext)) {
 							$text[] = $article->fulltext;
 						}
 
@@ -347,27 +296,22 @@ class KunenaDiscussHelper
 
 				$matches = array();
 
-				if (preg_match($regex, $text, $matches))
-				{
+				if (preg_match($regex, $text, $matches)) {
 					$kunenaTopic = intval($matches[1]);
 
-					if (isset($article->text))
-					{
+					if (isset($article->text)) {
 						$article->text = preg_replace("/{kunena_discuss:$kunenaTopic}/", '', $article->text, 1);
 					}
 
-					if (isset($article->introtext))
-					{
+					if (isset($article->introtext)) {
 						$article->introtext = preg_replace("/{kunena_discuss:$kunenaTopic}/", '', $article->introtext, 1);
 					}
 
-					if (isset($article->fulltext))
-					{
+					if (isset($article->fulltext)) {
 						$article->fulltext = preg_replace("/{kunena_discuss:$kunenaTopic}/", '', $article->fulltext, 1);
 					}
 
-					if ($kunenaTopic == 0)
-					{
+					if ($kunenaTopic == 0) {
 						$this->debug("onPrepareContent: Searched for {kunena_discuss:#}: Discussion of this article has been disabled.");
 
 						return;
@@ -380,8 +324,7 @@ class KunenaDiscussHelper
 				);
 			}
 
-			if ($kunenaCategory || $kunenaTopic)
-			{
+			if ($kunenaCategory || $kunenaTopic) {
 				$this->plugin::$plgDisplay[$article->id] = $this->showPlugin($kunenaCategory, $kunenaTopic, $article, $show == 1);
 			}
 		}
@@ -407,14 +350,12 @@ class KunenaDiscussHelper
 		$categoryPairs = explode(';', $pluginParams->get('category_mapping', ''));
 		$categoryMap   = [];
 
-		foreach ($categoryPairs as $pair)
-		{
+		foreach ($categoryPairs as $pair) {
 			$pair  = explode(',', $pair);
 			$key   = isset($pair[0]) ? intval($pair[0]) : 0;
 			$value = isset($pair[1]) ? intval($pair[1]) : 0;
 
-			if ($key > 0)
-			{
+			if ($key > 0) {
 				$categoryMap[$key] = $value;
 			}
 		}
@@ -425,8 +366,7 @@ class KunenaDiscussHelper
 		// Exclude the plugin from the following categories
 		$denyCategories = explode(',', $pluginParams->get('deny_categories', ''));
 
-		if (!is_numeric($catid) || intval($catid) == 0)
-		{
+		if (!is_numeric($catid) || intval($catid) == 0) {
 			$this->debug("onPrepareContent.Deny: Category {$catid} is not valid");
 
 			return false;
@@ -439,12 +379,9 @@ class KunenaDiscussHelper
 			->where("id = {$db->quote($catid)}");
 		$db->setQuery($query);
 
-		try
-		{
+		try {
 			$db->execute();
-		}
-		catch (\Exception $e)
-		{
+		} catch (\Exception $e) {
 			$this->debug("onPrepareContent.Parent IDs: Error executing query - " . $e);
 		}
 
@@ -453,14 +390,11 @@ class KunenaDiscussHelper
 		$this->debug("onPrepareContent.Parent category ID is: " . $parent_catid);
 
 		// Let's check the mapping
-		if (!empty($categoryMap))
-		{
-			if (isset($categoryMap[$catid]))
-			{
+		if (!empty($categoryMap)) {
+			if (isset($categoryMap[$catid])) {
 				$forumcatid = intval($categoryMap[$catid]);
 
-				if (!$forumcatid)
-				{
+				if (!$forumcatid) {
 					$this->debug("onPrepareContent.Deny: Category {$catid} was disabled in the category map.");
 
 					return false;
@@ -469,11 +403,8 @@ class KunenaDiscussHelper
 				$this->debug("onPrepareContent.Allow: Category {$catid} is in the category map using Kunena category {$forumcatid}");
 
 				return $forumcatid;
-			}
-			else
-			{
-				if (!empty($parent_catid) && isset($categoryMap[$parent_catid]))
-				{
+			} else {
+				if (!empty($parent_catid) && isset($categoryMap[$parent_catid])) {
 					$forumcatid = intval($categoryMap[$parent_catid]);
 					$msg        = "onPrepareContent.Allow: "
 						. "Parent category {$parent_catid} of the article category {$catid} is in the category map using Kunena category {$forumcatid}";
@@ -484,22 +415,19 @@ class KunenaDiscussHelper
 			}
 		}
 
-		if (!$default)
-		{
+		if (!$default) {
 			$this->debug("onPrepareContent.Deny: There is no default Kunena category");
 
 			return false;
 		}
 
-		if (in_array('0', $allowCategories) || in_array($catid, $allowCategories))
-		{
+		if (in_array('0', $allowCategories) || in_array($catid, $allowCategories)) {
 			$this->debug("onPrepareContent.Allow: Category {$catid} was listed in allow list and is using default Kunena category {$default}");
 
 			return $default;
 		}
 
-		if (in_array('0', $denyCategories) || in_array($catid, $denyCategories))
-		{
+		if (in_array('0', $denyCategories) || in_array($catid, $denyCategories)) {
 			$this->debug("onPrepareContent.Deny: Category {$catid} was listed in deny list");
 
 			return false;
@@ -533,8 +461,7 @@ class KunenaDiscussHelper
 		$formLocation = $pluginParams->get('form_location', 0);
 
 		// Don't repeat the CSS for each instance of this plugin in a page!
-		if (!$this->plugin::$includedCss)
-		{
+		if (!$this->plugin::$includedCss) {
 			$layout = $pluginParams->get('layout', 'default');
 
 			/** @var Joomla\CMS\WebAsset\WebAssetManager $wa */
@@ -554,31 +481,23 @@ class KunenaDiscussHelper
 			->where("content_id = {$db->quote($row->id)}");
 		$db->setQuery($query);
 
-		try
-		{
+		try {
 			$result = $db->loadResult();
-		}
-		catch (ExecutionFailureException $e)
-		{
+		} catch (ExecutionFailureException $e) {
 			KunenaError::displayDatabaseError($e);
 
 			return false;
 		}
 
-		if ($topic_id)
-		{
+		if ($topic_id) {
 			// Custom topic found
 			$this->debug("showPlugin: Loading Custom Topic {$topic_id}");
 			$id = $topic_id;
-		}
-		elseif ($result)
-		{
+		} elseif ($result) {
 			// Reference found
 			$this->debug("showPlugin: Loading Stored Topic {$result}");
 			$id = $result;
-		}
-		else
-		{
+		} else {
 			// No topic exists
 			$this->debug("showPlugin: No topic found");
 			$id = 0;
@@ -587,27 +506,20 @@ class KunenaDiscussHelper
 		$topic = KunenaTopicHelper::get($id);
 
 		// If topic has been moved, find the real topic
-		while ($topic->moved_id)
-		{
+		while ($topic->moved_id) {
 			$this->debug("showPlugin: Topic {$topic->id} has been moved to {$topic->moved_id}");
 			$topic = KunenaTopicHelper::get($topic->moved_id);
 		}
 
-		if ($result)
-		{
-			if (!$topic->exists())
-			{
+		if ($result) {
+			if (!$topic->exists()) {
 				$this->debug("showPlugin: Topic does not exist, removing reference to {$result}");
 				$this->deleteReference($row);
-			}
-			elseif ($topic->id != $id)
-			{
+			} elseif ($topic->id != $id) {
 				$this->debug("showPlugin: Topic has been moved or changed, updating reference to {$topic->id}");
 				$this->updateReference($row, $topic->id);
 			}
-		}
-		elseif ($topic_id && $topic->exists())
-		{
+		} elseif ($topic_id && $topic->exists()) {
 			$this->debug("showPlugin: First hit to Custom Topic, created reference to topic {$topic_id}");
 			$this->createReference($row, $topic_id);
 		}
@@ -615,40 +527,32 @@ class KunenaDiscussHelper
 		// Initialise some variables
 		$subject = $row->title;
 
-		if (isset($row->publish_up) && $row->publish_up != '1000-01-01 00:00:00')
-		{
+		if (isset($row->publish_up) && $row->publish_up != '1000-01-01 00:00:00') {
 			// Take start publishing date
 			$published = Factory::getDate($row->publish_up)->toUnix();
-		}
-		else
-		{
+		} else {
 			// Or created date if publish_up is empty
 			$published = Factory::getDate($row->created)->toUnix();
 		}
 
 		$now = Factory::getDate()->toUnix();
 
-		if ($topic->exists())
-		{
+		if ($topic->exists()) {
 			// If current user doesn't have authorisation to read existing topic, we are done
-			if ($id && !$topic->isAuthorised('read'))
-			{
+			if ($id && !$topic->isAuthorised('read')) {
 				$this->debug("showPlugin: Topic said {$topic->getError()}");
 
 				return '';
 			}
 
 			$category = $topic->getCategory();
-		}
-		else
-		{
+		} else {
 			$this->debug("showPlugin: Let's see what we can do..");
 
 			// If current user doesn't have authorisation to read category, we are done
 			$category = KunenaCategoryHelper::get($catid);
 
-			if (!$category->isAuthorised('read'))
-			{
+			if (!$category->isAuthorised('read')) {
 				$this->debug("showPlugin: Category {$catid} said {$category->getError()}");
 
 				return '';
@@ -659,20 +563,17 @@ class KunenaDiscussHelper
 			// Weeks in seconds
 			$createTime = $pluginParams->get('create_time', 0) * 604800;
 
-			if ($createTime && $published + $createTime < $now)
-			{
+			if ($createTime && $published + $createTime < $now) {
 				$this->debug("showPlugin: Topic creation time expired, cannot start new discussion anymore");
 
 				return '';
 			}
 
-			if ($create)
-			{
+			if ($create) {
 				$this->debug("showPlugin: First hit, created new topic {$topic_id} into forum");
 				$topic = $this->createTopic($row, $category, $subject);
 
-				if ($topic === false)
-				{
+				if ($topic === false) {
 					return '';
 				}
 			}
@@ -681,45 +582,34 @@ class KunenaDiscussHelper
 		// Do we allow answers into the topic? Weeks in seconds or 0 (forever)
 		$closeTime = $pluginParams->get('close_time', 0) * 604800;
 
-		if ($closeTime && $topic->exists())
-		{
+		if ($closeTime && $topic->exists()) {
 			$closeReason = $pluginParams->get('close_reason', 0);
 
-			if ($closeReason)
-			{
+			if ($closeReason) {
 				$this->debug("showPlugin: Close time by last post");
 				$closeTime += $topic->last_post_time;
-			}
-			else
-			{
+			} else {
 				$this->debug("showPlugin: Close time by topic creation");
 				$closeTime += $topic->first_post_time;
 			}
-		}
-		else
-		{
+		} else {
 			// Topic has not yet been created or will kept open forever
 			$closeTime = $now + 1;
 		}
 
 		$linktopic = '';
 
-		if ($topic->exists() && $linkOnly)
-		{
+		if ($topic->exists() && $linkOnly) {
 			$this->debug("showPlugin: Displaying only link to the topic");
 			$linktitle = Text::sprintf('PLG_KUNENADISCUSS_DISCUSS_ON_FORUMS', $topic->getReplies());
 			$linktopic = $this->getKunenaForumLink($topic->getUri($category), $linktitle);
 
 			return $linktopic;
-		}
-		elseif ($topic->exists() && !$plgShowForm)
-		{
+		} elseif ($topic->exists() && !$plgShowForm) {
 			$this->debug("showPlugin: Displaying link to the topic because the form is disabled");
 			$linktitle = Text::sprintf('PLG_KUNENADISCUSS_DISCUSS_ON_FORUMS', $topic->getReplies());
 			$linktopic = $this->getKunenaForumLink($topic->getUri($category), $linktitle);
-		}
-		elseif (!$topic->exists() && !$plgShowForm)
-		{
+		} elseif (!$topic->exists() && !$plgShowForm) {
 			$linktopic = Text::_('PLG_KUNENADISCUSS_NEW_TOPIC_NOT_CREATED');
 		}
 
@@ -727,20 +617,15 @@ class KunenaDiscussHelper
 		$quickPost = '';
 		$canPost   = $this->canPost($category, $topic);
 
-		if ($canPost && $plgShowForm && (!$closeTime || $closeTime >= $now))
-		{
-			if (Factory::getUser()->get('guest'))
-			{
+		if ($canPost && $plgShowForm && (!$closeTime || $closeTime >= $now)) {
+			if (Factory::getUser()->get('guest')) {
 				$this->debug("showPlugin: Guest can post: this feature doesn't work well if Joomla caching or Cache Plugin is enabled!");
 			}
 
-			if (Factory::getApplication()->input->getInt('kdiscussContentId', -1, 'POST') == $row->id)
-			{
+			if (Factory::getApplication()->input->getInt('kdiscussContentId', -1, 'POST') == $row->id) {
 				$this->debug("showPlugin: Reply topic!");
 				$quickPost .= $this->replyTopic($row, $category, $topic, $subject);
-			}
-			else
-			{
+			} else {
 				$this->debug("showPlugin: Displaying form");
 				$quickPost .= $this->showForm($row, $category, $topic, $subject);
 			}
@@ -749,17 +634,13 @@ class KunenaDiscussHelper
 		// This will be used all the way through to tell users how many posts are in the forum.
 		$content = $this->showTopic($category, $topic, $linktopic);
 
-		if (!$content && !$quickPost)
-		{
+		if (!$content && !$quickPost) {
 			return $linktopic;
 		}
 
-		if ($formLocation)
-		{
+		if ($formLocation) {
 			$content = '<div id="kdiscuss" class="kunenadiscuss">' . $content . '<br />' . $quickPost . '</div>';
-		}
-		else
-		{
+		} else {
 			$content = '<div id="kdiscuss" class="kunenadiscuss">' . $quickPost . "<br />" . $content . '</div>';
 		}
 
@@ -783,12 +664,9 @@ class KunenaDiscussHelper
 			->where("content_id={$db->quote($row->id)}");
 		$db->setQuery($query);
 
-		try
-		{
+		try {
 			$db->execute();
-		}
-		catch (ExecutionFailureException $e)
-		{
+		} catch (ExecutionFailureException $e) {
 			$this->debug("deleteReference: Delete error " . $e);
 
 			KunenaError::displayDatabaseError($e);
@@ -818,12 +696,9 @@ class KunenaDiscussHelper
 			->where("content_id={$db->quote($row->id)}");
 		$db->setQuery($query);
 
-		try
-		{
+		try {
 			$db->execute();
-		}
-		catch (ExecutionFailureException $e)
-		{
+		} catch (ExecutionFailureException $e) {
 			$this->debug("updateReference: Update error " . $e);
 
 			KunenaError::displayDatabaseError($e);
@@ -855,12 +730,9 @@ class KunenaDiscussHelper
 			->values("{$db->quote($row->id)}, {$db->quote($topic_id)}");
 		$db->setQuery($query);
 
-		try
-		{
+		try {
 			$db->execute();
-		}
-		catch (ExecutionFailureException $e)
-		{
+		} catch (ExecutionFailureException $e) {
 			$this->debug("createReference: Error:" . $e);
 			$this->deleteReference($row);
 		}
@@ -879,8 +751,7 @@ class KunenaDiscussHelper
 	 */
 	protected function createTopic($row, KunenaCategory $category, $subject)
 	{
-		if (!$category->exists())
-		{
+		if (!$category->exists()) {
 			$this->debug("showPlugin: Topic creation failed: forum category doesn't exist!");
 
 			return false;
@@ -893,8 +764,7 @@ class KunenaDiscussHelper
 		$add_snippet = $pluginParams->get('add_article_snippet');
 		$textwords   = implode(' ', array_slice(explode(' ', $row->fulltext), 0, 10));
 
-		if (empty($textwords))
-		{
+		if (empty($textwords)) {
 			$textwords = implode(' ', array_slice(explode(' ', $row->introtext), 0, 10));
 		}
 
@@ -902,28 +772,21 @@ class KunenaDiscussHelper
 
 		$type = $pluginParams->get('bbcode');
 
-		switch ($type)
-		{
+		switch ($type) {
 			case 'full':
 			case 'intro':
 			case 'link':
-				if ($add_snippet)
-				{
+				if ($add_snippet) {
 					$contents = $snippet . "[article={$type}]{$row->id}[/article]";
-				}
-				else
-				{
+				} else {
 					$contents = "[article={$type}]{$row->id}[/article]";
 				}
 				break;
 
 			default:
-				if ($add_snippet)
-				{
+				if ($add_snippet) {
 					$contents = $snippet . "[article]{$row->id}[/article]";
-				}
-				else
-				{
+				} else {
 					$contents = "[article]{$row->id}[/article]";
 				}
 		}
@@ -945,19 +808,13 @@ class KunenaDiscussHelper
 		list($topic, $message) = $category->newTopic($params, $topic_owner, $safefields);
 
 		// Set time of message published by the plugin in the Unix timestamp format, start publishing date of the article
-		if (isset($row->publish_up) && $row->publish_up != '1000-01-01 00:00:00')
-		{
+		if (isset($row->publish_up) && $row->publish_up != '1000-01-01 00:00:00') {
 			$message->time = Factory::getDate($row->publish_up)->toUnix();
-		}
-		else
-		{
-			if (isset($row->created) && $row->created != '1000-01-01 00:00:00')
-			{
+		} else {
+			if (isset($row->created) && $row->created != '1000-01-01 00:00:00') {
 				// Created date of the article
 				$message->time = Factory::getDate($row->created)->toUnix();
-			}
-			else
-			{
+			} else {
 				// Current date and time
 				$message->time = Factory::getDate()->toUnix();
 			}
@@ -965,8 +822,7 @@ class KunenaDiscussHelper
 
 		$success = $message->save();
 
-		if (!$success)
-		{
+		if (!$success) {
 			$this->debug("showPlugin: Error:" . $message->getError());
 
 			$this->plugin->app->enqueueMessage($message->getError(), 'error');
@@ -990,12 +846,9 @@ class KunenaDiscussHelper
 	 */
 	protected function canPost(KunenaCategory $category, KunenaTopic $topic)
 	{
-		if ($topic->exists())
-		{
+		if ($topic->exists()) {
 			return $topic->isAuthorised('reply');
-		}
-		else
-		{
+		} else {
 			return $category->isAuthorised('topic.reply');
 		}
 	}
@@ -1017,15 +870,13 @@ class KunenaDiscussHelper
 		// Get return URI from form
 		$return = base64_decode($app->input->get('return', '', 'string'));
 
-		if (empty($return))
-		{
+		if (empty($return)) {
 			// When no return URI set inform redirect to current URL
 			$return = Uri::getInstance()->toString();
 		}
 
 		// Check for request forgeries.
-		if (!Session::checkToken())
-		{
+		if (!Session::checkToken()) {
 			$app->enqueueMessage(Text::_('COM_KUNENA_ERROR_TOKEN'), 'error');
 			$app->redirect($return);
 
@@ -1039,40 +890,32 @@ class KunenaDiscussHelper
 		$form->loadFile(JPATH_SITE . '/plugins/content/kunenadiscuss/forms/kunenadiscuss.xml');
 
 		// When user is logged in disable name field and fill in user name
-		if ($this->plugin->user->exists())
-		{
-			$form->setFieldAttribute('name', 'disabled', 'true');
+		if ($this->plugin->user->exists()) {
+			$form->setFieldAttribute('name', 'required', 'false');
 			$form->setFieldAttribute('name', 'default', $this->plugin->user->getName());
 		}
 
 		// Remove Email field when not needed / required
-		if (!$this->plugin->config->askEmail || $this->plugin->user->exists())
-		{
+		if (!$this->plugin->config->askEmail || $this->plugin->user->exists()) {
 			$form->removeField('email');
 		}
 
 		// Set or remove captcha depending on settings
-		if ($this->hasCaptcha())
-		{
+		if ($this->hasCaptcha()) {
 			$captcha = $app->get('captcha', '0');
 
 			// Check if the current page we are on has a captcha enabled / disabled
-			if ($app->getParams()->get('captcha', '0') == '0')
-			{
+			if ($app->getParams()->get('captcha', '0') == '0') {
 				$app->getParams()->set('captcha', $captcha);
 			}
 
 			$form->setFieldAttribute('captcha', 'plugin', $captcha);
-		}
-		else
-		{
+		} else {
 			$form->removeField('captcha');
 		}
 
-		if (!$form->process($data))
-		{
-			foreach ($form->getErrors() as $error)
-			{
+		if (!$form->process($data)) {
+			foreach ($form->getErrors() as $error) {
 				$this->debug("replyTopic: form data validation failed!: " . $error->getMessage());
 			}
 
@@ -1083,8 +926,7 @@ class KunenaDiscussHelper
 		}
 
 		// Create topic if it doesn't exist
-		if (!$topic->exists())
-		{
+		if (!$topic->exists()) {
 			$this->debug("replyTopic: Create topic");
 
 			$topic = $this->createTopic($row, $category, $subject);
@@ -1100,8 +942,7 @@ class KunenaDiscussHelper
 		$message = $topic->newReply($params);
 		$success = $message->save();
 
-		if (!$success)
-		{
+		if (!$success) {
 			$this->debug("replyTopic: can't save message: " . $message->getError());
 
 			$app->enqueueMessage($message->getError(), 'error');
@@ -1147,18 +988,14 @@ class KunenaDiscussHelper
 	{
 		$canPost = $this->canPost($category, $topic);
 
-		if (!$canPost)
-		{
-			if (!$this->plugin->user->exists())
-			{
+		if (!$canPost) {
+			if (!$this->plugin->user->exists()) {
 				$this->debug("showForm: Public posting is not permitted, show login instead");
 				$login        = KunenaLogin::getInstance();
 				$loginlink    = $login->getLoginURL();
 				$registerlink = $login->getRegistrationURL();
 				$this->msg    = Text::sprintf('PLG_KUNENADISCUSS_LOGIN_OR_REGISTER', '"' . $loginlink . '"', '"' . $registerlink . '"');
-			}
-			else
-			{
+			} else {
 				$this->debug("showForm: Unfortunately you cannot discuss this item");
 				$this->msg = Text::_('PLG_KUNENADISCUSS_NO_PERMISSION_TO_POST');
 			}
@@ -1175,27 +1012,22 @@ class KunenaDiscussHelper
 		$form->bind($formData);
 
 		// When user is logged in disable name field and fill in user name
-		if ($this->plugin->user->exists())
-		{
+		if ($this->plugin->user->exists()) {
 			$form->setFieldAttribute('name', 'disabled', 'true');
 			$form->setFieldAttribute('name', 'default', $this->plugin->user->getName());
 		}
 
 		// Remove Email field when not needed / required
-		if (!$this->plugin->config->askEmail || $this->plugin->user->exists())
-		{
+		if (!$this->plugin->config->askEmail || $this->plugin->user->exists()) {
 			$form->removeField('email');
 		}
 
 		// Set or remove captcha depending on settings
-		if ($this->hasCaptcha())
-		{
+		if ($this->hasCaptcha()) {
 			$captcha = $app->get('captcha', '0');
 			$form->setFieldAttribute('captcha', 'plugin', $captcha);
 			// $form->setFieldAttribute('captcha', 'required', 'true');
-		}
-		else
-		{
+		} else {
 			$form->removeField('captcha');
 		}
 
@@ -1221,8 +1053,7 @@ class KunenaDiscussHelper
 	 */
 	protected function showTopic(KunenaCategory $category, KunenaTopic $topic, $link_topic)
 	{
-		if (!$topic->exists())
-		{
+		if (!$topic->exists()) {
 			$this->debug("showTopic: No messages to render");
 
 			return '';
