@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Kunena Discuss Plugin
  *
@@ -10,4 +11,9 @@
  **/
 defined('_JEXEC') or die('');
 
-include __DIR__ . '/default_left.php';
+use Joomla\CMS\HTML\HTMLHelper;
+
+$class .= ' btn btn-outline-primary mb-3';
+
+echo HTMLHelper::_('kunenaforum.link', $url, $title, $title, $class);
+?>
