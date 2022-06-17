@@ -45,23 +45,6 @@ class PlgContentKunenadiscussInstallerScript
 	 */
 	public function preflight($type, $parent)
 	{
-		// Check for minimum required Joomla! version
-		if (!KunenaDiscussInstallerHelper::checkMinimumJoomlaVersion($type, $parent)) {
-			// We are not on minimum Joomla! version: get out of here...
-			return false;
-		}
-
-		$type = strtolower($type);
-
-		if ($type == 'update') {
-			$this->installedVersion = KunenaDiscussInstallerHelper::getInstalledVersion('plugin', 'kunenadiscuss');
-
-			// Load all maintenance variables
-			$this->setPreFlightMaintenanceVariables();
-
-			// Do preflight maintenance
-			KunenaDiscussInstallerHelper::doMaintenance($this->preflightVariables, $this->installedVersion);
-		}
 	}
 
 	/**
