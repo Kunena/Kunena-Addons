@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE extension>
-<extension version="3.6.0" type="plugin" group="content" method="upgrade">
+<extension version="4.0" type="plugin" group="content" method="upgrade">
 	<name>plg_content_kunenadiscuss</name>
 	<version>6.0.0-BETA1</version>
 	<creationDate>@kunenaversiondate@</creationDate>
@@ -22,6 +22,7 @@
 	<media destination="plg_content_kunenadiscuss" folder="media">
 		<folder>css</folder>
 	</media>
+	<scriptfile>install.script.php</scriptfile>
 	<languages folder="language">
 		<!-- Transifex alphabetical order -->
 		<language tag="af-ZA">af-ZA/af-ZA.plg_content_kunenadiscuss.ini</language>
