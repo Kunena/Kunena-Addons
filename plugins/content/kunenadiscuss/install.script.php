@@ -5,7 +5,7 @@
  *
  * @package       Kunena.plg_content_kunenadiscuss
  *
- * @copyright (C) 2008 - 2019 Kunena Team. All rights reserved.
+ * @copyright (C) 2008 - 2022 Kunena Team. All rights reserved.
  * @license       http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link          https://www.kunena.org
  **/
