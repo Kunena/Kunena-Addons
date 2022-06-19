@@ -10,6 +10,8 @@
  * @link          https://www.kunena.org
  **/
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Filesystem\Folder;
 use Kunena\Plugin\Content\Kunenadiscuss\Helper\KunenaDiscussInstallerHelper;
 
 defined('_JEXEC') or die();
@@ -45,6 +47,48 @@ class PlgContentKunenadiscussInstallerScript
 	 */
 	public function preflight($type, $parent)
 	{
+		if (strtolower($type) == 'update') {
+			// Load all maintenance variables
+			$this->setPreFlightMaintenanceVariables();
+
+			if (file_exists(JPATH_SITE . '/plugins/content/kunenadiscuss/src/Helper/KunenaDiscussInstallerHelper.php')) {
+				$this->installedVersion = KunenaDiscussInstallerHelper::getInstalledVersion('plugin', 'kunenadiscuss');
+
+				// Do preflight maintenance
+				KunenaDiscussInstallerHelper::doMaintenance($this->preflightVariables, $this->installedVersion);
+			} else {
+				// We are on a version that doesn't have the Installer Helper installed, so pré 6.0.0
+				// We need to cleanup one-time manually
+				$remove_directories = [
+					JPATH_SITE . '/plugins/content/kunenadiscuss/css',
+					JPATH_SITE . '/plugins/content/kunenadiscuss/language',
+					JPATH_SITE . '/plugins/content/kunenadiscuss/tmpl',
+					JPATH_SITE . '/media/plg_content_kunenadiscuss',
+				];
+
+				if (isset($this->preflightVariables['remove_directories'])) {
+					foreach ($remove_directories as $directory) {
+						$application = Factory::getApplication();
+
+						if (is_dir($directory)) {
+							if (Folder::delete($directory)) {
+								$application->enqueueMessage(
+									'Obsolete (left-over from previous release) directory "' . $directory
+										. '" successfully removed.',
+									'Message'
+								);
+							} else {
+								$application->enqueueMessage(
+									'Directory "' . $directory
+										. '" (left-over from previous release) could not be removed, please remove manually.',
+									'Warning'
+								);
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 	/**
