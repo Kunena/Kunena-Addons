@@ -5,7 +5,7 @@
  *
  * @package       Kunena.plg_content_kunenadiscuss
  *
- * @copyright (C) 2008 - 2019 Kunena Team. All rights reserved.
+ * @copyright     @kunenacopyright@
  * @license       http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link          https://www.kunena.org
  **/
@@ -16,23 +16,18 @@ use Kunena\Forum\Libraries\Date\KunenaDate;
 
 $config       = $this->plugin->config; //KunenaConfig::getInstance();
 $avatarType   = 'none'; //KunenaFactory::getTemplate()->params->get('avatarType');
-if ($config->orderingSystem == 'mesid')
-{
+if ($config->orderingSystem == 'mesid') {
 	$numLink = $message->id;
-}
-else
-{
+} else {
 	$numLink = $message->replynum;
 }
 
 // Do not display first message
-if ($message->id == $topic->first_post_id)
-{
+if ($message->id == $topic->first_post_id) {
 	return;
 }
 
-if ($message->hold)
-{
+if ($message->hold) {
 	return;
 }
 

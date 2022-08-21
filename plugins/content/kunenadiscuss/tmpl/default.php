@@ -5,7 +5,7 @@
  *
  * @package       Kunena.plg_content_kunenadiscuss
  *
- * @copyright (C) 2008 - 2019 Kunena Team. All rights reserved.
+ * @copyright     @kunenacopyright@
  * @license       http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link          https://www.kunena.org
  **/
@@ -20,8 +20,7 @@ $messageLayoutPath = PluginHelper::getLayoutPath('content', 'kunenadiscuss', $la
 <div class="panel-heading">
 	<?php echo HTMLHelper::_('kunenaforum.link', $topic->getUri($category), Text::_('PLG_KUNENADISCUSS_POSTS') . ': ' . $topic->subject, null, 'kdiscuss-topic btn btn-outline-primary mb-3') ?>
 </div>
-<?php foreach ($messages as $message)
-{
+<?php foreach ($messages as $message) {
 	ob_start();
 	include $messageLayoutPath;
 	echo ob_get_clean();
