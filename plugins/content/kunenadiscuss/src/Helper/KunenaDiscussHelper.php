@@ -14,6 +14,7 @@ namespace Kunena\Plugin\Content\Kunenadiscuss\Helper;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormFactory;
+use Joomla\CMS\Form\FormFactoryInterface;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\Plugin\PluginHelper;
@@ -553,7 +554,7 @@ class KunenaDiscussHelper
 			$category = KunenaCategoryHelper::get($catid);
 
 			if (!$category->isAuthorised('read')) {
-				$this->debug("showPlugin: Category {$catid} said {$category->getError()}");
+				$this->debug("showPlugin: Kunena Category {$catid} said {$category->getError()}");
 
 				return '';
 			}
@@ -1002,7 +1003,8 @@ class KunenaDiscussHelper
 		}
 
 		$app  = $this->plugin->app;
-		$form = (new FormFactory)->createForm('kunenadiscuss', ['control' => 'jform', 'load_data' => false]);
+		$formFactory = Factory::getContainer()->get(FormFactoryInterface::class);
+		$form = $formFactory->createForm('kunenadiscuss', ['control' => 'jform', 'load_data' => false]);
 		$form->loadFile(JPATH_SITE . '/plugins/content/kunenadiscuss/forms/kunenadiscuss.xml');
 
 		// Load form data from previous attempt
