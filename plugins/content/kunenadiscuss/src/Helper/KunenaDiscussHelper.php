@@ -887,7 +887,8 @@ class KunenaDiscussHelper
 		// Get the data from POST
 		$data = $app->input->post->get('jform', [], 'array');
 
-		$form = (new FormFactory)->createForm('kunenadiscuss', ['control' => 'jform', 'load_data' => false]);
+		$formFactory = Factory::getContainer()->get(FormFactoryInterface::class);
+		$form = $formFactory->createForm('kunenadiscuss', ['control' => 'jform', 'load_data' => false]);
 		$form->loadFile(JPATH_SITE . '/plugins/content/kunenadiscuss/forms/kunenadiscuss.xml');
 
 		// When user is logged in disable name field and fill in user name
