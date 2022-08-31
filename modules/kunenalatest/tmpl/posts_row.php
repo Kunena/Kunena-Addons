@@ -84,7 +84,7 @@ $topic = $this->topic;
 		<?php endif; ?>
 		<?php if ($this->params->get('sh_time')) : ?>
 			<li class="klatest-posttime"><?php $override = $this->params->get('dateformat');
-				echo KunenaDate::getInstance($this->message->time)->toKunena($override ? $override : 'config_postDateFormatt'); ?></li>
+				echo KunenaDate::getInstance($this->message->time)->toKunena($override ? $override : 'config_postDateFormat'); ?></li>
 		<?php endif; ?>
 	</ul>
 </li>
