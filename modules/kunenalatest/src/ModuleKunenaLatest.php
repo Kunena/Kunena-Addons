@@ -8,6 +8,9 @@
  * @license       http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link          https://www.kunena.org
  **/
+
+namespace Kunena\Module\KunenaLatest\Site;
+
 use Joomla\CMS\Factory;
 use Joomla\CMS\Helper\ModuleHelper;
 use Joomla\CMS\Uri\Uri;
@@ -142,9 +145,3 @@ class ModuleKunenaLatest extends KunenaModule
 	}
 }
 
-/**
- * Class modKunenaLatest is for backwards compatibility.
- */
-class modKunenaLatest extends ModuleKunenaLatest
-{
-}

@@ -10,6 +10,7 @@
  **/
 use Joomla\CMS\Language\Text;
 use Kunena\Forum\Libraries\Forum\KunenaForum;
+use Kunena\Module\KunenaLatest\Site\ModuleKunenaLatest;
 
 defined('_JEXEC') or die();
 
@@ -30,8 +31,6 @@ if (!KunenaForum::enabled())
 
 	return;
 }
-
-require_once __DIR__ . '/class.php';
 
 /** @var stdClass $module */
 /** @var Registry $params */
