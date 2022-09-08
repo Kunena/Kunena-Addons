@@ -13,6 +13,7 @@ use Kunena\Forum\Libraries\Date\KunenaDate;
 use Kunena\Forum\Libraries\Html\KunenaParser;
 use Kunena\Forum\Libraries\Icons\KunenaIcons;
 use Kunena\Forum\Libraries\Template\KunenaTemplate;
+use Kunena\Module\KunenaLatest\Site\ModuleKunenaLatest;
 
 defined('_JEXEC') or die ();
 $topic = $this->topic;
