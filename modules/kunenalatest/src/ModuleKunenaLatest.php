@@ -29,7 +29,7 @@ class ModuleKunenaLatest extends KunenaModule
 {
 	protected function _display(): void
 	{
-		Factory::getDocument()->addStyleSheet(Uri::root(true) . '/modules/mod_kunenalatest/tmpl/css/kunenalatest.css');
+		$this->document->getWebAssetManager()->registerAndUseStyle('kunenalatest', Uri::root() . '/modules/mod_kunenalatest/tmpl/css/kunenalatest.css');
 
 		// Load language files.
 		KunenaFactory::loadLanguage('com_kunena.sys', 'admin');
