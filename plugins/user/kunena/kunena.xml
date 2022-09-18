@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE extension>
+<extension version="4.0.0" type="plugin" group="user" method="upgrade">
+	<name>plg_stopforumspam_kunena</name>
+	<version>6.0.0-BETA-DEV</version>
+	<creationDate>@kunenaversiondate@</creationDate>
+	<author>Kunena Team</author>
+	<authorEmail>admin@kunena.org</authorEmail>
+	<authorUrl>https://www.kunena.org</authorUrl>
+	<copyright>(C) 2008 - 2022 Kunena Team. All rights reserved.</copyright>
+	<license>GNU/GPL</license>
+	<description>PLG_STOPFORUMSPAM_KUNENA_DESCRIPTION</description>
+
+	<files>
+		<filename plugin="kunena">kunena.php</filename>
+	</files>
+
+	<languages folder="language">
+		<!-- Transifex alphabetical order -->
+		<language tag="af-ZA">af-ZA/af-ZA.plg_stopforumspam_kunena.ini</language>
+		<language tag="af-ZA">af-ZA/af-ZA.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="ar-AA">ar-AA/ar-AA.plg_stopforumspam_kunena.ini</language>
+		<language tag="ar-AA">ar-AA/ar-AA.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="az-ZA">az-AZ/az-AZ.plg_stopforumspam_kunena.ini</language>
+		<language tag="az-ZA">az-AZ/az-AZ.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="bg-BG">bg-BG/bg-BG.plg_stopforumspam_kunena.ini</language>
+		<language tag="bg-BG">bg-BG/bg-BG.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="bs-BA">bs-BA/bs-BA.plg_stopforumspam_kunena.ini</language>
+		<language tag="bs-BA">bs-BA/bs-BA.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="ca-ES">ca-ES/ca-ES.plg_stopforumspam_kunena.ini</language>
+		<language tag="ca-ES">ca-ES/ca-ES.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="ckb-IQ">ckb-IQ/ckb-IQ.plg_stopforumspam_kunena.ini</language>
+		<language tag="ckb-IQ">ckb-IQ/ckb-IQ.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="cs-CZ">cs-CZ/cs-CZ.plg_stopforumspam_kunena.ini</language>
+		<language tag="cs-CZ">cs-CZ/cs-CZ.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="cy-GB">cy-GB/cy-GB.plg_stopforumspam_kunena.ini</language>
+		<language tag="cy-GB">cy-GB/cy-GB.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="da-DK">da-DK/da-DK.plg_stopforumspam_kunena.ini</language>
+		<language tag="da-DK">da-DK/da-DK.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="de-DE">de-DE/de-DE.plg_stopforumspam_kunena.ini</language>
+		<language tag="de-DE">de-DE/de-DE.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="el-GR">el-GR/el-GR.plg_stopforumspam_kunena.ini</language>
+		<language tag="el-GR">el-GR/el-GR.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_stopforumspam_kunena.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="eo-XX">eo-XX/eo-XX.plg_stopforumspam_kunena.ini</language>
+		<language tag="eo-XX">eo-XX/eo-XX.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="es_GT">es_GT/es_GT.plg_stopforumspam_kunena.ini</language>
+		<language tag="es_GT">es_GT/es_GT.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="es-ES">es-ES/es-ES.plg_stopforumspam_kunena.ini</language>
+		<language tag="es-ES">es-ES/es-ES.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="et-EE">et-EE/et-EE.plg_stopforumspam_kunena.ini</language>
+		<language tag="et-EE">et-EE/et-EE.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="eu-ES">eu-ES/eu-ES.plg_stopforumspam_kunena.ini</language>
+		<language tag="eu-ES">eu-ES/eu-ES.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="fa-IR">fa-IR/fa-IR.plg_stopforumspam_kunena.ini</language>
+		<language tag="fa-IR">fa-IR/fa-IR.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="fi-FI">fi-FI/fi-FI.plg_stopforumspam_kunena.ini</language>
+		<language tag="fi-FI">fi-FI/fi-FI.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="fr-FR">fr-FR/fr-FR.plg_stopforumspam_kunena.ini</language>
+		<language tag="fr-FR">fr-FR/fr-FR.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="gl_ES">gl_ES/gl_ES.plg_stopforumspam_kunena.ini</language>
+		<language tag="gl_ES">gl_ES/gl_ES.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="he-IL">he-IL/he-IL.plg_stopforumspam_kunena.ini</language>
+		<language tag="he-IL">he-IL/he-IL.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="hi-IN">hi_IN/hi-IN.plg_stopforumspam_kunena.ini</language>
+		<language tag="hi-IN">hi_IN/hi-IN.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="hr-HR">hr_HR/hr-HR.plg_stopforumspam_kunena.ini</language>
+		<language tag="hr-HR">hr_HR/hr-HR.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="hu-HU">hu-HU/hu-HU.plg_stopforumspam_kunena.ini</language>
+		<language tag="hu-HU">hu-HU/hu-HU.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="id-ID">id-ID/id-ID.plg_stopforumspam_kunena.ini</language>
+		<language tag="id-ID">id-ID/id-ID.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="it-IT">it-IT/it-IT.plg_stopforumspam_kunena.ini</language>
+		<language tag="it-IT">it-IT/it-IT.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="ja-JP">ja-JP/ja-JP.plg_stopforumspam_kunena.ini</language>
+		<language tag="ja-JP">ja-JP/ja-JP.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="km-KH">km-KH/km-KH.plg_stopforumspam_kunena.ini</language>
+		<language tag="km-KH">km-KH/km-KH.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="ko-KR">ko-KR/ko-KR.plg_stopforumspam_kunena.ini</language>
+		<language tag="ko-KR">ko-KR/ko-KR.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="kz-KZ">kz-KZ/kz-KZ.plg_stopforumspam_kunena.ini</language>
+		<language tag="kz-KZ">kz-KZ/kz-KZ.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="lt-LT">lt-LT/lt-LT.plg_stopforumspam_kunena.ini</language>
+		<language tag="lt-LT">lt-LT/lt-LT.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="lv-LV">lv-LV/lv-LV.plg_stopforumspam_kunena.ini</language>
+		<language tag="lv-LV">lv-LV/lv-LV.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="mk-MK">mk-MK/mk-MK.plg_stopforumspam_kunena.ini</language>
+		<language tag="mk-MK">mk-MK/mk-MK.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="nb-NO">nb-NO/nb-NO.plg_stopforumspam_kunena.ini</language>
+		<language tag="nb-NO">nb-NO/nb-NO.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="nl-BE">nl-BE/nl-BE.plg_stopforumspam_kunena.ini</language>
+		<language tag="nl-BE">nl-BE/nl-BE.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="nl-NL">nl-NL/nl-NL.plg_stopforumspam_kunena.ini</language>
+		<language tag="nl-NL">nl-NL/nl-NL.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="pl-PL">pl-PL/pl-PL.plg_stopforumspam_kunena.ini</language>
+		<language tag="pl-PL">pl-PL/pl-PL.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="pt-BR">pt-BR/pt-BR.plg_stopforumspam_kunena.ini</language>
+		<language tag="pt-BR">pt-BR/pt-BR.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="pt-PT">pt-PT/pt-PT.plg_stopforumspam_kunena.ini</language>
+		<language tag="pt-PT">pt-PT/pt-PT.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="ro-RO">ro-RO/ro-RO.plg_stopforumspam_kunena.ini</language>
+		<language tag="ro-RO">ro-RO/ro-RO.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="ru-RU">ru-RU/ru-RU.plg_stopforumspam_kunena.ini</language>
+		<language tag="ru-RU">ru-RU/ru-RU.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="sk-SK">sk-SK/sk-SK.plg_stopforumspam_kunena.ini</language>
+		<language tag="sk-SK">sk-SK/sk-SK.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="sl-SI">sl-SI/sl-SI.plg_stopforumspam_kunena.ini</language>
+		<language tag="sl-SI">sl-SI/sl-SI.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="sq-AL">sq-AL/sq-AL.plg_stopforumspam_kunena.ini</language>
+		<language tag="sq-AL">sq-AL/sq-AL.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="sr-RS">sr-RS/sr-RS.plg_stopforumspam_kunena.ini</language>
+		<language tag="sr-RS">sr-RS/sr-RS.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="sr-YU">sr-YU/sr-YU.plg_stopforumspam_kunena.ini</language>
+		<language tag="sr-YU">sr-YU/sr-YU.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="sv-SE">sv-SE/sv-SE.plg_stopforumspam_kunena.ini</language>
+		<language tag="sv-SE">sv-SE/sv-SE.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="th-TH">th-TH/th-TH.plg_stopforumspam_kunena.ini</language>
+		<language tag="th-TH">th-TH/th-TH.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="tr-TR">tr-TR/tr-TR.plg_stopforumspam_kunena.ini</language>
+		<language tag="tr-TR">tr-TR/tr-TR.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="ug-CN">ug-CN/ug-CN.plg_stopforumspam_kunena.ini</language>
+		<language tag="ug-CN">ug-CN/ug-CN.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="uk-UA">uk-UA/uk-UA.plg_stopforumspam_kunena.ini</language>
+		<language tag="uk-UA">uk-UA/uk-UA.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="ur-PK">ur-PK/ur-PK.plg_stopforumspam_kunena.ini</language>
+		<language tag="ur-PK">ur-PK/ur-PK.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="uz-UZ">uz-UZ/uz-UZ.plg_stopforumspam_kunena.ini</language>
+		<language tag="uz-UZ">uz-UZ/uz-UZ.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="vi-VN">vi-VN/vi-VN.plg_stopforumspam_kunena.ini</language>
+		<language tag="vi-VN">vi-VN/vi-VN.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="zh-CN">zh-CN/zh-CN.plg_stopforumspam_kunena.ini</language>
+		<language tag="zh-CN">zh-CN/zh-CN.plg_stopforumspam_kunena.sys.ini</language>
+		<language tag="zh-TW">zh-TW/zh-TW.plg_stopforumspam_kunena.ini</language>
+		<language tag="zh-TW">zh-TW/zh-TW.plg_stopforumspam_kunena.sys.ini</language>
+	</languages>
+</extension>
