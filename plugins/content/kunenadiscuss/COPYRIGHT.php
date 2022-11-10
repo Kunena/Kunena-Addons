@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Kunena Discuss Plugin
  *
@@ -8,6 +9,7 @@
  * @license       http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link          https://www.kunena.org
  **/
+
 die('');
 ?>
 
