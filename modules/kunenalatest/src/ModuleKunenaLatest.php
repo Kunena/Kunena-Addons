@@ -12,7 +12,6 @@
 
 namespace Kunena\Module\KunenaLatest\Site;
 
-use Joomla\CMS\Factory;
 use Joomla\CMS\Helper\ModuleHelper;
 use Joomla\CMS\Uri\Uri;
 use Kunena\Forum\Libraries\Factory\KunenaFactory;
@@ -112,6 +111,8 @@ class ModuleKunenaLatest extends KunenaModule
     }
 
     /**
+     * Shorten link given with the given length
+     * 
      * @param   string $link
      * @param   int    $len
      *
@@ -120,24 +121,5 @@ class ModuleKunenaLatest extends KunenaModule
     public static function shortenLink($link, $len)
     {
         return preg_replace('/>([^<]{' . $len . '})[^<]*</u', '>\1...<', $link);
-    }
-
-    /**
-     * @param   KunenaViewTopics $view
-     * @param   string           $message
-     *
-     * @return string
-     */
-    public static function setSubjectTitle($view, $message)
-    {
-        $title = '';
-
-        if ($view->params->get('subjecttitle') == 'subject_only') {
-            $title = $view->escape($view->topic->subject);
-        } elseif ($view->params->get('subjecttitle') == 'body') {
-            $title = KunenaParser::stripBBCode($message, $view->params->get('titlelength'));
-        }
-
-        return $title;
     }
 }
