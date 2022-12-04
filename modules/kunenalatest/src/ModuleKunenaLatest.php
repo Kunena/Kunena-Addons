@@ -41,7 +41,7 @@ class ModuleKunenaLatest extends KunenaModule
         $categories = is_array($categories) ? implode(',', $categories) : $categories;
         $this->params->set('limitstart', 0);
         $this->params->set('limit', $this->params->get('nbpost', 5));
-        $this->params->set('topics_categories', $categories);
+        $this->params->set('topics_categories_klatest', $categories);
         $this->params->set('topics_catselection', $this->params->get('sh_category_id_in', 1));
         $this->params->set('topics_time', $this->params->get('show_list_time', 168));
         $userid = KunenaUserHelper::get()->userid;
