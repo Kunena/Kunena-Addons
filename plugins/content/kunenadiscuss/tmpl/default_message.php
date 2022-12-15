@@ -39,7 +39,7 @@ if ($message->hold) {
         <div class="row g-0">
             <div class="card-header panel-heading">
                 <div class="float-start"><?php echo $message->getAuthor()->getLink(null, null, '') . ' ' . Text::_('COM_KUNENA_MESSAGE_REPLIED'); ?></div>
-                <div class="float-end" style="padding-left: 5px;"><a href="<?php echo $topic->getUri($category) . '#' . $message->id; ?>" rel="canonical">#<?php echo $numLink; ?></a></div>
+                <div class="float-end" style="padding-left: 5px;"><a href="<?php echo $topic->getUri($category, $message) . '#' . $message->id; ?>" rel="canonical">#<?php echo $numLink; ?></a></div>
                 <div class="float-end text-muted"><?php echo KunenaDate::getInstance($message->time)->toKunena('config_postDateFormat') ?></div>
             </div>
             <div class="col-md-1">

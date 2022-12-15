@@ -13,7 +13,6 @@
 namespace Kunena\Plugin\Content\Kunenadiscuss\Helper;
 
 use Joomla\CMS\Factory;
-use Joomla\CMS\Form\FormFactory;
 use Joomla\CMS\Form\FormFactoryInterface;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Plugin\CMSPlugin;
