@@ -78,7 +78,7 @@ class KunenaDiscussInstallerHelper
 
         // Abort if the current Joomla release is older
         if (version_compare($joomlaVersion->getShortVersion(), $minimumJoomlaRelease, 'lt')) {
-            if (version_compare($joomlaVersion->getShortVersion(), '3.8', 'lt')) {
+            if (version_compare($joomlaVersion->getShortVersion(), '4.0', 'lt')) {
                 Factory::getApplication()->enqueueMessage(
                     'Cannot install ' . $parent->get('element')
                         . '. Minimum required Joomla version is ' . $minimumJoomlaRelease
