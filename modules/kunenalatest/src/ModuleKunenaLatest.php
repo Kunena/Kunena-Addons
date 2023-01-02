@@ -38,7 +38,6 @@ class ModuleKunenaLatest extends KunenaModule
 
         // Convert module parameters into topics view parameters
         $categories = $this->params->get('category_id', 0);
-        $categories = is_array($categories) ? implode(',', $categories) : $categories;
         $this->params->set('limitstart', 0);
         $this->params->set('limit', $this->params->get('nbpost', 5));
         $this->params->set('topics_categories_klatest', $categories);
