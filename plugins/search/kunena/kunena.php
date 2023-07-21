@@ -12,10 +12,20 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\Helpers\StringHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Plugin\PluginHelper;
+use Kunena\Forum\Libraries\Factory\KunenaFactory;
+use Kunena\Forum\Libraries\Forum\KunenaForum;
+use Kunena\Forum\Libraries\Forum\Message\KunenaMessage;
+use Kunena\Forum\Libraries\Forum\Message\KunenaMessageHelper;
+use Kunena\Forum\Libraries\Html\KunenaParser;
+
 // Kunena detection and version check
 $minKunenaVersion = '6.0';
 
-if (!class_exists('KunenaForum') || !KunenaForum::isCompatible($minKunenaVersion)) {
+if (!class_exists('Kunena\Forum\Libraries\Forum\KunenaForum') || !KunenaForum::isCompatible($minKunenaVersion)) {
     return;
 }
 
@@ -29,7 +39,7 @@ KunenaForum::setup();
 KunenaFactory::loadLanguage('com_kunena.sys', 'admin');
 
 // Initialize plugin
-$app = JFactory::getApplication();
+$app = Factory::getApplication();
 $app->registerEvent('onContentSearch', 'plgSearchKunena');
 $app->registerEvent('onContentSearchAreas', 'plgSearchKunenaAreas');
 
@@ -43,7 +53,7 @@ function &plgSearchKunenaAreas()
     static $areas = array();
 
     if (empty($areas)) {
-        $areas['kunena'] = JText::_('COM_KUNENA');
+        $areas['kunena'] = Text::_('COM_KUNENA');
     }
 
     return $areas;
@@ -64,7 +74,7 @@ function plgSearchKunena($text, $phrase = '', $ordering = '', $areas = null)
         return array();
     }
 
-    $plugin       = JPluginHelper::getPlugin('search', 'kunena');
+    $plugin       = PluginHelper::getPlugin('search', 'kunena');
     $pluginParams = new JRegistry();
     $pluginParams->loadString($plugin->params);
 
@@ -82,7 +92,7 @@ function plgSearchKunena($text, $phrase = '', $ordering = '', $areas = null)
         return array();
     }
 
-    $db = JFactory::getDbo();
+    $db = Factory::getDbo();
 
     // After this, you have to add the database part. This will be the most difficult part, because this changes per situation.
     // In the coding examples later on you will find some of the examples used by Joomla! 1.5 core Search Plugins.
@@ -135,23 +145,23 @@ function plgSearchKunena($text, $phrase = '', $ordering = '', $areas = null)
     }
 
     $params = array('orderby' => $orderby, 'where' => $where, 'starttime' => -1);
-    list($total, $messages) = KunenaForumMessageHelper::getLatestMessages(false, 0, $limit, $params);
+    list($total, $messages) = KunenaMessageHelper::getLatestMessages(false, 0, $limit, $params);
     $rows = array();
 
     foreach ($messages as $message) {
-        /** @var KunenaForumMessage $message */
+        /** @var KunenaMessage $message */
         // Function must return: href, title, section, created, text, browsernav
         $row          = new StdClass();
         $row->id      = $message->id;
         $row->href    = $message->getUrl();
-        $row->title   = JString::substr($message->subject, '0', $contentLimit);
+        $row->title   = StringHelper::substr($message->subject, '0', $contentLimit);
         $row->section = $message->getCategory()->name;
         $row->created = $message->time;
 
         if ($bbcode) {
-            $row->text = KunenaHtmlParser::parseBBCode($message->message, $contentLimit);
+            $row->text = KunenaParser::parseBBCode($message->message, $contentLimit);
         } else {
-            $row->text = KunenaHtmlParser::stripBBCode($message->message, $contentLimit);
+            $row->text = KunenaParser::stripBBCode($message->message, $contentLimit);
         }
 
         $row->browsernav = $openInNewPage ? 1 : 0;

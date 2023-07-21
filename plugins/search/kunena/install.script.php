@@ -12,6 +12,9 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Installer\Installer;
+
 class PlgSearchKunenaInstallerScript
 {
     function postflight($type, $parent)
@@ -24,12 +27,12 @@ class PlgSearchKunenaInstallerScript
     {
         // Joomla 2.5+
         $query = "SELECT extension_id FROM #__extensions WHERE type='plugin' AND folder='{$folder}' AND element='{$name}'";
-        $db    = JFactory::getDbo();
+        $db    = Factory::getDbo();
         $db->setQuery($query);
         $pluginid = $db->loadResult();
 
         if ($pluginid) {
-            $installer = new JInstaller();
+            $installer = new Installer();
             $installer->uninstall('plugin', $pluginid);
         }
     }

@@ -12,6 +12,17 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Plugin\PluginHelper;
+use Joomla\CMS\Session\Session;
+use Joomla\Uri\Uri;
+use Kunena\Forum\Libraries\Config\KunenaConfig;
+use Kunena\Forum\Libraries\Date\KunenaDate;
+use Kunena\Forum\Libraries\Factory\KunenaFactory;
+use Kunena\Forum\Libraries\Login\KunenaLogin;
+use Kunena\Forum\Libraries\Module\KunenaModule;
+
 /**
  * Class ModuleKunenaLogin
  */
@@ -19,7 +30,7 @@ class ModuleKunenaLogin extends KunenaModule
 {
     protected function _display()
     {
-        JFactory::getDocument()->addStyleSheet(JUri::root(true) . '/modules/mod_kunenalogin/tmpl/css/kunenalogin.css');
+        Factory::getDocument()->addStyleSheet(Uri::root(true) . '/modules/mod_kunenalogin/tmpl/css/kunenalogin.css');
 
         // Load language files.
         KunenaFactory::loadLanguage();
@@ -27,15 +38,15 @@ class ModuleKunenaLogin extends KunenaModule
 
         $this->params->def('greeting', 1);
 
-        $this->document = JFactory::getDocument();
+        $this->document = Factory::getDocument();
         $this->me       = KunenaFactory::getUser();
-        $token          = JSession::getFormToken();
+        $token          = Session::getFormToken();
 
         $login  = KunenaLogin::getInstance();
         $access = KunenaConfig::getInstance()->access_component;
 
         if (!$access) {
-            JFactory::getApplication()->enqueueMessage(JText::_('MOD_KUNENALOGIN_DIRECT'), 'error');
+            Factory::getApplication()->enqueueMessage(Text::_('MOD_KUNENALOGIN_DIRECT'), 'error');
 
             return false;
         }
@@ -48,7 +59,7 @@ class ModuleKunenaLogin extends KunenaModule
                 $this->lostPasswordUrl = $login->getResetURL();
                 $this->lostUsernameUrl = $login->getRemindURL();
                 $this->registerUrl     = $login->getRegistrationURL();
-                $this->remember        = JPluginHelper::isEnabled('system', 'remember');
+                $this->remember        = PluginHelper::isEnabled('system', 'remember');
             }
         } else {
             $this->type          = 'logout';
@@ -57,8 +68,8 @@ class ModuleKunenaLogin extends KunenaModule
 
             if ($login) {
                 $this->logout      = $login->getLogoutURL();
-                $this->recentPosts = JHtml::_('kunenaforum.link', 'index.php?option=com_kunena&view=topics', JText::_('MOD_KUNENALOGIN_RECENT'));
-                $this->myPosts     = JHtml::_('kunenaforum.link', 'index.php?option=com_kunena&view=topics&layout=user&mode=default', JText::_('MOD_KUNENALOGIN_MYPOSTS'));
+                $this->recentPosts = Html::_('kunenaforum.link', 'index.php?option=com_kunena&view=topics', Text::_('MOD_KUNENALOGIN_RECENT'));
+                $this->myPosts     = Html::_('kunenaforum.link', 'index.php?option=com_kunena&view=topics&layout=user&mode=default', Text::_('MOD_KUNENALOGIN_MYPOSTS'));
             }
 
             // Private messages
@@ -67,13 +78,13 @@ class ModuleKunenaLogin extends KunenaModule
 
             if ($this->params->get('showmessage') && $private) {
                 $count                 = $private->getUnreadCount($this->me->userid);
-                $this->privateMessages = $private->getInboxLink($count ? JText::sprintf('COM_KUNENA_PMS_INBOX_NEW', $count) : JText::_('COM_KUNENA_PMS_INBOX'));
+                $this->privateMessages = $private->getInboxLink($count ? Text::sprintf('COM_KUNENA_PMS_INBOX_NEW', $count) : Text::_('COM_KUNENA_PMS_INBOX'));
             }
         }
 
         $this->return = $this->getReturnURL();
 
-        require JModuleHelper::getLayoutPath('mod_kunenalogin');
+        require ModuleHelper::getLayoutPath('mod_kunenalogin');
     }
 
     /**
@@ -85,7 +96,7 @@ class ModuleKunenaLogin extends KunenaModule
         $itemid = (int) $this->params->get($this->type);
 
         if ($itemid) {
-            $app  = JFactory::getApplication();
+            $app  = Factory::getApplication();
             $menu = $app->getMenu();
 
             $item = $menu->getItem($itemid);
