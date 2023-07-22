@@ -12,6 +12,13 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Language\Text;
+use Kunena\Forum\Libraries\Factory\KunenaFactory;
+use Kunena\Forum\Libraries\Forum\KunenaStatistics;
+use Kunena\Forum\Libraries\Module\KunenaModule;
+use Kunena\Forum\Libraries\Route\KunenaRoute;
+use Joomla\CMS\Helper\ModuleHelper;
+
 /**
  * Class ModuleKunenaStats
  */
@@ -37,40 +44,40 @@ class ModuleKunenaStats extends KunenaModule
     {
         $this->type       = $this->params->get('type', 'general');
         $this->items      = (int) $this->params->get('items', 5);
-        $this->stats_link = $this->_getStatsLink(JText::_('MOD_KUNENASTATS_LINK'), JText::_('MOD_KUNENASTATS_LINK'));
+        $this->stats_link = $this->_getStatsLink(Text::_('MOD_KUNENASTATS_LINK'), Text::_('MOD_KUNENASTATS_LINK'));
 
         $this->stats = $this->getStats();
-        require JModuleHelper::getLayoutPath('mod_kunenastats');
+        require ModuleHelper::getLayoutPath('mod_kunenastats');
     }
 
     protected function getStats()
     {
-        $stats = KunenaForumStatistics::getInstance();
+        $stats = KunenaStatistics::getInstance();
 
         switch ($this->type) {
             case 'topics':
-                $this->titleHeader = JText::_('MOD_KUNENASTATS_TOPTOPICS');
-                $this->valueHeader = JText::_('MOD_KUNENASTATS_HITS');
+                $this->titleHeader = Text::_('MOD_KUNENASTATS_TOPTOPICS');
+                $this->valueHeader = Text::_('MOD_KUNENASTATS_HITS');
                 $items             = $stats->loadTopTopics($this->items);
                 break;
             case 'posters':
-                $this->titleHeader = JText::_('MOD_KUNENASTATS_TOPPOSTERS');
-                $this->valueHeader = JText::_('MOD_KUNENASTATS_POSTS');
+                $this->titleHeader = Text::_('MOD_KUNENASTATS_TOPPOSTERS');
+                $this->valueHeader = Text::_('MOD_KUNENASTATS_POSTS');
                 $items             = $stats->loadTopPosters($this->items);
                 break;
             case 'profiles':
-                $this->titleHeader = JText::_('MOD_KUNENASTATS_TOPPROFILES');
-                $this->valueHeader = JText::_('MOD_KUNENASTATS_HITS');
+                $this->titleHeader = Text::_('MOD_KUNENASTATS_TOPPROFILES');
+                $this->valueHeader = Text::_('MOD_KUNENASTATS_HITS');
                 $items             = $stats->loadTopProfiles($this->items);
                 break;
             case 'polls':
-                $this->titleHeader = JText::_('MOD_KUNENASTATS_TOPPOLLS');
-                $this->valueHeader = JText::_('MOD_KUNENASTATS_VOTES');
+                $this->titleHeader = Text::_('MOD_KUNENASTATS_TOPPOLLS');
+                $this->valueHeader = Text::_('MOD_KUNENASTATS_VOTES');
                 $items             = $stats->loadTopPolls($this->items);
                 break;
             case 'thanks':
-                $this->titleHeader = JText::_('MOD_KUNENASTATS_TOPTHANKS');
-                $this->valueHeader = JText::_('MOD_KUNENASTATS_THANKS');
+                $this->titleHeader = Text::_('MOD_KUNENASTATS_TOPTHANKS');
+                $this->valueHeader = Text::_('MOD_KUNENASTATS_THANKS');
                 $items             = $stats->loadTopThankyous($this->items);
                 break;
             default:
@@ -114,9 +121,9 @@ class ModuleKunenaStats extends KunenaModule
         if ($number < 10000) {
             $output = $number;
         } elseif ($number >= 1000000) {
-            $output = $number / 1000000 . JText::_('COM_KUNENA_MILLION');
+            $output = $number / 1000000 . Text::_('COM_KUNENA_MILLION');
         } else {
-            $output = $number / 1000 . JText::_('COM_KUNENA_THOUSAND');
+            $output = $number / 1000 . Text::_('COM_KUNENA_THOUSAND');
         }
 
         return $output;

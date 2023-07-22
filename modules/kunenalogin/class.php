@@ -13,6 +13,7 @@
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Plugin\PluginHelper;
 use Joomla\CMS\Session\Session;
@@ -22,6 +23,7 @@ use Kunena\Forum\Libraries\Date\KunenaDate;
 use Kunena\Forum\Libraries\Factory\KunenaFactory;
 use Kunena\Forum\Libraries\Login\KunenaLogin;
 use Kunena\Forum\Libraries\Module\KunenaModule;
+use Joomla\CMS\Helper\ModuleHelper;
 
 /**
  * Class ModuleKunenaLogin
@@ -68,8 +70,8 @@ class ModuleKunenaLogin extends KunenaModule
 
             if ($login) {
                 $this->logout      = $login->getLogoutURL();
-                $this->recentPosts = Html::_('kunenaforum.link', 'index.php?option=com_kunena&view=topics', Text::_('MOD_KUNENALOGIN_RECENT'));
-                $this->myPosts     = Html::_('kunenaforum.link', 'index.php?option=com_kunena&view=topics&layout=user&mode=default', Text::_('MOD_KUNENALOGIN_MYPOSTS'));
+                $this->recentPosts = HTMLHelper::_('kunenaforum.link', 'index.php?option=com_kunena&view=topics', Text::_('MOD_KUNENALOGIN_RECENT'));
+                $this->myPosts     = HTMLHelper::_('kunenaforum.link', 'index.php?option=com_kunena&view=topics&layout=user&mode=default', Text::_('MOD_KUNENALOGIN_MYPOSTS'));
             }
 
             // Private messages

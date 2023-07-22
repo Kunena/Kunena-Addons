@@ -222,7 +222,7 @@ class PlgContentKunenaDiscuss extends CMSPlugin
         $this->helper->debug("onAfterDisplayContent: Returning content for article {$article->id}");
 
         $result = self::$plgDisplay[$article->id];
-        $user   = Factory::getUser();
+        $user   = Factory::getApplication()->getIdentity();
 
         if ($user->guest) {
             $login_public = $this->params->get('login_public', 0);

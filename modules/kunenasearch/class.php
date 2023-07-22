@@ -15,6 +15,7 @@ defined('_JEXEC') or die();
 use Joomla\CMS\Language\Text;
 use Kunena\Forum\Libraries\Module\KunenaModule;
 use Kunena\Forum\Libraries\Route\KunenaRoute;
+use Joomla\CMS\Helper\ModuleHelper;
 
 /**
  * Class ModuleKunenaSearch
