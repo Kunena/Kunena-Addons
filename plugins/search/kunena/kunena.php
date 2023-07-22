@@ -21,6 +21,7 @@ use Kunena\Forum\Libraries\Forum\KunenaForum;
 use Kunena\Forum\Libraries\Forum\Message\KunenaMessage;
 use Kunena\Forum\Libraries\Forum\Message\KunenaMessageHelper;
 use Kunena\Forum\Libraries\Html\KunenaParser;
+use Joomla\Registry\Registry;
 
 // Kunena detection and version check
 $minKunenaVersion = '6.0';
@@ -75,7 +76,7 @@ function plgSearchKunena($text, $phrase = '', $ordering = '', $areas = null)
     }
 
     $plugin       = PluginHelper::getPlugin('search', 'kunena');
-    $pluginParams = new JRegistry();
+    $pluginParams = new Registry();
     $pluginParams->loadString($plugin->params);
 
     // And define the parameters. For example like this..
