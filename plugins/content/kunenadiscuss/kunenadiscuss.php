@@ -91,6 +91,13 @@ class PlgContentKunenaDiscuss extends CMSPlugin
     public $allowed = false;
 
     /**
+     * @var KunenaFactory
+     * @since Kunena
+     * 
+     */
+    public $ktemplate = null;
+
+    /**
      * Constructor Function
      *
      * @param   object  $subject  The object to observe
