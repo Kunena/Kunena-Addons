@@ -3,7 +3,7 @@
 <!--
 	Kunena phing build file
 
-	@package	Kunena
+	@package	KunenaDiscuss
 	@subpackage	com_kunena
 	@copyright	Copyright (C) 2008 - 2023 Kunena Team. All rights reserved.
 				portions (C) 2007 MjazTools. All rights reserved.
@@ -20,7 +20,7 @@
 	-Dtmp_dir=tmp					(= workspace/kunena/build/tmp)
 	-Dbuild_dir=package				(= workspace/kunena/build/package)
 -->
-<project name="kunena" basedir="../../" description="Phing Build Script for Kunena" default="dist">
+<project name="kunenaDiscuss" basedir="../../" description="Phing Build Script for KunenaDiscuss" default="dist">
 	<!-- Setup of any global settings that will apply to the entire build script -->
 	<property file="./build/phing/build.properties" />
 
