@@ -16,7 +16,7 @@ use Joomla\CMS\Language\Text;
 use Kunena\Forum\Libraries\Forum\KunenaForum;
 
 // Kunena detection and version check
-$minKunenaVersion = '6.0';
+$minKunenaVersion = '6.2';
 
 if (!class_exists('Kunena\Forum\Libraries\Forum\KunenaForum') || !KunenaForum::isCompatible($minKunenaVersion)) {
     echo Text::sprintf('MOD_KUNENALOGIN_KUNENA_NOT_INSTALLED', $minKunenaVersion);

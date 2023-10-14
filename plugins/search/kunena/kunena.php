@@ -24,7 +24,7 @@ use Kunena\Forum\Libraries\Html\KunenaParser;
 use Joomla\Registry\Registry;
 
 // Kunena detection and version check
-$minKunenaVersion = '6.0';
+$minKunenaVersion = '6.2';
 
 if (!class_exists('Kunena\Forum\Libraries\Forum\KunenaForum') || !KunenaForum::isCompatible($minKunenaVersion)) {
     return;
