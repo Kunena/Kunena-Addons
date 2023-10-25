@@ -26,6 +26,22 @@ class ModuleKunenaSearch extends KunenaModule
 {
     protected static $css = '/modules/mod_kunenasearch/tmpl/css/kunenasearch.css';
 
+    public $ksearch_button;
+
+    public $ksearch_button_pos;
+
+    public $ksearch_button_txt;
+
+    public $ksearch_width;
+
+    public $ksearch_maxlength;
+
+    public $ksearch_txt;
+
+    public $ksearch_moduleclass_sfx;
+
+    public $url;
+
     protected function _display(): void
     {
         $this->ksearch_button          = $this->params->get('ksearch_button', '');
