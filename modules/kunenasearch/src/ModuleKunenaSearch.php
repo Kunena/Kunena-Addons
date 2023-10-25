@@ -10,6 +10,8 @@
  * @link          https://www.kunena.org
  **/
 
+namespace Kunena\Module\KunenaSearch\Site;
+
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Language\Text;

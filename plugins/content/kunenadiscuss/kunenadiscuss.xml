@@ -6,7 +6,7 @@
 	group="content"
 	method="upgrade">
 	<name>plg_content_kunenadiscuss</name>
-	<version>6.0.2-DEV</version>
+	<version>6.0.3</version>
 	<creationDate>@kunenaversiondate@</creationDate>
 	<build>@kunenaversionbuild@</build>
 	<author>Kunena Team</author>

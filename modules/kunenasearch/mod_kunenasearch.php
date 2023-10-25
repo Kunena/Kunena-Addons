@@ -14,6 +14,7 @@ defined('_JEXEC') or die();
 
 use Joomla\CMS\Language\Text;
 use Kunena\Forum\Libraries\Forum\KunenaForum;
+use Kunena\Module\KunenaSearch\Site\ModuleKunenaSearch;
 
 // Kunena detection and version check
 $minKunenaVersion = '6.2';
@@ -30,8 +31,6 @@ if (!KunenaForum::enabled()) {
 
     return;
 }
-
-require_once __DIR__ . '/class.php';
 
 /** @var stdClass $module */
 /** @var JRegistry $params */
