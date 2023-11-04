@@ -20,7 +20,7 @@
 	-Dtmp_dir=tmp					(= workspace/kunena/build/tmp)
 	-Dbuild_dir=package				(= workspace/kunena/build/package)
 -->
-<project name="kunena" basedir="../../" description="Phing Build Script for Kunena" default="dist">
+<project name="ModKunenaStats" basedir="../../" description="Phing Build Script for Module Kunena Stats" default="dist">
 	<!-- Setup of any global settings that will apply to the entire build script -->
 	<property file="./build/phing/build.properties" />
 

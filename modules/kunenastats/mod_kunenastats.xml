@@ -11,6 +11,7 @@
     <copyright>(C) 2008 - 2023 Kunena Team. All rights reserved.</copyright>
     <license>GNU/GPL</license>
     <description>MOD_KUNENASTATS_DESCRIPTION</description>
+    <namespace path="src">Kunena\Module\KunenaStats</namespace>
 
     <files>
         <filename module="mod_kunenastats">mod_kunenastats.php</filename>
