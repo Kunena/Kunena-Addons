@@ -2,7 +2,7 @@
 <!DOCTYPE extension>
 <extension type="module" version="3.6.0" client="site" method="upgrade">
     <name>mod_kunenastats</name>
-    <version>6.0.0-BETA-DEV</version>
+    <version>6.0.4-DEV</version>
     <creationDate>@kunenaversiondate@</creationDate>
     <build>@kunenaversionbuild@</build>
     <author>Kunena Team</author>
@@ -16,8 +16,8 @@
     <files>
         <filename module="mod_kunenastats">mod_kunenastats.php</filename>
         <filename>index.html</filename>
-        <filename>class.php</filename>
         <folder>tmpl</folder>
+        <folder>src</folder>
         <folder>language</folder>
     </files>
 

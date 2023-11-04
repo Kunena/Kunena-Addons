@@ -7,6 +7,6 @@ PLEASE READ THIS ENTIRE FILE BEFORE INSTALLING Kunena Latest @kunenaversion@!
 
 Kunena Latest Module enables your site visitors to see latest posts or messages from a forum.
 
-Requirements: Joomla 4.0, Kunena Forum 6.0
+Requirements: Joomla 4.3+, Kunena Forum 6.2
 
 

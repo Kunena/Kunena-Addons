@@ -10,11 +10,11 @@
  * @link          https://www.kunena.org
  **/
 
+defined('_JEXEC') or die();
+
 use Joomla\CMS\Language\Text;
 use Kunena\Forum\Libraries\Forum\KunenaForum;
 use Kunena\Module\KunenaLatest\Site\ModuleKunenaLatest;
-
-defined('_JEXEC') or die();
 
 // Kunena detection and version check
 $minKunenaVersion = '6.2';
