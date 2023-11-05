@@ -146,7 +146,7 @@
                        none="MOD_KUNENALATEST_PARAM_CATEGORYLIST_NONE"
                        description="MOD_KUNENALATEST_PARAM_CATEGORYLIST_NONE_DESC"
                        label="MOD_KUNENALATEST_PARAM_CATEGORYLIST_NONE" multiple="true" size="5">
-                    <option value="0">MOD_KUNENALATEST_PARAM_CATEGORYLIST_NONE</option>
+                    <option value="-1">MOD_KUNENALATEST_PARAM_CATEGORYLIST_NONE</option>
                 </field>
                 <field name="sh_category_id_in" type="radio" default="1"
                        description="MOD_KUNENALATEST_PARAM_CAT_IDS_IN_DESC" label="MOD_KUNENALATEST_PARAM_CAT_IDS_IN">
