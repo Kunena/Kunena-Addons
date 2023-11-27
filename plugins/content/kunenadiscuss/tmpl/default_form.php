@@ -38,7 +38,7 @@ $returnPage = base64_encode(Uri::getInstance()->toString() . '#kdiscuss');
                     <?php foreach ($queuedMessages as $msg) : ?>
                         <div class="alert alert-<?php echo $msg['type'] == 'error' ? 'danger' : $msg['type']; ?>"><?php echo $msg['message']; ?></div>
                     <?php endforeach; ?>
-                    <form action="<?php echo Route::_('index.php'); ?>" method="post" class="form-validate">
+                    <form id="kdiscuss-postform" action="<?php echo Route::_('index.php'); ?>" method="post" class="form-validate">
                         <?php foreach ($form->getFieldsets() as $fieldset) : ?>
                             <?php $fields = $form->getFieldset($fieldset->name); ?>
                             <?php if (count($fields)) : ?>
