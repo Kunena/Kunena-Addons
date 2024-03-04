@@ -10,6 +10,8 @@
  * @link          https://www.kunena.org
  **/
 
+namespace Kunena\Module\KunenaLogin\Site;
+
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
@@ -30,7 +32,7 @@ use Joomla\CMS\Helper\ModuleHelper;
  */
 class ModuleKunenaLogin extends KunenaModule
 {
-    protected function _display()
+    protected function _display(): void
     {
         Factory::getDocument()->addStyleSheet(Uri::root(true) . '/modules/mod_kunenalogin/tmpl/css/kunenalogin.css');
 

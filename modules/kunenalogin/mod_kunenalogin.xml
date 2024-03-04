@@ -10,6 +10,7 @@
     <copyright>(C) 2008 - 2024 Kunena Team. All rights reserved.</copyright>
     <license>GNU/GPL</license>
     <description>MOD_KUNENALOGIN_DESCRIPTION</description>
+    <namespace path="src">Kunena\Module\KunenaLogin</namespace>
 
     <files>
         <filename module="mod_kunenalogin">mod_kunenalogin.php</filename>
