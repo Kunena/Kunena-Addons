@@ -19,7 +19,7 @@ use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Plugin\PluginHelper;
 use Joomla\CMS\Session\Session;
-use Joomla\Uri\Uri;
+use Joomla\CMS\Uri\Uri;
 use Kunena\Forum\Libraries\Config\KunenaConfig;
 use Kunena\Forum\Libraries\Date\KunenaDate;
 use Kunena\Forum\Libraries\Factory\KunenaFactory;
@@ -27,11 +27,38 @@ use Kunena\Forum\Libraries\Login\KunenaLogin;
 use Kunena\Forum\Libraries\Module\KunenaModule;
 use Joomla\CMS\Helper\ModuleHelper;
 
+
 /**
  * Class ModuleKunenaLogin
  */
 class ModuleKunenaLogin extends KunenaModule
 {
+    public $me;
+
+    public $type;
+
+    public $login;
+
+    public $logout;
+
+    public $lastvisitDate;
+
+    public $recentPosts;
+
+    public $myPosts;
+
+    public $privateMessages;
+
+    public $return;
+
+    public $lostPasswordUrl;
+
+    public $lostUsernameUrl;
+
+    public $registerUrl;
+
+    public $remember;
+
     protected function _display(): void
     {
         Factory::getDocument()->addStyleSheet(Uri::root(true) . '/modules/mod_kunenalogin/tmpl/css/kunenalogin.css');
@@ -47,48 +74,46 @@ class ModuleKunenaLogin extends KunenaModule
         $token          = Session::getFormToken();
 
         $login  = KunenaLogin::getInstance();
-        $access = KunenaConfig::getInstance()->access_component;
+        $access = KunenaConfig::getInstance()->accessComponent;
 
         if (!$access) {
             Factory::getApplication()->enqueueMessage(Text::_('MOD_KUNENALOGIN_DIRECT'), 'error');
-
-            return false;
-        }
-
-        if (!$this->me->exists()) {
-            $this->type  = 'login';
-            $this->login = null;
-
-            if ($login) {
-                $this->lostPasswordUrl = $login->getResetURL();
-                $this->lostUsernameUrl = $login->getRemindURL();
-                $this->registerUrl     = $login->getRegistrationURL();
-                $this->remember        = PluginHelper::isEnabled('system', 'remember');
-            }
         } else {
-            $this->type          = 'logout';
-            $this->logout        = null;
-            $this->lastvisitDate = KunenaDate::getInstance($this->me->lastvisitDate);
+            if (!$this->me->exists()) {
+                $this->type  = 'login';
+                $this->login = null;
 
-            if ($login) {
-                $this->logout      = $login->getLogoutURL();
-                $this->recentPosts = HTMLHelper::_('kunenaforum.link', 'index.php?option=com_kunena&view=topics', Text::_('MOD_KUNENALOGIN_RECENT'));
-                $this->myPosts     = HTMLHelper::_('kunenaforum.link', 'index.php?option=com_kunena&view=topics&layout=user&mode=default', Text::_('MOD_KUNENALOGIN_MYPOSTS'));
+                if ($login) {
+                    $this->lostPasswordUrl = $login->getResetURL();
+                    $this->lostUsernameUrl = $login->getRemindURL();
+                    $this->registerUrl     = $login->getRegistrationURL();
+                    $this->remember        = PluginHelper::isEnabled('system', 'remember');
+                }
+            } else {
+                $this->type          = 'logout';
+                $this->logout        = null;
+                $this->lastvisitDate = KunenaDate::getInstance($this->me->lastvisitDate);
+
+                if ($login) {
+                    $this->logout      = $login->getLogoutURL();
+                    $this->recentPosts = HTMLHelper::_('kunenaforum.link', 'index.php?option=com_kunena&view=topics', Text::_('MOD_KUNENALOGIN_RECENT'));
+                    $this->myPosts     = HTMLHelper::_('kunenaforum.link', 'index.php?option=com_kunena&view=topics&layout=user&mode=default', Text::_('MOD_KUNENALOGIN_MYPOSTS'));
+                }
+
+                // Private messages
+                $private               = KunenaFactory::getPrivateMessaging();
+                $this->privateMessages = '';
+
+                if ($this->params->get('showmessage') && $private) {
+                    $count                 = $private->getUnreadCount($this->me->userid);
+                    $this->privateMessages = $private->getInboxLink($count ? Text::sprintf('COM_KUNENA_PMS_INBOX_NEW', $count) : Text::_('COM_KUNENA_PMS_INBOX'));
+                }
             }
 
-            // Private messages
-            $private               = KunenaFactory::getPrivateMessaging();
-            $this->privateMessages = '';
+            $this->return = $this->getReturnURL();
 
-            if ($this->params->get('showmessage') && $private) {
-                $count                 = $private->getUnreadCount($this->me->userid);
-                $this->privateMessages = $private->getInboxLink($count ? Text::sprintf('COM_KUNENA_PMS_INBOX_NEW', $count) : Text::_('COM_KUNENA_PMS_INBOX'));
-            }
+            require ModuleHelper::getLayoutPath('mod_kunenalogin');
         }
-
-        $this->return = $this->getReturnURL();
-
-        require ModuleHelper::getLayoutPath('mod_kunenalogin');
     }
 
     /**
