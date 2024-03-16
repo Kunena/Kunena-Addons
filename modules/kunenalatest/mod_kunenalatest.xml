@@ -142,16 +142,17 @@
     <config>
         <fields name="params">
             <fieldset name="basic" addfieldprefix="Kunena\Forum\Administrator\Field">
+                <field name="sh_category_id_in" type="radio" default="1"
+                       description="MOD_KUNENALATEST_PARAM_CAT_IDS_IN_DESC" label="MOD_KUNENALATEST_PARAM_CAT_IDS_IN">
+                       <option value="-1">MOD_KUNENALATEST_PARAM_USE_GLOBAL_CATS</option>s
+                    <option value="1">MOD_KUNENALATEST_PARAM_SHOW_CATS</option>
+                    <option value="2">MOD_KUNENALATEST_PARAM_HIDE_CATS</option>
+                </field>
                 <field name="category_id" type="kunenacategorylist" default="0"
                        none="MOD_KUNENALATEST_PARAM_CATEGORYLIST_NONE"
                        description="MOD_KUNENALATEST_PARAM_CATEGORYLIST_NONE_DESC"
                        label="MOD_KUNENALATEST_PARAM_CATEGORYLIST_NONE" multiple="true" size="5">
-                    <option value="-1">MOD_KUNENALATEST_PARAM_CATEGORYLIST_NONE</option>
-                </field>
-                <field name="sh_category_id_in" type="radio" default="1"
-                       description="MOD_KUNENALATEST_PARAM_CAT_IDS_IN_DESC" label="MOD_KUNENALATEST_PARAM_CAT_IDS_IN">
-                    <option value="1">MOD_KUNENALATEST_PARAM_SHOW_CATS</option>
-                    <option value="0">MOD_KUNENALATEST_PARAM_HIDE_CATS</option>
+                    <option value="0">MOD_KUNENALATEST_PARAM_CATEGORYLIST_ALL</option>
                 </field>
                 <field name="choosemodel" type="list" default="latest" label="MOD_KUNENALATEST_PARAM_CHOOSE_MODEL"
                        description="MOD_KUNENALATEST_PARAM_CHOOSE_MODEL_DESC">

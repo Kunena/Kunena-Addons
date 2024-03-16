@@ -40,7 +40,7 @@ class ModuleKunenaLatest extends KunenaModule
         $this->params->set('limitstart', 0);
         $this->params->set('limit', $this->params->get('nbpost', 5));
         $this->params->set('topics_categories_klatest', $categories);
-        $this->params->set('topics_catselection', $this->params->get('sh_category_id_in', 1));
+        $this->params->set('topics_catselection_klatest', $this->params->get('sh_category_id_in', 1));
         $this->params->set('topics_time', $this->params->get('show_list_time', 168));
         $userid = KunenaUserHelper::get()->userid;
 
@@ -96,6 +96,7 @@ class ModuleKunenaLatest extends KunenaModule
                 $mode   = 'recent';
         }
 
+        $this->params->set('modlastestcontext', true);
         $this->params->set('layout', $layout);
         $this->params->set('mode', $mode);
         $this->params->set('userid', $userid);
