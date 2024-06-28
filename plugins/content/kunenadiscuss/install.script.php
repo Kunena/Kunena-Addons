@@ -15,6 +15,14 @@ use Joomla\CMS\Filesystem\Folder;
 use Kunena\Plugin\Content\Kunenadiscuss\Helper\KunenaDiscussInstallerHelper;
 
 defined('_JEXEC') or die();
+
+/**
+ * We need to 'force' the KunenaDiscussInstallerHelper from the installation package as:
+ *  1. autoloading doesn't work on new installs
+ *  2. when the KunenaDiscussInstallerHelper is updated we must make sure that it will use the updated version
+ */
+require_once __DIR__ . '/src/Helper/KunenaDiscussInstallerHelper.php';
+
 /**
  * @package     Kunena
  *
