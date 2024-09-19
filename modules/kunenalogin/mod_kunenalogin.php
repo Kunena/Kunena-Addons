@@ -12,6 +12,7 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Kunena\Forum\Libraries\Forum\KunenaForum;
 use Kunena\Module\KunenaLogin\Site\ModuleKunenaLogin;
@@ -31,6 +32,9 @@ if (!KunenaForum::enabled()) {
 
     return;
 }
+
+// Make sure that Kunena is loaded so this module can also be used on non-kunena pages
+Factory::getApplication()->bootComponent('com_kunena');
 
 /** @var stdClass $module */
 /** @var JRegistry $params */
