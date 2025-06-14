@@ -11,7 +11,7 @@
  **/
 
 use Joomla\CMS\Factory;
-use Joomla\CMS\Filesystem\Folder;
+use Joomla\Filesystem\Folder;
 use Kunena\Plugin\Content\Kunenadiscuss\Helper\KunenaDiscussInstallerHelper;
 
 defined('_JEXEC') or die();
