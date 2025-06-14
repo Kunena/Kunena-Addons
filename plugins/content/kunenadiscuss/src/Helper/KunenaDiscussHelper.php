@@ -537,16 +537,16 @@ class KunenaDiscussHelper
 
         $now = Factory::getDate()->toUnix();
 
-        if ($topic->exists()) {
-            // If current user doesn't have authorisation to read existing topic, we are done
-            if ($id && !$topic->isAuthorised('read')) {
-                $this->debug("showPlugin: Topic said {$topic->getError()}");
+      if ($topic->exists()) {
+    // If current user doesn't have authorisation to read existing topic, we are done
+    if ($id && !$topic->isAuthorised('read')) {
+        $this->debug("showPlugin: Access denied to topic {$topic->id} (topic may be deleted or user lacks permission)");
 
-                return '';
-            }
+        return '';
+    }
 
-            $category = $topic->getCategory();
-        } else {
+    $category = $topic->getCategory();
+} else {
             $this->debug("showPlugin: Let's see what we can do..");
 
             // If current user doesn't have authorisation to read category, we are done
