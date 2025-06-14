@@ -5,7 +5,7 @@
  *
  * @package       Kunena.mod_kunenasearch
  *
- * @Copyright (C) 2008 - 2024 Kunena Team. All rights reserved.
+ * @Copyright (C) 2008 - 2025 Kunena Team. All rights reserved.
  * @license       http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link          https://www.kunena.org
  **/
