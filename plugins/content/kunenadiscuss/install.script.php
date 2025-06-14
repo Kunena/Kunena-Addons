@@ -65,7 +65,7 @@ class PlgContentKunenadiscussInstallerScript
                 // Do preflight maintenance
                 KunenaDiscussInstallerHelper::doMaintenance($this->preflightVariables, $this->installedVersion);
             } else {
-                // We are on a version that doesn't have the Installer Helper installed, so pré 6.0.0
+                // We are on a version that doesn't have the Installer Helper installed, so pre 6.0.0
                 // We need to cleanup one-time manually
                 $remove_directories = [
                     JPATH_SITE . '/plugins/content/kunenadiscuss/css',
