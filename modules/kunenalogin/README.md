@@ -11,5 +11,5 @@ Configuration settings), another link will be shown to enable self-registration
 for users. It also display Avatar from Kunena Forum and link to My Profile,
 My Discussions and Recent Discussions.
 
-Requirements: Joomla 4.0, Kunena Forum 4.0
+Requirements: Joomla 4.4, Kunena Forum 6.3
 

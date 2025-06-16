@@ -121,7 +121,7 @@ class PlgContentKunenaDiscuss extends CMSPlugin
         }
 
         // Kunena detection and version check
-        $minKunenaVersion = '6.2';
+        $minKunenaVersion = '6.3';
 
         if (!class_exists('Kunena\Forum\Libraries\Forum\KunenaForum') || !KunenaForum::isCompatible($minKunenaVersion)) {
             $this->loadLanguage();
