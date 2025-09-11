@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE extension>
 <extension
-	version="4.0"
 	type="plugin"
 	group="content"
 	method="upgrade">
 	<name>plg_content_kunenadiscuss</name>
-	<version>6.1.1-DEV</version>
+	<version>6.2.0-DEV</version>
 	<creationDate>@kunenaversiondate@</creationDate>
 	<build>@kunenaversionbuild@</build>
 	<author>Kunena Team</author>
@@ -17,10 +16,10 @@
 	<description>PLG_KUNENADISCUSS_DESCRIPTION</description>
 	<namespace path="src">Kunena\Plugin\Content\Kunenadiscuss</namespace>
 	<files>
-		<filename plugin="kunenadiscuss">kunenadiscuss.php</filename>
 		<folder>forms</folder>
-		<folder>src</folder>
 		<folder>language</folder>
+		<folder plugin="kunenadiscuss">services</folder>
+		<folder>src</folder>
 		<folder>tmpl</folder>
 	</files>
 	<media
