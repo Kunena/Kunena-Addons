@@ -14,7 +14,7 @@ namespace Kunena\Plugin\Content\Kunenadiscuss\Extension;
 
 \defined('_JEXEC') or die();
 
-use Joomla\CMS\Application\SiteApplication;
+use Joomla\CMS\Application\CMSApplication;
 use Joomla\CMS\Event\Content\AfterDisplayEvent;
 use Joomla\CMS\Event\Content\BeforeDisplayEvent;
 use Joomla\CMS\Factory;
@@ -112,10 +112,10 @@ class Kunenadiscuss extends CMSPlugin implements SubscriberInterface, DatabaseAw
     public DatabaseDriver $database;
 
     /**
-     * @var    SiteApplication
+     * @var    CMSApplication
      * @since  6.2.0
      */
-    public SiteApplication $application;
+    public CMSApplication $application;
 
     /**
      * Returns an array of events this subscriber will listen to.
@@ -155,14 +155,14 @@ class Kunenadiscuss extends CMSPlugin implements SubscriberInterface, DatabaseAw
      */
     public function __construct($config)
     {
+        // Do not register plug-in in administration.
+        if (Factory::getApplication()->isClient('administrator')) {
+            return;
+        }
+
         // We need to set these here as these are used in the KunenaDiscussHelper
         $this->database    = Factory::getContainer()->get(DatabaseInterface::class);
         $this->application = Factory::getApplication();
-
-        // Do not register plug-in in administration.
-        if ($this->application->isClient('administrator')) {
-            return;
-        }
 
         // If scope isn't articles or Kunena, do not register plug-in.
         if ($this->application->scope != 'com_content' && $this->application->scope != 'com_kunena') {
