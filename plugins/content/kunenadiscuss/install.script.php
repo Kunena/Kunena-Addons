@@ -10,161 +10,86 @@
  * @link          https://www.kunena.org
  **/
 
-use Joomla\CMS\Factory;
-use Joomla\Filesystem\Folder;
-use Kunena\Plugin\Content\Kunenadiscuss\Helper\KunenaDiscussInstallerHelper;
-
 defined('_JEXEC') or die();
 
-/**
- * We need to 'force' the KunenaDiscussInstallerHelper from the installation package as:
- *  1. autoloading doesn't work on new installs
- *  2. when the KunenaDiscussInstallerHelper is updated we must make sure that it will use the updated version
- */
-require_once __DIR__ . '/src/Helper/KunenaDiscussInstallerHelper.php';
+use Joomla\CMS\Installer\InstallerScript;
 
 /**
  * @package     Kunena
  *
  * @since       Kunena
  */
-class PlgContentKunenadiscussInstallerScript
+class PlgContentKunenadiscussInstallerScript extends InstallerScript
 {
     /**
-     * @var string
-     */
-    protected $installedVersion;
-
-    /**
-     * @var array
-     */
-    protected $maintenanceVariables;
-
-    /**
-     * @var array
-     */
-    protected $preflightVariables;
-
-    /**
-     * Method to run before the install routine.
+     * The extension name. This should be set in the installer script.
      *
-     * @param   string                      $type    The action being performed
-     * @param   JInstallerAdapterComponent  $parent  The class calling this method
-     *
-     * @return  void|boolean
+     * @var    string
+     * @since  5.4.0
      */
-    public function preflight($type, $parent)
+    protected $extension = 'plg_content_kunenadiscuss';
+
+    /**
+     * Minimum PHP version required to install the extension
+     *
+     * @var    string
+     * @since  5.4.0
+     */
+    protected $minimumPhp = '8.1';
+
+    /**
+     * Minimum Joomla! version required to install the extension
+     *
+     * @var    string
+     * @since  6.0.0
+     */
+    protected $minimumJoomla = '5.3.2';
+
+    /**
+     * List of required PHP extensions.
+     *
+     * @var array
+     * @since Kunena
+     */
+    protected $extensions = ['dom', 'gd', 'json', 'pcre', 'SimpleXML'];
+
+    /**
+     * Function called before extension installation/update/removal procedure commences
+     *
+     * @param   string            $type    The type of change (install, update or discover_install, not uninstall)
+     * @param   InstallerAdapter  $parent  The class calling this method
+     *
+     * @return  boolean  True on success
+     * @since   Kunena 6.5
+     */
+    public function preflight($type, $parent): bool
     {
-        if (strtolower($type) == 'update') {
-            // Load all maintenance variables
-            $this->setPreFlightMaintenanceVariables();
-
-            if (file_exists(JPATH_SITE . '/plugins/content/kunenadiscuss/src/Helper/KunenaDiscussInstallerHelper.php')) {
-                $this->installedVersion = KunenaDiscussInstallerHelper::getInstalledVersion('plugin', 'kunenadiscuss');
-
-                // Do preflight maintenance
-                KunenaDiscussInstallerHelper::doMaintenance($this->preflightVariables, $this->installedVersion);
-            } else {
-                // We are on a version that doesn't have the Installer Helper installed, so pre 6.0.0
-                // We need to cleanup one-time manually
-                $remove_directories = [
-                    JPATH_SITE . '/plugins/content/kunenadiscuss/css',
-                    JPATH_SITE . '/plugins/content/kunenadiscuss/language',
-                    JPATH_SITE . '/plugins/content/kunenadiscuss/tmpl',
-                    JPATH_SITE . '/media/plg_content_kunenadiscuss',
-                ];
-
-                if (isset($this->preflightVariables['remove_directories'])) {
-                    foreach ($remove_directories as $directory) {
-                        $application = Factory::getApplication();
-
-                        if (is_dir($directory)) {
-                            if (Folder::delete($directory)) {
-                                $application->enqueueMessage(
-                                    'Obsolete (left-over from previous release) directory "' . $directory
-                                        . '" successfully removed.',
-                                    'Message'
-                                );
-                            } else {
-                                $application->enqueueMessage(
-                                    'Directory "' . $directory
-                                        . '" (left-over from previous release) could not be removed, please remove manually.',
-                                    'Warning'
-                                );
-                            }
-                        }
-                    }
-                }
-            }
+        if (!parent::preflight($type, $parent)) {
+            return false;
         }
-    }
 
-    /**
-     * Code to execute on plugin update, used for cleaning left-overs from previous versions
-     *
-     * @param   object  $adapter  Adapter instance
-     *
-     * @return  void
-     */
-    public function update($adapter)
-    {
-        $newVersion = $adapter->manifest->version;
+        $manifest = $this->getItemArray('manifest_cache', '#__extensions', 'name', $this->extension);
 
-        // Load all maintenance variables
-        $this->setMaintenanceVariables();
+        // Check whether we have an old release installed and skip this check when this here is the initial install.
+        if (!isset($manifest['version'])) {
+            return true;
+        }
 
-        // Rename all configured files
-        KunenaDiscussInstallerHelper::doMaintenance($this->maintenanceVariables, $this->installedVersion);
-    }
+        $oldRelease = $manifest['version'];
 
-    /**
-     * Set the maintenance variables
-     *
-     * @return void
-     */
-    public function setMaintenanceVariables()
-    {
-        $this->maintenanceVariables['rename_files'] = [];
+        if (version_compare($oldRelease, '6.1', '<')) {
+            // Delete old folder to start fresh
+            $this->deleteFolders[] = '/plugins/content/kunenadiscuss/css';
+            $this->deleteFolders[] = '/plugins/content/kunenadiscuss/language';
+            $this->deleteFolders[] = '/plugins/content/kunenadiscuss/tmpl';
+            $this->deleteFolders[] = '/media/plg_content_kunenadiscuss';
+        }
 
-        $this->maintenanceVariables['delete_files'] = [];
+        $this->deleteFiles[] = '/plugins/content/kunenadiscuss/kunenadiscuss.php';
+        $this->deleteFiles[] = '/plugins/content/kunenadiscuss/src/Helper/KunenaDiscussInstallerHelper.php';
 
-        $this->maintenanceVariables['remove_directories'] = [];
+        $this->removeFiles();
 
-        $this->maintenanceVariables['installation_messages'] = [];
-
-        $this->maintenanceVariables['component_warnings'] = [];
-
-        $this->maintenanceVariables['update_sites'] = [];
-    }
-
-    /**
-     * Set the maintenance variables
-     *
-     * @return void
-     */
-    public function setPreFlightMaintenanceVariables()
-    {
-        $this->preflightVariables['remove_directories'] = [
-            [
-                'folder' => JPATH_SITE . '/plugins/content/kunenadiscuss/css',
-                'version' => '6.0.1',
-                'compare' => '<'
-            ],
-            [
-                'folder' => JPATH_SITE . '/plugins/content/kunenadiscuss/language',
-                'version' => '6.0.1',
-                'compare' => '<'
-            ],
-            [
-                'folder' => JPATH_SITE . '/plugins/content/kunenadiscuss/tmpl',
-                'version' => '6.0.1',
-                'compare' => '<'
-            ],
-            [
-                'folder' => JPATH_SITE . '/media/plg_content_kunenadiscuss',
-                'version' => '6.0.1',
-                'compare' => '<'
-            ],
-        ];
+        return true;
     }
 }
