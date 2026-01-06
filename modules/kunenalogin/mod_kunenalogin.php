@@ -18,7 +18,7 @@ use Kunena\Forum\Libraries\Forum\KunenaForum;
 use Kunena\Module\KunenaLogin\Site\ModuleKunenaLogin;
 
 // Kunena detection and version check
-$minKunenaVersion = '6.3';
+$minKunenaVersion = '6.4';
 
 if (!class_exists('Kunena\Forum\Libraries\Forum\KunenaForum') || !KunenaForum::isCompatible($minKunenaVersion)) {
     echo Text::sprintf('MOD_KUNENALOGIN_KUNENA_NOT_INSTALLED', $minKunenaVersion);
