@@ -67,6 +67,10 @@
         <xmlproperty file="${kunena.directory}/kunena.xml" collapseAttributes="true" prefix="xml" keepRoot="false"/>
         <tstamp>
             <format property="str.datefmt" pattern="${cfg.datefmt}" locale="${cfg.dateloc}"/>
+            <format
+			property="str.currentyear"
+			pattern="yyyy"
+			locale="${cfg.dateloc}" />
         </tstamp>
 
         <condition property="str.version" value="_${cfg.versionprefix}${xml.version}" else="">
@@ -98,6 +102,9 @@
         </condition>
         <filter token="kunenaversion" value="${xml.version}"/>
         <filter token="kunenaversiondate" value="${version.date}"/>
+        <token
+				key="currentyear"
+				value="${str.currentyear}" />
         <filter token="kunenaversionname" value="${xml.versionname}"/>
         <copy file="${project_dir}/kunena.xml" todir="${tmp_dir}" overwrite="true" filtering="true"/>
         <copy file="${project_dir}/README.md" todir="${tmp_dir}" overwrite="true" filtering="true"/>

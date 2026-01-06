@@ -56,6 +56,9 @@
 		<replacetokens>
 			<token key="kunenaversion" value="${xml.version}"/>
 			<token key="kunenaversiondate" value="${str.dategood}" />
+			<token
+				key="currentyear"
+				value="${str.currentyear}" />
 			<token key="kunenaversionname" value="${xml.versionname}" />
 			<token key="kunenaversionbuild" value="${xml.version}"/>
 		</replacetokens>
