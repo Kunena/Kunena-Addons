@@ -114,26 +114,7 @@ defined('_JEXEC') or die();
                             <input id="modlgn-passwd" type="password" name="password" class="input-small" tabindex="0" size="18" placeholder="<?php echo Text::_('MOD_KUNENALOGIN_PASSWORD') ?>" />
                         </div>
                     </div>
-                </div>
-                <?php $login = KunenaLogin::getInstance(); ?>
-                <?php
-                if ($login->getTwoFactorMethods() > 1) :
-                    ?>
-                    <div id="form-login-secretkey" class="control-group">
-                        <div class="controls">
-                            <div class="input-prepend input-append">
-                                <span class="add-on">
-                                    <span class="icon-star hasTooltip" title="<?php echo Text::_('JGLOBAL_SECRETKEY'); ?>"></span>
-                                    <label for="modlgn-secretkey" class="element-invisible"><?php echo Text::_('JGLOBAL_SECRETKEY'); ?></label>
-                                </span>
-                                <input id="modlgn-secretkey" autocomplete="off" type="text" name="secretkey" class="input-small" tabindex="0" size="18" placeholder="<?php echo Text::_('JGLOBAL_SECRETKEY') ?>" />
-                                <span class="btn width-auto hasTooltip" title="<?php echo Text::_('JGLOBAL_SECRETKEY_HELP'); ?>">
-                                    <span class="icon-help"></span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                <?php                                                                                                                                                                                                                                                                                                                                                 endif; ?>
+                </div>                                                                                                                                                                                                                                                                                                                                                              endif; ?>
                 <?php
                 if (PluginHelper::isEnabled('system', 'remember')) :
                     ?>
