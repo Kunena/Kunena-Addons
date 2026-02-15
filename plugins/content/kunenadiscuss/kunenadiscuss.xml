@@ -378,4 +378,12 @@
 			</fieldset>
 		</fields>
 	</config>
+	
+	<updateservers>
+        <server
+            type="collection"
+            priority="1"
+            name="Kunena Addons 6.2.0 Update Site">https://update.kunena.org/addons/list.xml
+        </server>
+    </updateservers>
 </extension>
