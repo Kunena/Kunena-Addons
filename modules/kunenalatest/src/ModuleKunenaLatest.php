@@ -12,6 +12,7 @@
 
 namespace Kunena\Module\KunenaLatest\Site;
 
+use Joomla\CMS\Factory;
 use Joomla\CMS\Helper\ModuleHelper;
 use Joomla\CMS\Uri\Uri;
 use Kunena\Forum\Libraries\Factory\KunenaFactory;
@@ -29,7 +30,13 @@ class ModuleKunenaLatest extends KunenaModule
     protected function _display(): void
     {
         $this->document->getWebAssetManager()->registerAndUseStyle('kunenalatest', Uri::root() . '/modules/mod_kunenalatest/tmpl/css/kunenalatest.css');
-
+        $this->application = Factory::getApplication();
+        
+        // Boot Kunena component for use of Kunena registered function in non com_kunena page
+        if (!$this->application->bootComponent('com_kunena')) {
+            return;
+        }
+        
         // Load language files.
         KunenaFactory::loadLanguage('com_kunena.sys', 'admin');
         KunenaFactory::loadLanguage();
