@@ -32,10 +32,8 @@ class ModuleKunenaLatest extends KunenaModule
         $this->document->getWebAssetManager()->registerAndUseStyle('kunenalatest', Uri::root() . '/modules/mod_kunenalatest/tmpl/css/kunenalatest.css');
         $this->application = Factory::getApplication();
         
-        // Boot Kunena component for use of Kunena registered function in non com_kunena page
-        if (!$this->application->bootComponent('com_kunena')) {
-            return;
-        }
+        // Call loadApi method to load Kunena constants
+        KunenaForum::loadApi();
         
         // Load language files.
         KunenaFactory::loadLanguage('com_kunena.sys', 'admin');

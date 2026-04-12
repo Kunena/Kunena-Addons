@@ -15,6 +15,7 @@ namespace Kunena\Module\KunenaSearch\Site;
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Language\Text;
+use Kunena\Forum\Libraries\Forum\KunenaForum;
 use Kunena\Forum\Libraries\Module\KunenaModule;
 use Kunena\Forum\Libraries\Route\KunenaRoute;
 use Joomla\CMS\Helper\ModuleHelper;
@@ -52,6 +53,9 @@ class ModuleKunenaSearch extends KunenaModule
         $this->ksearch_txt             = $this->params->get('ksearch_txt', Text::_('Search...'));
         $this->ksearch_moduleclass_sfx = $this->params->get('moduleclass_sfx', '');
         $this->url                     = KunenaRoute::_('index.php?option=com_kunena');
+        
+        // Call loadApi method to load Kunena constants
+        KunenaForum::loadApi();
 
         require ModuleHelper::getLayoutPath('mod_kunenasearch');
     }

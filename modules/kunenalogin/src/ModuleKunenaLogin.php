@@ -23,6 +23,7 @@ use Joomla\CMS\Uri\Uri;
 use Kunena\Forum\Libraries\Config\KunenaConfig;
 use Kunena\Forum\Libraries\Date\KunenaDate;
 use Kunena\Forum\Libraries\Factory\KunenaFactory;
+use Kunena\Forum\Libraries\Forum\KunenaForum;
 use Kunena\Forum\Libraries\Login\KunenaLogin;
 use Kunena\Forum\Libraries\Module\KunenaModule;
 use Joomla\CMS\Helper\ModuleHelper;
@@ -61,20 +62,25 @@ class ModuleKunenaLogin extends KunenaModule
 
     protected function _display(): void
     {
-        Factory::getDocument()->addStyleSheet(Uri::root(true) . '/modules/mod_kunenalogin/tmpl/css/kunenalogin.css');
+        $this->document = Factory::getApplication()->getDocument();
+
+        $wa = $this->document->getWebAssetManager();
+        $wa->registerAndUseStyle(Uri::root(true) . '/modules/mod_kunenalogin/tmpl/css/kunenalogin.css');
 
         // Load language files.
         KunenaFactory::loadLanguage();
         KunenaFactory::loadLanguage('com_kunena.templates');
 
         $this->params->def('greeting', 1);
-
-        $this->document = Factory::getDocument();
+        
         $this->me       = KunenaFactory::getUser();
         $token          = Session::getFormToken();
 
         $login  = KunenaLogin::getInstance();
         $access = KunenaConfig::getInstance()->accessComponent;
+        
+        // Call loadApi method to load Kunena constants
+        KunenaForum::loadApi();
 
         if (!$access) {
             Factory::getApplication()->enqueueMessage(Text::_('MOD_KUNENALOGIN_DIRECT'), 'error');
