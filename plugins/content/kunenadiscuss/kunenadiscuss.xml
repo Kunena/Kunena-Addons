@@ -259,7 +259,7 @@
 					<option value="13">PLG_KUNENADISCUSS_OPTION_13WEEKS</option>
 					<option value="26">PLG_KUNENADISCUSS_OPTION_26WEEKS</option>
 					<option value="52">PLG_KUNENADISCUSS_OPTION_52WEEKS</option>
-					<option value="0">PLG_KUNENADISCUSS_OPTION_UNLIMITED</option>
+					<option value="0">PLG_KUNENADISCUSS_OPTION_UNLIMITED_OPEN</option>
 				</field>
 				<field
 					name="close_time"
