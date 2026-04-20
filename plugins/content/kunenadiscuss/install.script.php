@@ -43,7 +43,7 @@ class PlgContentKunenadiscussInstallerScript extends InstallerScript
      * @var    string
      * @since  6.0.0
      */
-    protected $minimumJoomla = '5.3.2';
+    protected $minimumJoomla = '5.3.4';
 
     /**
      * List of required PHP extensions.
