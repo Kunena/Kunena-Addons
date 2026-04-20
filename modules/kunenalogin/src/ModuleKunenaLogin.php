@@ -23,7 +23,6 @@ use Joomla\CMS\Uri\Uri;
 use Kunena\Forum\Libraries\Config\KunenaConfig;
 use Kunena\Forum\Libraries\Date\KunenaDate;
 use Kunena\Forum\Libraries\Factory\KunenaFactory;
-use Kunena\Forum\Libraries\Forum\KunenaForum;
 use Kunena\Forum\Libraries\Login\KunenaLogin;
 use Kunena\Forum\Libraries\Module\KunenaModule;
 use Joomla\CMS\Helper\ModuleHelper;
@@ -79,8 +78,10 @@ class ModuleKunenaLogin extends KunenaModule
         $login  = KunenaLogin::getInstance();
         $access = KunenaConfig::getInstance()->accessComponent;
         
-        // Call loadApi method to load Kunena constants
-        KunenaForum::loadApi();
+        // Boot Kunena component for use of Kunena registered function in non com_kunena page
+        if (!$this->application->bootComponent('com_kunena')) {
+            return;
+        }
 
         if (!$access) {
             Factory::getApplication()->enqueueMessage(Text::_('MOD_KUNENALOGIN_DIRECT'), 'error');

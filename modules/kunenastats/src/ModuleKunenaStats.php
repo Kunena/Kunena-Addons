@@ -13,7 +13,6 @@ namespace Kunena\Module\KunenaStats\Site;
 
 use Joomla\CMS\Language\Text;
 use Kunena\Forum\Libraries\Factory\KunenaFactory;
-use Kunena\Forum\Libraries\Forum\KunenaForum;
 use Kunena\Forum\Libraries\Forum\KunenaStatistics;
 use Kunena\Forum\Libraries\Module\KunenaModule;
 use Kunena\Forum\Libraries\Route\KunenaRoute;
@@ -48,8 +47,10 @@ class ModuleKunenaStats extends KunenaModule
 		$this->items      = (int) $this->params->get('items', 5);
 		$this->stats_link = $this->_getStatsLink(Text::_('MOD_KUNENASTATS_LINK'), Text::_('MOD_KUNENASTATS_LINK'));
 		
-		// Call loadApi method to load Kunena constants
-		KunenaForum::loadApi();
+		// Boot Kunena component for use of Kunena registered function in non com_kunena page
+		if (!$this->application->bootComponent('com_kunena')) {
+		    return;
+		}
 
 		$this->stats = $this->getStats();
 		require ModuleHelper::getLayoutPath('mod_kunenastats');
