@@ -8,3 +8,7 @@
 *Kunena* is a native Joomla forum and communications component written in PHP. *Kunena* enables forums, bulletin board, support forums, discussions and comments for a Joomla! base website.
 
 This repository contains Kunena Add-ons.
+
+## TRANSLATIONS
+
+Kunena is on Crowdin - Help us to translate : https://crowdin.com/project/kunena-addons/
