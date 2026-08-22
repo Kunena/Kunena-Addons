@@ -13,6 +13,7 @@
 namespace Kunena\Module\KunenaLatest\Site;
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Application\CMSApplication;
 use Joomla\CMS\Helper\ModuleHelper;
 use Joomla\CMS\Uri\Uri;
 use Kunena\Forum\Libraries\Factory\KunenaFactory;
@@ -27,6 +28,12 @@ defined('_JEXEC') or die();
  */
 class ModuleKunenaLatest extends KunenaModule
 {
+    /**
+     * @var     CMSApplication
+     * @since   Kunena 6.0
+     */
+    public $application = null;
+    
     protected function _display(): void
     {
         $this->document->getWebAssetManager()->registerAndUseStyle('kunenalatest', Uri::root() . '/modules/mod_kunenalatest/tmpl/css/kunenalatest.css');
