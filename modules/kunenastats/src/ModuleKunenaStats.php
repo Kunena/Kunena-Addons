@@ -11,6 +11,7 @@
 
 namespace Kunena\Module\KunenaStats\Site;
 
+use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Kunena\Forum\Libraries\Factory\KunenaFactory;
 use Kunena\Forum\Libraries\Forum\KunenaStatistics;
@@ -26,6 +27,8 @@ defined('_JEXEC') or die();
 class ModuleKunenaStats extends KunenaModule
 {
 	static protected $css = '/modules/mod_kunenastats/tmpl/css/kunenastats.css';
+	
+	public $application;
 
 	protected $api = null;
 
@@ -46,6 +49,8 @@ class ModuleKunenaStats extends KunenaModule
 		$this->type       = $this->params->get('type', 'general');
 		$this->items      = (int) $this->params->get('items', 5);
 		$this->stats_link = $this->_getStatsLink(Text::_('MOD_KUNENASTATS_LINK'), Text::_('MOD_KUNENASTATS_LINK'));
+		
+		$this->application = Factory::getApplication();
 		
 		// Boot Kunena component for use of Kunena registered function in non com_kunena page
 		if (!$this->application->bootComponent('com_kunena')) {
