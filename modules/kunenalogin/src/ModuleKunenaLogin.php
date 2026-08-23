@@ -15,6 +15,7 @@ namespace Kunena\Module\KunenaLogin\Site;
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Application\CMSApplication;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Plugin\PluginHelper;
@@ -58,6 +59,12 @@ class ModuleKunenaLogin extends KunenaModule
     public $registerUrl;
 
     public $remember;
+    
+    /**
+    * @var     CMSApplication
+    * @since   Kunena 6.0
+    */
+    public $application = null;
 
     protected function _display(): void
     {
@@ -78,13 +85,15 @@ class ModuleKunenaLogin extends KunenaModule
         $login  = KunenaLogin::getInstance();
         $access = KunenaConfig::getInstance()->accessComponent;
         
+        $this->application = Factory::getApplication();
+        
         // Boot Kunena component for use of Kunena registered function in non com_kunena page
         if (!$this->application->bootComponent('com_kunena')) {
             return;
         }
 
         if (!$access) {
-            Factory::getApplication()->enqueueMessage(Text::_('MOD_KUNENALOGIN_DIRECT'), 'error');
+            $this->application->enqueueMessage(Text::_('MOD_KUNENALOGIN_DIRECT'), 'error');
         } else {
             if (!$this->me->exists()) {
                 $this->type  = 'login';

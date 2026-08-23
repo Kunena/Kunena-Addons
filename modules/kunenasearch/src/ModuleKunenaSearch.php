@@ -17,6 +17,7 @@ defined('_JEXEC') or die();
 use Joomla\CMS\Language\Text;
 use Kunena\Forum\Libraries\Module\KunenaModule;
 use Kunena\Forum\Libraries\Route\KunenaRoute;
+use Joomla\CMS\Application\CMSApplication;
 use Joomla\CMS\Helper\ModuleHelper;
 
 /**
@@ -41,6 +42,12 @@ class ModuleKunenaSearch extends KunenaModule
     public $ksearch_moduleclass_sfx;
 
     public $url;
+    
+    /**
+    * @var     CMSApplication
+    * @since   Kunena 6.0
+    */
+    public $application = null;
 
     protected function _display(): void
     {
@@ -52,6 +59,8 @@ class ModuleKunenaSearch extends KunenaModule
         $this->ksearch_txt             = $this->params->get('ksearch_txt', Text::_('Search...'));
         $this->ksearch_moduleclass_sfx = $this->params->get('moduleclass_sfx', '');
         $this->url                     = KunenaRoute::_('index.php?option=com_kunena');
+        
+        $this->application = Factory::getApplication();
         
         // Boot Kunena component for use of Kunena registered function in non com_kunena page
         if (!$this->application->bootComponent('com_kunena')) {
