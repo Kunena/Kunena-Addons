@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE extension>
-<extension type="module" version="3.6.0" client="site" method="upgrade">
+<extension type="module" client="site" method="upgrade">
     <name>mod_kunenastats</name>
     <version>6.2.3-DEV</version>
     <creationDate>@kunenaversiondate@</creationDate>
@@ -14,7 +14,7 @@
     <namespace path="src">Kunena\Module\KunenaStats</namespace>
 
     <files>
-        <filename module="mod_kunenastats">mod_kunenastats.php</filename>
+        <folder module="mod_kunenastats">services</folder>
         <filename>index.html</filename>
         <folder>tmpl</folder>
         <folder>src</folder>

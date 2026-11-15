@@ -26,8 +26,6 @@ defined('_JEXEC') or die();
  */
 class ModuleKunenaStats extends KunenaModule
 {
-	static protected $css = '/modules/mod_kunenastats/tmpl/css/kunenastats.css';
-	
 	public $application;
 
 	protected $api = null;
@@ -44,8 +42,17 @@ class ModuleKunenaStats extends KunenaModule
 
 	protected $top = 0;
 
+	protected $stats_link = '';
+
+	protected $latestMemberLink = '';
+
+	protected $userlist = '';
+
 	protected function _display(): void
 	{
+		// A path from the root of Joomla: the asset manager loads it (a path with the base of the site is not found).
+		$this->document->getWebAssetManager()->registerAndUseStyle('mod_kunenastats', 'modules/mod_kunenastats/tmpl/css/kunenastats.css');
+
 		$this->type       = $this->params->get('type', 'general');
 		$this->items      = (int) $this->params->get('items', 5);
 		$this->stats_link = $this->_getStatsLink(Text::_('MOD_KUNENASTATS_LINK'), Text::_('MOD_KUNENASTATS_LINK'));
