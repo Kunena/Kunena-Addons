@@ -15,7 +15,6 @@ namespace Kunena\Module\KunenaLatest\Site;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Application\CMSApplication;
 use Joomla\CMS\Helper\ModuleHelper;
-use Joomla\CMS\Uri\Uri;
 use Kunena\Forum\Libraries\Factory\KunenaFactory;
 use Kunena\Forum\Libraries\Forum\KunenaForum;
 use Kunena\Forum\Libraries\Module\KunenaModule;
@@ -36,7 +35,8 @@ class ModuleKunenaLatest extends KunenaModule
     
     protected function _display(): void
     {
-        $this->document->getWebAssetManager()->registerAndUseStyle('kunenalatest', Uri::root() . '/modules/mod_kunenalatest/tmpl/css/kunenalatest.css');
+        // A path from the root of Joomla: the asset manager loads it (a path with the base of the site is not found).
+        $this->document->getWebAssetManager()->registerAndUseStyle('mod_kunenalatest', 'modules/mod_kunenalatest/tmpl/css/kunenalatest.css');
         $this->application = Factory::getApplication();
         
         // Boot Kunena component for use of Kunena registered function in non com_kunena page

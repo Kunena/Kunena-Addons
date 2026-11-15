@@ -12,7 +12,7 @@
     <namespace path="src">Kunena\Module\KunenaLatest</namespace>
 
     <files>
-        <filename module="mod_kunenalatest">mod_kunenalatest.php</filename>
+        <folder module="mod_kunenalatest">services</folder>
         <filename>index.html</filename>
         <folder>tmpl</folder>
         <folder>src</folder>
