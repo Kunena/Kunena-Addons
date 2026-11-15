@@ -886,8 +886,9 @@ class KunenaDiscussHelper
         // Get return URI from form
         $return = \base64_decode($app->getInput()->get('return', '', 'string'));
 
-        if (empty($return)) {
-            // When no return URI set inform redirect to current URL
+        // Only an address of this site: another one (sent by a form of another site) would make this an open redirect.
+        if (empty($return) || !Uri::isInternal($return)) {
+            // When no valid return URI is set, redirect to the current URL
             $return = Uri::getInstance()->toString();
         }
 
