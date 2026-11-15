@@ -71,7 +71,8 @@ class ModuleKunenaLogin extends KunenaModule
         $this->document = Factory::getApplication()->getDocument();
 
         $wa = $this->document->getWebAssetManager();
-        $wa->registerAndUseStyle(Uri::root(true) . '/modules/mod_kunenalogin/tmpl/css/kunenalogin.css');
+        // The name of the asset first, then its address (with only an address, the asset has no file and nothing is loaded).
+        $wa->registerAndUseStyle('mod_kunenalogin', Uri::root(true) . '/modules/mod_kunenalogin/tmpl/css/kunenalogin.css');
 
         // Load language files.
         KunenaFactory::loadLanguage();
