@@ -14,6 +14,7 @@ namespace Kunena\Module\KunenaSearch\Site;
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Kunena\Forum\Libraries\Module\KunenaModule;
 use Kunena\Forum\Libraries\Route\KunenaRoute;
@@ -25,7 +26,6 @@ use Joomla\CMS\Helper\ModuleHelper;
  */
 class ModuleKunenaSearch extends KunenaModule
 {
-    protected static $css = '/modules/mod_kunenasearch/tmpl/css/kunenasearch.css';
 
     public $ksearch_button;
 
@@ -51,6 +51,9 @@ class ModuleKunenaSearch extends KunenaModule
 
     protected function _display(): void
     {
+        // A path from the root of Joomla: the asset manager loads it (a path with the base of the site is not found).
+        $this->document->getWebAssetManager()->registerAndUseStyle('mod_kunenasearch', 'modules/mod_kunenasearch/tmpl/css/kunenasearch.css');
+
         $this->ksearch_button          = $this->params->get('ksearch_button', '');
         $this->ksearch_button_pos      = $this->params->get('ksearch_button_pos', 'right');
         $this->ksearch_button_txt      = $this->params->get('ksearch_button_txt', Text::_('Search'));
