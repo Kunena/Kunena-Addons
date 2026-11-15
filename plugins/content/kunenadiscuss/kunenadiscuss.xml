@@ -150,7 +150,8 @@
 	</languages>
 	<config>
 		<fields name="params">
-			<fieldset name="basic">
+			<!-- kunenacategorylist: the categories of the forum, the field of Kunena (as in its own plugins). -->
+			<fieldset name="basic" addfieldprefix="Kunena\Forum\Administrator\Field">
 				<field
 					name="limit"
 					type="text"
@@ -299,36 +300,79 @@
 					<option value="intro">PLG_KUNENADISCUSS_OPTION_BBCODE_INTRO</option>
 					<option value="link">PLG_KUNENADISCUSS_OPTION_BBCODE_LINK</option>
 				</field>
+				<!-- The users to choose from, saved as their id (as the text field before); empty is the author of the article. -->
 				<field
 					name="topic_owner"
-					type="text"
+					type="sql"
 					default=""
+					query="SELECT id AS value, CONCAT(name, ' (', username, ')') AS text FROM #__users ORDER BY name"
+					key_field="value"
+					value_field="text"
+					layout="joomla.form.field.list-fancy-select"
 					description="PLG_KUNENADISCUSS_TOPIC_OWNER_DESC"
-					label="PLG_KUNENADISCUSS_TOPIC_OWNER" />
+					label="PLG_KUNENADISCUSS_TOPIC_OWNER">
+					<option value="">PLG_KUNENADISCUSS_TOPIC_OWNER_AUTHOR</option>
+				</field>
+				<!-- One row per article category and its forum category (the text "5,6;7,10" before 8.0 is still read). -->
 				<field
 					name="category_mapping"
-					type="text"
-					default=""
+					type="subform"
+					multiple="true"
+					layout="joomla.form.field.subform.repeatable-table"
+					buttons="add,remove"
 					description="PLG_KUNENADISCUSS_CATEGORY_MAPPING_DESC"
-					label="PLG_KUNENADISCUSS_CATEGORY_MAPPING" />
+					label="PLG_KUNENADISCUSS_CATEGORY_MAPPING">
+					<form addfieldprefix="Kunena\Forum\Administrator\Field">
+						<field
+							name="content"
+							type="category"
+							extension="com_content"
+							label="PLG_KUNENADISCUSS_CATEGORY_MAPPING_CONTENT">
+							<option value="">PLG_KUNENADISCUSS_OPTION_SELECT_CATEGORY</option>
+						</field>
+						<field
+							name="forum"
+							type="kunenacategorylist"
+							size="1"
+							class="form-select"
+							label="PLG_KUNENADISCUSS_CATEGORY_MAPPING_FORUM">
+							<option value="0">PLG_KUNENADISCUSS_OPTION_NO_DISCUSSION</option>
+						</field>
+					</form>
+				</field>
 				<field
 					name="default_category"
-					type="text"
+					type="kunenacategorylist"
 					default=""
+					size="1"
+					class="form-select"
 					description="PLG_KUNENADISCUSS_DEFAULT_CATEGORY_DESC"
-					label="PLG_KUNENADISCUSS_DEFAULT_CATEGORY" />
+					label="PLG_KUNENADISCUSS_DEFAULT_CATEGORY">
+					<option value="">PLG_KUNENADISCUSS_OPTION_NO_DEFAULT_CATEGORY</option>
+				</field>
+				<!-- The ids of the article categories, saved as a list (the text "1,2,3" before 8.0 is still read); 0 is all of them. -->
 				<field
 					name="allow_categories"
-					type="text"
+					type="category"
+					extension="com_content"
+					multiple="true"
+					layout="joomla.form.field.list-fancy-select"
 					default=""
 					description="PLG_KUNENADISCUSS_ALLOW_CATEGORIES_DESC"
-					label="PLG_KUNENADISCUSS_ALLOW_CATEGORIES" />
+					label="PLG_KUNENADISCUSS_ALLOW_CATEGORIES">
+					<option value="0">PLG_KUNENADISCUSS_OPTION_ALL_CATEGORIES</option>
+				</field>
 				<field
 					name="deny_categories"
-					type="text"
+					type="category"
+					extension="com_content"
+					multiple="true"
+					layout="joomla.form.field.list-fancy-select"
 					default=""
 					description="PLG_KUNENADISCUSS_DENY_CATEGORIES_DESC"
-					label="PLG_KUNENADISCUSS_DENY_CATEGORIES" />
+					label="PLG_KUNENADISCUSS_DENY_CATEGORIES">
+					<option value="0">PLG_KUNENADISCUSS_OPTION_ALL_CATEGORIES</option>
+				</field>
 				<field
 					name="login_public"
 					type="radio"

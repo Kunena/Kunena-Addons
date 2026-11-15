@@ -359,24 +359,13 @@ class KunenaDiscussHelper
         $default = \intval($pluginParams->get('default_category', 0));
 
         // Category pairs will be always allowed
-        $categoryPairs = \explode(';', $pluginParams->get('category_mapping', ''));
-        $categoryMap   = [];
-
-        foreach ($categoryPairs as $pair) {
-            $pair  = \explode(',', $pair);
-            $key   = isset($pair[0]) ? \intval($pair[0]) : 0;
-            $value = isset($pair[1]) ? \intval($pair[1]) : 0;
-
-            if ($key > 0) {
-                $categoryMap[$key] = $value;
-            }
-        }
+        $categoryMap = $this->getCategoryMap($pluginParams->get('category_mapping', ''));
 
         // Limit plugin to the following content categories
-        $allowCategories = \explode(',', $pluginParams->get('allow_categories', ''));
+        $allowCategories = $this->getCategoryIds($pluginParams->get('allow_categories', ''));
 
         // Exclude the plugin from the following categories
-        $denyCategories = \explode(',', $pluginParams->get('deny_categories', ''));
+        $denyCategories = $this->getCategoryIds($pluginParams->get('deny_categories', ''));
 
         if (!\is_numeric($catid) || \intval($catid) == 0) {
             $this->debug("onPrepareContent.Deny: Category {$catid} is not valid");
@@ -449,6 +438,60 @@ class KunenaDiscussHelper
         $this->debug("onPrepareContent.Allow: Category {$catid} is using default Kunena category {$default}");
 
         return $default;
+    }
+
+    /**
+     * The forum category of each mapped article category.
+     *
+     * @param   mixed  $mapping  The rows of the settings (article and forum category), or the text "5,6;7,10" saved before 8.0
+     *
+     * @return  array  The ids of the forum categories by the ids of the article categories (0: no discussion)
+     *
+     * @since   8.0.0
+     */
+    private function getCategoryMap(mixed $mapping): array
+    {
+        $categoryMap = [];
+
+        if (\is_string($mapping)) {
+            $rows = [];
+
+            foreach (\explode(';', $mapping) as $pair) {
+                $pair   = \explode(',', $pair);
+                $rows[] = ['content' => $pair[0] ?? 0, 'forum' => $pair[1] ?? 0];
+            }
+        } else {
+            $rows = (array) $mapping;
+        }
+
+        foreach ($rows as $row) {
+            $row   = (array) $row;
+            $key   = \intval($row['content'] ?? 0);
+            $value = \intval($row['forum'] ?? 0);
+
+            if ($key > 0) {
+                $categoryMap[$key] = $value;
+            }
+        }
+
+        return $categoryMap;
+    }
+
+    /**
+     * The ids of a list of article categories.
+     *
+     * @param   mixed  $categories  The list of the settings, or the text "1,2,3" saved before 8.0
+     *
+     * @return  array  The ids, as strings ("0" is all the categories)
+     *
+     * @since   8.0.0
+     */
+    private function getCategoryIds(mixed $categories): array
+    {
+        $ids = \is_string($categories) ? \explode(',', $categories) : (array) $categories;
+        $ids = \array_map(static fn ($id): string => \trim((string) $id), $ids);
+
+        return \array_values(\array_filter($ids, static fn (string $id): bool => $id !== ''));
     }
 
     /**
