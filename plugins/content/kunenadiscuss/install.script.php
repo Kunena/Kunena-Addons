@@ -35,7 +35,7 @@ class PlgContentKunenadiscussInstallerScript extends InstallerScript
      * @var    string
      * @since  5.4.0
      */
-    protected $minimumPhp = '8.2';
+    protected $minimumPhp = '8.3';
 
     /**
      * Minimum Joomla! version required to install the extension
@@ -43,7 +43,7 @@ class PlgContentKunenadiscussInstallerScript extends InstallerScript
      * @var    string
      * @since  6.0.0
      */
-    protected $minimumJoomla = '5.3.4';
+    protected $minimumJoomla = '6.2';
 
     /**
      * List of required PHP extensions.

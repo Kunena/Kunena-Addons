@@ -170,7 +170,7 @@ class Kunenadiscuss extends CMSPlugin implements SubscriberInterface, DatabaseAw
         }
 
         // Kunena detection and version check
-        $minKunenaVersion = '6.4';
+        $minKunenaVersion = '8.0';
 
         if (!\class_exists('Kunena\Forum\Libraries\Forum\KunenaForum') || !KunenaForum::isCompatible($minKunenaVersion)) {
             $this->loadLanguage();

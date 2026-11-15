@@ -25,7 +25,6 @@ use Joomla\Registry\Registry;
 use Kunena\Forum\Libraries\Error\KunenaError;
 use Kunena\Forum\Libraries\Forum\Category\KunenaCategory;
 use Kunena\Forum\Libraries\Forum\Category\KunenaCategoryHelper;
-use Kunena\Forum\Libraries\Forum\KunenaForum;
 use Kunena\Forum\Libraries\Forum\Message\KunenaMessageHelper;
 use Kunena\Forum\Libraries\Forum\Topic\KunenaTopic;
 use Kunena\Forum\Libraries\Forum\Topic\KunenaTopicHelper;
@@ -972,13 +971,8 @@ class KunenaDiscussHelper
             return \false;
         }
 
-        // Kunena 7.1 added KunenaMessage::processNotification() and 7.2 removed sendNotification(): the method of the installed
-        // version queues (or sends) the e-mails.
-        if (KunenaForum::isCompatible('7.1')) {
-            $message->processNotification();
-        } else {
-            $message->sendNotification();
-        }
+        // Queues (or sends) the e-mails of the reply.
+        $message->processNotification();
 
         $app->setUserState('plg_content_kunenadiscuss.form.data', null);
         $app->enqueueMessage(Text::_('PLG_KUNENADISCUSS_POST_SUCCESS'), 'success');

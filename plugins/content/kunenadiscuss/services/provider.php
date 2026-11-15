@@ -16,8 +16,8 @@ use Joomla\CMS\Extension\PluginInterface;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Plugin\PluginHelper;
 use Joomla\DI\Container;
+use Joomla\Database\DatabaseInterface;
 use Joomla\DI\ServiceProviderInterface;
-use Joomla\Event\DispatcherInterface;
 use Kunena\Plugin\Content\Kunenadiscuss\Extension\Kunenadiscuss;
 
 return new class implements ServiceProviderInterface
@@ -35,13 +35,10 @@ return new class implements ServiceProviderInterface
         $container->set(
             PluginInterface::class,
             function (Container $container) {
-                $config  = (array) PluginHelper::getPlugin('content', 'kunenadiscuss');
-                $subject = $container->get(DispatcherInterface::class);
-                $plugin  = new Kunenadiscuss($config);
+                $plugin = new Kunenadiscuss((array) PluginHelper::getPlugin('content', 'kunenadiscuss'));
 
-                $plugin->traitSetDispatcher($subject);
                 $plugin->setApplication(Factory::getApplication());
-                $plugin->setDatabase($container->get('DatabaseDriver'));
+                $plugin->setDatabase($container->get(DatabaseInterface::class));
 
                 return $plugin;
             }
