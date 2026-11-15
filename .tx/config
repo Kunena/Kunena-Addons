@@ -52,14 +52,3 @@ source_lang = en_GB
 file_filter = plugins/content/kunenadiscuss/language/<lang>/<lang>.plg_content_kunenadiscuss.sys.ini
 source_file = plugins/content/kunenadiscuss/language/en-GB/en-GB.plg_content_kunenadiscuss.sys.ini
 source_lang = en_GB
-
-[o:Kunena-Forum:p:kunena-addons:r:plg_search_kunena]
-file_filter = plugins/search/kunena/language/<lang>/<lang>.plg_search_kunena.ini
-source_file = plugins/search/kunena/language/en-GB/en-GB.plg_search_kunena.ini
-source_lang = en_GB
-
-[o:Kunena-Forum:p:kunena-addons:r:plg_search_kunenasys]
-file_filter = plugins/search/kunena/language/<lang>/<lang>.plg_search_kunena.sys.ini
-source_file = plugins/search/kunena/language/en-GB/en-GB.plg_search_kunena.sys.ini
-source_lang = en_GB
-
