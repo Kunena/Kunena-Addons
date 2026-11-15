@@ -46,7 +46,7 @@ defined('_JEXEC') or die();
                             <span class="klogin-lasttext"><?php echo Text::_('MOD_KUNENALOGIN_LASTVISIT'); ?></span>
                             <?php echo $this->lastvisitDate->toSpan('date_today', 'ago', false, 'klogin-lastdate') ?>
                         </li>
-                    <?php                                                                                                                                                                                                                                                                                                                                                                                                                                                         endif; ?>
+                    <?php endif; ?>
                     <li class="klogin-logout-button">
                         <input type="submit" name="Submit" class="kbutton" value="<?php echo Text::_('MOD_KUNENALOGIN_BUTTON_LOGOUT'); ?>" />
                     </li>
@@ -62,17 +62,17 @@ defined('_JEXEC') or die();
                     if ($this->params->get('showprofile')) :
                         ?>
                         <li class="klogin-myprofile"><?php echo $this->me->getLink(Text::_('MOD_KUNENALOGIN_MYPROFILE')); ?></li>
-                    <?php                                                                                                                                                                                                                                                                                                                                                                                                                                                         endif; ?>
+                    <?php endif; ?>
                     <?php
                     if ($this->params->get('showmyposts')) :
                         ?>
                         <li class="klogin-mypost"><?php echo $this->myPosts ?></li>
-                    <?php                                                                                                                                                                                                                                                                                                                                                                                                                                                         endif; ?>
+                    <?php endif; ?>
                     <?php
                     if ($this->params->get('showrecent')) :
                         ?>
                         <li class="klogin-recent"><?php echo $this->recentPosts ?></li>
-                    <?php                                                                                                                                                                                                                                                                                                                                                                                                                                                         endif; ?>
+                    <?php endif; ?>
                 </ul>
             </div>
         </form>

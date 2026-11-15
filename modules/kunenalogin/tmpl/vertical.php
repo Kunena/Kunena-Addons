@@ -63,17 +63,17 @@ defined('_JEXEC') or die();
                     if ($this->params->get('showprofile')) :
                         ?>
                         <li class="klogin-myprofile"><?php echo $this->me->getLink(Text::_('MOD_KUNENALOGIN_MYPROFILE')); ?></li>
-                    <?php                                                                                                                                                                                                                                                                                                                                                                                                                                                         endif; ?>
+                    <?php endif; ?>
                     <?php
                     if ($this->params->get('showmyposts')) :
                         ?>
                         <li class="klogin-mypost"><?php echo $this->myPosts ?></li>
-                    <?php                                                                                                                                                                                                                                                                                                                                                                                                                                                         endif; ?>
+                    <?php endif; ?>
                     <?php
                     if ($this->params->get('showrecent')) :
                         ?>
                         <li class="klogin-recent"><?php echo $this->recentPosts ?></li>
-                    <?php                                                                                                                                                                                                                                                                                                                                                                                                                                                         endif; ?>
+                    <?php endif; ?>
                 </ul>
             </div>
             <div class="klogin-links">
@@ -114,7 +114,7 @@ defined('_JEXEC') or die();
                             <input id="modlgn-passwd" type="password" name="password" class="input-small" tabindex="0" size="18" placeholder="<?php echo Text::_('MOD_KUNENALOGIN_PASSWORD') ?>" />
                         </div>
                     </div>
-                </div>                                                                                                                                                                                                                                                                                                                                                              endif; ?>
+                </div>
                 <?php
                 if (PluginHelper::isEnabled('system', 'remember')) :
                     ?>
@@ -128,7 +128,7 @@ defined('_JEXEC') or die();
                             </div>
                         </div>
                     </div>
-                <?php                                                                                                                                                                                                                                                                                                                                                 endif; ?>
+                <?php endif; ?>
                 <div id="form-login-submit" class="control-group center">
                     <p>
                         <button type="submit" tabindex="3" name="submit" class="btn btn-primary btn">
