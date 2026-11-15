@@ -81,6 +81,9 @@ class KunenaDiscussHelper
             return;
         }
 
+        // The messages can hold texts of the visitors (the errors of the form): printed as text, not as HTML.
+        $msg = \htmlspecialchars($msg, ENT_QUOTES, 'UTF-8');
+
         if ($fatal) {
             echo "<br /><span class=\"kdb-fatal\">[KunenaDiscuss FATAL: $msg ]</span>";
         } else {
