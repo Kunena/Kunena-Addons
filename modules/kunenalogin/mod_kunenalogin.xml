@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE extension>
-<extension type="module" version="3.6.0" client="site" method="upgrade">
+<extension type="module" client="site" method="upgrade">
     <name>mod_kunenalogin</name>
     <version>6.2.3-DEV</version>
     <creationDate>@kunenaversiondate@</creationDate>
@@ -13,7 +13,7 @@
     <namespace path="src">Kunena\Module\KunenaLogin</namespace>
 
     <files>
-        <filename module="mod_kunenalogin">mod_kunenalogin.php</filename>
+        <folder module="mod_kunenalogin">services</folder>
         <filename>index.html</filename>
         <folder>tmpl</folder>
         <folder>language</folder>

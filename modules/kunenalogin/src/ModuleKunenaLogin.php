@@ -20,7 +20,6 @@ use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Plugin\PluginHelper;
 use Joomla\CMS\Session\Session;
-use Joomla\CMS\Uri\Uri;
 use Kunena\Forum\Libraries\Config\KunenaConfig;
 use Kunena\Forum\Libraries\Date\KunenaDate;
 use Kunena\Forum\Libraries\Factory\KunenaFactory;
@@ -72,7 +71,8 @@ class ModuleKunenaLogin extends KunenaModule
 
         $wa = $this->document->getWebAssetManager();
         // The name of the asset first, then its address (with only an address, the asset has no file and nothing is loaded).
-        $wa->registerAndUseStyle('mod_kunenalogin', Uri::root(true) . '/modules/mod_kunenalogin/tmpl/css/kunenalogin.css');
+        // A path from the root of Joomla: the asset manager loads it (a path with the base of the site is not found).
+        $wa->registerAndUseStyle('mod_kunenalogin', 'modules/mod_kunenalogin/tmpl/css/kunenalogin.css');
 
         // Load language files.
         KunenaFactory::loadLanguage();
