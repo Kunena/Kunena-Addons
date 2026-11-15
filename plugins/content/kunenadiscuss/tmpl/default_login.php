@@ -22,11 +22,13 @@ $return = base64_encode($uri->toString());
 $loginUrl = KunenaLogin::getInstance()->getLoginURL();
 $loginUrl .= (strpos($loginUrl, '?') === false ? '?' : '&') . 'return=' . $return;
 ?>
-<div class="kunenadiscuss kpublic pt-3 pb-3">
-    <div class="kdiscuss-title login-discuss">
-        <h3><?php echo Text::_('PLG_KUNENADISCUSS_DISCUSS_THIS_ARTICLE'); ?></h3>
-    </div>
-    <a class="klogin-to-discuss btn btn-outline-primary" rel="nofollow" href="<?php echo $loginUrl; ?>">
-        <?php echo Text::_('PLG_KUNENADISCUSS_LOG_IN_TO_COMMENT'); ?>
-    </a>
+<div class="kunenadiscuss kpublic">
+    <section class="kdiscuss-form kdiscuss-login">
+        <h3 class="kdiscuss-heading"><?php echo Text::_('PLG_KUNENADISCUSS_DISCUSS_THIS_ARTICLE'); ?></h3>
+        <div class="kdiscuss-actions">
+            <a class="klogin-to-discuss btn btn-primary" rel="nofollow" href="<?php echo htmlspecialchars($loginUrl, ENT_QUOTES, 'UTF-8'); ?>">
+                <?php echo Text::_('PLG_KUNENADISCUSS_LOG_IN_TO_COMMENT'); ?>
+            </a>
+        </div>
+    </section>
 </div>

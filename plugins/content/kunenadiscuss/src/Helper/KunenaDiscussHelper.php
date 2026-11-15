@@ -652,10 +652,11 @@ class KunenaDiscussHelper
             return $linktopic;
         }
 
+        // The space between the form and the posts comes from the stylesheet (a gap), not from a line break.
         if ($formLocation) {
-            $content = '<div id="kdiscuss" class="kunenadiscuss">' . $content . '<br />' . $quickPost . '</div>';
+            $content = '<div id="kdiscuss" class="kunenadiscuss">' . $content . $quickPost . '</div>';
         } else {
-            $content = '<div id="kdiscuss" class="kunenadiscuss">' . $quickPost . "<br />" . $content . '</div>';
+            $content = '<div id="kdiscuss" class="kunenadiscuss">' . $quickPost . $content . '</div>';
         }
 
         return $content;

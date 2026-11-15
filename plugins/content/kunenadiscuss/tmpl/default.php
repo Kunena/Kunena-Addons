@@ -18,14 +18,19 @@ use Joomla\CMS\Plugin\PluginHelper;
 
 $messageLayoutPath = PluginHelper::getLayoutPath('content', 'kunenadiscuss', $layout . '_message');
 ?>
-<div class="panel-heading">
-    <?php echo HTMLHelper::_('kunenaforum.link', $topic->getUri($category), Text::_('PLG_KUNENADISCUSS_POSTS') . ': ' . $topic->subject, null, 'kdiscuss-topic btn btn-outline-primary mb-3') ?>
-</div>
-<?php foreach ($messages as $message) {
-    ob_start();
-    include $messageLayoutPath;
-    echo ob_get_clean();
-} ?>
-<div class="panel-heading">
-    <?php echo HTMLHelper::_('kunenaforum.link', $topic->getUri($category), Text::_('COM_KUNENA_READMORE'), null, 'kdiscuss-readmore btn btn-outline-primary') ?>
+<div class="kdiscuss-posts">
+    <div class="kdiscuss-posts-header">
+        <h3 class="kdiscuss-heading"><?php echo Text::_('PLG_KUNENADISCUSS_POSTS'); ?></h3>
+        <?php echo HTMLHelper::_('kunenaforum.link', $topic->getUri($category), $topic->displayField('subject'), null, 'kdiscuss-topic') ?>
+    </div>
+    <div class="kdiscuss-messages">
+        <?php foreach ($messages as $message) {
+            ob_start();
+            include $messageLayoutPath;
+            echo ob_get_clean();
+        } ?>
+    </div>
+    <div class="kdiscuss-posts-footer">
+        <?php echo HTMLHelper::_('kunenaforum.link', $topic->getUri($category), Text::_('COM_KUNENA_READMORE'), null, 'kdiscuss-readmore btn btn-outline-primary') ?>
+    </div>
 </div>

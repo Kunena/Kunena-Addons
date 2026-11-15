@@ -25,6 +25,8 @@
 	<media
 		destination="plg_content_kunenadiscuss"
 		folder="media">
+		<folder>css</folder>
+		<folder>images</folder>
 	</media>
 	<scriptfile>install.script.php</scriptfile>
 	<languages folder="language">

@@ -8,7 +8,356 @@
  * @link https://www.kunena.org
  **/
 
-.kunenadiscuss .avatar > img {
-	width: 100%;
-	object-fit: cover;
+/*
+ * The discussion under an article, in the style of the Agora template of Kunena: the same colours, radius, spaces and buttons.
+ * The stylesheet of the forum is not loaded on the pages of the articles, so the tokens of Agora are repeated here. A site sets
+ * its own accent with --agora-accent on .kunenadiscuss (or on a parent), the other colours follow it.
+ */
+.kunenadiscuss {
+  --kd-accent: var(--agora-accent, #3d5afe);
+  --kd-accent-strong: color-mix(in srgb, var(--kd-accent) 82%, #000);
+  --kd-accent-text: #fff;
+  --kd-link: var(--kd-accent-strong);
+  --kd-bg: color-mix(in oklab, var(--kd-accent) 4%, #f5f5f6);
+  --kd-surface: color-mix(in oklab, var(--kd-accent) 1%, #fff);
+  --kd-surface-2: color-mix(in oklab, var(--kd-accent) 3%, #f9f9fa);
+  --kd-surface-hover: color-mix(in oklab, var(--kd-accent) 5%, #f2f2f4);
+  --kd-border: color-mix(in oklab, var(--kd-accent) 7%, #e3e3e7);
+  --kd-border-strong: color-mix(in oklab, var(--kd-accent) 9%, #cfcfd5);
+  --kd-text: color-mix(in oklab, var(--kd-accent) 8%, #19191d);
+  --kd-text-muted: color-mix(in oklab, var(--kd-accent) 10%, #62626c);
+  --kd-focus: color-mix(in srgb, var(--kd-text) 18%, transparent);
+  --kd-radius: 8px;
+  --kd-shadow: 0 1px 2px color-mix(in srgb, var(--kd-text) 5%, transparent);
+  --kd-pad: 1rem;
+  --kd-gap: 1rem;
+  --kd-touch: 40px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-block: 2rem;
+  color: var(--kd-text);
+}
+
+/* A site in the dark scheme of Bootstrap: the dark colours of Agora. */
+[data-bs-theme="dark"] .kunenadiscuss,
+.kunenadiscuss[data-bs-theme="dark"] {
+  --kd-accent-strong: color-mix(in srgb, var(--kd-accent) 55%, #fff);
+  --kd-bg: color-mix(in oklab, var(--kd-accent) 5%, #0e0e11);
+  --kd-surface: color-mix(in oklab, var(--kd-accent) 5%, #16161a);
+  --kd-surface-2: color-mix(in oklab, var(--kd-accent) 6%, #1b1b20);
+  --kd-surface-hover: color-mix(in oklab, var(--kd-accent) 7%, #222228);
+  --kd-border: color-mix(in oklab, var(--kd-accent) 9%, #2b2b32);
+  --kd-border-strong: color-mix(in oklab, var(--kd-accent) 10%, #3b3b44);
+  --kd-text: color-mix(in oklab, var(--kd-accent) 5%, #ececf0);
+  --kd-text-muted: color-mix(in oklab, var(--kd-accent) 10%, #9d9da8);
+  --kd-shadow: 0 1px 2px rgb(0 0 0 / 0.24);
+  color-scheme: dark;
+}
+
+@media (pointer: coarse) {
+  .kunenadiscuss {
+    --kd-touch: 44px;
+  }
+}
+
+.kunenadiscuss a {
+  color: var(--kd-link);
+}
+
+.kunenadiscuss a:hover {
+  color: var(--kd-accent);
+}
+
+/* As in Agora: only the links in the text of a post are underlined; a name, a number or the topic is a link by its place. */
+.kunenadiscuss .kdiscuss-meta a,
+.kunenadiscuss .kdiscuss-topic {
+  text-decoration: none;
+}
+
+.kunenadiscuss .kdiscuss-meta a:hover,
+.kunenadiscuss .kdiscuss-topic:hover {
+  text-decoration: underline;
+}
+
+.kunenadiscuss .kdiscuss-heading {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 650;
+  line-height: 1.3;
+  color: var(--kd-text);
+}
+
+/* The form (and the invitation to log in): one card. */
+.kunenadiscuss .kdiscuss-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--kd-gap);
+  padding: var(--kd-pad);
+  background: var(--kd-surface);
+  border: 1px solid var(--kd-border);
+  border-radius: var(--kd-radius);
+  box-shadow: var(--kd-shadow);
+}
+
+.kunenadiscuss .kdiscuss-form .kdiscuss-heading {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--kd-border);
+}
+
+.kunenadiscuss .kdiscuss-form fieldset {
+  min-width: 0;
+  padding: 0;
+  margin: 0 0 var(--kd-gap);
+  border: 0;
+}
+
+.kunenadiscuss .kdiscuss-form legend {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+.kunenadiscuss .kdiscuss-form .control-group {
+  margin-bottom: var(--kd-gap);
+}
+
+.kunenadiscuss .kdiscuss-form .control-group:last-child {
+  margin-bottom: 0;
+}
+
+.kunenadiscuss .kdiscuss-form .control-label {
+  margin-bottom: 0.25rem;
+}
+
+.kunenadiscuss .kdiscuss-form label {
+  font-weight: 550;
+}
+
+.kunenadiscuss .kdiscuss-form .star {
+  color: var(--kd-text-muted);
+}
+
+.kunenadiscuss .form-control {
+  width: 100%;
+  max-width: 100%;
+  min-height: var(--kd-touch);
+  padding: 0.5rem 0.75rem;
+  font-size: max(16px, 0.95rem);
+  color: var(--kd-text);
+  background-color: var(--kd-surface);
+  border: 1px solid var(--kd-border-strong);
+  border-radius: var(--kd-radius);
+  box-shadow: none;
+}
+
+.kunenadiscuss textarea.form-control {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.kunenadiscuss .form-control:focus {
+  border-color: var(--kd-text-muted);
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem var(--kd-focus);
+}
+
+.kunenadiscuss .form-control:disabled {
+  color: var(--kd-text-muted);
+  background-color: var(--kd-surface-2);
+}
+
+.kunenadiscuss .alert {
+  margin: 0;
+  border-radius: var(--kd-radius);
+}
+
+.kunenadiscuss .kdiscuss-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* The buttons of Agora; Cassiopeia gives its own colours to .btn, the variables are set again here. */
+.kunenadiscuss .btn {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--kd-touch);
+  padding: 0.5rem 1rem;
+  font-weight: 550;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: normal;
+  color: var(--kd-btn-color);
+  background-color: var(--kd-btn-bg);
+  border: 1px solid var(--kd-btn-border);
+  border-radius: var(--kd-radius);
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.kunenadiscuss .btn:hover {
+  color: var(--kd-btn-color);
+  background-color: var(--kd-btn-hover-bg);
+  border-color: var(--kd-btn-hover-border);
+}
+
+.kunenadiscuss .btn:focus-visible {
+  outline: 2px solid var(--kd-text);
+  outline-offset: 2px;
+}
+
+.kunenadiscuss .btn-primary {
+  --kd-btn-color: var(--kd-accent-text);
+  --kd-btn-bg: var(--kd-accent);
+  --kd-btn-border: var(--kd-accent);
+  --kd-btn-hover-bg: var(--kd-accent-strong);
+  --kd-btn-hover-border: var(--kd-accent-strong);
+}
+
+.kunenadiscuss .btn-outline-primary {
+  --kd-btn-color: var(--kd-text);
+  --kd-btn-bg: var(--kd-surface);
+  --kd-btn-border: var(--kd-border-strong);
+  --kd-btn-hover-bg: var(--kd-surface-hover);
+  --kd-btn-hover-border: var(--kd-border-strong);
+}
+
+/* The posts: a title with the link to the topic, the replies as cards, the link to read more. */
+.kunenadiscuss .kdiscuss-posts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--kd-gap);
+}
+
+.kunenadiscuss .kdiscuss-posts-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.kunenadiscuss .kdiscuss-topic {
+  font-size: 0.9rem;
+  font-weight: 550;
+}
+
+.kunenadiscuss .kdiscuss-messages {
+  display: flex;
+  flex-direction: column;
+  gap: var(--kd-gap);
+}
+
+.kunenadiscuss .kdiscuss-messages:empty {
+  display: none;
+}
+
+.kunenadiscuss .kdiscuss-message {
+  display: flex;
+  gap: var(--kd-gap);
+  align-items: flex-start;
+  padding: var(--kd-pad);
+  background: var(--kd-surface);
+  border: 1px solid var(--kd-border);
+  border-radius: var(--kd-radius);
+  box-shadow: var(--kd-shadow);
+}
+
+/* The avatar: a circle, as in the posts of Agora; a picture which is not square is cropped to it. */
+.kunenadiscuss .kdiscuss-avatar {
+  flex: 0 0 48px;
+}
+
+.kunenadiscuss .kdiscuss-avatar:empty {
+  display: none;
+}
+
+.kunenadiscuss .kdiscuss-avatar img {
+  display: block;
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* A phone: a smaller avatar, the text keeps the width. */
+@media (max-width: 575.98px) {
+  .kunenadiscuss .kdiscuss-message {
+    gap: 0.75rem;
+  }
+
+  .kunenadiscuss .kdiscuss-avatar {
+    flex-basis: 32px;
+  }
+
+  .kunenadiscuss .kdiscuss-avatar img {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.kunenadiscuss .kdiscuss-content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.kunenadiscuss .kdiscuss-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+  align-items: baseline;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.86rem;
+  color: var(--kd-text-muted);
+  border-bottom: 1px solid var(--kd-border);
+}
+
+.kunenadiscuss .kdiscuss-author a {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.kunenadiscuss .kdiscuss-time {
+  margin-inline-start: auto;
+}
+
+.kunenadiscuss .kdiscuss-number {
+  color: var(--kd-text-muted);
+}
+
+.kunenadiscuss .kdiscuss-text {
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.kunenadiscuss .kdiscuss-text > :last-child {
+  margin-bottom: 0;
+}
+
+.kunenadiscuss .kdiscuss-text img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--kd-radius);
+}
+
+.kunenadiscuss .kdiscuss-text a {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentcolor 35%, transparent);
+}
+
+.kunenadiscuss .kdiscuss-posts-footer {
+  display: flex;
+}
+
+/* Only the link to the discussion (the posts are not shown on this page). */
+.kunenadiscuss.kdiscuss-link {
+  display: block;
+}
+
+.kunenadiscuss .kunenadiscuss {
+  margin-block: 0;
 }
