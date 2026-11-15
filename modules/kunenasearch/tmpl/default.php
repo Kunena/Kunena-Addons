@@ -24,7 +24,9 @@ use Joomla\CMS\Language\Text;
         <fieldset class="ksearch-fieldset">
             <legend class="ksearch-legend"><?php echo Text::_('MOD_KUNENASEARCH_SEARCHBY_KEYWORD'); ?></legend>
             <label class="ksearch-label" for="ksearch-keywords"><?php echo Text::_('MOD_KUNENASEARCH_SEARCH_KEYWORDS'); ?>:</label>
-            <input id="ksearch-keywords" type="text" class="ks kinput" name="q" size="<?php echo $this->ksearch_width; ?>" value="<?php echo $this->ksearch_txt; ?>" onblur="if(this.value=='') this.value='<?php echo $this->ksearch_txt; ?>';" onfocus="if(this.value=='<?php echo $this->ksearch_txt; ?>') this.value='';" />
+            <?php // Kunena reads the words of a search from "query"; the hint is a placeholder (not a value which would be searched). ?>
+            <input id="ksearch-keywords" type="search" class="ks kinput" name="query" size="<?php echo $this->ksearch_width; ?>"
+                   placeholder="<?php echo htmlspecialchars($this->ksearch_txt, ENT_QUOTES, 'UTF-8'); ?>" />
             <input id="ksearch-keywordfilter" type="hidden" name="titleonly" value="0" />
             <?php
             if ($this->ksearch_button == 1) {
@@ -32,7 +34,7 @@ use Joomla\CMS\Language\Text;
                     echo '<br />';
                 }
 
-                echo '<input type="submit" value="' . $this->ksearch_button_txt . '" class="kbutton btn' . $this->ksearch_moduleclass_sfx . '" />';
+                echo '<input type="submit" value="' . htmlspecialchars($this->ksearch_button_txt, ENT_QUOTES, 'UTF-8') . '" class="kbutton btn' . $this->ksearch_moduleclass_sfx . '" />';
             };
             ?>
         </fieldset>
