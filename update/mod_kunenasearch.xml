@@ -5,10 +5,10 @@
 		<description>Kunena Search Module</description>
 		<element>mod_kunenasearch</element>
 		<type>module</type>
-		<version>6.2.2</version>
-		<infourl title="Kunena Forum 6.2.2">https://www.kunena.org</infourl>
+		<version>@kunenaversion@</version>
+		<infourl title="Kunena Forum @kunenaversion@">https://www.kunena.org</infourl>
 		<downloads>
-			<downloadurl type="full" format="zip">https://github.com/Kunena/Kunena-Addons/releases/download/6.2.2/mod_kunenasearch_v6.2.2_2026-08-31.zip</downloadurl>
+			<downloadurl type="full" format="zip">https://github.com/Kunena/Kunena-Addons/releases/download/@kunenaversion@/mod_kunenasearch_v@kunenaversion@_@kunenaversiondate@.zip</downloadurl>
 		</downloads>
 		<tags>
 			<tag>stable</tag>
