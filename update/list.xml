@@ -1,1 +1,14 @@
-
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE extensionset>
+<extensionset name="Kunena" description="Kunena Addons List">	
+	<extension name="Kunena Latest Module" element="mod_kunenalatest" type="module" client="site" version="6.2.2"
+			   detailsurl="https://update.kunena.org/addons/mod_kunenalatest.xml"/>
+	<extension name="Kunena Login Module" element="mod_kunenalogin" type="module" client="site" version="6.2.2"
+			   detailsurl="https://update.kunena.org/addons/mod_kunenalogin.xml"/>
+	<extension name="Kunena Search Module" element="mod_kunenasearch" type="module" client="site" version="6.2.2"
+			   detailsurl="https://update.kunena.org/addons/mod_kunenasearch.xml"/>
+	<extension name="Kunena Statistics Module" element="mod_kunenastats" type="module" client="site" version="6.2.2"
+			   detailsurl="https://update.kunena.org/addons/mod_kunenastats.xml"/>
+	<extension name="Content - Kunena Discuss" element="kunenadiscuss" type="plugin" folder="content" client="site"
+			   version="6.2.2" detailsurl="https://update.kunena.org/addons/plg_content_kunenadiscuss.xml"/>
+</extensionset>
